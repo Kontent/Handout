@@ -1,0 +1,25 @@
+CREATE TABLE IF NOT EXISTS `#__populate_conf` (
+	`id` INT NOT NULL AUTO_INCREMENT ,
+	`skipfiles` TEXT,
+	`docdescription` TEXT NOT NULL ,
+	`published` INT NOT NULL ,
+	`approved` INT NOT NULL ,
+	`docthumbnail` VARCHAR( 255 ) ,
+	`doclicense_id` INT,
+	`doclicense_display` INT NOT NULL ,
+	`handouttainedby` INT,
+	`doclastupdateby` INT,
+	`docsubmittedby` INT,
+	`docowner` INT,
+	`docurl` VARCHAR( 255 ) ,
+	`access` INT NOT NULL ,
+	`attribs` TEXT NOT NULL ,
+	`stripextension` INT NOT NULL ,
+	`orphansonly` INT NOT NULL ,
+	`nicetitle` INT NOT NULL ,
+	`password` VARCHAR( 255 ) ,
+	`catid` INT NOT NULL ,
+	`usefiletime` INT NOT NULL ,
+	PRIMARY KEY ( `id` )
+);
+				

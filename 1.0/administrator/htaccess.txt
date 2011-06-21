@@ -1,0 +1,11 @@
+# @version		$Id: htaccess.txt $
+# @category	    Handout
+# @package		Handout
+# @copyright	(C) 2011 Kontent Design. All rights reserved.
+# @license	    http://www.gnu.org/copyleft/gpl.html GNU/GPL
+# @link     	http://www.sharehandouts.com
+
+# Note: Having a .htaccess prevents users from directly
+# accessing the files in your data folder
+
+deny from all

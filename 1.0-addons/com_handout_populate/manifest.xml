@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>Handout Populate</name>
+	<creationDate>April 2011</creationDate>
+	<author>Kontent Design</author>
+	<copyright>This component in released under the GNU/GPL License</copyright>
+	<authorEmail>support@kontentdesign.com</authorEmail>
+	<authorUrl>www.sharehandouts.com</authorUrl>
+	<version>1.0</version>
+	<description>Handout Populate allows you to batch import files uploaded though FTP</description>
+		
+	<files folder="components/com_populate">
+		<folder>controllers</folder>
+		<folder>views</folder>
+		<file>metadata.xml</file>	
+		<file>populate.php</file>	
+	</files>
+		
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">install/install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">install/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	<installfile>install/install.php</installfile>
+	<uninstallfile>install/uninstall.php</uninstallfile>
+	
+	<administration>
+		<menu>Handout Populate</menu>
+		<submenu>
+			<menu view="documents">Import files</menu>
+			<menu view="config">Configuration</menu>
+		</submenu>
+		<files folder="administrator/components/com_populate">
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>install</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+			<filename>populate.php</filename>
+		</files>
+	</administration>
+</install>

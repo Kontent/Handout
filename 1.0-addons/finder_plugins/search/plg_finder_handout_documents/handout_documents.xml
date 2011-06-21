@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id$ -->
+<install version="1.5" type="plugin" group="finder" method="upgrade">
+	<name>Finder - Handout Documents</name>
+	<group>finder</group>
+	<version>1.0.0</version>
+	<creationDate>April 2011</creationDate>
+	<author>Kontent Design</author>
+	<authorEmail>info@jxtended.com</authorEmail>
+	<authorUrl>http://www.sharehandouts.com/</authorUrl>
+	<copyright>Copyright 2008 - 2010 JXtended, LLC. All rights reserved.</copyright>
+	<description>FINDER_HANDOUT_DOCUMENTS_DESC</description>
+	
+	<files>
+		<file plugin="HANDOUT_documents">handout_documents.php</file>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">en-GB.plg_finder_handout_documents.ini</language>
+	</languages>
+	
+	<params />
+</install>

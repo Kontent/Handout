@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Category">
+		<message>Browse selected category or root list categories</message>
+	</layout>
+	<state>
+		<name>Category</name>
+		<description>Browse selected category or root list categories</description>		
+		<url addpath="/administrator/components/com_handout/elements">
+			<param name="gid" type="category" default="" label="Select Category" description="Select category you want to display" />
+			<param name="limit" type="text" default="" label="Documents per page" description="Number of documents to display in one page. Specify 0 or leave empty to use the main Configuration value." />
+			<param name="order" type="list" default="name" label="Order By" description="Select criterion to order the documents">
+			  <option value="name">Document Name</option>
+			  <option value="date">Upload Date</option>
+			  <option value="hits">Number of Downloads</option>
+			</param>
+			<param name="dir" type="list" default="ASC" label="Order Direction" description="Order Ascending/Descending">
+			  <option value="ASC">Ascending</option>
+			  <option value="DESC">Descending</option>
+			</param>
+			<param name="task" type="hidden" default="cat_view" />
+		</url>
+	</state>
+</metadata>

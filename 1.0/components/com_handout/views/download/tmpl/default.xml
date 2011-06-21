@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Download">
+		<message>Direct download of selected document</message>
+	</layout>
+	<state>
+		<name>Download</name>
+		<description>Direct download of selected document</description>		
+		<url addpath="/administrator/components/com_handout/elements">
+			<param name="gid" type="document" default="" label="Select Document" description="Select document which you want add to download by direct link" />
+			<param name="task" type="hidden" default="doc_download" />
+		</url>
+	</state>
+</metadata>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<install type="plugin" version="1.5.0" group="handout" method="upgrade">
+  <name>Handout - Notify</name>
+  <creationDate>April 2011</creationDate>
+	<author>Kontent Design</author>
+	<copyright>This extension is released under the GNU/GPL License</copyright>
+	<authorEmail>support@kontentdesign.com</authorEmail>
+	<authorUrl>www.sharehandouts.com</authorUrl>
+	<version>1.0</version>
+  <description>This plug-in will notify the site owner when someone uploads, edits or downloads a file in Handout. Don't forget to publish it and specify at least one e-mail address.</description>
+  
+  <files>
+	<folder>notify</folder>
+    <filename plugin="notify">notify.php</filename>
+  </files>
+  
+  	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_handout_notify.ini</language>
+	</languages>
+
+  <params>
+	<param name="cc" type="textarea" rows="5" cols="30" default="" label="Send to" description="Send a notification to these e-mail addresses. Separate by a pipe |." />
+
+	<param name="onupload_site" type="radio" default="1" label="Notify on upload (site)" description="Send a notification when someone uploads a file through the front-end.">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+
+	<param name="onedit_site" type="radio" default="1" label="Notify on edit (site)" description="Send a notification when someone edits a file through the front-end.">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+
+	<param name="ondownload_site" type="radio" default="0" label="Notify on download (site)" description="Send a notification when someone downloads a file through the front-end.">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+
+	<param name="onedit_admin" type="radio" default="0" label="Notify on edit (admin)" description="Send a notification when someone edits a file through the back-end.">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+  </params>
+</install>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="search" method="upgrade">
+	<name>Search - Handout</name>
+	<creationDate>April 2011</creationDate>
+	<author>Kontent Design</author>
+	<copyright>This extension is released under the GNU/GPL License</copyright>
+	<authorEmail>support@kontentdesign.com</authorEmail>
+	<authorUrl>www.sharehandouts.com</authorUrl>
+	<version>1.0</version>
+	<description>Enables searching Handout documents.</description>
+	<setting published="1"/>
+	<files>
+		<filename plugin="handout">handout.php</filename>
+	</files>
+	<params>
+		<param name="search_limit" type="text" size="5" default="50" label="Search Limit" description="Number of results to return"/>
+	</params>
+</install>

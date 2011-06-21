@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Document">
+		<message>Document detail page</message>
+	</layout>
+	<state>
+		<name>Document</name>
+		<description>Document detail page</description>		
+		<url addpath="/administrator/components/com_handout/elements">
+			<param name="gid" type="document" default="" label="Select Document" description="Select document which detail you want display on page" />
+			<param name="task" type="hidden" default="doc_details" />
+		</url>
+	</state>
+</metadata>

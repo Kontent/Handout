@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <install type="module" version="1.5.0" method="upgrade">
+	<name>Handout Documents</name>
+	<creationDate>April 2011</creationDate>
+	<author>Kontent Design</author>
+	<copyright>This extension is released under the GNU/GPL License</copyright>
+	<authorEmail>support@kontentdesign.com</authorEmail>
+	<authorUrl>http://sharehandouts.com</authorUrl>
+	<version>1.0</version>
+	<description>MOD_HANDOUT_DOCS_DESC</description>
+
+	<languages folder="language">
+      	<language tag="en-GB">en-GB/en-GB.mod_handout_docs.ini</language>    
+    </languages>
+
+	<files>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename module="mod_handout_docs">mod_handout_docs.php</filename>
+		<filename>mod_handout_docs.xml</filename>
+	</files>
+
+    <params>
+      <param name="show_icon" type="radio" default="1" label="MOD_HANDOUT_DOCS_FILE_ICON_LABEL" description="MOD_HANDOUT_DOCS_FILE_ICON_DESC">
+			<option value="0">MOD_HANDOUT_DOCS_HIDE</option>
+			<option value="1">MOD_HANDOUT_DOCS_SHOW</option>
+	  </param>
+	  <param name="show_counter" type="radio" default="1" label="MOD_HANDOUT_DOCS_COUNTER_LABEL" description="MOD_HANDOUT_DOCS_COUNTER_DESC">
+			<option value="0">MOD_HANDOUT_DOCS_HIDE</option>
+			<option value="1">MOD_HANDOUT_DOCS_SHOW</option>
+	  </param>
+      <param name="show_category" type="radio" default="1" label="MOD_HANDOUT_DOCS_CATEGORY_LABEL" description="MOD_HANDOUT_DOCS_CATEGORY_DESC">
+    		<option value="0">MOD_HANDOUT_DOCS_HIDE</option>
+    		<option value="1">MOD_HANDOUT_DOCS_SHOW</option>
+      </param>    
+      <param name="text_pfx" type="text" default="" label="MOD_HANDOUT_DOCS_TEXT_PREFIX_LABEL" description="MOD_HANDOUT_DOCS_TEXT_PREFIX_DESC" />
+      <param name="text_sfx" type="text" default="" label="MOD_HANDOUT_DOCS_TEXT_SUFFIX_LABEL" description="MOD_HANDOUT_DOCS_TEXT_SUFFIX_DESC" />
+      
+      <param name="limits" type="text" default="" label="MOD_HANDOUT_DOCS_LIMIT_LABEL" description="MOD_HANDOUT_DOCS_LIMIT_DESC" />
+	  <param name="cat_ids" type="text" default="" label="MOD_HANDOUT_DOCS_CATID_LABEL" description="MOD_HANDOUT_DOCS_CATID_DESC" />
+	  
+      <param name="is_mtree_listing" type="radio" default="1" label="MOD_HANDOUT_DOCS_MTREE_LABEL" description="MOD_HANDOUT_DOCS_MTREE_DESC">
+			<option value="0">MOD_HANDOUT_DOCS_NO</option>
+			<option value="1">MOD_HANDOUT_DOCS_YES</option>
+	  </param>
+
+      <param name="order_by" type="list" default="0" label="MOD_HANDOUT_DOCS_ORDER_LABEL" description="MOD_HANDOUT_DOCS_ORDER_DESC">
+			<option value="0">MOD_HANDOUT_DOCS_ORDER_MOSTDOWNLOADS</option>
+			<option value="1">MOD_HANDOUT_DOCS_ORDER_LEASTDOWNLOADS</option>
+			<option value="2">MOD_HANDOUT_DOCS_ORDER_NEWESTDOWNLOADS</option>
+			<option value="3">MOD_HANDOUT_DOCS_ORDER_OLDESTDOWNLOADS</option>
+			<option value="4">MOD_HANDOUT_DOCS_ORDER_ALPHA</option>
+			<option value="5">MOD_HANDOUT_DOCS_ORDER_REVERSEALPHA</option>
+	  </param>
+    </params>
+    <params group="advanced">
+    	<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+		<param name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+			<option value="1">Use global</option>
+			<option value="0">No caching</option>
+		</param>
+	</params>
+</install>

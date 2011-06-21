@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<install version="1.5" type="plugin" group="editors-xtd" method="upgrade">
+  <name>Handout - Document Link</name>
+  <version>1.0</version>
+  <creationDate>April 2011</creationDate>
+  <author>Kontent Design</author>
+  <authorEmail>support@kontentdesign.com</authorEmail>
+  <authorUrl>www.sharehandouts.com</authorUrl>
+  <copyright>2011 Kontent Design</copyright>
+  <license>This extension is released under the GNU/GPL License</license>
+  <description>Handout Document Link is a Joomla editor plugin that allows the insertion of links to Handout files using a popup dialog.</description>
+
+  <setting published="1"/>
+
+  <languages folder="language">
+  	<language tag="en-GB">en-GB/en-GB.plg_editors-xtd_handoutdoclink.ini</language>    
+  </languages>
+
+  <files>
+  	<folder>handoutdoclink</folder>
+	<filename plugin="handoutdoclink">handoutdoclink.php</filename>
+  </files>
+
+</install>

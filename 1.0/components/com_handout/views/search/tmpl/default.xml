@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Search">
+		<message>Page for searching in document by various criteria</message>
+	</layout>
+	<state>
+		<name>Search</name>
+		<description>Page for searching in document by various criteria</description>		
+		<url>
+			<param name="task" type="hidden" default="search_form" />
+		</url>
+	</state>
+</metadata>

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>Handout</name>
+	<creationDate>April 2011</creationDate>
+	<author>Kontent Design</author>
+	<copyright>(c) 2011 Kontent Design</copyright>
+	<license>GNU/GPL License</license>
+	<authorEmail>support@kontentdesign.com</authorEmail>
+	<authorUrl>http://www.sharehandouts.com</authorUrl>
+	<version>1.0</version>
+	<description>Joomla Download Manager</description>
+
+	<!-- Installation Files -->
+	<installfile>install/install.handout.php</installfile>
+	<uninstallfile>install/uninstall.handout.php</uninstallfile>
+
+	<!-- Front-end Translation Files -->
+	<languages folder="site/language">
+      	<language tag="en-GB">en-GB/en-GB.com_handout.ini</language>
+    </languages>
+    
+    <!-- Front-end Files -->
+	<files folder="site">
+		<folder>media</folder>
+		<folder>helpers</folder>
+		<folder>views</folder>
+
+		<file>controller.php</file>
+		<file>handout.php</file>
+		<file>footer.php</file>
+		<file>index.html</file>
+		<file>router.php</file>
+	</files>
+
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">install/install.sql</file>
+		</sql>
+	</install>
+
+	<!-- Media files -->
+	<media destination="com_handout" folder="media">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+
+		<file>index.html</file>
+	</media>
+	
+	<!-- Administrator Files -->
+	<administration>
+
+		<languages folder="admin/language">
+      		<language tag="en-GB">en-GB/en-GB.com_handout.ini</language>    
+    	</languages>
+
+		<menu img="components/com_handout/images/icon-16-home.png">Handout</menu>
+		<submenu>
+      		<menu img="components/com_handout/images/icon-16-home.png" link="option=com_handout">Control Panel</menu>
+      		<menu img="components/com_handout/images/icon-16-documents.png" link="option=com_handout&amp;section=documents">Documents</menu>
+      		<menu img="components/com_handout/images/icon-16-files.png" link="option=com_handout&amp;section=files">Files</menu>
+      		<menu img="components/com_handout/images/icon-16-category.png" link="option=com_handout&amp;section=categories">Categories</menu>
+      		<menu img="components/com_handout/images/icon-16-groups.png" link="option=com_handout&amp;section=groups">User Groups</menu>
+      		<menu img="components/com_handout/images/icon-16-licenses.png" link="option=com_handout&amp;section=licenses">Agreements</menu>
+      		<menu img="components/com_handout/images/icon-16-codes.png" link="option=com_handout&amp;section=codes">Codes</menu>
+      		<menu img="components/com_handout/images/icon-16-stats.png" task="stats">Top Downloads</menu>
+      		<menu img="components/com_handout/images/icon-16-logs.png" link="option=com_handout&amp;section=logs">Download Log</menu>
+      		<menu img="components/com_handout/images/icon-16-config.png" link="option=com_handout&amp;section=config">Configuration</menu>
+    	</submenu>
+
+		<files folder="admin">
+			<folder>classes</folder>
+			<folder>contrib</folder>
+			<folder>elements</folder>
+			<folder>helpers</folder>
+			<folder>images</folder>
+			<folder>install</folder>
+			<folder>includes</folder>
+			<folder>language</folder>
+			<folder>temp</folder>
+
+			<file>admin.handout.html.php</file>
+			<file>admin.handout.php</file>
+			<file>COPYRIGHT.php</file>
+			<file>footer.php</file>
+			<file>handout.class.php</file>
+			<file>handout.config.php</file>
+			<file>handout.doc.languages.xml</file>
+			<file>handout.migration.php</file>
+			<file>handout.params.xml</file>
+			<file>htaccess.txt</file>
+			<file>index.html</file>
+			<file>toolbar.handout.class.php</file>
+			<file>toolbar.handout.html.php</file>
+			<file>toolbar.handout.php</file>
+		</files>
+
+	</administration>		
+
+	<modules>
+		<module
+			module="mod_handout_approval"
+			title="Handout Approval Queue"
+			position="handout_cpanel"
+			client="administrator"
+			showtitle="1"
+			published="1"
+			ordering="1">
+			<files folder="mod_handout_approval_admin">
+				<folder>tmpl</folder>
+			
+				<filename>helper.php</filename>
+				<filename>index.html</filename>
+				<filename module="mod_handout_approval">mod_handout_approval.php</filename>
+				<filename>mod_handout_approval.xml</filename>
+			</files>
+
+			<languages folder="mod_handout_approval_admin/language">
+				<language tag="en-GB">en-GB/en-GB.mod_handout_approval.ini</language>
+			</languages>
+		</module>
+
+		<module
+			module="mod_handout_latest_additions"
+			title="Handout Newest Documents"
+			position="handout_cpanel"
+			client="administrator"
+			showtitle="1"
+			published="1"
+			ordering="2">
+			<files folder="mod_handout_latest_additions_admin">
+				<folder>tmpl</folder>
+			
+				<filename>helper.php</filename>
+				<filename>index.html</filename>
+				<filename module="mod_handout_latest_additions">mod_handout_latest_additions.php</filename>
+				<filename>mod_handout_latest_additions.xml</filename>
+			</files>
+
+			<languages folder="mod_handout_latest_additions_admin/language">
+				<language tag="en-GB">en-GB/en-GB.mod_handout_latest_additions.ini</language>
+			</languages>
+		</module>
+
+		<module
+			module="mod_handout_latest_downloads"
+			title="Handout Latest Downloads Log"
+			position="handout_cpanel"
+			client="administrator"
+			showtitle="1"
+			published="1"
+			ordering="3">
+			<files folder="mod_handout_latest_downloads_admin">
+				<folder>tmpl</folder>
+			
+				<filename>helper.php</filename>
+				<filename>index.html</filename>
+				<filename module="mod_handout_latest_downloads">mod_handout_latest_downloads.php</filename>
+				<filename>mod_handout_latest_downloads.xml</filename>
+			</files>
+
+			<languages folder="mod_handout_latest_downloads_admin/language">
+				<language tag="en-GB">en-GB/en-GB.mod_handout_latest_downloads.ini</language>
+			</languages>
+		</module>
+
+		<module
+			module="mod_handout_top_downloads"
+			title="Handout Top Downloads"
+			position="handout_cpanel"
+			client="administrator"
+			showtitle="1"
+			published="1"
+			ordering="4">
+			<files folder="mod_handout_top_downloads_admin">
+				<folder>tmpl</folder>
+			
+				<filename>helper.php</filename>
+				<filename>index.html</filename>
+				<filename module="mod_handout_top_downloads">mod_handout_top_downloads.php</filename>
+				<filename>mod_handout_top_downloads.xml</filename>
+			</files>
+
+			<languages folder="mod_handout_top_downloads_admin/language">
+				<language tag="en-GB">en-GB/en-GB.mod_handout_top_downloads.ini</language>
+			</languages>
+		</module>
+
+		<module
+			module="mod_handout_quickicon_admin"
+			title="Handout Control Panel Quick Icon"
+			position="icon"
+			client="administrator"
+			showtitle="0"
+			published="1"
+			ordering="10">
+			<files folder="mod_handout_quickicon_admin">
+				<folder>tmpl</folder>
+			
+				<filename>index.html</filename>
+				<filename module="mod_handout_quickicon_admin">mod_handout_quickicon_admin.php</filename>
+				<filename>mod_handout_quickicon_admin.xml</filename>
+			</files>
+		</module>
+
+		<module
+			module="mod_handout_docs"
+			title="Handout Documents"
+			position="left"
+			client="site"
+			showtitle="1"
+			published="0"
+			ordering="1">
+			<files folder="mod_handout_docs">
+				<folder>tmpl</folder>
+				<filename>helper.php</filename>
+				<filename>index.html</filename>
+				<filename module="mod_handout_docs">mod_handout_docs.php</filename>
+				<filename>mod_handout_docs.xml</filename>
+			</files>
+
+
+			<languages folder="mod_handout_docs/language">
+				<language tag="en-GB">en-GB/en-GB.mod_handout_docs.ini</language>
+			</languages>
+
+		    <params>
+		      <param name="show_icon" type="radio" default="1" label="MOD_HANDOUT_DOCS_FILE_ICON_LABEL" description="MOD_HANDOUT_DOCS_FILE_ICON_DESC">
+					<option value="0">MOD_HANDOUT_DOCS_HIDE</option>
+					<option value="1">MOD_HANDOUT_DOCS_SHOW</option>
+			  </param>
+			  <param name="show_counter" type="radio" default="1" label="MOD_HANDOUT_DOCS_COUNTER_LABEL" description="MOD_HANDOUT_DOCS_COUNTER_DESC">
+					<option value="0">MOD_HANDOUT_DOCS_HIDE</option>
+					<option value="1">MOD_HANDOUT_DOCS_SHOW</option>
+			  </param>
+		      <param name="show_category" type="radio" default="1" label="MOD_HANDOUT_DOCS_CATEGORY_LABEL" description="MOD_HANDOUT_DOCS_CATEGORY_DESC">
+		    		<option value="0">MOD_HANDOUT_DOCS_HIDE</option>
+		    		<option value="1">MOD_HANDOUT_DOCS_SHOW</option>
+		      </param>    
+		      <param name="text_pfx" type="text" default="" label="MOD_HANDOUT_DOCS_TEXT_PREFIX_LABEL" description="MOD_HANDOUT_DOCS_TEXT_PREFIX_DESC" />
+		      <param name="text_sfx" type="text" default="" label="MOD_HANDOUT_DOCS_TEXT_SUFFIX_LABEL" description="MOD_HANDOUT_DOCS_TEXT_SUFFIX_DESC" />
+		      
+		      <param name="limits" type="text" default="" label="MOD_HANDOUT_DOCS_LIMIT_LABEL" description="MOD_HANDOUT_DOCS_LIMIT_DESC" />
+			  <param name="cat_ids" type="text" default="" label="MOD_HANDOUT_DOCS_CATID_LABEL" description="MOD_HANDOUT_DOCS_CATID_DESC" />
+			  
+		      <param name="order_by" type="list" default="0" label="MOD_HANDOUT_DOCS_ORDER_LABEL" description="MOD_HANDOUT_DOCS_ORDER_DESC">
+					<option value="0">MOD_HANDOUT_DOCS_ORDER_MOSTDOWNLOADS</option>
+					<option value="1">MOD_HANDOUT_DOCS_ORDER_LEASTDOWNLOADS</option>
+					<option value="2">MOD_HANDOUT_DOCS_ORDER_NEWESTDOWNLOADS</option>
+					<option value="3">MOD_HANDOUT_DOCS_ORDER_OLDESTDOWNLOADS</option>
+					<option value="4">MOD_HANDOUT_DOCS_ORDER_ALPHA</option>
+					<option value="5">MOD_HANDOUT_DOCS_ORDER_REVERSEALPHA</option>
+			  </param>
+		    </params>
+		    <params group="advanced">
+		    	<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+				<param name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+					<option value="1">Use global</option>
+					<option value="0">No caching</option>
+				</param>
+			</params>
+		</module>
+	</modules>
+
+	<plugins>
+		<plugin
+			plugin="handoutdoclink"
+			group="editors-xtd"
+			name="Handout - Document Link">
+		  
+		  <languages folder="plg_handout_doclink/language">
+		  	<language tag="en-GB">en-GB/en-GB.plg_editors-xtd_handoutdoclink.ini</language>    
+		  </languages>
+		
+		  <files folder="plg_handout_doclink">
+		  	<folder>handoutdoclink</folder>
+			<filename plugin="handoutdoclink">handoutdoclink.php</filename>
+			<filename plugin="handoutdoclink">handoutdoclink.xml</filename>
+		  </files>
+
+		</plugin>
+
+		<plugin
+			plugin="buttons"
+			group="handout"
+			name="Handout - Buttons">
+		  
+			<languages folder="plg_handout_buttons/language">
+		      	<language tag="en-GB">en-GB/en-GB.plg_handout_buttons.ini</language>    
+		    </languages>
+		
+			<files folder="plg_handout_buttons">
+				<filename plugin="buttons">buttons.php</filename>
+				<filename plugin="buttons">buttons.xml</filename>
+			</files>
+		
+			<params>
+				<param name="download" type="radio" default="1" label="Show Download"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="view" type="radio" default="1" label="Show View"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="details" type="radio" default="1" label="Show Details"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="edit" type="radio" default="1" label="Show Edit"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="move" type="radio" default="1" label="Show Move"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="delete" type="radio" default="1" label="Show Delete"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="update" type="radio" default="1" label="Show Update"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="reset" type="radio" default="1" label="Show Reset"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="checkout" type="radio" default="1"
+					label="Show Checkin/Checkout"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+				<param name="publish" type="radio" default="1"
+					label="Show Publish/Unpublish"
+					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</param>
+			</params>
+		</plugin>
+
+		<plugin
+			plugin="notify"
+			group="handout"
+			name="Handout - Notify">
+		  
+		  <languages folder="plg_handout_notify/language">
+		  	<language tag="en-GB">en-GB/en-GB.plg_handout_notify.ini</language>    
+		  </languages>
+		
+		  <files folder="plg_handout_notify">
+		  	<folder>notify</folder>
+			<filename plugin="notify">notify.php</filename>
+			<filename plugin="notify">notify.xml</filename>
+		  </files>
+
+		  <params>
+			<param name="cc" type="textarea" rows="5" cols="30" default="" label="Send to" description="Send a notification to these e-mail addresses. Separate by a pipe |." />
+		
+			<param name="onupload_site" type="radio" default="1" label="Notify on upload (site)" description="Send a notification when someone uploads a file through the front-end.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+		
+			<param name="onedit_site" type="radio" default="1" label="Notify on edit (site)" description="Send a notification when someone edits a file through the front-end.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+		
+			<param name="ondownload_site" type="radio" default="0" label="Notify on download (site)" description="Send a notification when someone downloads a file through the front-end.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+		
+			<param name="onedit_admin" type="radio" default="0" label="Notify on edit (admin)" description="Send a notification when someone edits a file through the back-end.">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+		  </params>
+		</plugin>
+		
+		<plugin
+			plugin="thumbs"
+			group="handout"
+			name="Handout - Thumbs">
+		  	
+		  <files folder="plg_handout_thumbs">
+		  	<folder>thumbs</folder>
+		  	<filename plugin="thumbs">thumbs.php</filename>
+		  	<filename plugin="thumbs">thumbs.xml</filename>
+		  </files>
+
+		  <params>
+		  	<param name="extensions" label="Extensions" description="Generate a thumbnail for these extensions (separated by comma). Leave blank to allow all image formats. Note: Not all files will have thumbnails. This depends on the files themselves and on your system. It's recommended to put here only the extensions you actually need, to improve performance." type="text" default="" />
+		  	<param name="@spacer" type="spacer" default="" label="" description="" />
+		  	<param name="width" label="Width" description="Thumbnail width in pixels" type="text" default="64" />
+		  	<param name="height" label="Height" description="Thumbnail height in pixels" type="text" default="64" />
+		  	<param name="output_format" label="Output format" description="The format of the generated thumbnail" type="radio" default="png">
+		  		<option value="png">PNG</option>
+		  		<option value="gif">GIF</option>
+		  		<option value="jpeg">JPEG</option>
+		  	</param>	
+		  	<param name="jpeg_quality" label="JPEG quality" description="Image quality of the thumbnail (1=small size, 100=best quality) " type="text" default="75" />
+		  	<param name="background_color" label="Background color" description="Background color of the thumbnail" type="text" default="FFFFFF" />
+		  	<param name="grayscale" label="Grayscale" description="Make the thumbnails black &amp; white" type="radio" default="0" >
+		  		<option value="0">No</option>
+		  		<option value="1">Yes</option>
+		  	</param>		
+		  </params>
+		</plugin>
+
+		<plugin
+			plugin="handout"
+			group="search"
+			name="Search - Handout">
+		  	
+		  	<files folder="plg_handout_search">
+				<filename plugin="handout">handout.php</filename>
+			</files>
+			<params>
+				<param name="search_limit" type="text" size="5" default="50" label="Search Limit" description="Number of results to return"/>
+			</params>
+		</plugin>
+	</plugins>
+</install>

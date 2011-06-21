@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id$ -->
+<install version="1.5" type="plugin" group="system" method="upgrade">
+	<name>System - Finder to Handout Synchronization</name>
+	<author>Kontent Design</author>
+	<creationDate>September 2010</creationDate>
+	<copyright>Copyright (C) 2007 - 2010 JXtended, LLC.  All rights reserved.</copyright>
+	<license>GNU General Public License</license>
+	<authorEmail>info@jxtended.com</authorEmail>
+	<authorUrl>http://www.sharehandouts.com</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_SYSTEM_FINDER_HANDOUT_SYNC_DESC</description>
+
+	<files>
+		<file plugin="finder_handout_sync">finder_handout_sync.php</file>
+	</files>
+
+	<languages>
+		<language tag="en-GB">en-GB.plg_system_finder_handout_sync.ini</language>
+	</languages>
+</install>

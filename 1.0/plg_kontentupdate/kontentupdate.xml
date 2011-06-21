@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="system" method="upgrade">
+	<name>Kontent Update Alert</name>
+	<author>Kontent Extensions</author>
+	<creationDate>March 2011</creationDate>
+    <copyright>(C) 2011 Kontent Design</copyright>
+	<license>GNU General Public License</license>
+	<authorEmail>support@kontentdesign.com</authorEmail>
+	<authorUrl>http://extensions.kontentdesign.com</authorUrl>
+	<version>1.0</version>
+	<description>This plug-in alerts you when a Kontent Extension is out of date.</description>
+	<files>
+		<filename plugin="kontentupdate">kontentupdate.php</filename>
+		<folder>kontentupdate</folder>
+	</files>
+	<params>
+		<param name="lastcheck" type="text" default="0" label="Last check date" description="Kontent Update last check"></param>
+	</params>
+</install>
