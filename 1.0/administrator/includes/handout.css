@@ -158,6 +158,30 @@ table.adminlist { margin-bottom: 15px;}
 	margin: 25px;
 }
 
+.hserver-import {
+	clear:left;
+	border: 1px solid #ececec;
+	margin: 10px;
+}
+.himport-title {
+	font-size: 13px;
+	font-weight: bold;
+	margin: 15px;
+}
+.hserver-import .himport-icon {
+	float:left;
+	height: 48px;
+	margin: 15px;
+}
 
+.hserver-import .hlabel{
+	font-weight: bold;
+}
+.hserver-import input {
+	margin: 8px 0;
+}
+.vtop {
+	vertical-align:top !important;
+}
 
 

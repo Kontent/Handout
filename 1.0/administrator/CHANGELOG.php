@@ -24,6 +24,9 @@ Legend:
 
 ------------
 
+21-Jun-2011 Severdia
+# Cleaned up import screen, new lang. strings
+
 21-Jun-2011 Arvind
 + New field mtree_id to enable linking a document with a mtree node
 ^ Changed mod_handout_docs to filter documents belonging to a mtree listing

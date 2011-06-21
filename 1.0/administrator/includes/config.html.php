@@ -722,30 +722,44 @@ class HTML_HandoutConfig
         	<td class="hadmin-subtitle" colspan="5"><?php echo JText::_('COM_HANDOUT_CHOOSE_IMPORT');?></td>
         </tr>       
         <tr>
-            <td class="bgwhite center"> 
-            <div class="himport-icon">
-				<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_docman" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'DOCman'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_DOCMAN_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_DOCMAN_DESC');?>"><img src="components/com_handout/images/migrate_docman.jpg" /></a>
-            </div>
+            <td class="bgwhite center vtop"> 
             
-            <div class="himport-icon">
-				<a href="#" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_REMOSITORY_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_REMOSITORY_DESC');?>"><img src="components/com_handout/images/migrate_remository.jpg" /></a>
-            </div>
-            
-             <div class="himport-icon">
-				<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_rokdownloads" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'RokDownloads'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_ROKDOWNLOADS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_ROKDOWNLOADS_DESC');?>"><img src="components/com_handout/images/migrate_rokdownloads.jpg" /></a>
-            </div>
-            
-             <div class="himport-icon">
-				<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_joomdoc" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'JoomDoc'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_JOOMDOC_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_JOOMDOC_DESC');?>"><img src="components/com_handout/images/migrate_joomdoc.jpg" /></a>
-            </div>
-            
-            <div class="himport-icon">
-				<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_rubberdoc" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_RUBBERDOC_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_RUBBERDOC_DESC');?>"><img src="components/com_handout/images/migrate_rubberdoc.jpg" /></a>
-            </div>
-            
-             <div class="himport-icon">
-				<a href="#" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_DESC');?>" onclick="javascript:serverfoldersubmit()"><img src="components/com_handout/images/migrate_server.jpg" /></a> <input type="text" size="25" name="serverfolder" id="serverfolder" />(name of zip file in Handout folder to extract files from)
-            </div>
+	            <div class="hserver-import">
+	            <div class="himport-title"><?php echo JText::_('COM_HANDOUT_MIGRATE_EXTENSION_TITLE');?></div>
+		            <div class="himport-icon">
+						<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_docman" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'DOCman'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_DOCMAN_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_DOCMAN_DESC');?>"><img src="components/com_handout/images/migrate_docman.jpg" /></a>
+		            </div>
+		            <!-- Disabled until ready 
+		            <div class="himport-icon">
+						<a href="#" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_REMOSITORY_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_REMOSITORY_DESC');?>"><img src="components/com_handout/images/migrate_remository.jpg" /></a>
+		            </div>
+		            -->
+		             <div class="himport-icon">
+						<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_rokdownloads" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'RokDownloads'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_ROKDOWNLOADS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_ROKDOWNLOADS_DESC');?>"><img src="components/com_handout/images/migrate_rokdownloads.jpg" /></a>
+		            </div>
+		            
+		             <div class="himport-icon">
+						<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_joomdoc" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'JoomDoc'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_JOOMDOC_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_JOOMDOC_DESC');?>"><img src="components/com_handout/images/migrate_joomdoc.jpg" /></a>
+		            </div>
+		            <div class="himport-icon">
+						<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_rubberdoc" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_RUBBERDOC_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_RUBBERDOC_DESC');?>"><img src="components/com_handout/images/migrate_rubberdoc.jpg" /></a>
+		            </div>
+		            <div class="clr"></div>
+	            </div>
+	        </td> 
+	        </tr>
+	        <tr>
+	        <td class="bgwhite center vtop">   
+	            <div class="hserver-import">
+	            	<div class="himport-title"><?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_TITLE');?></div>
+					<div class="himport-icon">
+						<a href="#" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_DESC');?>" ><img src="components/com_handout/images/migrate_server.jpg" /></a> 
+	            	</div>
+	            	<div class="hlabel"><?php echo JText::_('COM_HANDOUT_MIGRATE_FOLDER_NAME_LABEL');?>: 
+	            	<br /><input type="text" size="20" name="serverfolder" id="serverfolder" />
+					<br /><button onclick="javascript:serverfoldersubmit()"><?php echo JText::_('COM_HANDOUT_MIGRATE_START_IMPORT');?></button></div>
+	            	<div class="clr"></div>
+	            </div>
             </td>
         </tr>
     </table>

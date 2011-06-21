@@ -9,5 +9,5 @@
  **/
 
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
-require(JModuleHelper::getLayoutPath('mod_handout_quickicon_admin'));
+// require(JModuleHelper::getLayoutPath('mod_handout_quickicon_admin'));
 ?>

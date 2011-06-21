@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 	</thead>
 	<tbody>
         <?php if (!count($docs)): ?>
-        	<tr><td colspan="2"><?php echo JText::_('MOD_HANDOUT_TOP_THERE_ARE_NO_DOCUMENTS_DOWNLOADED'); ?></td></tr>
+        	<tr><td colspan="2" style="text-align:center !important;"><?php echo JText::_('MOD_HANDOUT_TOP_THERE_ARE_NO_DOCUMENTS_DOWNLOADED'); ?></td></tr>
         <?php else: ?>	
         <?php foreach ($docs as $doc): ?>
         	<tr>
