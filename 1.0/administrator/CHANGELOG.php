@@ -31,6 +31,7 @@ Legend:
 # Added missing tmpl folder for quickicon module
 + Included Tooltip behaviour to some admin screens
 # Fixed link to Codes section from Handout cpanel
++ Clear data for Codes in Config tab
 
 22-Jun-2011 Arvind
 Testing commit on Github

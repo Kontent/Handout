@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="1.0-addons/com_handout_populate/administrator/components/com_populate"/>
+	<buildpathentry kind="src" path="1.0-addons/com_handout_populate/components/com_populate"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/search/plg_finder_handout_documents"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_doc_support.darwin"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_doc_support.linux"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_doc_support.universal"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_doc_support.windows"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_docx_support"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_pdf_support.darwin"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_pdf_support.freebsd"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_pdf_support.linux"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_pdf_support.universal"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/support/plg_finder_pdf_support.windows"/>
+	<buildpathentry kind="src" path="1.0-addons/finder_plugins/sync/plg_system_finder_handout_sync"/>
+	<buildpathentry kind="src" path="1.0-addons/plg_search_jfhandout"/>
+	<buildpathentry kind="src" path="1.0-addons/xmap_handout_plugin"/>
+	<buildpathentry kind="src" path="1.0/administrator"/>
+	<buildpathentry kind="src" path="1.0/components/com_handout"/>
+	<buildpathentry kind="src" path="1.0/install"/>
+	<buildpathentry kind="src" path="1.0/mod_handout_approval_admin"/>
+	<buildpathentry kind="src" path="1.0/mod_handout_docs"/>
+	<buildpathentry kind="src" path="1.0/mod_handout_latest_additions_admin"/>
+	<buildpathentry kind="src" path="1.0/mod_handout_latest_downloads_admin"/>
+	<buildpathentry kind="src" path="1.0/mod_handout_quickicon_admin"/>
+	<buildpathentry kind="src" path="1.0/mod_handout_top_downloads_admin"/>
+	<buildpathentry kind="src" path="1.0/plg_handout_buttons"/>
+	<buildpathentry kind="src" path="1.0/plg_handout_doclink"/>
+	<buildpathentry kind="src" path="1.0/plg_handout_notify"/>
+	<buildpathentry kind="src" path="1.0/plg_handout_search"/>
+	<buildpathentry kind="src" path="1.0/plg_handout_thumbs"/>
+	<buildpathentry kind="src" path="1.0/plg_kontentupdate"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
