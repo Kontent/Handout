@@ -69,7 +69,6 @@ class TOOLBAR_handout {
         HandoutToolBar::divider();
         HandoutToolBar::publishList();
         HandoutToolBar::unpublishList();
-        //HandoutToolBar::config();
         HandoutToolBar::divider();
         //HandoutToolBar::cpanel();
         //HandoutToolBar::divider();
@@ -106,7 +105,6 @@ class TOOLBAR_handout {
         HandoutToolBar::upload();
         HandoutToolBar::addNewDocument();
         HandoutToolBar::divider();
-        // HandoutToolBar::config();
         //HandoutToolBar::cpanel();
        // HandoutToolBar::divider();
         HandoutToolBar::help();
@@ -136,7 +134,6 @@ class TOOLBAR_handout {
         HandoutToolBar::editList();        
         HandoutToolBar::deleteList('delete', JText::_('COM_HANDOUT_TOOLBAR_DELETE'));
         HandoutToolBar::divider();
-        //HandoutToolBar::config();
         HandoutToolBar::publishList();
         HandoutToolBar::unpublishList();
         HandoutToolBar::divider();
@@ -153,8 +150,6 @@ class TOOLBAR_handout {
         HandoutToolBar::logo();
         HandoutToolBar::deleteList('delete', JText::_('COM_HANDOUT_TOOLBAR_DELETE'));
         HandoutToolBar::divider();
-        // HandoutToolBar::config();
-        //HandoutToolBar::divider();
         //HandoutToolBar::cpanel();
         //HandoutToolBar::divider();
         HandoutToolBar::help();
@@ -183,8 +178,6 @@ class TOOLBAR_handout {
         HandoutToolBar::editList();
         HandoutToolBar::deleteList('delete', JText::_('COM_HANDOUT_TOOLBAR_DELETE'));
         HandoutToolBar::divider();
-        //HandoutToolBar::config();
-        // HandoutToolBar::divider();
         //HandoutToolBar::cpanel();
         //HandoutToolBar::divider();
         HandoutToolBar::help();
@@ -222,8 +215,37 @@ class TOOLBAR_handout {
         HandoutToolBar::editList();
         HandoutToolBar::deleteList('delete', JText::_('COM_HANDOUT_TOOLBAR_DELETE'));
         HandoutToolBar::divider();
-        //HandoutToolBar::config();
-       // HandoutToolBar::divider();
+        //HandoutToolBar::cpanel();
+     	//HandoutToolBar::divider();
+        HandoutToolBar::help();
+        HandoutToolBar::spacer();
+        HandoutToolBar::endPanelle();
+    }
+	
+	function EDIT_CODES_MENU()
+    {
+        HandoutToolBar::startPanelle();
+        HandoutToolBar::logo();
+        HandoutToolBar::save();
+        HandoutToolBar::apply();
+        HandoutToolBar::cancel();
+        HandoutToolBar::spacer();
+        HandoutToolBar::help();
+        HandoutToolBar::spacer();
+        HandoutToolBar::endPanelle();
+    }
+
+    function CODES_MENU()
+    {
+        HandoutToolBar::startPanelle();
+        HandoutToolBar::logo();
+        HandoutToolBar::addNew('edit', JText::_('COM_HANDOUT_TOOLBAR_NEW'));
+        HandoutToolBar::editList();
+        HandoutToolBar::deleteList('delete', JText::_('COM_HANDOUT_TOOLBAR_DELETE'));
+        HandoutToolBar::divider();
+        HandoutToolBar::publishList();
+        HandoutToolBar::unpublishList();
+        HandoutToolBar::divider();
         //HandoutToolBar::cpanel();
      	//HandoutToolBar::divider();
         HandoutToolBar::help();
@@ -235,8 +257,6 @@ class TOOLBAR_handout {
     {
         HandoutToolBar::startPanelle();
         HandoutToolBar::logo();
-        //HandoutToolBar::config();
-        //HandoutToolBar::divider();
         //HandoutToolBar::cpanel();
         //HandoutToolBar::divider();
         HandoutToolBar::help();
@@ -301,4 +321,5 @@ class TOOLBAR_handout {
         HandoutToolBar::endPanelle();
     }
 } // end class
+
 

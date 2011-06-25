@@ -208,6 +208,8 @@ class HTML_HandoutCategories
     */
     function edit(&$row, $section, &$lists, $redirect)
     {
+		JHTML::_('behavior.tooltip');
+
         if ($row->image == "") {
             $row->image = 'blank.png';
         }

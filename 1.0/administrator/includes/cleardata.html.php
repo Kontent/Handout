@@ -20,6 +20,8 @@ if (defined('_HANDOUT_HTML_CLEARDATA')) {
 
 class HTML_HandoutClear {
     function showClearData( $rows ) {        
+		JHTML::_('behavior.tooltip');
+
     	?>
         <table class="adminlist">        
           <thead>

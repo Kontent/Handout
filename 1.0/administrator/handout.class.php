@@ -709,6 +709,9 @@ class HandoutDocument extends JTable {
 		if (!$this->store()) {
 			echo "<script> alert('".$this->getError() ."'); window.history.go(-1); </script>\n";
 			exit();
+
+
+
 		}
 		$this->checkin();
 		return true;
@@ -852,6 +855,104 @@ class HandoutLicenses extends JTable {
 	{
 		parent::__construct('#__handout_licenses', 'id', $db);
 	}
+}
+
+/**
+* Codes database table class
+* @package HANDOUT_1.0
+*/
+
+class HandoutCodes extends JTable {
+	var $id 	= null;
+	var $name 	= null;
+	var $docid 	= null;
+	var $usage 	= null;
+	var $user 	= null;
+	var $register 	= null;
+	var $published 	= null;
+
+	function __construct(&$db)
+	{
+		parent::__construct('#__handout_codes', 'id', $db);
+	}
+	
+	/*
+	* @desc Publish a code
+	* @param array an array with ids
+	* @param boolean publish/unpublish
+	*/
+
+	function publish( $cid, $publish )
+	{
+		$db = &JFactory::getDBO();
+
+		if (!is_array($cid) || count($cid) <1) {
+			$action = $publish ? 'publish' : 'unpublish';
+			echo "<script> alert('". JText::_('COM_HANDOUT_SELECT_ITEM_MOVE') ." $action'); window.history.go(-1);</script>\n";
+			return false;
+		}
+
+		$cids = implode(',', $cid);
+		$db->setQuery(
+			"UPDATE #__handout_codes SET published=" . (int) $publish
+			." \n WHERE id IN ($cids) ");
+		
+		if (!$db->query()) {
+			echo "<script> alert('".$db->getErrorMsg() ."'); window.history.go(-1); </script>\n";
+			return false;
+		}
+
+		return true;
+	}
+
+	/*
+	* @desc Deletes codes
+	* @param array an array with ids
+	*/
+
+	function remove($cid)
+	{
+		$db = &JFactory::getDBO();
+
+		if (!is_array($cid) || count($cid) <1) {
+			echo "<script>alert(". JText::_('COM_HANDOUT_SELECT_ITEM_DEL') ."); window.history.go(-1);</script>\n";
+			return false;
+		}
+
+		$cids = implode(',', $cid);
+		$db->setQuery("DELETE FROM #__handout_codes WHERE id IN ($cids)");
+
+		if (!$db->query()) {
+			echo "<script> alert('".$db->getErrorMsg() ."'); window.history.go(-1); </script>\n";
+			return false;
+		}
+
+		return true;
+	}
+	
+	public static function getCodesUsage() {
+		$usage1 = new stdClass();
+		$usage1->value = 0;
+		$usage1->text = JText::_('COM_HANDOUT_CODES_SINGLE_USE');
+		$usage2 = new stdClass();
+		$usage2->value = 1;
+		$usage2->text = JText::_('COM_HANDOUT_CODES_UNLIMITED');
+		return array('0' => $usage1, '1' => $usage2);		
+	}
+
+	public static function getCodesUser() {
+		$user1 = new stdClass();
+		$user1->value = 0;
+		$user1->text = 'Anonymous';
+		$user2 = new stdClass();
+		$user2->value = 1;
+		$user2->text = 'Registered';
+		$user3 = new stdClass();
+		$user3->value = 2;
+		$user3->text = 'Email Required';
+		return array('0' => $user1, '1' => $user2, '2' => $user3);		
+	}
+
 }
 
 /**

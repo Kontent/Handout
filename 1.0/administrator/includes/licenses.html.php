@@ -18,9 +18,11 @@ if (defined('_HANDOUT_HTML_AGREEMENTS')) {
     define('_HANDOUT_HTML_AGREEMENTS', 1);
 }
 
-class HTML_HandoutLicenses {
-    function editLicense($option, &$row)
+class HTML_HandoutAgreements {
+    function editAgreement($option, &$row)
     {
+		JHTML::_('behavior.tooltip');
+
         JFilterOutput::objectHTMLSafe($row);
         ?>
         <script language="javascript" type="text/javascript">
@@ -76,14 +78,14 @@ class HTML_HandoutLicenses {
 	</form>
     <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
     }
-    function showLicenses($option, $rows, $search, $pageNav)
+    function showAgreements($option, $rows, $search, $pageNav)
     {
         $absolute_path = JPATH_ROOT;
         ?>
 		<form action="index.php" method="post" name="adminForm">
         <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_AGREEMENTS'), 'licenses' )?>
         <div class="hfilter">
-            <?php echo JText::_('COM_HANDOUT_FILTER_NAME');?>
+            <?php echo JText::_('COM_HANDOUT_FILTER_NAME');?>:
             <input type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
         </div>
 

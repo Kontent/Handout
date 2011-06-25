@@ -101,6 +101,19 @@ if ($task == "cpanel") {
             }
             break;
 
+        case "codes" : {
+                switch ($task) {
+                    case "new":
+                    case "edit":
+                        TOOLBAR_handout::EDIT_CODES_MENU();
+                        break;
+                    case "show":
+                    default:
+                        TOOLBAR_handout::CODES_MENU();
+                }
+            }
+            break;
+
         case "logs" : {
                 switch ($task) {
                     case "show":

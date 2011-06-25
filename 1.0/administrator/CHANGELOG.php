@@ -23,6 +23,14 @@ Legend:
 ! -> Note
 
 ------------
+24-Jun-2011 Arvind
+^ Modified install.sql to handle new fields
++ New table handout_codes to handle Download Codes
++ Download Codes admin functionality
+# Added missing xml file for plg_handout_search in manifest.xml
+# Added missing tmpl folder for quickicon module
++ Included Tooltip behaviour to some admin screens
+# Fixed link to Codes section from Handout cpanel
 
 22-Jun-2011 Arvind
 Testing commit on Github

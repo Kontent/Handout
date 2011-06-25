@@ -68,7 +68,7 @@ class HTML_HandoutHandout
                         $link = "index.php?option=com_handout&amp;section=licenses";
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-licenses.png', JText::_('COM_HANDOUT_AGREEMENTS'), COM_HANDOUT_IMAGESPATH_ADMIN );
 
-                        $link = "index.php?option=com_handout&amp;task=codes";
+                        $link = "index.php?option=com_handout&amp;section=codes";
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-codes.png', JText::_('COM_HANDOUT_CODES'), COM_HANDOUT_IMAGESPATH_ADMIN );                        
                         $link = "index.php?option=com_handout&amp;section=logs";
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-logs.png', JText::_('COM_HANDOUT_DOWNLOAD_LOG'), COM_HANDOUT_IMAGESPATH_ADMIN);

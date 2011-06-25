@@ -82,6 +82,7 @@ class HTML_HandoutGroups
 
     function editGroup($option, &$row, $usersList, $toAddUsersList)
     {
+		JHTML::_('behavior.tooltip');
          
         JFilterOutput::objectHTMLSafe($row);
         $tabs = new JPaneTabs(0);

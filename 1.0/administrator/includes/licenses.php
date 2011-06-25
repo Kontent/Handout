@@ -18,7 +18,7 @@ JArrayHelper::toInteger(( $cid ));
 switch ($task) {
     case "edit":
         $cid = (isset( $cid[0] )) ? $cid[0] : 0;
-        editLicense($option, $cid);
+        editAgreement($option, $cid);
         break;
     case "remove":
         removeLicense($cid, $option);
@@ -32,10 +32,10 @@ switch ($task) {
         break;
     case "show":
     default :
-        showLicenses($option);
+        showAgreements($option);
 }
 
-function editLicense($option, $uid)
+function editAgreement($option, $uid)
 {
     $database = &JFactory::getDBO();
 
@@ -44,7 +44,7 @@ function editLicense($option, $uid)
 
     $row = new HandoutLicenses($database);
     $row->load($uid);
-    HTML_HandoutLicenses::editLicense($option, $row);
+    HTML_HandoutAgreements::editAgreement($option, $row);
 }
 
 function saveLicense($option)
@@ -91,7 +91,7 @@ function cancelLicense($option)
     $mainframe->redirect("index.php?option=$option&section=licenses");
 }
 
-function showLicenses($option)
+function showAgreements($option)
 {
     $database = &JFactory::getDBO();
     $mainframe = &JFactory::getApplication();
@@ -133,7 +133,7 @@ function showLicenses($option)
         return false;
     }
 
-    HTML_HandoutLicenses::showLicenses($option, $rows, $search, $pageNav);
+    HTML_HandoutAgreements::showAgreements($option, $rows, $search, $pageNav);
 }
 
 function removeLicense($cid, $option)

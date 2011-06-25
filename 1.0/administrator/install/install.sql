@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS `#__handout` (
   `doclicense_display` tinyint(1) NOT NULL default '0',
   `docversion` varchar(20) default '',
   `doclanguage` varchar(10) default 'en-GB',
+  `doc_meta_keywords` text NOT NULL,
+  `doc_meta_description` text NOT NULL, 
   `kunena_discuss_id` int(11) unsigned NOT NULL default '0',
   `mtree_id` int(11) unsigned NOT NULL default '0',
   `access` int(11) unsigned NOT NULL default '0',
@@ -60,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `#__handout_licenses` (
 CREATE TABLE IF NOT EXISTS `#__handout_log` (
   `id` int(11) NOT NULL auto_increment,
   `log_docid` int(11) NOT NULL,
+  `log_code` varchar(70) NOT NULL,
   `log_ip` text NOT NULL,
   `log_datetime` datetime NOT NULL,
   `log_user` int(11) NOT NULL default '0',
@@ -67,3 +70,14 @@ CREATE TABLE IF NOT EXISTS `#__handout_log` (
   `log_os` text,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE  `#__handout_codes` (
+`id` int(11) NOT NULL auto_increment ,
+`name` varchar(70) NOT NULL , 
+`docid` int(11) NOT NULL  ,
+`usage` tinyint( 1 ) NOT NULL ,
+`user` tinyint( 1 ) NOT NULL ,
+`register` tinyint( 1 ) NOT NULL ,
+`published` tinyint( 1 ) NOT NULL ,
+  PRIMARY KEY  (`id`) 
+) ENGINE = MYISAM  DEFAULT CHARSET=utf8;
