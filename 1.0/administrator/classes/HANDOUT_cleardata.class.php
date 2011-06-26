@@ -99,11 +99,6 @@ class HANDOUT_CleardataItem_handout_log extends HANDOUT_CleardataItemTable{
     var $friendlyname = 'Download Logs';
     var $table = '#__handout_log';
 }
-class HANDOUT_CleardataItem_handout_codes extends HANDOUT_CleardataItemTable{
-    var $name = 'handout_codes';
-    var $friendlyname = 'Codes';
-    var $table = '#__handout_codes';
-}
 
 class HANDOUT_CleardataItem_categories extends HANDOUT_CleardataItemTable{
     var $name = 'categories';
@@ -165,7 +160,7 @@ class HANDOUT_Cleardata {
      */
     function HANDOUT_Cleardata( $items = null ){
     	if ( !$items ) {
-            $items = array( 'handout', 'categories', 'files', 'handout_groups', 'handout_history', 'handout_licenses', 'handout_log', 'handout_codes');
+            $items = array( 'handout', 'categories', 'files', 'handout_groups', 'handout_history', 'handout_licenses', 'handout_log');
         }
         foreach ($items as $item){
         	$this->items[] = & HANDOUT_CleardataItem::getInstance( $item );

@@ -259,7 +259,7 @@ class HandoutInstallHelper
     
     function getTablesList ()
     {
-        return array('#__handout' , '#__handout_groups' , '#__handout_history' , '#__handout_licenses' , '#__handout_log', '#__handout_codes');
+        return array('#__handout' , '#__handout_groups' , '#__handout_history' , '#__handout_licenses' , '#__handout_log');
     }
     
     /**
