@@ -140,7 +140,7 @@ class HANDOUT_Category extends HANDOUT_Model
         // format category links
         $this->objFormatLink->view = $this->_formatLink('cat_view');
         // format category paths
-        $this->objFormatPath->thumb = HANDOUT_Utils::pathThumb($objDBCat->image);
+        $this->objFormatPath->thumb = HANDOUT_Utils::pathThumb($objDBCat->image, 'images/stories/');
         $this->objFormatPath->icon = HANDOUT_Utils::pathIcon ('folder.png', 1);
     }
 }
@@ -245,7 +245,7 @@ class HANDOUT_Document extends HANDOUT_Model
 
         // format document paths
         $this->objFormatPath->icon = HANDOUT_Utils::pathIcon ($file->ext . ".png", 1);
-        $this->objFormatPath->thumb = HANDOUT_Utils::pathThumb($objDBDoc->docthumbnail, 1);
+        $this->objFormatPath->thumb = HANDOUT_Utils::pathThumb($objDBDoc->docthumbnail);
     }
 
     //  @desc Translate the numeric ID to a character string

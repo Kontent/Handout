@@ -40,6 +40,9 @@ if ($this->data->doc_meta_description) {
 if ($this->data->doc_meta_keywords) {
 	$document->setMetaData('keywords', $document->getMetaData('keywords'). "," . $this->data->doc_meta_keywords);
 }
+
+$document->setMetaData('language', $this->data->doclanguage);
+
 ?>
 <div id="handout" class="hdetails">
 	<?php $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'handout' . DS . 'tmpl' );?>
@@ -47,7 +50,7 @@ if ($this->data->doc_meta_keywords) {
 
     <div id="hdoc-details">
         <?php
-    if ($this->data->docthumbnail) :
+    if ($this->conf->details_image && $this->data->docthumbnail) :
         ?><div class="hdoc-thumb"><img src="<?php echo $this->paths->thumb ?>" alt="<?php echo $this->data->docname;?>" /></div><?php
     endif;
 	 echo $this->loadTemplate('addthis');

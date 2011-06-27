@@ -279,7 +279,7 @@ class HandoutMainFrame
 	*/
 	function _setUser( ) {
 		require_once( $this->getPath('classes', 'user') );
-		$this->_user = new HANDOUT_User( $this->getCfg('specialcompat', COM_HANDOUT_SPECIALCOMPAT_DM13));
+		$this->_user = new HANDOUT_User( $this->getCfg('specialcompat'));
 	}
 
 	function & getUser() {

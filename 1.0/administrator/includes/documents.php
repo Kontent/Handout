@@ -242,6 +242,16 @@ function editDocument($uid)
     $lists['licenses_display'] = JHTML::_('select.genericlist',$licenses_display,
         'doclicense_display', 'class="inputbox" size="1"', 'value', 'text', $doc->doclicense_display);
 
+	//languages list
+	$lists['languages'];
+	$xml = new JSimpleXML;
+	$xml->loadFile(COM_HANDOUT_DOC_LANGUAGE_XML);
+	foreach( $xml->document->language as $lang ) {
+	   $newlang['name'] = $lang->getElementByPath('name')->data();
+	   $newlang['code'] = $lang->getElementByPath('code')->data();
+		$lists['languages'][] = $newlang;	   
+	 }	
+
     if ($uploaded_file == '')
     {
         // Create docs List

@@ -23,6 +23,13 @@ Legend:
 ! -> Note
 
 ------------
+25-Jun-2011 Arvind
+- Special Compatability constants in defines.php
++ Languages from xml file into languages dropdown and frontend meta tag
+^ Modified Import from Folder to take a folder in site root rather than zip file in handouts folder
+# Fixed Thumbs plugin and display in front end
+# Fixed home link from document details page only when there is a direct menu link to a document page
+
 24-Jun-2011 Arvind
 ^ Modified install.sql to handle new fields
 + New table handout_codes to handle Download Codes

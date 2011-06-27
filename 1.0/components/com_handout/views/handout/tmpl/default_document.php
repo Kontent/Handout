@@ -36,11 +36,9 @@ echo '<li class="hdoc-item">';
 	echo '<div class="hdoc-icon '.$iconClass.'">';
 	
 	//output document image
-	switch($this->conf->doc_image) :
-		case 0 :  //none
-			//do nothing
-		break;
-	
+	switch ($this->conf->doc_image) :
+		case 0 :   //do nothing
+			break;
 		case 1 :   //icon
 			$icon_ext = strrchr($this->doc->paths->icon, "/");
 			$icon_ext = strrchr($icon_ext, "-");
@@ -51,7 +49,7 @@ echo '<li class="hdoc-item">';
 				<img src="<?php echo COM_HANDOUT_IMAGESPATH . 'icons/icon-'.$this->conf->doc_icon_size.$icon_ext ?>" alt="<?php echo $this->doc->data->docname ?>" />
 			</a>
 			<?php
-		break;
+			break;
 	
 		case 2  :  //thumb
 			if($this->doc->data->docthumbnail) {
@@ -62,7 +60,7 @@ echo '<li class="hdoc-item">';
 				</a>		
 				<?php
 			}
-		break;
+			break;
 	endswitch;
 	?></div>
 	<?php 

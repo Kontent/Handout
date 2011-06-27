@@ -26,6 +26,9 @@ class HandoutViewDocument extends JView {
 		$gid = HandoutHelper::getGid ();
 		list($buttons, $paths, $data) = DocumentsHelper::fetchDocument ( $gid );
 		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
+
+		//overwrite home link
+		$links->home = 'index.php?option=com_handout&task=cat_view';
 		
 		$this->assignRef('data', $data);
 		$this->assignRef('buttons', $buttons);

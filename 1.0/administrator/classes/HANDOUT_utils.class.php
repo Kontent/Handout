@@ -134,9 +134,9 @@ class HANDOUT_Utils
         return $outcome;
     }
 
-    function pathThumb($thumbnail)
+    function pathThumb($thumbnail, $path="/images/stories/handout/")
     {        
-        $thumb_path = JURI::root() . "/images/stories/" . $thumbnail;
+        $thumb_path = JURI::root() . $path . $thumbnail;
         return $thumb_path;
     }
 

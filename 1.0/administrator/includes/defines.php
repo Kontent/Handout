@@ -73,10 +73,6 @@ define('COM_HANDOUT_AUTHOR_CAN_READ' 		, 0x0001);
 define('COM_HANDOUT_AUTHOR_CAN_EDIT' 		, 0x0002);
 define('COM_HANDOUT_AUTHOR_CAN_READ_EDIT' 	, 0x0003);
 
-// special compatibility mode
-define('COM_HANDOUT_SPECIALCOMPAT_DM13'     , 0);
-define('COM_HANDOUT_SPECIALCOMPAT_J10'      , 1);
-
 // Validation for uploads
 define('COM_HANDOUT_VALIDATE_NAME' 		, 0x0001);
 define('COM_HANDOUT_VALIDATE_PATH' 		, 0x0002);
@@ -106,6 +102,5 @@ define('COM_HANDOUT_IMAGESPATH', JURI::root(true) . '/components/com_handout/med
 define('COM_HANDOUT_CSSPATH', 'components/com_handout/media/css/');
 define('COM_HANDOUT_TOOLTIP_ICON', '../../../media/com_handout/images/icon-16-tooltip.png');
 
-
-
-
+//Other
+define('COM_HANDOUT_DOC_LANGUAGE_XML', JPATH_ROOT . '/administrator/components/com_handout/handout.doc.languages.xml' );

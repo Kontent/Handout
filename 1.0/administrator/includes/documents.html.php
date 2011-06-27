@@ -463,12 +463,11 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 				<td width="20%" align="right"><?php echo JText::_('COM_HANDOUT_FILELANGUAGE_LABEL');?></td>
 				<td>
 					<select size="1" class="inputbox" id="doclanguage" name="doclanguage">
-						<option selected="selected" value="">Select</option>
-						<?php 
-							$languages = array('en-GB', 'en-US', 'fr-FR');
-							foreach ($languages as $lang) {
-								$sel = $row->doclanguage == $lang ? ' selected="selected"' : '';
-								echo '<option value="'.$lang.'" '.$sel.'>'.$lang.'</option>';
+						<option selected="selected" value="">Select Language</option>
+						<?php 						
+							foreach ($lists['languages'] as $lang) {
+								$sel = $row->doclanguage == $lang['code'] ? ' selected="selected"' : '';
+								echo '<option value="'.$lang['code'].'" '.$sel.'>'.$lang['name'].'</option>';
 							}
 						?>
 					</select>

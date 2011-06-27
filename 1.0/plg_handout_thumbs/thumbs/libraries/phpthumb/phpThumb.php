@@ -70,7 +70,7 @@ if (!@$PHPTHUMB_CONFIG['disable_pathinfo_parsing'] && (empty($_GET) || isset($_G
 			$_GET['new'] = $matches[1];
 		}
 	}
-	if (preg_match('^([0-9]*)x?([0-9]*)$', @$args[count($args) - 2], $matches)) {
+	if (preg_match('/^([0-9]*)x?([0-9]*)$/', @$args[count($args) - 2], $matches)) {
 		$_GET['w'] = $matches[1];
 		$_GET['h'] = $matches[2];
 		$phpThumb->DebugMessage('PATH_INFO."w"x"h" set to "'.$_GET['w'].'"x"'.$_GET['h'].'"', __FILE__, __LINE__);
@@ -126,7 +126,7 @@ if (!@$_SERVER['PATH_INFO'] && !@$_SERVER['QUERY_STRING']) {
 }
 
 if (@$_GET['src'] && isset($_GET['md5s']) && empty($_GET['md5s'])) {
-	if (preg_match('^(f|ht)tps?://', $_GET['src'])) {
+	if (preg_match('/^(f|ht)tps\?\:\/\//', $_GET['src'])) {
 		if ($rawImageData = phpthumb_functions::SafeURLread($_GET['src'], $error, $phpThumb->config_http_fopen_timeout, $phpThumb->config_http_follow_redirect)) {
 			$md5s = md5($rawImageData);
 		}
@@ -149,7 +149,7 @@ if (!empty($PHPTHUMB_CONFIG)) {
 	foreach ($PHPTHUMB_CONFIG as $key => $value) {
 		$keyname = 'config_'.$key;
 		$phpThumb->setParameter($keyname, $value);
-		if (!preg_match('password|mysql', $key)) {
+		if (!preg_match('/password|mysql/', $key)) {
 			$phpThumb->DebugMessage('setParameter('.$keyname.', '.$phpThumb->phpThumbDebugVarDump($value).')', __FILE__, __LINE__);
 		}
 	}
@@ -157,7 +157,7 @@ if (!empty($PHPTHUMB_CONFIG)) {
 	$phpThumb->DebugMessage('$PHPTHUMB_CONFIG is empty', __FILE__, __LINE__);
 }
 
-if (@$_GET['src'] && !@$PHPTHUMB_CONFIG['allow_local_http_src'] && preg_match('^http://'.@$_SERVER['HTTP_HOST'].'(.+)', @$_GET['src'], $matches)) {
+if (@$_GET['src'] && !@$PHPTHUMB_CONFIG['allow_local_http_src'] && preg_match('/^http:\/\/'.@$_SERVER['HTTP_HOST'].'(.+)/', @$_GET['src'], $matches)) {
 	$phpThumb->ErrorImage('It is MUCH better to specify the "src" parameter as "'.$matches[1].'" instead of "'.$matches[0].'".'."\n\n".'If you really must do it this way, enable "allow_local_http_src" in phpThumb.config.php');
 }
 
@@ -174,7 +174,7 @@ if ($phpThumb->config_nooffsitelink_require_refer && !in_array(@$parsed_url_refe
 	$phpThumb->ErrorImage('config_nooffsitelink_require_refer enabled and '.(@$parsed_url_referer['host'] ? '"'.$parsed_url_referer['host'].'" is not an allowed referer' : 'no HTTP_REFERER exists'));
 }
 $parsed_url_src = phpthumb_functions::ParseURLbetter(@$_GET['src']);
-if ($phpThumb->config_nohotlink_enabled && $phpThumb->config_nohotlink_erase_image && preg_match('^(f|ht)tps?://', @$_GET['src']) && !in_array(@$parsed_url_src['host'], $phpThumb->config_nohotlink_valid_domains)) {
+if ($phpThumb->config_nohotlink_enabled && $phpThumb->config_nohotlink_erase_image && preg_match('/^(f|ht)tps\?:\/\//', @$_GET['src']) && !in_array(@$parsed_url_src['host'], $phpThumb->config_nohotlink_valid_domains)) {
 	$phpThumb->ErrorImage($phpThumb->config_nohotlink_text_message);
 }
 
@@ -284,7 +284,7 @@ foreach ($_GET as $key => $value) {
 		case 'w':
 		case 'h':
 			// might be OK if exactly matches original
-			if (preg_match('^http\://.+\.(jpe?g|gif|png)$', $phpThumb->src)) {
+			if (preg_match('/^http\:\/\/.+\.(jpe?g|gif|png)$/', $phpThumb->src)) {
 				// assume it is not ok for direct-passthru of remote image
 				$CanPassThroughDirectly = false;
 			}
@@ -331,7 +331,7 @@ $phpThumb->DebugMessage('$CanPassThroughDirectly="'.intval($CanPassThroughDirect
 while ($CanPassThroughDirectly && $phpThumb->src) {
 	// no parameters set, passthru
 
-	if (preg_match('^http\://.+\.(jpe?g|gif|png)$', $phpThumb->src)) {
+	if (preg_match('/^http\:\/\/.+\.(jpe?g|gif|png)$/', $phpThumb->src)) {
 		$phpThumb->DebugMessage('Passing HTTP source through directly as Location: redirect ('.$phpThumb->src.')', __FILE__, __LINE__);
 		header('Location: '.$phpThumb->src);
 		exit;
@@ -456,7 +456,7 @@ function RedirectToCachedFile() {
 
 		if ($getimagesize = @GetImageSize($phpThumb->cache_filename)) {
 			header('Content-Type: '.phpthumb_functions::ImageTypeToMIMEtype($getimagesize[2]));
-		} elseif (preg_match('\.ico$', $phpThumb->cache_filename)) {
+		} elseif (preg_match('/\.ico$/', $phpThumb->cache_filename)) {
 			header('Content-Type: image/x-icon');
 		}
 		if (!@$PHPTHUMB_CONFIG['cache_force_passthru'] && ereg('^'.preg_quote($nice_docroot).'(.*)$', $nice_cachefile, $matches)) {
@@ -518,7 +518,7 @@ if ($phpThumb->rawImageData) {
 
 	$phpThumb->ErrorImage('Usage: '.$_SERVER['PHP_SELF'].'?src=/path/and/filename.jpg'."\n".'read Usage comments for details');
 
-} elseif (preg_match('^(f|ht)tp\://', $phpThumb->src)) {
+} elseif (preg_match('/^(f|ht)tp\:\/\//', $phpThumb->src)) {
 
 	$phpThumb->DebugMessage('$phpThumb->src ('.$phpThumb->src.') is remote image, attempting to download', __FILE__, __LINE__);
 	if ($phpThumb->config_http_user_agent) {
@@ -559,7 +559,7 @@ if (@$_GET['phpThumbDebug'] == '8') {
 if ($phpThumb->config_allow_parameter_file && $phpThumb->file) {
 
 	$phpThumb->RenderToFile($phpThumb->ResolveFilenameToAbsolute($phpThumb->file));
-	if ($phpThumb->config_allow_parameter_goto && $phpThumb->goto && preg_match('^(f|ht)tps?://', $phpThumb->goto)) {
+	if ($phpThumb->config_allow_parameter_goto && $phpThumb->goto && preg_match('/^(f|ht)tps?\:\/\//', $phpThumb->goto)) {
 		// redirect to another URL after image has been rendered to file
 		header('Location: '.$phpThumb->goto);
 		exit;

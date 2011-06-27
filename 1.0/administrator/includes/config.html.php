@@ -757,7 +757,7 @@ class HTML_HandoutConfig
 	            	</div>
 	            	<div class="hlabel"><?php echo JText::_('COM_HANDOUT_MIGRATE_FOLDER_NAME_LABEL');?>: 
 	            	<br /><input type="text" size="20" name="serverfolder" id="serverfolder" />
-					<br /><button onclick="javascript:serverfoldersubmit()"><?php echo JText::_('COM_HANDOUT_MIGRATE_START_IMPORT');?></button></div>
+					<br /><input type="button" onclick="serverfoldersubmit()" value="<?php echo JText::_('COM_HANDOUT_MIGRATE_START_IMPORT');?>"></div>
 	            	<div class="clr"></div>
 	            </div>
             </td>

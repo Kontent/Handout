@@ -511,7 +511,7 @@ class phpthumb_functions {
 		static $cache_gd_version = array();
 		if (empty($cache_gd_version)) {
 			$gd_info = gd_info();
-			if (preg_match('bundled \((.+)\)$', $gd_info['GD Version'], $matches)) {
+			if (preg_match('/bundled \((.+)\)$/', $gd_info['GD Version'], $matches)) {
 				$cache_gd_version[1] = $gd_info['GD Version'];  // e.g. "bundled (2.0.15 compatible)"
 				$cache_gd_version[0] = (float) $matches[1];     // e.g. "2.0" (not "bundled (2.0.15 compatible)")
 			} else {
@@ -533,7 +533,7 @@ class phpthumb_functions {
 			}
 			while (!feof($fp)) {
 				$headerline = fgets($fp, 4096);
-				if (preg_match('^Content-Length: (.*)', $headerline, $matches)) {
+				if (preg_match('/^Content-Length: (.*)/', $headerline, $matches)) {
 					$size = intval($matches[1]);
 					break;
 				}
@@ -649,7 +649,7 @@ class phpthumb_functions {
 				} else {
 					$Data_body .= $line;
 				}
-				if (preg_match('^HTTP/[\\.0-9]+ ([0-9]+) (.+)$', rtrim($line), $matches)) {
+				if (preg_match('/^HTTP/[\\.0-9]+ ([0-9]+) (.+)$/', rtrim($line), $matches)) {
 					list($dummy, $errno, $errstr) = $matches;
 					$errno = intval($errno);
 				} elseif (preg_match('^Location: (.*)$', rtrim($line), $matches)) {
@@ -679,7 +679,7 @@ class phpthumb_functions {
 	}
 
 	function CleanUpURLencoding($url, $queryseperator='&') {
-		if (!preg_match('^http', $url)) {
+		if (!preg_match('/^http/', $url)) {
 			return $url;
 		}
 		$parse_url = phpthumb_functions::ParseURLbetter($url);
@@ -994,7 +994,7 @@ if (!function_exists('preg_quote')) {
 if (!function_exists('file_get_contents')) {
 	// included in PHP v4.3.0+
 	function file_get_contents($filename) {
-		if (preg_match('^(f|ht)tp\://', $filename)) {
+		if (preg_match('/^(f|ht)tp\:\/\//', $filename)) {
 			return SafeURLread($filename, $error);
 		}
 		if ($fp = @fopen($filename, 'rb')) {

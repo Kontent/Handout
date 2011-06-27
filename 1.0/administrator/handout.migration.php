@@ -1069,26 +1069,26 @@ class HandoutMigration_Folder extends HandoutMigration
      *
      */
 	
-	private $zipfile; 
 	private $tmpFolder;
 	private $tmpFolderPath;
 	
 	protected function init() 
 	{
-		$this->zipfile = urldecode(JRequest::getVar('folder', '')); 		
+		$this->tmpFolder = urldecode(JRequest::getVar('folder', '')); 		
+		$this->tmpFolderPath = JPATH_ROOT . DS . $this->tmpFolder;
 		parent::init();
 	} 
 
 	protected function check() 
 	{
-		//check if filename is not specified
-		if ($this->zipfile == '') {
-        	$this->error(JText::_('COM_HANDOUT_MGR_SERVERFOLDER_SPECIFY') . $this->handoutPath, false);		
+		//check if folder name is not specified
+		if ($this->tmpFolder == '') {
+        	$this->error(JText::_('COM_HANDOUT_MGR_SERVERFOLDER_SPECIFY') . JPATH_ROOT, false);		
 		}
 
-		//check if file exists
-		if (! file_exists($this->handoutPath . DS . $this->zipfile)) {
-        	$this->error(JText::_('COM_HANDOUT_MGR_SERVERFOLDER_NO_EXISTS') . $this->handoutPath . DS . $this->zipfile, false);
+		//check if folder exists
+		if (! file_exists($this->tmpFolderPath)) {
+        	$this->error(JText::_('COM_HANDOUT_MGR_SERVERFOLDER_NO_EXISTS') . $this->tmpFolderPath, false);
        	}
 
 		//check Handout Path is set
@@ -1110,44 +1110,14 @@ class HandoutMigration_Folder extends HandoutMigration
 
     function migrate ()
     {
-		$this->extractFiles();
 		$this->migrateCategories();
         $this->back(JText::_('COM_HANDOUT_MGR_SUCCESS'));
     }
-	
-	private function extractFiles()
+		
+	protected function migrateCategories ()
 	{
-		$this->tmpFolder = time();
-		$this->tmpFolderPath = $this->handoutPath . DS . $this->tmpFolder;
-		
-		if (!file_exists($this->tmpFolderPath))
-		{
-			@mkdir($this->tmpFolderPath);
-		}
-		
-		//unzip the file into the temp folder
-	    require_once("includes/pcl/pclzip.lib.php");
-
-		if (!extension_loaded('zlib')) {
-			$this->error(JText::_('COM_HANDOUT_ZLIB_ERROR'), false);
-		}
-
-		$zip = new PclZip($this->handoutPath . DS . $this->zipfile);
-
-		if (!$zip->extract(PCLZIP_OPT_PATH, $this->tmpFolderPath)) {
-			$this->error(JText::_('COM_HANDOUT_UNZIP_ERROR'), false);
-		}
-
-		//del the zip file
-		@unlink ($this->handoutPath . DS . $this->zipfile);
-
-	}
-	
-	 protected function migrateCategories ()
-	 {
 		$this->traverseFolder($this->tmpFolderPath);
-		JFolder::delete($this->tmpFolderPath);
-	 }
+	}
 	 
 	/**
 	 * step through the folder structurecreate categories for each sub-folder and documents for each file 	

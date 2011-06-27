@@ -51,11 +51,16 @@ class plgHandoutThumbs extends JPlugin
 	    if(!in_array(strtolower($doc->objFormatData->filetype), explode(',', $extensions))) { return; }
 
 	    // Target path writable?
+		if (!file_exists(_AT_PATH_IMAGES)){
+			mkdir(_AT_PATH_IMAGES);
+			chmod(_AT_PATH_IMAGES, 0755);
+		}
+		
 	    if(!is_writable(_AT_PATH_IMAGES)) { return; }
 
 	    // build target filename
 	    $output_format  = $pluginParams->get('output_format', 'png');
-	    $target = _AT_PATH_IMAGES.DS.'~thumbs.'.$doc->objDBTable->docfilename.'.'.date('U').'.'.$output_format;
+	    $target = _AT_PATH_IMAGES.DS.$doc->objDBTable->docfilename.'_'.$doc->objDBTable->id.'.'.$output_format;
 
 	    // phpThumb
 	    require_once(_AT_PATH_LIBRARIES.DS.'phpthumb'.DS.'phpthumb.class.php');
@@ -83,7 +88,7 @@ class plgHandoutThumbs extends JPlugin
 	    // assign thumbnail
 	    $doc->objDBTable->docthumbnail       = basename($target);
 	    $doc->objFormatData->docthumbnail    = $doc->objDBTable->docthumbnail;
-	    $doc->objFormatPath->thumb 			= HANDOUT_Utils::pathThumb($doc->objDBTable->docthumbnail, 1);
+	    $doc->objFormatPath->thumb 			= HANDOUT_Utils::pathThumb($doc->objDBTable->docthumbnail);
 	
 	    // store
 	    $doc->objDBTable->store();
