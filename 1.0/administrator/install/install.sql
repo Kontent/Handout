@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `#__handout_log` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE  `#__handout_codes` (
+CREATE TABLE IF NOT EXISTS `#__handout_codes` (
 `id` int(11) NOT NULL auto_increment ,
 `name` varchar(70) NOT NULL , 
 `docid` int(11) NOT NULL  ,
