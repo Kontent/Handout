@@ -39,6 +39,9 @@ class HandoutController extends JController
             case 'doc_view':
                 JRequest::setVar('view', 'download');
                 break;
+            case 'doc_code':
+                JRequest::setVar('view', 'code');
+                break;
             case 'search_form':
             case 'search_result':
                 JRequest::setVar('view', 'search');

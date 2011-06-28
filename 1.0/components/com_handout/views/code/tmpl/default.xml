@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Code Download">
+		<message>Download of selected document with code</message>
+	</layout>
+	<state>
+		<name>Code Download</name>
+		<description>Download of selected document with code</description>		
+		<url addpath="/administrator/components/com_handout/elements">
+			<param name="gid" type="document" default="" label="Select Document" description="Select document which you want to download by direct link after providing code" />
+			<param name="task" type="hidden" default="doc_code" />
+		</url>
+	</state>
+</metadata>

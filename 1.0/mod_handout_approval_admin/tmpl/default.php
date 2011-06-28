@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted access');
         <?php foreach ($docs as $doc): ?>
         	<tr>
                 <td width="5%" style="text-align:center">
-                    <a href="index.php?option=com_handout&amp;section=documents&amp;task=publish&cid[]=<?php echo $doc->id?>&amp;<?php echo HANDOUT_Token::get();?>=1&amp;redirect=index2.php%3Foption%3Dcom_handout">
+                    <a href="index.php?option=com_handout&amp;section=documents&amp;task=publish&cid[]=<?php echo $doc->id?>&amp;<?php echo HANDOUT_Token::get();?>=1&amp;redirect=index.php%3Foption%3Dcom_handout">
                     	<img src="images/publish_r.png" border=0 alt="publish" />
                     </a>
                 </td>

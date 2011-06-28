@@ -23,6 +23,10 @@ Legend:
 ! -> Note
 
 ------------
+27-Jun-2011 Arvind
+^ Completed front end of Download Codes section
+^ Cleaned up the last bits of index2.php in admin code
+
 25-Jun-2011 Arvind
 - Special Compatability constants in defines.php
 + Languages from xml file into languages dropdown and frontend meta tag

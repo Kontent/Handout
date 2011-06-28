@@ -7,7 +7,7 @@
 		<name>Download</name>
 		<description>Direct download of selected document</description>		
 		<url addpath="/administrator/components/com_handout/elements">
-			<param name="gid" type="document" default="" label="Select Document" description="Select document which you want add to download by direct link" />
+			<param name="gid" type="document" default="" label="Select Document" description="Select document which you want to download by direct link" />
 			<param name="task" type="hidden" default="doc_download" />
 		</url>
 	</state>

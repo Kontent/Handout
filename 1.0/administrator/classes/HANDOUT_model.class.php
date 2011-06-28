@@ -87,7 +87,7 @@ class HANDOUT_Model
     {
     }
 
-    function _formatLink($task, $params = array(), $sef = true, $indexfile = 'index.php', $token = false)
+    function _formatLink($task, $params = array(), $sef = true, $token = false)
     {
 		$_HANDOUT = &HandoutFactory::getHandout();
         require_once($_HANDOUT->getPath('classes', 'token'));
@@ -98,7 +98,7 @@ class HANDOUT_Model
         }
 
 
-        $link = HANDOUT_Utils::taskLink($task, $this->objDBTable->id, $params, $sef, $indexfile );
+        $link = HANDOUT_Utils::taskLink($task, $this->objDBTable->id, $params, $sef );
         return $link;
     }
 }

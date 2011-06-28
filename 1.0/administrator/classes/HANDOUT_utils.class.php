@@ -196,9 +196,9 @@ class HANDOUT_Utils
         return $array1;
     }
 
-    function taskLink($task, $gid = '', $params = null, $sef = true, $indexfile = 'index.php')
+    function taskLink($task, $gid = '', $params = null, $sef = true)
     {
-        $link = HANDOUT_Utils::_rawLink($task, $gid, $params, $indexfile);
+        $link = HANDOUT_Utils::_rawLink($task, $gid, $params);
         $link = htmlspecialchars($link);
 		
 		$link = $sef ?  JRoute::_($link) : $link;
@@ -212,23 +212,14 @@ class HANDOUT_Utils
         $mainframe->redirect($link, $msg);
     }
 
-    function _rawLink($task, $gid = '', $params = null, $indexfile = 'index.php')
+    function _rawLink($task, $gid = '', $params = null)
     {
         $limitstart = JRequest::getInt('limitstart');  
         $limit = JRequest::getInt('limit');
 		$order = JRequest::getVar('order');
 		$dir = JRequest::getVar('dir');
         $Itemid = JRequest::getInt('Itemid');
-
-        // This translates J1.0's indexs.php system to J1.5's tmpl=component&format=raw
-        if($indexfile=='index2.php') {
-        	$indexfile = 'index.php';
-            if(!is_array($params)) {
-            	$params = array();
-            }
-            $params['tmpl'] = 'component';
-            $params['format'] = 'raw';
-        }
+		$indexfile = 'index.php';
 
         $link = "$indexfile?option=com_handout";
 

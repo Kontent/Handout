@@ -33,6 +33,10 @@ class HTML_HandoutCodes {
 				if (form.name.value == "") {
 					alert ( "<?php echo JText::_('COM_HANDOUT_ENTRY_NAME');?>" );
 				} else {
+				  if (form.register.checked==false) {
+				  	form.register.value=0;
+					form.register.checked=true;
+				  }
 				  submitform( pressbutton );
 				}
 			}
@@ -75,7 +79,7 @@ class HTML_HandoutCodes {
 			</tr>
 			<tr>
 				<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_REGISTER');?>:</td>
-				<td><input type="checkbox" value="1" name="register"<?php if ($row->register) echo 'checked="checked"'?> /> Register the user on download?
+				<td><input type="checkbox" value="1" name="register" <?php if ($row->register == 1) echo 'checked'?> /> Register the user on download?
 				</td>
 			</tr>
 			<tr>

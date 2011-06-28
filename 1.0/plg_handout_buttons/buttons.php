@@ -44,7 +44,8 @@
         if ($_HANDOUT_USER->canDownload($objDBDoc) AND $botParams->get('view', 1)) {
             $viewtypes = trim($_HANDOUT->getCfg('viewtypes'));
             if ($viewtypes != '' && ($viewtypes == '*' || stristr($viewtypes, $file->ext))) {
-                $link = $doc->_formatLink('doc_view', null, true, 'index2.php');
+				$link_params = array('tmpl' => 'component', 'format' => 'raw');
+                $link = $doc->_formatLink('doc_view', $link_params, true);
                 $params = new HandoutParameters('popup=1');
                 $buttons['view'] = new HANDOUT_Button('view', JText::_('PLG_HANDOUT_STANDARD_BTNS_VIEW'), $link, $params);
             }
@@ -63,7 +64,7 @@
         }
     
         if ($_HANDOUT_USER->canDelete($objDBDoc) AND $botParams->get('delete', 1)) {
-            $link = $doc->_formatLink('doc_delete', null, null, null, true);
+            $link = $doc->_formatLink('doc_delete', null, null, true);
             $buttons['delete'] = new HANDOUT_Button('delete', JText::_('PLG_HANDOUT_STANDARD_BTNS_DELETE'), sprintf($js, $link));
         }
     
@@ -86,12 +87,12 @@
        
         if ($_HANDOUT_USER->canPublish($objDBDoc) AND !$objDBDoc->published AND $botParams->get('publish', 1)) {
             $params = new HandoutParameters('class=publish');
-            $link   = $doc->_formatLink('doc_publish', null, null, null, true);
+            $link   = $doc->_formatLink('doc_publish', null, null, true);
             $buttons['publish'] = new HANDOUT_Button('publish', JText::_('PLG_HANDOUT_STANDARD_BTNS_PUBLISH'), $link, $params);
         }
     
         if ($_HANDOUT_USER->canUnPublish($objDBDoc) AND $objDBDoc->published AND $botParams->get('publish', 1)) {
-            $link   = $doc->_formatLink('doc_unpublish', null, null, null, true);
+            $link   = $doc->_formatLink('doc_unpublish', null, null, true);
             $buttons['unpublish'] = new HANDOUT_Button('unpublish', JText::_('PLG_HANDOUT_STANDARD_BTNS_UNPUBLISH'), $link);
         }
     
