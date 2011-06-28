@@ -19,7 +19,7 @@ if (defined('_HANDOUT_HTML_CODE')) {
 
 class CodesHelper {
 
-	function processCode($docid) {
+	function processCode($docid) {		
 		$email = trim(JRequest::getVar('email', ''));
 		$codeVal = trim(JRequest::getVar('code', ''));
 
@@ -34,6 +34,8 @@ class CodesHelper {
 			HandoutHelper::_returnTo ( 'doc_code', JText::_('COM_HANDOUT_CODE_INVALID'), $docid) ;
 		}
 		else {
+			@session_start();
+			$_SESSION['handout.downloadcode']=$codeVal;
 			//check if code is single-use or unlimited
 			switch ($code->usage) {
 				case '0': //single-use

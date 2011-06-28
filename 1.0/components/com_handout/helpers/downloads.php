@@ -117,10 +117,14 @@ class DownloadsHelper {
 		if ($handout->getCfg ( 'log' )) {
 			$browser = & JBrowser::getInstance ( $_SERVER ['HTTP_USER_AGENT'] );
 			
+			@session_start();
+			$downloadcode = $_SESSION['handout.downloadcode'];
+			
 			$now = date ( "Y-m-d H:i:s", time ( "Y-m-d g:i:s" ) + $tzoffset * 60 * 60 );
 			$remote_ip = $_SERVER ['REMOTE_ADDR'];
 			$row_log = new HandoutLog ( $db );
 			$row_log->log_docid = $data->id;
+			$row_log->log_code = $downloadcode;
 			$row_log->log_ip = $remote_ip;
 			$row_log->log_datetime = $now;
 			$row_log->log_user = $handoutUser->userid;

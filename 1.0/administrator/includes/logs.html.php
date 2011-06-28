@@ -33,6 +33,7 @@ class HTML_HandoutLogs {
 					<th class="title" width="20%" nowrap="nowrap"><div align="center"><?php echo JText::_('COM_HANDOUT_IP');?></div></th>
 					<th class="title" width="20%" nowrap="nowrap"><div align="center"><?php echo JText::_('COM_HANDOUT_DOC');?></div></th>
 					<th class="title" width="10%" nowrap="nowrap"><div align="center"><?php echo JText::_('COM_HANDOUT_BROWSER');?></div></th>
+					<th class="title" width="10%" nowrap="nowrap"><div align="center"><?php echo JText::_('COM_HANDOUT_CODE');?></div></th>
 					<th class="title" width="10%" nowrap="nowrap"><div align="center"><?php echo JText::_('COM_HANDOUT_OS');?></div></th>
 				</tr>
              </thead>
@@ -67,8 +68,11 @@ class HTML_HandoutLogs {
 						 <?php echo $row->log_browser;?>
 					</td>
 					<td align="center">
-						 <?php echo $row->log_os;?>
+						 <?php echo $row->log_code;?>
 					</td>
+					<td align="center">
+						 <?php echo $row->log_os;?>
+					</td> 
 				</tr>
 				<?php
             $k = 1 - $k;

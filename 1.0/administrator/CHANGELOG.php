@@ -24,7 +24,8 @@ Legend:
 
 ------------
 27-Jun-2011 Arvind
-^ Completed front end of Download Codes section
++ Completed front end of Download Codes section
++ Download code in log table
 ^ Cleaned up the last bits of index2.php in admin code
 
 25-Jun-2011 Arvind
