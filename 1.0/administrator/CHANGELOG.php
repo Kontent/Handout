@@ -30,6 +30,7 @@ Legend:
 - Removed "Register" checkbox from Download Codes admin area
 # Fixed bug with delete icons in the admin screens
 ! Run Query: ALTER TABLE `jos_handout_codes` DROP `user`, DROP `register`;
+^ Moved user and register values to menu params from Codes page
 
 25-Jun-2011 Arvind
 - Special Compatability constants in defines.php
