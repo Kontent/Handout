@@ -21,6 +21,9 @@ class HandoutViewCode extends JView {
 	function display() {
 		$handout = &HandoutFactory::getHandout();
 		$db = &JFactory::getDBO ();
+		
+		$params = &JComponentHelper::getParams( 'com_handout' );
+		
 		$gid = HandoutHelper::getGid ();
 		$doc = new HANDOUT_Document ( $gid );
 		$data = &$doc->getDataObject ();	

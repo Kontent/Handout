@@ -17,6 +17,7 @@ require_once($_HANDOUT->getPath('classes', 'plugins'));
 JArrayHelper::toInteger(( $cid ));
 
 switch ($task) {
+    case "delete":
     case "remove":
         removeLog($cid);
         break;

@@ -76,8 +76,6 @@ CREATE TABLE IF NOT EXISTS `#__handout_codes` (
 `name` varchar(70) NOT NULL , 
 `docid` int(11) NOT NULL  ,
 `usage` tinyint( 1 ) NOT NULL ,
-`user` tinyint( 1 ) NOT NULL ,
-`register` tinyint( 1 ) NOT NULL ,
 `published` tinyint( 1 ) NOT NULL ,
   PRIMARY KEY  (`id`) 
 ) ENGINE = MYISAM  DEFAULT CHARSET=utf8;

@@ -22,6 +22,7 @@ switch ($task) {
     case "edit":
         editGroup($option, $cid[0]);
         break;
+    case "delete":
     case "remove":
         removeGroup($cid);
         break;

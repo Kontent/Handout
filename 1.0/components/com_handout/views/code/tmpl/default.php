@@ -41,7 +41,7 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 		<form action="<?php echo $this->action;?>" method="POST" enctype="multipart/form-data">
         	<div>Enter your download code:</div>
 	         <input type="text" name="code" maxlength="100" size="50"  /> 
-             <?php if ($this->code->user==2): //email required ?>  
+             <?php if ($this->usertype==2): //email required ?>  
         	<div>Enter a valid email address:</div>
 	         <input type="text" name="email" maxlength="100" size="50"  />   
             <?php endif; ?>

@@ -119,6 +119,7 @@ class DownloadsHelper {
 			
 			@session_start();
 			$downloadcode = $_SESSION['handout.downloadcode'];
+			$anonuser = $_SESSION['handout.anonuser'];
 			
 			$now = date ( "Y-m-d H:i:s", time ( "Y-m-d g:i:s" ) + $tzoffset * 60 * 60 );
 			$remote_ip = $_SERVER ['REMOTE_ADDR'];
@@ -127,7 +128,7 @@ class DownloadsHelper {
 			$row_log->log_code = $downloadcode;
 			$row_log->log_ip = $remote_ip;
 			$row_log->log_datetime = $now;
-			$row_log->log_user = $handoutUser->userid;
+			$row_log->log_user = $handoutUser->userid ? $handoutUser->userid : $anonuser;
 			$row_log->log_browser = $browser->getBrowser ();
 			$row_log->log_os = $browser->getPlatform ();
 			if (! $row_log->store ()) {

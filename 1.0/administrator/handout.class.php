@@ -692,26 +692,15 @@ class HandoutDocument extends JTable {
 	function save()
 	{
 		$post = HANDOUT_Utils::stripslashes($_POST);
-		//$this->reorder("catid=".(int)$_POST['catid']);
 		if (!$this->bind($post)) {
 			echo "<script> alert('".$this->getError() ."'); window.history.go(-1); </script>\n";
 			exit();
 		}
 		$this->_tbl_key = "id";
-		//$this->check();
-		/*
-		if (!$this->check()) { // Javascript SHOULD catch all this!
-			echo "<h1><center>" . JText::_('COM_HANDOUT_ENTRY_ERRORS') . "</center><h1>";
-			echo "<script> alert('".$this->getError() ."'); window.history.go(-1); </script>\n";
-			//exit();
-		}
-		*/
+
 		if (!$this->store()) {
 			echo "<script> alert('".$this->getError() ."'); window.history.go(-1); </script>\n";
 			exit();
-
-
-
 		}
 		$this->checkin();
 		return true;
@@ -867,8 +856,6 @@ class HandoutCodes extends JTable {
 	var $name 	= null;
 	var $docid 	= null;
 	var $usage 	= null;
-	var $user 	= null;
-	var $register 	= null;
 	var $published 	= null;
 
 	function __construct(&$db)
@@ -904,6 +891,7 @@ class HandoutCodes extends JTable {
 
 		return true;
 	}
+	
 
 	/*
 	* @desc Deletes codes
@@ -943,13 +931,13 @@ class HandoutCodes extends JTable {
 	public static function getCodesUser() {
 		$user1 = new stdClass();
 		$user1->value = 0;
-		$user1->text = 'Anonymous';
+		$user1->text = JText::_('COM_HANDOUT_CODES_ANONYMOUS');
 		$user2 = new stdClass();
 		$user2->value = 1;
-		$user2->text = 'Registered';
+		$user2->text = JText::_('COM_HANDOUT_CODES_REGISTERED');
 		$user3 = new stdClass();
 		$user3->value = 2;
-		$user3->text = 'Email Required';
+		$user3->text = JText::_('COM_HANDOUT_CODES_EMAIL_REQUIRED');
 		return array('0' => $user1, '1' => $user2, '2' => $user3);		
 	}
 

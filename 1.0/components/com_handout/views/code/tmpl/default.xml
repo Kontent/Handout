@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
 	<layout title="Code Download">
-		<message>Download of selected document with code</message>
+		<message>Download document based on code</message>
 	</layout>
 	<state>
 		<name>Code Download</name>
-		<description>Download of selected document with code</description>		
+		<description>Download document based on code</description>		
 		<url addpath="/administrator/components/com_handout/elements">
-			<param name="gid" type="document" default="" label="Select Document" description="Select document which you want to download by direct link after providing code" />
+			<param name="usertype" type="radio" default="0" label="Select an option" description="COM_HANDOUT_CODES_USERTYPE_DESC">
+			  <option value="0">COM_HANDOUT_CODES_ANONYMOUS</option>
+			  <option value="1">COM_HANDOUT_CODES_REGISTERED</option>
+			  <option value="2">COM_HANDOUT_CODES_EMAIL_REQUIRED</option>
+			</param>
 			<param name="task" type="hidden" default="doc_code" />
 		</url>
 	</state>

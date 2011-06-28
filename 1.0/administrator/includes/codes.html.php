@@ -30,13 +30,30 @@ class HTML_HandoutCodes {
 					submitform( pressbutton );
 					return;
 				  }
+				var errors = '';  
 				if (form.name.value == "") {
-					alert ( "<?php echo JText::_('COM_HANDOUT_ENTRY_NAME');?>" );
-				} else {
-				  if (form.register.checked==false) {
-				  	form.register.value=0;
-					form.register.checked=true;
-				  }
+					errors += "<?php echo JText::_('COM_HANDOUT_CODES_EMPTY');?>\n";
+				} 
+				if (form.docid.value == "0" || form.docid.value == "") {
+					errors += "<?php echo JText::_('COM_HANDOUT_CODES_DOC_EMPTY');?>\n";
+				} 				
+				if (!form.getElementById('usage0').checked && !form.getElementById('usage1').checked) {
+					errors += "<?php echo JText::_('COM_HANDOUT_CODES_USAGE_EMPTY');?>\n";
+				}
+				<?php if ($row->id==0): ?>
+					//check duplicate codes if adding new code 
+					var usedcodes = ['<?php if (sizeof($lists['usedcodes'])) echo implode("','", $lists['usedcodes']); ?>'];
+					for (var i=0; i<usedcodes.length; i++) {
+						if (usedcodes[i] == form.name.value) {
+							errors += "<?php echo JText::_('COM_HANDOUT_CODES_DUPLICATE');?>\n";
+							break;
+						}
+					} 	
+				<?php endif; ?>
+				if (errors) {
+					alert(errors);
+				}			
+				else {
 				  submitform( pressbutton );
 				}
 			}
@@ -54,37 +71,23 @@ class HTML_HandoutCodes {
 			<tr>
 				<td width="20%" align="right"><?php echo JText::_('COM_HANDOUT_CODE');?>:</td>
 				<td width="80%">
-					<input class="inputbox" type="text" name="name" id="codename" size="50" maxlength="100" value="<?php echo $row->name;?>" /> <input type="button" name="autogenerate"  id="autogenerate" value="Autogenerate" onclick="generatecode()" />
-				</td>
+					<input class="inputbox" type="text" name="name" id="codename" size="50" maxlength="100" value="<?php echo $row->name;?>" /> <input type="button" name="autogenerate"  id="autogenerate" value="Autogenerate" onclick="generatecode()" />				</td>
 			</tr>
 			<tr>
 				<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_CODE_DOWNLOAD');?>:</td>
-				<td><?php echo $lists['downloads']; ?>
-				</td>
+				<td><?php echo $lists['downloads']; ?>				</td>
 			</tr>
 			<tr>
 				<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_PUBLISHED');?>:</td>
-				<td><?php echo $lists['published']; ?>
-				</td>
+				<td><?php echo $lists['published']; ?>				</td>
 			</tr>
 			<tr>
 				<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_CODES_USAGE');?>:</td>
-				<td><?php echo $lists['usage']; ?>
-				</td>
-			</tr>
-			<tr>
-				<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_USER');?>:</td>
-				<td><?php echo $lists['user']; ?>
-				</td>
-			</tr>
-			<tr>
-				<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_REGISTER');?>:</td>
-				<td><input type="checkbox" value="1" name="register" <?php if ($row->register == 1) echo 'checked'?> /> Register the user on download?
-				</td>
+				<td><?php echo $lists['usage']; ?>				</td>
 			</tr>
 			<tr>
 				<td> </td>
-                <td><?php echo JText::_('COM_HANDOUT_REGISTER_DESC'); ?></td>				
+                <td><?php echo JText::_('COM_HANDOUT_CODES_USER_DESC'); ?></td>				
              </tr>
 			<input type="hidden" name="id" value="<?php echo $row->id;?>" />
 			<input type="hidden" name="option" value="com_handout" />
@@ -137,7 +140,7 @@ class HTML_HandoutCodes {
 						<?php echo JHTML::_('grid.id',$i, $row->id);?>				
     					</td>
     					<td align="left">
-    						<a href="#edit" onclick="return listItemTask('cb<?php echo $i;?>','edit')">
+    						<a href="index.php?option=com_handout&section=codes&task=edit&cid[0]=<?php echo $row->id?>">
     						<?php echo $row->name;?>
     						</a>
     					</td>

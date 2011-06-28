@@ -42,6 +42,7 @@ switch ($task)
             uploadWizard($step, $method, $old_filename);
         }
         break;
+    case "delete":
     case "remove":
         removeFile($cid);
         break;

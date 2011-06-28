@@ -28,6 +28,7 @@ switch ($task) {
     case "apply":
         saveCategory();
         break;
+    case "delete":
     case "remove":
         removeCategories($option, $cid);
         break;

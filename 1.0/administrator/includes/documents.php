@@ -47,6 +47,7 @@ switch ($task) {
     case "copy_process":
         copyDocumentProcess($cid);
         break;
+    case "delete":
     case "remove":
         removeDocument($cid);
         break;

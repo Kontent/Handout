@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
 	<view title="Code Download">
-		<message>Download of selected document with code</message>
+		<message>Download document based on code</message>
 	</view>
 </metadata>

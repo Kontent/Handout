@@ -20,6 +20,7 @@ switch ($task) {
         $cid = (isset( $cid[0] )) ? $cid[0] : 0;
         editAgreement($option, $cid);
         break;
+    case "delete":
     case "remove":
         removeLicense($cid, $option);
         break;

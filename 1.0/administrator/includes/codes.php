@@ -66,14 +66,15 @@ function editCode($option, $uid)
     $doclist        	= array_merge( $doclist, $database->loadObjectList() );
     $lists['downloads'] = JHTML::_('select.genericlist', $doclist, 'docid', 'class="inputbox" size="1"','value', 'text', intval( $row->docid ) );
 	
-	//build the html radio buttons for user
-	$user = HandoutCodes::getCodesUser();	
-	$lists['user'] = JHTML::_( 'select.radiolist', $user, 'user', '', 'value', 'text', $row->user );
-
 	//build the html radio buttons for usage
 	$usage = HandoutCodes::getCodesUsage();
 	$lists['usage'] = JHTML::_( 'select.radiolist', $usage, 'usage', '', 'value', 'text', $row->usage );
-
+	
+	//fetch the set of codes already selected
+	$query="SELECT name FROM #__handout_codes";
+	$database->setQuery($query);
+	$lists['usedcodes'] = $database->loadResultArray();
+	
     HTML_HandoutCodes::editCode($option, $row, $lists);
 }
 

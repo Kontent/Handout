@@ -23,10 +23,13 @@ Legend:
 ! -> Note
 
 ------------
-27-Jun-2011 Arvind
+28-Jun-2011 Arvind
 + Completed front end of Download Codes section
 + Download code in log table
 ^ Cleaned up the last bits of index2.php in admin code
+- Removed "Register" checkbox from Download Codes admin area
+# Fixed bug with delete icons in the admin screens
+! Run Query: ALTER TABLE `jos_handout_codes` DROP `user`, DROP `register`;
 
 25-Jun-2011 Arvind
 - Special Compatability constants in defines.php
