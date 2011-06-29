@@ -7,7 +7,7 @@
 		<name>Code Download</name>
 		<description>Download document based on code</description>		
 		<url addpath="/administrator/components/com_handout/elements">
-			<param name="usertype" type="list" default="0" label="Select an option" description="COM_HANDOUT_CODES_USERTYPE_DESC">
+			<param name="usertype" type="radio" default="0" label="Select an option" description="COM_HANDOUT_CODES_USERTYPE_DESC">
 			  <option value="0">COM_HANDOUT_CODES_ANONYMOUS</option>
 			  <option value="1">COM_HANDOUT_CODES_REGISTERED</option>
 			  <option value="2">COM_HANDOUT_CODES_EMAIL_REQUIRED</option>

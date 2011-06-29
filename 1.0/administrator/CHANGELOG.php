@@ -23,6 +23,7 @@ Legend:
 ! -> Note
 
 ------------
+<<<<<<< HEAD
 
 28-Jun-2011 Severdia
 ^ Added new CSS and tweaks for code download page, new language strings
@@ -31,6 +32,8 @@ Legend:
 29-Jun-2011 Arvind
 ^ Moved all the parameters for the 3 plugins - buttons, notify, thumbs - to admin config panel
 
+=======
+>>>>>>> parent of f5e73cd... ^ Added new CSS and tweaks for code download page, new language strings
 28-Jun-2011 Arvind
 + Completed front end of Download Codes section
 + Download code in log table

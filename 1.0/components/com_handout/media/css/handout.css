@@ -378,26 +378,6 @@ select option.label {
 }
 
 
-/* Codes
-------------------------------------------------------------------------- */
-.hdoc-code-form {
-	text-align:center !important;
-	margin: 40px 0;
-}
-.hdoc-entercode {
-	font-weight:bold;
-}
-.hdoc-inputcode,
-.hdoc-inputemail {
-	width: 300px;
-}
-.hdoc-code-form span {
-	display:block;
-	clear:left;
-	margin: 15px 0;
-}
-
-
 /* Modules and Plug-ins
 ------------------------------------------------------------------------- */
 
