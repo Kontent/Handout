@@ -291,62 +291,7 @@
 			<files folder="plg_handout_buttons">
 				<filename plugin="buttons">buttons.php</filename>
 				<filename plugin="buttons">buttons.xml</filename>
-			</files>
-		
-			<params>
-				<param name="download" type="radio" default="1" label="Show Download"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="view" type="radio" default="1" label="Show View"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="details" type="radio" default="1" label="Show Details"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="edit" type="radio" default="1" label="Show Edit"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="move" type="radio" default="1" label="Show Move"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="delete" type="radio" default="1" label="Show Delete"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="update" type="radio" default="1" label="Show Update"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="reset" type="radio" default="1" label="Show Reset"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="checkout" type="radio" default="1"
-					label="Show Checkin/Checkout"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-				<param name="publish" type="radio" default="1"
-					label="Show Publish/Unpublish"
-					description="This will hide the button for this task when browsing in the front-end. Please note that will not prevent access to this task.">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</param>
-			</params>
+			</files>		
 		</plugin>
 
 		<plugin
@@ -363,30 +308,6 @@
 			<filename plugin="notify">notify.php</filename>
 			<filename plugin="notify">notify.xml</filename>
 		  </files>
-
-		  <params>
-			<param name="cc" type="textarea" rows="5" cols="30" default="" label="Send to" description="Send a notification to these e-mail addresses. Separate by a pipe |." />
-		
-			<param name="onupload_site" type="radio" default="1" label="Notify on upload (site)" description="Send a notification when someone uploads a file through the front-end.">
-				<option value="0">No</option>
-				<option value="1">Yes</option>
-			</param>
-		
-			<param name="onedit_site" type="radio" default="1" label="Notify on edit (site)" description="Send a notification when someone edits a file through the front-end.">
-				<option value="0">No</option>
-				<option value="1">Yes</option>
-			</param>
-		
-			<param name="ondownload_site" type="radio" default="0" label="Notify on download (site)" description="Send a notification when someone downloads a file through the front-end.">
-				<option value="0">No</option>
-				<option value="1">Yes</option>
-			</param>
-		
-			<param name="onedit_admin" type="radio" default="0" label="Notify on edit (admin)" description="Send a notification when someone edits a file through the back-end.">
-				<option value="0">No</option>
-				<option value="1">Yes</option>
-			</param>
-		  </params>
 		</plugin>
 		
 		<plugin
@@ -399,24 +320,6 @@
 		  	<filename plugin="thumbs">thumbs.php</filename>
 		  	<filename plugin="thumbs">thumbs.xml</filename>
 		  </files>
-
-		  <params>
-		  	<param name="extensions" label="Extensions" description="Generate a thumbnail for these extensions (separated by comma). Leave blank to allow all image formats. Note: Not all files will have thumbnails. This depends on the files themselves and on your system. It's recommended to put here only the extensions you actually need, to improve performance." type="text" default="" />
-		  	<param name="@spacer" type="spacer" default="" label="" description="" />
-		  	<param name="width" label="Width" description="Thumbnail width in pixels" type="text" default="64" />
-		  	<param name="height" label="Height" description="Thumbnail height in pixels" type="text" default="64" />
-		  	<param name="output_format" label="Output format" description="The format of the generated thumbnail" type="radio" default="png">
-		  		<option value="png">PNG</option>
-		  		<option value="gif">GIF</option>
-		  		<option value="jpeg">JPEG</option>
-		  	</param>	
-		  	<param name="jpeg_quality" label="JPEG quality" description="Image quality of the thumbnail (1=small size, 100=best quality) " type="text" default="75" />
-		  	<param name="background_color" label="Background color" description="Background color of the thumbnail" type="text" default="FFFFFF" />
-		  	<param name="grayscale" label="Grayscale" description="Make the thumbnails black &amp; white" type="radio" default="0" >
-		  		<option value="0">No</option>
-		  		<option value="1">Yes</option>
-		  	</param>		
-		  </params>
 		</plugin>
 
 		<plugin

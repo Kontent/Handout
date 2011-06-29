@@ -12,23 +12,4 @@
   	<folder>thumbs</folder>
   	<filename plugin="thumbs">thumbs.php</filename>
   </files>
-  <params>
-  	<param name="extensions" label="Extensions" description="Generate a thumbnail for these extensions (separated by comma). Leave blank to allow all image formats. Note: Not all files will have thumbnails. This depends on the files themselves and on your system. It's recommended to put here only the extensions you actually need, to improve performance." type="text" default="" />
-  	<param name="@spacer" type="spacer" default="" label="" description="" />
-  	<param name="width" label="Width" description="Thumbnail width in pixels" type="text" default="64" />
-  	<param name="height" label="Height" description="Thumbnail height in pixels" type="text" default="64" />
-  	<param name="output_format" label="Output format" description="The format of the generated thumbnail" type="radio" default="png">
-  		<option value="png">PNG</option>
-  		<option value="gif">GIF</option>
-  		<option value="jpeg">JPEG</option>
-  	</param>
-
-  	<param name="jpeg_quality" label="JPEG quality" description="Image quality of the thumbnail (1=small size, 100=best quality) " type="text" default="75" />
-  	<param name="background_color" label="Background color" description="Background color of the thumbnail" type="text" default="FFFFFF" />
-  	<param name="grayscale" label="Grayscale" description="Make the thumbnails black &amp; white" type="radio" default="0" >
-  		<option value="0">No</option>
-  		<option value="1">Yes</option>
-  	</param>
-
-  </params>
 </install>

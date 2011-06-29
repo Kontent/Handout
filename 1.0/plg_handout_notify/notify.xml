@@ -18,27 +18,4 @@
 		<language tag="en-GB">en-GB/en-GB.plg_handout_notify.ini</language>
 	</languages>
 
-  <params>
-	<param name="cc" type="textarea" rows="5" cols="30" default="" label="Send to" description="Send a notification to these e-mail addresses. Separate by a pipe |." />
-
-	<param name="onupload_site" type="radio" default="1" label="Notify on upload (site)" description="Send a notification when someone uploads a file through the front-end.">
-		<option value="0">No</option>
-		<option value="1">Yes</option>
-	</param>
-
-	<param name="onedit_site" type="radio" default="1" label="Notify on edit (site)" description="Send a notification when someone edits a file through the front-end.">
-		<option value="0">No</option>
-		<option value="1">Yes</option>
-	</param>
-
-	<param name="ondownload_site" type="radio" default="0" label="Notify on download (site)" description="Send a notification when someone downloads a file through the front-end.">
-		<option value="0">No</option>
-		<option value="1">Yes</option>
-	</param>
-
-	<param name="onedit_admin" type="radio" default="0" label="Notify on edit (admin)" description="Send a notification when someone edits a file through the back-end.">
-		<option value="0">No</option>
-		<option value="1">Yes</option>
-	</param>
-  </params>
 </install>

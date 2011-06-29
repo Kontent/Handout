@@ -44,17 +44,29 @@ function showConfig($option)
     $std_inp = 'style="width: 125px" size="2"';
     $std_opt = 'size="2"';
 
-    // Create the 'yes-no' radio options
+    // Create the 'yes-no' radio options with default 0
     foreach(array('isDown' , 'display_license', 'log' , 'emailgroups',
             'user_all', 'fname_lc' , 'overwrite' , 'security_anti_leech',
             'trimwhitespace', 'process_bots', 'individual_perm', 'hide_remote',
-    		'allow_bulk_download'
+    		'allow_bulk_download', 'notify_onupload', 'notify_onedit', 'notify_ondownload', 
+			'notify_onedit_admin', 'thumbs_grayscale'
     
             )
         AS $field) {
         $lists[ $field ] = JHTML::_('select.booleanlist',$field, $std_opt,
             $_HANDOUT->getCfg($field , 0));
     }
+
+    // Create the 'yes-no' radio options with default 1
+    foreach(array('buttons_download', 'buttons_view', 'buttons_details', 'buttons_edit', 
+					'buttons_move', 'buttons_delete', 'buttons_update', 'buttons_reset',
+					'buttons_checkout', 'buttons_publish'    
+            )
+        AS $field) {
+        $lists[ $field ] = JHTML::_('select.booleanlist',$field, $std_opt,
+            $_HANDOUT->getCfg($field , 1));
+    }
+
 
     //Create the show-hide radio options
     foreach(array('cat_empty' , 'cat_empty_notice' ,'menu_home', 'menu_search', 'menu_upload' ,'show_share', 
@@ -72,6 +84,11 @@ function showConfig($option)
             $_HANDOUT->getCfg($field , 0), 'Show', 'Hide');
     }
     
+	$thumbs_output_format[] = JHTML::_( 'select.option', 'png', 'PNG' );
+	$thumbs_output_format[] = JHTML::_( 'select.option', 'gif', 'GIF' );
+	$thumbs_output_format[] = JHTML::_( 'select.option', 'jpeg', 'JPEG' );
+	$lists['thumbs_output_format'] = JHTML::_( 'select.radiolist', $thumbs_output_format, 'thumbs_output_format',  '', 'value', 'text', $_HANDOUT->getCfg('thumbs_output_format' , 'png'));
+	
     $cat_image[] = JHTML::_('select.option','0' , JText::_('COM_HANDOUT_NOIMAGE_LABEL'));
     $cat_image[] = JHTML::_('select.option','1' , JText::_('COM_HANDOUT_FOLDERICON_LABEL'));
     $cat_image[] = JHTML::_('select.option','2' , JText::_('COM_HANDOUT_THUMBNAIL_LABEL'));
