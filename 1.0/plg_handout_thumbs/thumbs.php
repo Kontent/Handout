@@ -28,8 +28,17 @@ class plgHandoutThumbs extends JPlugin
 	    // load plugin params info
 	 	$plugin =& JPluginHelper::getPlugin('handout', 'thumbs');
 	 	$pluginParams = new JParameter( $plugin->params );
-	
-	    // DOCman config
+
+		//set parameters from Handout config
+		$pluginParams->set('extensions', $_HANDOUT->getCfg('thumbs_extensions'));		
+		$pluginParams->set('width', $_HANDOUT->getCfg('thumbs_width', '64'));		
+		$pluginParams->set('height', $_HANDOUT->getCfg('thumbs_height', '64'));		
+		$pluginParams->set('output_format', $_HANDOUT->getCfg('thumbs_output_format', 'png'));		
+		$pluginParams->set('jpeg_quality', $_HANDOUT->getCfg('thumbs_jpeg_quality', '75'));		
+		$pluginParams->set('background_color', $_HANDOUT->getCfg('thumbs_background_color', 'FFFFFF'));		
+		$pluginParams->set('grayscale', $_HANDOUT->getCfg('thumbs_grayscale', '0'));	
+			
+	    // Handout config
 	    $handoutpath = $_HANDOUT->getCfg('handoutpath', JPATH_ROOT.DS.'handouts');
 
 	    // Parameters

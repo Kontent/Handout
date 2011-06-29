@@ -6,11 +6,21 @@ define('_HandoutConfig',1);
 
 class HandoutConfig
 {
-// Last Edit: Mon, 2011-Jun-27 10:20
+// Last Edit: Tue, 2011-Jun-14 13:25
 // Edited by: admin
 var $HANDOUT_version = '1.0';
 var $allow_bulk_download = '0';
 var $author_can = '2';
+var $buttons_checkout = '1';
+var $buttons_delete = '1';
+var $buttons_details = '1';
+var $buttons_download = '1';
+var $buttons_edit = '1';
+var $buttons_move = '1';
+var $buttons_publish = '1';
+var $buttons_reset = '1';
+var $buttons_update = '1';
+var $buttons_view = '1';
 var $cat_empty = '1';
 var $cat_empty_notice = '1';
 var $cat_image = '1';
@@ -72,6 +82,11 @@ var $methods = array (
   1 => 'link',
   2 => 'transfer',
 );
+var $notify_ondownload='0';
+var $notify_onedit='0';
+var $notify_onedit_admin='0';
+var $notify_onupload='0';
+var $notify_sendto='';
 var $overwrite = '0';
 var $perpage = '10';
 var $process_bots = '1';
@@ -86,6 +101,13 @@ var $show_share_facebook = '1';
 var $show_share_googleplusone = '1';
 var $show_share_twitter = '1';
 var $specialcompat = '0';
+var $thumbs_bgcolor = 'FFFFFF';
+var $thumbs_extensions = '';
+var $thumbs_grayscale = '0';
+var $thumbs_height = '64';
+var $thumbs_jpeg_quality = '75';
+var $thumbs_output_format = 'png';
+var $thumbs_width = '64';
 var $toolbar_icon_size = '32';
 var $trimwhitespace = '1';
 var $user_all = '0';

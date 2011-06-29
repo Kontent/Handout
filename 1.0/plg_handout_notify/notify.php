@@ -9,10 +9,6 @@
  
 defined('_JEXEC') or die('Restricted access');
 
-// requires
-define('NOTIFY_PATH', dirname(__FILE__).DS.'notify');
-require_once NOTIFY_PATH.DS.'includes'.DS.'config.php';
-
 global $_HANDOUT;
 if(!is_object($_HANDOUT)){
 	$handoutBase = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS;
@@ -20,6 +16,9 @@ if(!is_object($_HANDOUT)){
 	$_HANDOUT = &HandoutFactory::getHandout();
 }
 
+// requires
+define('NOTIFY_PATH', dirname(__FILE__).DS.'notify');
+require_once NOTIFY_PATH.DS.'includes'.DS.'config.php';
 
 jimport( 'joomla.plugin.plugin' );
 class plgHandoutNotify extends JPlugin

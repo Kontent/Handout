@@ -457,6 +457,102 @@ class HTML_HandoutConfig
             <td class="col2"><?php echo $lists['details_crc_checksum'];?></td>
             <td>&nbsp;</td>
         </tr>
+    </table>    
+
+	<table class="adminform">
+        <tr>
+        	<td class="hadmin-subtitle" colspan="3"><?php echo JText::_('COM_HANDOUT_BUTTONS_SETTINGS');?></td>
+        </tr>     
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_DOWNLOAD_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_download']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_DOWNLOAD_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_DOWNLOAD_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_VIEW_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_view']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_VIEW_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_VIEW_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_DETAILS_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_details']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_DETAILS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_DETAILS_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_EDIT_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_edit']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_EDIT_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_EDIT_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_MOVE_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_move']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_MOVE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_MOVE_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_DELETE_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_delete']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_DELETE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_DELETE_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_UPDATE_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_update']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_UPDATE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_UPDATE_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_RESET_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_reset']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_RESET_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_RESET_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_CHECKOUT_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_checkout']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_CHECKOUT_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_CHECKOUT_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_PUBLISH_LABEL');?>:</td>
+            <td class="col2"><?php echo $lists['buttons_publish']?></td>
+            <td>            
+        <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_PUBLISH_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_PUBLISH_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+					
+       </td>
+        </tr>
 	</table>
     
 	<?php
@@ -778,6 +874,114 @@ class HTML_HandoutConfig
 				} 
 			}
         </script>
+        <?php
+        echo $tabs->endPanel();
+        echo $tabs->startPanel(JText::_('COM_HANDOUT_NOTIFY'), "notify-page");
+        ?>
+    <table class="adminform">
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_NOTIFY_SENDTO_LABEL');?></td>
+            <td class="col2"><textarea name="notify_sendto" rows="5" cols="30" ><?php echo $_HANDOUT->getCfg('notify_sendto');?></textarea></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_NOTIFY_SENDTO_LABEL');?>::<?php echo JText::_('COM_HANDOUT_NOTIFY_SENDTO_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+			</td>
+        </tr>
+        <tr>
+            <td><?php echo JText::_('COM_HANDOUT_NOTIFY_ONUPLOAD_LABEL');?></td>
+            <td><?php echo $lists['notify_onupload']; ?></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_NOTIFY_ONUPLOAD_LABEL');?>::<?php echo JText::_('COM_HANDOUT_NOTIFY_ONUPLOAD_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo JText::_('COM_HANDOUT_NOTIFY_ONEDIT_LABEL');?></td>
+            <td><?php echo $lists['notify_onedit']; ?></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_NOTIFY_ONEDIT_LABEL');?>::<?php echo JText::_('COM_HANDOUT_NOTIFY_ONEDIT_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo JText::_('COM_HANDOUT_NOTIFY_ONDOWNLOAD_LABEL');?></td>
+            <td><?php echo $lists['notify_ondownload']; ?></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_NOTIFY_ONDOWNLOAD_LABEL');?>::<?php echo JText::_('COM_HANDOUT_NOTIFY_ONDOWNLOAD_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo JText::_('COM_HANDOUT_NOTIFY_ONEDIT_ADMIN_LABEL');?></td>
+            <td><?php echo $lists['notify_onedit_admin']; ?></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_NOTIFY_ONEDIT_ADMIN_LABEL');?>::<?php echo JText::_('COM_HANDOUT_NOTIFY_ONEDIT_ADMIN_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+            </td>
+        </tr>
+    </table>
+        <?php
+        echo $tabs->endPanel();
+        echo $tabs->startPanel(JText::_('COM_HANDOUT_THUMBS'), "thumbs-page");
+        ?>
+    <table class="adminform">
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_THUMBS_EXTENSIONS_LABEL');?></td>
+            <td class="col2"><input name="thumbs_extensions" size="30" value="<?php echo $_HANDOUT->getCfg('thumbs_extensions');?>" /></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_THUMBS_EXTENSIONS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_THUMBS_EXTENSIONS_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+			</td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_THUMBS_WIDTH_LABEL');?></td>
+            <td class="col2"><input name="thumbs_width" size="5" value="<?php echo $_HANDOUT->getCfg('thumbs_width', 64);?>" /></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_THUMBS_WIDTH_LABEL');?>::<?php echo JText::_('COM_HANDOUT_THUMBS_WIDTH_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+			</td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_THUMBS_HEIGHT_LABEL');?></td>
+            <td class="col2"><input name="thumbs_height" size="5" value="<?php echo $_HANDOUT->getCfg('thumbs_height', 64);?>" /></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_THUMBS_HEIGHT_LABEL');?>::<?php echo JText::_('COM_HANDOUT_THUMBS_HEIGHT_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+			</td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_THUMBS_OUTPUT_FORMAT_LABEL');?></td>
+            <td class="col2"><?php echo $lists['thumbs_output_format']; ?></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_THUMBS_OUTPUT_FORMAT_LABEL');?>::<?php echo JText::_('COM_HANDOUT_THUMBS_OUTPUT_FORMAT_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+			</td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_THUMBS_JPEG_QUALITY_LABEL');?></td>
+            <td class="col2"><input name="thumbs_jpeg_quality" size="5" value="<?php echo $_HANDOUT->getCfg('thumbs_jpeg_quality', 75);?>" /></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_THUMBS_JPEG_QUALITY_LABEL');?>::<?php echo JText::_('COM_HANDOUT_THUMBS_JPEG_QUALITY_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+			</td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_THUMBS_BGCOLOR_LABEL');?></td>
+            <td class="col2"><input name="thumbs_bgcolor" size="5" value="<?php echo $_HANDOUT->getCfg('thumbs_bgcolor', 'FFFFFF');?>" /></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_THUMBS_BGCOLOR_LABEL');?>::<?php echo JText::_('COM_HANDOUT_THUMBS_BGCOLOR_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+			</td>
+        </tr>
+        <tr>
+            <td class="col1"><?php echo JText::_('COM_HANDOUT_THUMBS_GRAYSCALE_LABEL');?></td>
+            <td class="col2"><?php echo $lists['thumbs_grayscale']; ?></td>
+            <td>
+        		<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_THUMBS_GRAYSCALE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_THUMBS_GRAYSCALE_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+			</td>
+        </tr>
+    </table>
         <?php
         	echo $tabs->endPanel();
        		echo $tabs->endPane();
