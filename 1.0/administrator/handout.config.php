@@ -6,7 +6,7 @@ define('_HandoutConfig',1);
 
 class HandoutConfig
 {
-// Last Edit: Tue, 2011-Jun-14 13:25
+// Last Edit: Mon, 2011-Jun-27 10:20
 // Edited by: admin
 var $HANDOUT_version = '1.0';
 var $allow_bulk_download = '0';

@@ -23,6 +23,11 @@ Legend:
 ! -> Note
 
 ------------
+
+28-Jun-2011 Severdia
+^ Added new CSS and tweaks for code download page, new language strings
+^ Changed radio buttons to dropdown in menu item params
+
 28-Jun-2011 Arvind
 + Completed front end of Download Codes section
 + Download code in log table
