@@ -100,6 +100,12 @@ class HANDOUT_CleardataItem_handout_log extends HANDOUT_CleardataItemTable{
     var $table = '#__handout_log';
 }
 
+class HANDOUT_CleardataItem_handout_codes extends HANDOUT_CleardataItemTable{
+    var $name = 'handout_codes';
+    var $friendlyname = 'Codes';
+    var $table = '#__handout_codes';
+}
+
 class HANDOUT_CleardataItem_categories extends HANDOUT_CleardataItemTable{
     var $name = 'categories';
     var $friendlyname = 'Categories';
@@ -151,6 +157,43 @@ class HANDOUT_CleardataItem_files extends HANDOUT_CleardataItem{
     }
 }
 
+class HANDOUT_CleardataItem_thumbs extends HANDOUT_CleardataItem{
+	var $name = 'thumbs';
+    var $friendlyname = 'Thumbs';
+    var $table = '#__handout';
+	var $where = '';
+	
+    function clear(){
+        $database = &JFactory::getDBO();
+        $database->setQuery("UPDATE ".$this->table . "\n SET docthumbnail=''"         
+                            ."\n ".$this->where);
+        if( !$database->query()){
+        	$this->msg = JText::_('COM_HANDOUT_CLEARDATA_CLEARED').$this->friendlyname;
+            return false;
+        }
+    	
+    	global $_HANDOUT;
+        jimport( 'joomla.filesystem.file' );
+        jimport( 'joomla.filesystem.folder' );
+        $path = JPATH_ROOT . DS . 'images' . DS . 'stories' . DS . 'handout';
+        if (!file_exists($path)){
+        	$this->msg = JText::_('COM_HANDOUT_CLEARDATA_FAILED').$this->friendlyname;
+        	return false;        	
+        }
+        $this->msg = JText::_('COM_HANDOUT_CLEARDATA_CLEARED').$this->friendlyname;
+        $files = JFolder::files($path, '', false, true, array('index.html'));
+        if( count($files)){
+            foreach( $files as $file ){
+        	   if( !JFile::delete($file) ){
+        		  $this->msg = JText::_('COM_HANDOUT_CLEARDATA_FAILED').$this->friendlyname;
+                  return false;
+        	   }
+            }
+        }
+        
+        return true;
+    }
+}
 
 class HANDOUT_Cleardata {
 	var $items = array();
@@ -160,7 +203,7 @@ class HANDOUT_Cleardata {
      */
     function HANDOUT_Cleardata( $items = null ){
     	if ( !$items ) {
-            $items = array( 'handout', 'categories', 'files', 'handout_groups', 'handout_history', 'handout_licenses', 'handout_log');
+            $items = array( 'handout', 'categories', 'files', 'handout_groups', 'handout_history', 'handout_licenses', 'handout_log', 'handout_codes', 'thumbs');
         }
         foreach ($items as $item){
         	$this->items[] = & HANDOUT_CleardataItem::getInstance( $item );

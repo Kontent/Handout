@@ -119,7 +119,6 @@ class HTML_HandoutCodes {
 				<!--<th class="title" width="10%" nowrap="nowrap"><?php //echo JText::_('COM_HANDOUT_CREATION_DATE')?></th>-->
 				<th class="title" width="5%" nowrap="nowrap"><?php echo JText::_('COM_HANDOUT_PUBLISHED')?></th>
 				<th class="title" width="10%" nowrap="nowrap"><?php echo JText::_('COM_HANDOUT_CODES_USAGE')?></th>
-				<th class="title" width="10%" nowrap="nowrap"><?php echo JText::_('COM_HANDOUT_USER')?></th>
 			</tr>
             </thead>
 
@@ -157,9 +156,6 @@ class HTML_HandoutCodes {
                         </td>
                         <td align="left">
                             <?php  $usage = HandoutCodes::getCodesUsage();	echo $usage[$row->usage]->text;?>
-                        </td>
-                        <td align="left">
-                            <?php  $user = HandoutCodes::getCodesUser(); echo $user[$row->user]->text;?>
                         </td>
     				</tr>
     				<?php

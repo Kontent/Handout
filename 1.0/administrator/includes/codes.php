@@ -147,7 +147,7 @@ function showCodes($option)
     require_once (JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php');
     $pageNav = new JPagination($total, $limitstart, $limit);
 
-    $query = "SELECT c.id, c.name, c.published, c.usage, c.user, h.docname, cat.name as category"
+    $query = "SELECT c.id, c.name, c.published, c.usage, h.docname, cat.name as category"
             ."\n FROM #__handout_codes AS c"
 			."\n LEFT JOIN #__handout AS h"
 			."\n ON c.docid=h.id"

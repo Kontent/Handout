@@ -25,6 +25,7 @@ Legend:
 ------------
 29-Jun-2011 Arvind
 ^ Moved all the parameters for the 3 plugins - buttons, notify, thumbs - to admin config panel
++ Clear data for thumbs
 
 28-Jun-2011 Arvind
 + Completed front end of Download Codes section

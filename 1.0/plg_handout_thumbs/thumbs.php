@@ -63,6 +63,7 @@ class plgHandoutThumbs extends JPlugin
 		if (!file_exists(_AT_PATH_IMAGES)){
 			mkdir(_AT_PATH_IMAGES);
 			chmod(_AT_PATH_IMAGES, 0755);
+			copy (JPATH_ROOT . DS . 'tmp' . DS . 'index.html', _AT_PATH_IMAGES . DS . 'index.html');
 		}
 		
 	    if(!is_writable(_AT_PATH_IMAGES)) { return; }
