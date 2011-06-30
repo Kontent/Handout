@@ -24,9 +24,6 @@ Legend:
 
 ------------
 
-29-Jun-2011 Severdia
-^ Test commit
-
 28-Jun-2011 Severdia
 ^ Added new CSS and tweaks for code download page, new language strings
 ^ Changed radio buttons to dropdown in menu item params

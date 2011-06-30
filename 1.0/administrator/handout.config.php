@@ -6,6 +6,8 @@ define('_HandoutConfig',1);
 
 class HandoutConfig
 {
+// Last Edit: Tue, 2011-Jun-14 13:25
+// Edited by: admin
 var $HANDOUT_version = '1.0';
 var $allow_bulk_download = '0';
 var $author_can = '2';
@@ -80,11 +82,11 @@ var $methods = array (
   1 => 'link',
   2 => 'transfer',
 );
-var $notify_ondownload = '0';
-var $notify_onedit = '0';
-var $notify_onedit_admin = '0';
-var $notify_onupload = '0';
-var $notify_sendto = '';
+var $notify_ondownload='0';
+var $notify_onedit='0';
+var $notify_onedit_admin='0';
+var $notify_onupload='0';
+var $notify_sendto='';
 var $overwrite = '0';
 var $perpage = '10';
 var $process_bots = '1';
