@@ -23,6 +23,11 @@ Legend:
 ! -> Note
 
 ------------
+
+28-Jun-2011 Severdia
+^ Added new CSS and tweaks for code download page, new language strings
+^ Changed radio buttons to dropdown in menu item params
+
 29-Jun-2011 Arvind
 ^ Moved all the parameters for the 3 plugins - buttons, notify, thumbs - to admin config panel
 + Clear data for thumbs
