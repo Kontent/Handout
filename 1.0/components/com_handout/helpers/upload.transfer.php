@@ -17,9 +17,7 @@ if (defined('_HANDOUT_METHOD_TRANSFER')) {
     define('_HANDOUT_METHOD_TRANSFER' , 1);
 }
 
-include_once dirname(__FILE__) . '/upload.transfer.html.php';
-
-class DMUploadMethod
+class HandoutUploadMethod
 {
     function fetchMethodForm($uid, $step, $update = false)
     {
@@ -31,14 +29,15 @@ class DMUploadMethod
             {
                 $lists = array();
                 $lists['action']    = HandoutHelper::_taskLink($task, $uid, array('step' => $step + 1), false);
-                return HTML_HandoutUploadMethod::transferFileForm($lists);
+                
+				return $lists;
             } break;
 
             case 3: // Copy the file and edit the document
             {
                 $url   = stripslashes(JRequest::getVar( 'url' , 'http://'));
                 $file  = stripslashes(JRequest::getVar( 'localfile' , ''));
-                $err = DMUploadMethod::transferFileProcess($uid, $step, $url, $file);
+                $err = HandoutUploadMethod::transferFileProcess($uid, $step, $url, $file);
                 if($err['_error']) {
                 	HandoutHelper::_returnTo($task, $err['_errmsg'], '', array("method" => 'transfer' , "step" => $step - 1 ,"localfile" => $file , "url" => HANDOUT_Utils::safeEncodeURL($url)));
                 }

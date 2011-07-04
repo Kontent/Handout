@@ -18,9 +18,7 @@ if (defined('_HANDOUT_METHOD_HTTP')) {
     define('_HANDOUT_METHOD_HTTP' , 1);
 }
 
-include_once dirname(__FILE__) . '/upload.http.html.php';
-
-class DMUploadMethod
+class HandoutUploadMethod
 {
     function fetchMethodForm($uid, $step, $update)
     {
@@ -32,7 +30,8 @@ class DMUploadMethod
             {
                 $lists = array();
                 $lists['action'] = HandoutHelper::_taskLink($task, $uid, array('step' => $step + 1), false);
-                return HTML_HandoutUploadMethod::uploadFileForm($lists);
+                
+				return $lists;
             } break;
 
             case 3: // Process the file and edit the document
@@ -41,15 +40,15 @@ class DMUploadMethod
                 $hash = HANDOUT_Utils::stripslashes($_FILES);
                 $file = isset($hash['upload']) ? $hash['upload'] : null;
 
-                $err  = DMUploadMethod::uploadFileProcess($uid, $step, $file);
+                $err  = HandoutUploadMethod::uploadFileProcess($uid, $step, $file);
                 if($err['_error']) {
                 	HandoutHelper::_returnTo($task, $err['_errmsg'], '', array('step' => $step - 1, 'method' => 'http'));
                 }
 
    				$catid = $update ? 0 : $uid;
                 $docid = $update ? $uid : 0;
-
-   				return DocumentsHelper::fetchEditDocumentForm($docid , $file->name, $catid);
+				
+  				return DocumentsHelper::fetchEditDocumentForm($docid , $file->name, $catid);
 
             } break;
 

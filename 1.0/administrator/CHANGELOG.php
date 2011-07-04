@@ -24,13 +24,17 @@ Legend:
 
 ------------
 
-28-Jun-2011 Severdia
-^ Added new CSS and tweaks for code download page, new language strings
-^ Changed radio buttons to dropdown in menu item params
+30-Jun-2011 Arvind
+^ Moved code from helpers/*.html files to templates (for edit and upload sections)
+# Fixed bug with remote file link
 
 29-Jun-2011 Arvind
 ^ Moved all the parameters for the 3 plugins - buttons, notify, thumbs - to admin config panel
 + Clear data for thumbs
+
+28-Jun-2011 Severdia
+^ Added new CSS and tweaks for code download page, new language strings
+^ Changed radio buttons to dropdown in menu item params
 
 28-Jun-2011 Arvind
 + Completed front end of Download Codes section

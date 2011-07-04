@@ -44,12 +44,16 @@ class HandoutViewDocument extends JView {
 		$gid = HandoutHelper::getGid ();
 		list($buttons, $paths, $data) = DocumentsHelper::fetchDocument ( $gid );
 		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
-		$editform = DocumentsHelper::fetchEditDocumentForm ( $gid );
+		list($edit_doc, $edit_lists, $edit_last, $edit_created, $edit_params) = DocumentsHelper::fetchEditDocumentForm ( $gid );
 
 		$this->assignRef('data', $data);
 		$this->assignRef('links', $links);
 		$this->assignRef('perms', $perms);
-		$this->assignRef('editform', $editform);
+		$this->assignRef('edit_doc', $edit_doc);
+		$this->assignRef('edit_lists', $edit_lists);
+		$this->assignRef('edit_last', $edit_last);
+		$this->assignRef('edit_created', $edit_created);
+		$this->assignRef('edit_params', $edit_params);
 		$this->assignRef('conf', $handout->getAllCfg());
 		
 		HandoutViewDocument::importScript ();
@@ -88,7 +92,7 @@ class HandoutViewDocument extends JView {
 		$gid = HandoutHelper::getGid ();
 		
 		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
-		$uploadform = UploadHelper::fetchDocumentUploadForm ( $gid, $step, $method, $update );
+		$lists = UploadHelper::fetchDocumentUploadForm ( $gid, $step, $method, $update );
 		
 		$this->assignRef('links', $links);
 		$this->assignRef('perms', $perms);
@@ -97,6 +101,7 @@ class HandoutViewDocument extends JView {
 		$this->assignRef ( 'step', $step );
 		$this->assignRef ( 'method', $method );
 		$this->assignRef ( 'update', $update );
+		$this->assignRef ( 'lists', $lists );
 
 		if ($step == 3) {
 			HandoutViewDocument::importScript ();

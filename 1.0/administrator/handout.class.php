@@ -466,7 +466,7 @@ class HandoutDocument extends JTable {
         {
             $this->docfilename = COM_HANDOUT_DOCUMENT_LINK.$document_url;
         }
-
+		
 		if( ! $this->catid ){
 			$this->_error .= "\\n" . JText::_('COM_HANDOUT_ENTRY_CAT');
 		}
@@ -514,13 +514,7 @@ class HandoutDocument extends JTable {
 		if( strncasecmp( $this->docfilename , COM_HANDOUT_DOCUMENT_LINK , COM_HANDOUT_DOCUMENT_LINK_LNG )==0){
 
 			$document_url = str_replace(COM_HANDOUT_DOCUMENT_LINK, '', $this->docfilename);
-			// Check for a config string..
-			//if( defined(JText::_('COM_HANDOUT_DOCUMENT_VALIDATE')) ){
-			if( JText::_('COM_HANDOUT_DOCUMENT_VALIDATE')){
-				$rmatch = '(' . JText::_('COM_HANDOUT_DOCUMENT_VALIDATE') . ')' ;
-			}else{
-				$rmatch = '([a-zA-Z]*)';
-			}
+			$rmatch = '([a-zA-Z]*)';
 			if( strncasecmp( 'file://' ,  $document_url , 7 ) == 0 ){
 				$this->_error .= "\\n" . JText::_('COM_HANDOUT_ENTRY_DOCLINK_PROTOCOL') . ' (code 150) '.$document_url;
 			}else if( ! preg_match( '/^' . $rmatch . ':\/\//' , $document_url ) ){
@@ -536,7 +530,7 @@ class HandoutDocument extends JTable {
 				$this->docfilename = COM_HANDOUT_DOCUMENT_LINK . $document_url;
 			}
 		}
-
+		
 		if( $this->_error ){
 			$this->_error = JText::_('COM_HANDOUT_ENTRY_ERRORS')
 			. "\\n---------------------------------"
@@ -692,11 +686,18 @@ class HandoutDocument extends JTable {
 	function save()
 	{
 		$post = HANDOUT_Utils::stripslashes($_POST);
+			
 		if (!$this->bind($post)) {
-			echo "<script> alert('".$this->getError() ."'); window.history.go(-1); </script>\n";
+			echo "<script> alert('".$this->_error ."'); window.history.go(-1); </script>\n";
 			exit();
 		}
 		$this->_tbl_key = "id";
+
+		if (!$this->check()) { // Javascript SHOULD catch all this!
+			echo "<script> alert('".$this->_error ."'); window.history.go(-1); </script>\n";
+			exit();
+		}
+
 
 		if (!$this->store()) {
 			echo "<script> alert('".$this->getError() ."'); window.history.go(-1); </script>\n";

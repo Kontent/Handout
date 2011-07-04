@@ -12,7 +12,9 @@
  
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
-require_once (JPATH_COMPONENT . DS . 'helpers' . DS . 'documents.html.php');
+$_HANDOUT = &HandoutFactory::getHandout();
+
+require_once($_HANDOUT->getPath('classes', 'html'));
 
 class DocumentsHelper {
 	
@@ -255,7 +257,8 @@ class DocumentsHelper {
 			HandoutHelper::_returnTo ( 'cat_view', $prebot->getErrorMsg () );
 		}
 		
-		return HTML_HandoutDocuments::editDocumentForm ( $doc, $lists, $last, $created, $params );
+		$returnArray = array($doc, $lists, $last, $created, $params);
+		return $returnArray;		
 	}
 	
 	function checkMoveDocument($gid) {

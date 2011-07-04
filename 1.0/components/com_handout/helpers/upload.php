@@ -12,8 +12,6 @@
  
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
-include_once dirname ( __FILE__ ) . '/upload.html.php';
-
 $_HANDOUT = &HandoutFactory::getHandout ();
 
 require_once ($_HANDOUT->getPath ( 'classes', 'plugins' ));
@@ -56,7 +54,7 @@ class UploadHelper {
 		$lists ['methods'] = HandoutHTML::uploadSelectList ();
 		$lists ['action'] = HandoutHelper::_taskLink ( $task, $uid, array ('step' => $step + 1 ), false );
 		
-		return HTML_HandoutUpload::uploadMethodsForm ( $lists );
+		return $lists;
 	}
 	
 	function fetchMethodForm($uid, $step, $method, $update) {
@@ -68,7 +66,7 @@ class UploadHelper {
 		}
 		require_once ($method_file);
 		
-		return DMUploadMethod::fetchMethodForm ( $uid, $step, $update );
+		return HandoutUploadMethod::fetchMethodForm ( $uid, $step, $update );
 	}
 	
 	function methodAvailable($method) {
