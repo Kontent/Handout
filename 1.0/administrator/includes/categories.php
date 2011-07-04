@@ -60,13 +60,13 @@ switch ($task) {
 
 function showCategories()
 {
-	$option = JRequest::getCmd('option');	
+	$option = JRequest::getCmd('option');
     $mainframe = &JFactory::getApplication();
     $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
 	$list_limit = $mainframe->getCfg('list_limit');
     global $menutype;
-    
+
     $section = "com_handout";
 
     $sectionid = $mainframe->getUserStateFromRequest("sectionid{$section}{$section}", 'sectionid', 0);
@@ -137,8 +137,8 @@ function showCategories()
 
 function editCategory($section = '', $uid = 0)
 {
-    $database = &JFactory::getDBO(); 
-    $user = &JFactory::getUser();     
+    $database = &JFactory::getDBO();
+    $user = &JFactory::getUser();
 
     // disable the main menu to force user to use buttons
     $_REQUEST['hidemainmenu']=1;
@@ -252,7 +252,7 @@ function removeCategories($section, $cid)
     HANDOUT_token::check() or die('Invalid Token');
 
     $database = &JFactory::getDBO();
-    
+
     $mainframe = &JFactory::getApplication();
 
     if (count($cid) < 1) {
@@ -276,7 +276,7 @@ function removeCategories($section, $cid)
 
     $err = array();
     $cid = array();
-    
+
     foreach ($rows as $row) {
         if ($row->numcat == 0 && $row->numkids == 0) {
             $cid[] = $row->id;
@@ -284,7 +284,7 @@ function removeCategories($section, $cid)
             $err[] = $row->title;
         }
     }
-    
+
     if (count($cid)) {
         $cids = implode(',', $cid);
         $database->setQuery("DELETE FROM #__categories WHERE id IN ($cids)");
@@ -293,7 +293,7 @@ function removeCategories($section, $cid)
         }
     }
 
-    if (count($err)) {    	
+    if (count($err)) {
         if (count($err) > 1) {
             $cids = implode(', ', $err);
             $msg = JText::_('COM_HANDOUT_CATS').": $cids -";
@@ -301,7 +301,7 @@ function removeCategories($section, $cid)
             $msg = JText::_('COM_HANDOUT_CAT_LABEL')." " . $err[0] ;
         }
         $msg .= ' '.JText::_('COM_HANDOUT_CATS_CANT_BE_REMOVED');
-        
+
         $mainframe->redirect('index.php?option=com_handout&section=categories' , $msg);
     }
 
@@ -325,7 +325,7 @@ function publishCategories($section, $categoryid = null, $cid = null, $publish =
     	die('Invalid Token');
     }
 
-    $database = &JFactory::getDBO(); 
+    $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
     $mainframe = &JFactory::getApplication();
 

@@ -8,12 +8,12 @@
 	<authorUrl>www.sharehandouts.com</authorUrl>
 	<version>1.0</version>
   <description>This plug-in will notify the site owner when someone uploads, edits or downloads a file in Handout. Don't forget to publish it and specify at least one e-mail address.</description>
-  
+
   <files>
 	<folder>notify</folder>
     <filename plugin="notify">notify.php</filename>
   </files>
-  
+
   	<languages folder="language">
 		<language tag="en-GB">en-GB/en-GB.plg_handout_notify.ini</language>
 	</languages>

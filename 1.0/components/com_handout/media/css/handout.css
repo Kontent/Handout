@@ -6,13 +6,13 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
-  /* 
+
+  /*
 ----------------------------------------------------------------------------------------------- */
 
 /* Main
 ----------------------------------------------------------------------------------------------- */
- 
+
 #handout img {
 	border: 0 none;
 }
@@ -54,10 +54,10 @@
 	font-size: 9px;
 	margin: 10px;
 }
-#handout .horderby { 
-	margin: 0 0 10px 0; 
-	padding: 1px 1px 1px 10px; 
-	background-color: #EEE; 
+#handout .horderby {
+	margin: 0 0 10px 0;
+	padding: 1px 1px 1px 10px;
+	background-color: #EEE;
 	font-size: 10px;
 }
 #handout .hdoc-icon {
@@ -114,12 +114,12 @@
 }
 
 
- 
+
  /* Status
 ----------------------------------------------------------------------------------------------- */
 #handout .hunpublished {
-	
-	
+
+
 }
 
 #handout .hcheckedout img {
@@ -156,7 +156,7 @@
 }
 
 
- 
+
  /* Toolbar Buttons
 ----------------------------------------------------------------------------------------------- */
 
@@ -188,7 +188,7 @@
 	font-size: 11px;
 }
 #handout .hdoc-taskbar {
-	margin-left: 83px; 
+	margin-left: 83px;
 }
 #handout .addthis_button_google_plusone {
 	margin-top: 1px;
@@ -237,13 +237,13 @@
 	background: url("../images/bg-doc.png") repeat-x;
 }
 
- 
+
  /* Document Buttons
 ----------------------------------------------------------------------------------------------- */
 
 #handout .hdoc-taskbar li {
 	display: inline;
-	line-height: 30px;	
+	line-height: 30px;
 }
 
 #handout .hdoc-taskbar li a {
@@ -303,7 +303,7 @@
 }
 #hdoc-details .hdoc-property,
 #hdoc-details .hdoc-value {
-	display: none;	
+	display: none;
 }
 .hcat-share,
 .hdoc-share {
@@ -332,9 +332,9 @@
 /* Upload
 ----------------------------------------------------------------------------------------------- */
 
-select option.label { 
-	background-color: #EEE; 
-	border: 1px solid #DDD; 
+select option.label {
+	background-color: #EEE;
+	border: 1px solid #DDD;
 	color : #333;
 }
 .hupload-steps {

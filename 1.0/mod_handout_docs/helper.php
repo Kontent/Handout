@@ -59,7 +59,7 @@ class modHandoutdocsHelper
 				break;
 		}
 
-		$where = $is_mtree_listing ? "\n AND d.mtree_id=" . (int) $link_id : '';	
+		$where = $is_mtree_listing ? "\n AND d.mtree_id=" . (int) $link_id : '';
 		return HANDOUT_Docs::getDocsByUserAccess($cat_ids, $order, $dir, $limits, $where);
 	}
 }

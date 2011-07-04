@@ -7,7 +7,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
@@ -43,7 +43,7 @@ class HandoutViewSearch extends JView {
 		$this->assignRef('links', $links);
 		$this->assignRef('perms', $perms);
 		$this->assignRef('conf', $handout->getAllCfg());
-		parent::display();													
+		parent::display();
 	}
 }
 

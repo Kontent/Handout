@@ -9,8 +9,8 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
- 
+
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_HTML_GROUPS')) {
@@ -24,7 +24,7 @@ class HTML_HandoutGroups
 {
     function showGroups($option, $rows, $search, $pageNav)
     {
-        $database = &JFactory::getDBO(); 
+        $database = &JFactory::getDBO();
         $user = &JFactory::getUser();
 
         ?>
@@ -83,7 +83,7 @@ class HTML_HandoutGroups
     function editGroup($option, &$row, $usersList, $toAddUsersList)
     {
 		JHTML::_('behavior.tooltip');
-         
+
         JFilterOutput::objectHTMLSafe($row);
         $tabs = new JPaneTabs(0);
 
@@ -201,7 +201,7 @@ class HTML_HandoutGroups
 
     function messageForm($group, &$list)
     {
-        
+
         ?>
         <form action="index.php" name="adminForm" method="POST">
         <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_EMAIL_GROUP'), 'sendemail' )?>

@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
 **/
- 
+
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 

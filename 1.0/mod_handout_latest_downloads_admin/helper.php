@@ -18,7 +18,7 @@ class modHandoutLatestDownloadsHelper
 	function getDocs(&$params)
 	{
 		$database = &JFactory::getDBO();
-				
+
 		$query = "SELECT l.log_docid, l.log_ip, l.log_datetime, l.log_user, d.docname, u.name"
 		        ." FROM (#__handout_log AS l LEFT JOIN #__handout AS d ON l.log_docid = d.id)"
 		        ." LEFT JOIN #__users AS u ON l.log_user = u.id"
@@ -26,7 +26,7 @@ class modHandoutLatestDownloadsHelper
 
 		$database->setQuery( $query, 0, $params->get('limit', 10) );
 		$rows = $database->loadObjectList();
-	
+
 		return $rows;
 	}
 }

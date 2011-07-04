@@ -128,9 +128,9 @@ class HandoutHTML_UserSelect extends HandoutHTML_Select
 * @desc class General HTML creation class. We use it for back/front ends.
 * @package HANDOUT_1.0
 */
-class HandoutHTML extends JHTML 
+class HandoutHTML extends JHTML
 {
-		
+
     // TODO :: merge categoryList and categoryParentList
     // add filter option ?
     function categoryList($id, $action, $options = array())
@@ -139,11 +139,11 @@ class HandoutHTML extends JHTML
         require_once($handout->getPath('classes', 'utils'));
         $list = HANDOUT_utils::categoryArray();
         // assemble menu items to the array
-        
+
         foreach ($list as $item) {
             $options[] = JHTML::_('select.option',$item->id, $item->treename,'value', 'text');
         }
-        
+
         $parent = JHTML::_('select.genericlist',$options, 'catid', ' class="inputbox" size="1" onchange="' . $action . '"', 'value', 'text', $id,null,false,false);
         return $parent;
     }
@@ -260,7 +260,7 @@ class HandoutHTML extends JHTML
 	 */
     function uploadSelectList($method = '')
     {
-        $handout = &HandoutFactory::getHandout(); 
+        $handout = &HandoutFactory::getHandout();
         $handoutUser = &HandoutFactory::getHandoutUser();
 
         $allow_all = $handoutUser->isSpecial ? true : false;
@@ -387,7 +387,7 @@ class HandoutHTML extends JHTML
     }
 }
 
-require_once (JPATH_ROOT .DS .'libraries'.DS.'joomla'.DS.'html'.DS.'pane.php');    
+require_once (JPATH_ROOT .DS .'libraries'.DS.'joomla'.DS.'html'.DS.'pane.php');
 
 class HandoutTabs extends JPaneTabs {
 	function startPanel($text, $id) {

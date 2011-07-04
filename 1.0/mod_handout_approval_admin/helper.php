@@ -18,7 +18,7 @@ class modHandoutApprovalHelper
 	function getDocs(&$params)
 	{
 		$database = &JFactory::getDBO();
-				
+
 		$query = "SELECT id, docname, catid, docdate_published, doclastupdateon"
 				." FROM #__handout"
 				." WHERE published = 0"
@@ -26,7 +26,7 @@ class modHandoutApprovalHelper
 
 		$database->setQuery( $query, 0, $params->get('limit', 10));
 		$rows = $database->loadObjectList();
-		
+
 		return $rows;
 	}
 }

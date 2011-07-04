@@ -16,7 +16,7 @@ class PopulateSelects
 	{
 		// establish the hierarchy of the menu
 		$children = array();
-		
+
 		// first pass - collect children
 		foreach ($src_list as $v ) {
 			$pt = $v->parent;
@@ -30,7 +30,7 @@ class PopulateSelects
 
 		// assemble menu items to the array
 		$this_treename = '';
-		foreach ($ilist as $item) 
+		foreach ($ilist as $item)
 		{
 			if ($this_treename) {
 				if ($item->id != $src_id && strpos( $item->treename, $this_treename ) === false) {
@@ -47,8 +47,8 @@ class PopulateSelects
 		// build the html select list
 		return JHTML::_('select.genericlist', $tgt_list, $tag_name, $tag_attribs, $key, $text, $selected );
 	}
-	
-	public function licenses($doclicense_id) 
+
+	public function licenses($doclicense_id)
     {
         $database = JFactory::getDBO();
 
@@ -66,9 +66,9 @@ class PopulateSelects
         return  JHTML::_('select.genericlist',  $options, 'doclicense_id', '', 'value', 'text', $doclicense_id );
 
     }
-    
+
     public function owners ($selected, $owner = 'docowner') // $owner = 'docowner' or 'docmaintainedby'
-    { 
+    {
         $database = JFactory::getDBO();
 
         // Default options

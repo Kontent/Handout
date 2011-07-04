@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_HTML_HANDOUT')) {
@@ -24,7 +24,7 @@ class HTML_HandoutHandout
     {
     	$confirm = strval($confirm);
     	$confirm = $confirm ? 'onclick="return confirm(\''.$confirm.'\');"' : '';
-    	
+
         ?>
             <div class="icon">
                 <a href="<?php echo $link; ?>" target="<?php echo $target;?>" <?php echo $confirm; ?>>
@@ -37,12 +37,12 @@ class HTML_HandoutHandout
 
     function showCPanel()
     {
-         
+
         global $_HANDOUT;
 
         ?><script language="JavaScript" src="<?php echo JURI::root();?>/administrator/components/com_handout/includes/js/handout.js"></script>
 
-        <?php 
+        <?php
             JToolBarHelper::title('Handout', 'home');
 		?>
 
@@ -55,7 +55,7 @@ class HTML_HandoutHandout
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-documents.png', JText::_('COM_HANDOUT_DOCS'), COM_HANDOUT_IMAGESPATH_ADMIN );
                         $link = "index.php?option=com_handout&amp;section=documents&amp;task=new";
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-doc-add.png', JText::_('COM_HANDOUT_NEW_DOCUMENT'), COM_HANDOUT_IMAGESPATH_ADMIN );
-                    
+
                         $link = "index.php?option=com_handout&amp;section=files";
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-files.png', JText::_('COM_HANDOUT_FILES'), COM_HANDOUT_IMAGESPATH_ADMIN);
                         $link = "index.php?option=com_handout&amp;section=files&amp;task=upload";
@@ -69,12 +69,12 @@ class HTML_HandoutHandout
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-licenses.png', JText::_('COM_HANDOUT_AGREEMENTS'), COM_HANDOUT_IMAGESPATH_ADMIN );
 
                         $link = "index.php?option=com_handout&amp;section=codes";
-                        HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-codes.png', JText::_('COM_HANDOUT_CODES'), COM_HANDOUT_IMAGESPATH_ADMIN );                        
+                        HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-codes.png', JText::_('COM_HANDOUT_CODES'), COM_HANDOUT_IMAGESPATH_ADMIN );
                         $link = "index.php?option=com_handout&amp;section=logs";
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-logs.png', JText::_('COM_HANDOUT_DOWNLOAD_LOG'), COM_HANDOUT_IMAGESPATH_ADMIN);
 
                         $link = "index.php?option=com_handout&amp;section=config";
-                        HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-config.png', JText::_('COM_HANDOUT_CONFIG'), COM_HANDOUT_IMAGESPATH_ADMIN);                        
+                        HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-config.png', JText::_('COM_HANDOUT_CONFIG'), COM_HANDOUT_IMAGESPATH_ADMIN);
                         $link = "index.php?option=com_handout&amp;section=files&amp;task=upload";
                         HTML_HandoutHandout::_quickiconButton( $link, 'icon-48-upload.png', JText::_('COM_HANDOUT_UPLOAD_FILE'), COM_HANDOUT_IMAGESPATH_ADMIN);
                     ?>
@@ -98,7 +98,7 @@ class HTML_HandoutHandout
 
     function showStatistics(&$row)
     {
-        
+
         ?>
        <form action="index.php?option=com_handout" method="post" name="adminForm" id="adminForm">
 
@@ -143,5 +143,5 @@ class HTML_HandoutHandout
 
         <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
     }
- 
+
 }

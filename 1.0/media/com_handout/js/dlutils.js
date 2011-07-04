@@ -16,18 +16,18 @@ Browser.is_ie	= ((Browser.agt.indexOf("msie") != -1) && (Browser.agt.indexOf("op
 
 //Map collaction object
 function Map() {
-	
+
 }
 
 Map.prototype.toString = function() {
-	str = ''; 
+	str = '';
 	for(var key in this) {
 		if(typeof(this[key]) != 'function') {
-			if(str) str += ','; 
-			str += key+'='+this[key];		
+			if(str) str += ',';
+			str += key+'='+this[key];
 		}
 	}
-	return str;	
+	return str;
 }
 
 String.prototype.toMap = function() {
@@ -61,7 +61,7 @@ document.getElementsByClassName = function ( class_name ) {
         all_obj = document.getElementsByTagName ( "*" );
     for ( i = 0; i < all_obj.length; i++ ) {
         if ( ( ' ' + all_obj[i].getAttribute("class") + ' ').toLowerCase().match(
-            new RegExp ( ( strict ? '^ ' + class_name.trim() + ' $' : 
+            new RegExp ( ( strict ? '^ ' + class_name.trim() + ' $' :
                 '^.* ' + class_name.trim() + ' .*$' ).toLowerCase(),'g' ) ) ) {
             ret_obj[j++] = all_obj[i];
         }

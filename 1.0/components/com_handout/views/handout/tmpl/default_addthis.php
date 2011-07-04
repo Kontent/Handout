@@ -40,7 +40,7 @@ defined('_JEXEC') or die;
 				<a class="addthis_button_compact" rel="nofollow"></a>
             <?php endif; ?>
 		</div>
-		<?php 
+		<?php
         if ($this->conf->ga_code):
         ?>
         <script type="text/javascript">

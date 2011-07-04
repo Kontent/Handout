@@ -31,17 +31,17 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 
 ?>
 <div id="handout">
-	<?php 
+	<?php
 	$mainframe = &JFactory::getApplication();
     $pathway = & $mainframe->getPathWay();
     $pathway->addItem($this->data->docname);
     $mainframe->setPageTitle( JText::_('COM_HANDOUT_AGREEMENT_DOC') . ' | ' . $this->data->docname );
     ?>
-    
+
     <div class="hdoc-license">
 		<?php echo $this->license; ?>
 	</div>
-	
+
 	<div class="hdoc-license-form">
 		<form action="<?php echo $this->action;?>" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="inline" value="<?php echo $this->inline?>" />
@@ -49,15 +49,15 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 			<input type="radio" name="agree" value="1" /><?php echo JText::_('COM_HANDOUT_AGREE');?>
 			<input name="submit" value="<?php echo JText::_('COM_HANDOUT_PROCEED');?>" type="submit" />
 		</form>
-		
+
 	</div>
-    
+
     <div class="hdoc-taskbar">
         <ul>
             <li><a href="javascript: history.go(-1);"><span><span><?php echo JText::_('COM_HANDOUT_BACK') ?></span></span></a></li>
         </ul>
     </div>
-    
+
     <div class="clr"></div>
     <?php include_once(JPATH_COMPONENT . DS . 'footer.php'); ?>
 </div>

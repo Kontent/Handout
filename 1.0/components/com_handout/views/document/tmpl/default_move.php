@@ -28,22 +28,22 @@ defined('_JEXEC') or die;
 JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 
 ?>
-<?php 
+<?php
 	$mainframe = &JFactory::getApplication();
-    $mainframe->setPageTitle(JText::_('COM_HANDOUT_TITLE_MOVE') ); 
+    $mainframe->setPageTitle(JText::_('COM_HANDOUT_TITLE_MOVE') );
     $pathway = & $mainframe->getPathWay();
     $pathway->addItem($this->data->docname);
     $pathway->addItem('Move');
-    
+
     JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
-	JHTML::_('behavior.tooltip');    
+	JHTML::_('behavior.tooltip');
 ?>
 <div id="handout" class="hmove">
 	<?php $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'handout' . DS . 'tmpl' );?>
-	<?php echo $this->loadTemplate('menu'); ?>    
+	<?php echo $this->loadTemplate('menu'); ?>
 
 	<h2><?php echo JText::_('COM_HANDOUT_TITLE_MOVE');?></h2>
-	
+
 	<form action="<?php echo $this->action ?>" method="post" id="hmove-form" class="hform" >
 		<fieldset>
 			<p><?php echo JText::_('COM_HANDOUT_DOCUMENT');?>: <span class="hdoc-docname"><?php echo $this->data->docname;?> (<?php echo $this->data->filename;?>)</span></p>
@@ -51,6 +51,6 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 	 	</fieldset>
 	    <?php echo $this->token; ?>
  	</form>
-	<div class="clr"></div>	
+	<div class="clr"></div>
 	<?php include_once(JPATH_COMPONENT . DS . 'footer.php'); ?>
 </div>

@@ -214,7 +214,7 @@ class HandoutParameters {
 * @return string HTML
 */
     function render( $name='params' ) {
-        
+
 
         if ($this->_path) {
             if (!is_object( $this->_xmlElem )) {
@@ -440,7 +440,7 @@ class HandoutParameters {
     * @return string The html for the element
     */
     function _form_filelist( $name, $value, &$node, $control_name ) {
-        
+
 
         // path to images directory
         $path   = JPATH_ROOT . $node->getAttribute( 'directory' );

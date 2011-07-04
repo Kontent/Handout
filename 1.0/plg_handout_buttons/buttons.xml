@@ -11,7 +11,7 @@
 	<setting published="1"/>
 
 	<languages folder="language">
-      	<language tag="en-GB">en-GB/en-GB.plg_handout_buttons.ini</language>    
+      	<language tag="en-GB">en-GB/en-GB.plg_handout_buttons.ini</language>
     </languages>
 
 	<files>

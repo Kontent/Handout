@@ -10,7 +10,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-function com_uninstall() 
+function com_uninstall()
 {
 
 }

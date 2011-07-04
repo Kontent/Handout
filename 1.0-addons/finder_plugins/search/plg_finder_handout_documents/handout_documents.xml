@@ -10,14 +10,14 @@
 	<authorUrl>http://www.sharehandouts.com/</authorUrl>
 	<copyright>Copyright 2008 - 2010 JXtended, LLC. All rights reserved.</copyright>
 	<description>FINDER_HANDOUT_DOCUMENTS_DESC</description>
-	
+
 	<files>
 		<file plugin="HANDOUT_documents">handout_documents.php</file>
 	</files>
-	
+
 	<languages>
 		<language tag="en-GB">en-GB.plg_finder_handout_documents.ini</language>
 	</languages>
-	
+
 	<params />
 </install>

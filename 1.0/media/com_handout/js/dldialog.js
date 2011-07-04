@@ -26,15 +26,15 @@ DLDialog._arguments = null;
 // the dialog will read it's args from this variable
 DLDialog._features = null;
 
-function DLDialog(url, action, arguments, features) 
+function DLDialog(url, action, arguments, features)
 {
 	if (typeof arguments == "undefined") {
 		arguments = window;	// pass this window object by default
 	}
-	
+
 	DLDialog._arguments = arguments;
 	DLDialog._features = features;
-	
+
 	//open dialog
 	if(Browser.is_ie)
 		DLDialog._ieOpenDialog(url, action, features['modal'], features);
@@ -48,15 +48,15 @@ DLDialog._geckoOpenModal = function(url, action, modal, features) {
 	if(features.center == 'yes') {
 		var x = (screen.availWidth -  features.width ) / 2;
 		var y = (screen.availHeight - features.height) / 2;
-	
+
 		features.screenX = x;
 		features.screenY = y;
 	}
-	
+
 	//convert to string
 	sfeatures = features.toString();
 	var dlg = window.open(url, "hadialog", sfeatures);
-	
+
 	DLDialog._modal = dlg;
 
 	// capture some window's events
@@ -88,10 +88,10 @@ DLDialog._geckoOpenModal = function(url, action, modal, features) {
 };
 
 DLDialog._ieOpenDialog = function(url, action, modal, features) {
-	
+
 	features.width  = features.width  + 'px';
 	features.height = features.height + 'px';
-	
+
 	//convert to string
 	sfeatures = features.toString();
 
@@ -110,8 +110,8 @@ DLDialog._ieOpenDialog = function(url, action, modal, features) {
 	}
 	if (sfeatures.search('help') == -1) {
 		sfeatures += ";help:no"
-	}  
-		
+	}
+
 	if (modal == 'no') {
 		var val = window.showModelessDialog(url, DLDialog._arguments, sfeatures)
 	} else {

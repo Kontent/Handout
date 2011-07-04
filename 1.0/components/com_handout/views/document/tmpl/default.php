@@ -46,7 +46,7 @@ $document->setMetaData('language', $this->data->doclanguage);
 ?>
 <div id="handout" class="hdetails">
 	<?php $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'handout' . DS . 'tmpl' );?>
-	<?php echo $this->loadTemplate('menu'); ?>    
+	<?php echo $this->loadTemplate('menu'); ?>
 
     <div id="hdoc-details">
         <?php
@@ -56,11 +56,11 @@ $document->setMetaData('language', $this->data->doclanguage);
 	 echo $this->loadTemplate('addthis');
     ?>
     <h2><?php echo JText::_('COM_HANDOUT_DETAILSFOR') ?><em>&nbsp;<?php echo $this->data->docname ?></em></h2>
-    
+
     <dl>
         <dt class="hdoc-property"><?php echo JText::_('COM_HANDOUT_PROPERTY')?></dt>
         <dd class="hdoc-value"><?php echo JText::_('COM_HANDOUT_VALUE')?></dd>
-    
+
     <?php
 	if($this->conf->details_name) :
         ?>
@@ -137,7 +137,7 @@ $document->setMetaData('language', $this->data->doclanguage);
     if($this->conf->details_updated) :
         ?>
         <dt><?php echo JText::_('COM_HANDOUT_LAST_UPDATED') ?>:</dt>
-        <dd><?php  if (!strstr($this->data->doclastupdateon, '0000-00-00')) 
+        <dd><?php  if (!strstr($this->data->doclastupdateon, '0000-00-00'))
 					echo strftime( JText::_('COM_HANDOUT_DATEFORMAT_LONG'), strtotime($this->data->doclastupdateon)); ?>
         </dd>
         <?php
@@ -164,13 +164,13 @@ $document->setMetaData('language', $this->data->doclanguage);
     </dl>
     <div class="clr"></div>
     </div>
-    
+
     <div class="hdoc-taskbar">
         <ul>
         	 <li><a href="javascript: history.go(-1);"><span><span><?php echo  JText::_('COM_HANDOUT_BACK') ?></span></span></a></li>
             <?php
 				// don't show details button on this page
-    	        unset($this->buttons['details']); 
+    	        unset($this->buttons['details']);
     	        //show remaining buttons
                 foreach($this->buttons as $button) {
 				    $popup = ($button->params->get('popup', false)) ? 'type="popup"' : '';
@@ -187,14 +187,14 @@ $document->setMetaData('language', $this->data->doclanguage);
             ?>
         </ul>
     </div>
-    
-    <?php 
+
+    <?php
 	if ($this->data->kunena_discuss_contents)
 	{
 		echo $this->data->kunena_discuss_contents;
 	}
 	?>
-    
+
     <div class="clr"></div>
     <?php include_once(JPATH_COMPONENT . DS . 'footer.php'); ?>
 </div>

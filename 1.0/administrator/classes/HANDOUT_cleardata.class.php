@@ -162,23 +162,23 @@ class HANDOUT_CleardataItem_thumbs extends HANDOUT_CleardataItem{
     var $friendlyname = 'Thumbs';
     var $table = '#__handout';
 	var $where = '';
-	
+
     function clear(){
         $database = &JFactory::getDBO();
-        $database->setQuery("UPDATE ".$this->table . "\n SET docthumbnail=''"         
+        $database->setQuery("UPDATE ".$this->table . "\n SET docthumbnail=''"
                             ."\n ".$this->where);
         if( !$database->query()){
         	$this->msg = JText::_('COM_HANDOUT_CLEARDATA_CLEARED').$this->friendlyname;
             return false;
         }
-    	
+
     	global $_HANDOUT;
         jimport( 'joomla.filesystem.file' );
         jimport( 'joomla.filesystem.folder' );
         $path = JPATH_ROOT . DS . 'images' . DS . 'stories' . DS . 'handout';
         if (!file_exists($path)){
         	$this->msg = JText::_('COM_HANDOUT_CLEARDATA_FAILED').$this->friendlyname;
-        	return false;        	
+        	return false;
         }
         $this->msg = JText::_('COM_HANDOUT_CLEARDATA_CLEARED').$this->friendlyname;
         $files = JFolder::files($path, '', false, true, array('index.html'));
@@ -190,7 +190,7 @@ class HANDOUT_CleardataItem_thumbs extends HANDOUT_CleardataItem{
         	   }
             }
         }
-        
+
         return true;
     }
 }

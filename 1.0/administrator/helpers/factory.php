@@ -55,17 +55,17 @@ class HandoutFactory
             JHTML::_('behavior.tooltip');
             $init = true;
         }
-        
+
         return JHTML::_('tooltip', $tooltip, $title, $image, $text, $href, $link);
     }
 
     function getFormatDate ($date = 'now', $format = null, $offset = null)
     {
-        
+
         if (! $format) {
             $format = JText::_('DATE_FORMAT_LC1');
         }
-        
+
         return JHTML::_('date', $date, $format, $offset);
     }
 

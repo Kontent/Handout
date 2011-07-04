@@ -19,22 +19,22 @@ class PopulateModelDocuments extends JModel
 	public function getData()
 	{
 		$database 	= JFactory::getDBO();
-		
+
 		$filesmodel = new PopulateModelFiles;
 
 		$FilesInDatabase = $this->getState('orphansonly', 1) ? $filesmodel->getData() : array(); //files that already have a doc entry
-		
+
 		$handoutpath 	= $this->getState('handoutpath');
 		$skipfiles	= explode( "|", $this->getState('skipfiles'));
-		
-	    if(!$handoutpath || !$handle = opendir($handoutpath)) 
+
+	    if(!$handoutpath || !$handle = opendir($handoutpath))
 	    {
             throw new Exception("Problem opening handouts directory <b>" . $handoutpath
                     ."</b>. Make sure you have Handout working correctly before using this component." );
         }
-        
+
 		$files = array();
-        while (false !== ($file = readdir($handle))) 
+        while (false !== ($file = readdir($handle)))
         {
             if (!in_array($file, $skipfiles )
                     && !in_array($file, $FilesInDatabase)

@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 class HTML_HandoutLogs {
@@ -72,7 +72,7 @@ class HTML_HandoutLogs {
 					</td>
 					<td align="center">
 						 <?php echo $row->log_os;?>
-					</td> 
+					</td>
 				</tr>
 				<?php
             $k = 1 - $k;

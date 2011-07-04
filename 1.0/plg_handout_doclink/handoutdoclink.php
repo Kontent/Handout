@@ -10,7 +10,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined('_JEXEC') or die('Restricted access');
 
 /**
@@ -41,34 +41,34 @@ class plgButtonHandoutDocLink extends JPlugin
     function onDisplay ($name)
     {
         $mainframe = &JFactory::getApplication();
-        
+
         $doc = & JFactory::getDocument();
-        
+
         $lang = JFactory::getLanguage();
         $lang->load('plg_editors-xtd_handoutdoclink', JPATH_ADMINISTRATOR);
-        
+
         $doclink_url = JURI::root() . "plugins/editors-xtd/handoutdoclink";
         $HANDOUT_url = JURI::root() . "components/com_handout/";
-        
+
         $style = ".button2-left .handoutdoclink {
                 background:transparent url($doclink_url/images/btn_handoutdoclink.png) no-repeat scroll 100% 0pt;
                 }";
         $doc->addStyleDeclaration($style);
-        
+
         $js = 'media/com_handout/js/';
-        
+
         $doc->addScript($js . 'doclink.js');
         $doc->addScript($js . 'dldialog.js');
         $doc->addScript($js . 'popup.js');
         $doc->addScript($js . 'dlutils.js');
-        
+
         $button = new JObject();
         $button->set('modal', true);
         $button->set('text', JText::_('PLG_HANDOUT_DOCLINK'));
         $button->set('name', 'handoutdoclink');
         $button->set('link', 'index.php?option=com_handout&task=doclink&e_name=' . $name);
         $button->set('options', "{handler: 'iframe', size: {x: 570, y: 510}}");
-        
+
         return $button;
     }
 }

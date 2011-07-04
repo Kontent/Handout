@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 include_once dirname(__FILE__) . '/groups.html.php';
@@ -102,8 +102,8 @@ function saveGroup($option)
 {
     HANDOUT_token::check() or die('Invalid Token');
 
-    $mainframe = &JFactory::getApplication(); 
-    
+    $mainframe = &JFactory::getApplication();
+
     $database = &JFactory::getDBO(); $task = JRequest::getCmd('task');
 
     $row = new HandoutGroups($database);
@@ -227,7 +227,7 @@ function emailGroup($gid)
 function cancelGroup($option)
 {
     $database = &JFactory::getDBO();
-    $mainframe = &JFactory::getApplication(); 
+    $mainframe = &JFactory::getApplication();
     $row = new HandoutGroups($database);
     $row->bind(HANDOUT_Utils::stripslashes($_POST));
     $row->checkin();
@@ -243,12 +243,12 @@ function sendEmail($gid)
     $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
     $mainframe = &JFactory::getApplication();
-    
+
     $config = &JFactory::getConfig();
 
     $mailfrom = $config->getValue('config.mailfrom');
     $fromname = $config->getValue('config.fromname');
-    
+
     $this_index = 'index.php?option=com_handout&section=groups';
 
     $message = JRequest::getVar( "mm_message", '');

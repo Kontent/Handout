@@ -37,10 +37,10 @@ $mainframe->setPageTitle( JText::_('COM_HANDOUT_TITLE_SEARCH'));
 ?>
 <div id="handout">
 	<?php $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'handout' . DS . 'tmpl' );?>
-	<?php echo $this->loadTemplate('menu'); ?>    
+	<?php echo $this->loadTemplate('menu'); ?>
 
 	<h2><?php echo JText::_('COM_HANDOUT_TITLE_SEARCH') ?></h2>
-	
+
 	<div class="hsearch">
 		<form action="<?php echo $this->action;?>" method="post" id="hsearch" >
 			<fieldset>
@@ -78,8 +78,8 @@ $mainframe->setPageTitle( JText::_('COM_HANDOUT_TITLE_SEARCH'));
 					</table>
 				</fieldset>
 			</form>
-        </div>	
-	
+        </div>
+
 	<?php
 	// If we have no items to show
 	if (count($this->items) == 0) :
@@ -107,5 +107,5 @@ $mainframe->setPageTitle( JText::_('COM_HANDOUT_TITLE_SEARCH'));
 		endforeach;
 		?>
 	</ul>
-	<?php include_once(JPATH_COMPONENT . DS . 'footer.php'); ?>	
+	<?php include_once(JPATH_COMPONENT . DS . 'footer.php'); ?>
 </div>

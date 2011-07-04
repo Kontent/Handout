@@ -25,21 +25,21 @@ class HandoutViewHandout extends JView {
 		$gid = HandoutHelper::getGid ();
 
 		list($links, $perms) = HandoutHelper::fetchMenu ( $gid);
-		
+
 		$category = new StdClass ();
 		if ($gid > 0) {
 			list($category->links, $category->paths, $category->data) = CategoriesHelper::fetchCategory ( $gid);
 		}
 
-		$cat_list = new StdClass ();		
+		$cat_list = new StdClass ();
 		$cat_list->items = CategoriesHelper::fetchCategoryList ( $gid);
-		
-		$doc_list = new StdClass ();				
+
+		$doc_list = new StdClass ();
 		list($doc_list->order, $doc_list->items) = DocumentsHelper::fetchDocumentList ( $gid);
 
 		list($pagenav) = HandoutHelper::fetchPageNav ( $gid );
 		$pagetitle = HandoutHelper::fetchPageTitle ( $gid);
-		
+
 		$this->assignRef('category', $category);
 		$this->assignRef('cat_list', $cat_list);
 		$this->assignRef('doc_list', $doc_list);
@@ -48,7 +48,7 @@ class HandoutViewHandout extends JView {
 		$this->assignRef('links', $links);
 		$this->assignRef('perms', $perms);
 		$this->assignRef('conf', $handout->getAllCfg());
-		parent::display();											
+		parent::display();
 	}
 }
 ?>

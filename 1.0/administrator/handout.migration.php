@@ -10,8 +10,8 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
-class HandoutMigration 
+
+class HandoutMigration
 {
     /**
      * Migrating data from other downloader components to Handout
@@ -30,19 +30,19 @@ class HandoutMigration
     protected $historyIds;
 	protected $tables;
 	protected $handoutPath;
-	protected $documentsPath; 
+	protected $documentsPath;
 
-	
+
     /**
      * @static
      */
     function & getInstance( $sourceComponent )
 	{
-		//check source component is supported by migration tool 
-		if (!$sourceComponent || !in_array($sourceComponent, array('com_docman', 'com_joomdoc', 'com_remository', 'com_rokdownloads', 'com_rubberdoc', 'folder'))) { 
-            $this->error(JText::sprintf('COM_HANDOUT_MGR_NOT_SUPPORTED', $sourceComponent), false);			
+		//check source component is supported by migration tool
+		if (!$sourceComponent || !in_array($sourceComponent, array('com_docman', 'com_joomdoc', 'com_remository', 'com_rokdownloads', 'com_rubberdoc', 'folder'))) {
+            $this->error(JText::sprintf('COM_HANDOUT_MGR_NOT_SUPPORTED', $sourceComponent), false);
 		}
-		
+
 		$classname = ($sourceComponent=='folder') ? 'Folder' : ucwords(str_replace('com_', '', $sourceComponent)); // e.g. com_docman -> Docman
 	    $classname = "HandoutMigration_".$classname;
         $instance = new $classname;
@@ -50,12 +50,12 @@ class HandoutMigration
 		$instance->init();
 		$instance->check();
      	return $instance;
-    }	
+    }
 
-	protected function setComponent($comp) 
+	protected function setComponent($comp)
 	{
-		$this->sourceComponent = trim($comp); 
-	}	
+		$this->sourceComponent = trim($comp);
+	}
 
     /**
      * Init aplication
@@ -71,10 +71,10 @@ class HandoutMigration
         $this->licencesIds = array();
         $this->logsIds = array();
         $this->historyIds = array();
-		$this->tables = array();		
+		$this->tables = array();
         $this->handoutPath = $_HANDOUT->getCfg('handoutpath');
     }
-    
+
 	/**
      * Check to ensure Source component and Handout component are both installed
 	 *
@@ -102,7 +102,7 @@ class HandoutMigration
             if (! file_exists($this->handoutPath)) {
                 $this->error(JText::_('COM_HANDOUT_MGR_DIR_NEW_NO_EXISTS') . $this->handoutPath, false);
             }
-        } 
+        }
 		elseif (! is_writable($this->handoutPath)) {
             $this->error(JText::_('COM_HANDOUT_MGR_DIR_IS_UNWRITEABLE') . $this->handoutPath, false);
         }
@@ -150,7 +150,7 @@ class HandoutMigration
         //DB config prefix
         $prefix = $db->_table_prefix;
 
-        //list of noexists tables    	
+        //list of noexists tables
         $noExists = array();
         foreach ($this->tables as $table) {
             $realName = $prefix . $table; // e.g. #__docman => jos_docman
@@ -179,7 +179,7 @@ class HandoutMigration
 	}
 
     /**
-     * Migrate groups from source component groups table to source component groups 
+     * Migrate groups from source component groups table to source component groups
      *
      * @return array key is old id of group, value is new id after migration
      */
@@ -195,7 +195,7 @@ class HandoutMigration
     protected function migrateCategories ()
     {
 		return;
-	}	
+	}
 
     /**
      * Migrate Logs from source component log to #__handout_log
@@ -207,7 +207,7 @@ class HandoutMigration
     {
 		return;
 	}
-		
+
     /**
      * Migrate documents from source component to #__handout with all history and logs, where applicable
      *
@@ -217,16 +217,16 @@ class HandoutMigration
     protected function migrateDocs ($oldCatid=0, $newCatid=0)
     {
 		return;
-	}	
+	}
 
     /**
-     * Migrate files 
+     * Migrate files
      *
      */
     protected function migrateFiles ()
     {
 		return;
-	}	
+	}
 
     /**
      * Migrate History from source component history to #__handout_history
@@ -237,7 +237,7 @@ class HandoutMigration
     protected function migrateHistory ($newId, $oldId)
     {
 		return;
-	}	
+	}
 
     /**
      * Get all old source component categories
@@ -247,7 +247,7 @@ class HandoutMigration
     protected function getCategories ()
     {
 		return;
-	}	
+	}
 
     /**
      * Copy document data from old component to Handout
@@ -257,7 +257,7 @@ class HandoutMigration
     protected function copyDoc ($oldRow, &$newRow)
     {
 		return;
-	}	
+	}
 
     /**
      * Clean all migrated categories after error
@@ -266,13 +266,13 @@ class HandoutMigration
     protected function cleanCategories ()
     {
 		if (!count($this->categoriesIds))
-			return; 
+			return;
 
         $db = &JFactory::getDBO();
         $query = "DELETE FROM `#__categories` WHERE `id` IN (" . implode(',', $this->categoriesIds) . ")";
         $db->setQuery($query);
         $db->query();
-    }	
+    }
 
     /**
      * Clean all migrated documents after error
@@ -281,14 +281,14 @@ class HandoutMigration
     protected function cleanDocs ()
     {
 		if (!count($this->docsIds))
-			return; 
+			return;
 
         $db = &JFactory::getDBO();
         $query = "DELETE FROM `#__handout` WHERE `id` IN (" . implode(',', $this->docsIds) . ")";
         $db->setQuery($query);
         $db->query();
     }
-	
+
     /**
      * Clean all migrated history after error
      *
@@ -296,7 +296,7 @@ class HandoutMigration
 	protected function cleanHistory ()
     {
 		if (!count($this->historyIds))
-			return; 
+			return;
 
         $db = &JFactory::getDBO();
         $query = "DELETE FROM `#__handout_history` WHERE `id` IN (" . implode(',', $this->historyIds) . ")";
@@ -311,7 +311,7 @@ class HandoutMigration
     protected function cleanLog ()
     {
 		if (!count($this->logsIds))
-			return; 
+			return;
 
         $db = &JFactory::getDBO();
         $query = "DELETE FROM `#__handout_log` WHERE `id` IN (" . implode(',', $this->logsIds) . ")";
@@ -326,8 +326,8 @@ class HandoutMigration
     protected function cleanLicenses ()
     {
 		if (!count($this->licencesIds))
-			return; 
-			
+			return;
+
         $db = &JFactory::getDBO();
         $query = "DELETE FROM `#__handout_licenses` WHERE `id` IN (" . implode(',', $this->licencesIds) . ")";
         $db->setQuery($query);
@@ -355,10 +355,10 @@ class HandoutMigration
     protected function getDocs ($catid)
     {
 		return array();
-	}	
+	}
 
     /**
-     * Get all old source component histories with specified document id 
+     * Get all old source component histories with specified document id
      *
      * @param int $docid document id
      * @return array
@@ -366,10 +366,10 @@ class HandoutMigration
     protected function getHistory ($docid)
     {
 		return array();
-	}	
+	}
 
     /**
-     * Get all old source component logs with specified document id 
+     * Get all old source component logs with specified document id
      *
      * @param int $docid document id
      * @return array
@@ -377,7 +377,7 @@ class HandoutMigration
     protected function getLog ($docid)
     {
 		return array();
-	}	
+	}
 
     /**
      * Get all old DOCman licences
@@ -387,7 +387,7 @@ class HandoutMigration
     protected function getLicenses ()
     {
 		return array();
-	}	
+	}
 
 
     /**
@@ -398,8 +398,8 @@ class HandoutMigration
     protected function getGroups ()
     {
 		return array();
-	}	
-	
+	}
+
     /**
      * Back into Handout cpanel
      *
@@ -423,7 +423,7 @@ class HandoutMigration
      */
     protected function error ($msg = '', $clean = true)
     {
-        
+
         if (! $clean) {
             JError::raiseNotice('SOME_ERROR_CODE', $msg);
         } else {
@@ -433,12 +433,12 @@ class HandoutMigration
         }
         $this->back(); //back into handout cpanel
     }
-	
+
     /**
      * Check Source component document path exists and is readable
      * Check Handout component document path exists and is writable
      */
-	protected function checkDocumentsPath() 
+	protected function checkDocumentsPath()
 	{
         //dir with old files does not exist
         if (! file_exists($this->documentsPath)) {
@@ -451,7 +451,7 @@ class HandoutMigration
             if (! is_readable($this->documentsPath)) {
                 $this->error(JText::_('COM_HANDOUT_MGR_DIR_NO_READABLE') . $this->documentsPath, false);
             }
-        }	
+        }
 
         //new dir does not exists
         if (! file_exists($this->handoutPath)) {
@@ -474,35 +474,35 @@ class HandoutMigration
     /**
      * Set the documents path for source component based on its config file
      */
-	protected function setDocumentsPath() 
+	protected function setDocumentsPath()
 	{
 		return;
 	}
 
-	/** 
-	 *   Fetch the current userid 
+	/**
+	 *   Fetch the current userid
 	 */
-	protected function getCurrentUserId() 
+	protected function getCurrentUserId()
 	{
         $user =& JFactory::getUser();
-		return $user->id;		
+		return $user->id;
 	}
 
-	/** 
-	 * Checks to see if a given filename already exists in the handout folder and if so, gives a new name to the file 
-	  * @param string $file 
-	 */ 
+	/**
+	 * Checks to see if a given filename already exists in the handout folder and if so, gives a new name to the file
+	  * @param string $file
+	 */
 	protected function renameDuplicate(&$file)
 	{
-		if (!$file) 
+		if (!$file)
 			return;
-		
+
 		$i=0;
-		while (file_exists($this->handoutPath . DS . $file) && $i<=100) 
-		{						
+		while (file_exists($this->handoutPath . DS . $file) && $i<=100)
+		{
  			$i++;
 			$file = preg_replace('/(.+)\.([a-zA-Z]{2,4})/', '${1}1.$2', $file);
-		}	
+		}
 	}
 
 }
@@ -513,12 +513,12 @@ class HandoutMigration_Docman extends HandoutMigration
      * Migrating data from Docman to Handout
      *
      */
-	 
-	protected $tablePrefix;  
-	protected $tables; 
+
+	protected $tablePrefix;
+	protected $tables;
 	protected $configFile;
-	
-	protected function init() 
+
+	protected function init()
 	{
 		parent::init();
 
@@ -527,7 +527,7 @@ class HandoutMigration_Docman extends HandoutMigration
 		$this->configFile =	JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_docman' . DS . 'docman.config.php';
 		$this->setDocumentsPath();
 	}
-		
+
     protected function migrateCategories ()
     {
         $db = &JFactory::getDBO();
@@ -549,7 +549,7 @@ class HandoutMigration_Docman extends HandoutMigration
             $this->categoriesIds[$oldCatid] = $newCatid;
             $this->migrateDocs($oldCatid, $newCatid);
         }
-        
+
         foreach ($this->categoriesIds as $old => $new) { //update parent ids
             $query = "UPDATE `#__categories` SET
 				      `parent_id` = '$new'
@@ -570,7 +570,7 @@ class HandoutMigration_Docman extends HandoutMigration
             $oldDocId = $row->id;
             $row->id = 0;
             $row->catid = $newCatid; //migrated into migrate category
-			$this->renameDuplicate($row->docfilename);		
+			$this->renameDuplicate($row->docfilename);
 
             if (isset($this->licencesIds[$row->doclicense_id])) { //change id of migrate license
                 $row->doclicense_id = $this->licencesIds[$row->doclicense_id];
@@ -669,7 +669,7 @@ class HandoutMigration_Docman extends HandoutMigration
     {
         $noCopy = array(); //list of no migrates files
 
-		$this->checkDocumentsPath();		
+		$this->checkDocumentsPath();
 
         //open old files dir
         $dir = opendir($this->documentsPath);
@@ -678,7 +678,7 @@ class HandoutMigration_Docman extends HandoutMigration
         while (($file = readdir($dir))) {
             if (is_file($this->documentsPath . DS . $file)) { //no copy links, directories and no file links
 				$oldFile = $newFile = $file;
-				$this->renameDuplicate($newFile);		
+				$this->renameDuplicate($newFile);
 
                 $source = $this->documentsPath . DS . $oldFile; //old destination
                 $target = $this->handoutPath . DS . $newFile; //new destination
@@ -691,7 +691,7 @@ class HandoutMigration_Docman extends HandoutMigration
 
         if (count($noCopy)) {
             $this->error(JText::_('COM_HANDOUT_MGR_UNABLE_COPY') . implode(', ', $noCopy), false);
-        }    
+        }
     }
 
 	protected function setDocumentsPath() {
@@ -704,7 +704,7 @@ class HandoutMigration_Docman extends HandoutMigration
             $this->error(JText::_('COM_HANDOUT_MGR_UNABLE_READ_OLD_CONF') . $this->configFile, false);
         }
 
-        //content of old configuration 
+        //content of old configuration
         $content = file_get_contents($this->configFile);
 
         //find config param $dmpath
@@ -715,7 +715,7 @@ class HandoutMigration_Docman extends HandoutMigration
         if (! preg_match($regex, $content, $matches)) {
             $this->error(JText::_('COM_HANDOUT_MGR_UNABLE_FIND_OLD_CONF') . $this->configFile, false);
         }
-        $this->documentsPath = $matches[4];	
+        $this->documentsPath = $matches[4];
 	}
 
     protected function getCategories ()
@@ -811,7 +811,7 @@ class HandoutMigration_Docman extends HandoutMigration
 		$newDoc->doclicense_id = $oldDoc->dmlicense_id;
 		$newDoc->doclicense_display = $oldDoc->dmlicense_display;
 		$newDoc->access = $oldDoc->access;
-		$newDoc->attribs = $oldDoc->attribs;			
+		$newDoc->attribs = $oldDoc->attribs;
     }
 }
 
@@ -821,8 +821,8 @@ class HandoutMigration_Joomdoc extends HandoutMigration_Docman
      * Migrating data from JoomDoc to Handout
      *
      */
-	 	
-	protected function init() 
+
+	protected function init()
 	{
 		parent::init(); //values set in Docman class needs to be overwritten below
 
@@ -839,16 +839,16 @@ class HandoutMigration_Rokdownloads extends HandoutMigration
      * Migrating data from RokDownloads to Handout
      *
      */
-	 
 
-	protected function init() 
+
+	protected function init()
 	{
-		parent::init(); 
+		parent::init();
 
 		$this->tablePrefix = '#__rokdownloads';
 		$this->tables = array('categories' , 'rokdownloads');
 		$this->configFile =	JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_rokdownloads' . DS . 'admin_config.xml';
-		$this->setDocumentsPath(); 
+		$this->setDocumentsPath();
 	}
 
     function migrate ()
@@ -859,7 +859,7 @@ class HandoutMigration_Rokdownloads extends HandoutMigration
 		$this->migrateFiles();
         $this->back(JText::_('COM_HANDOUT_MGR_SUCCESS'));
     }
-	
+
     protected function migrateCategories ()
     {
 
@@ -875,7 +875,7 @@ class HandoutMigration_Rokdownloads extends HandoutMigration
 		foreach ($pathObjs as $pathObj) {
 			$segments = explode("/", $pathObj->path);
 			if (!count($segments)) {
-	            $this->error(JText::_('COM_HANDOUT_MGR_ERR_LOAD_OLD_CATEGORIES'));			
+	            $this->error(JText::_('COM_HANDOUT_MGR_ERR_LOAD_OLD_CATEGORIES'));
 			}
 
 			$pathSoFar = '';
@@ -887,9 +887,9 @@ class HandoutMigration_Rokdownloads extends HandoutMigration
 				if (!in_array($pathSoFar, array_keys($this->categoriesIds))) {
 					$i++;
 
-					//new category object 										
+					//new category object
 					$category = new HandoutCategory($db);
-					$category->id=0;	
+					$category->id=0;
 					$category->parent_id = $parentId;
 					$category->title = $segment;
 					$category->name = $segment;
@@ -900,15 +900,15 @@ class HandoutMigration_Rokdownloads extends HandoutMigration
 					$category->checked_out	= $pathObj->checked_out;
 					$category->checked_out_time	= $pathObj->checked_out_time;
 					$category->alias = $pathObj->alias;
-					
+
 					if (! $category->store()) {
 						$this->error($category->getError);
 					}
-					$newCatId = $category->id;					
+					$newCatId = $category->id;
 					$this->categoriesIds[$pathSoFar] = $newCatId;
 				}
 			}
-		}				
+		}
 	}
 
     protected function migrateDocs ($oldCatid=0, $newCatid=0)
@@ -926,13 +926,13 @@ class HandoutMigration_Rokdownloads extends HandoutMigration
 			$folder = str_replace('/'.$docObj->name, '', $docObj->path);
 			if (!in_array($folder, array_keys($this->categoriesIds))) {
 				continue;
-			}	
+			}
 				//new document object
 			$doc = new HandoutDocument($db);
     		$doc->id                 = null;
 			$doc->catid              = $this->categoriesIds[$folder];
 			$doc->docname             = $docObj->displayname;
-			$doc->docfilename         = $this->renameDuplicate($docObj->name);		
+			$doc->docfilename         = $this->renameDuplicate($docObj->name);
 			$doc->docdescription      = $docObj->introtext;
 			$doc->docdate_published   = $docObj->created_time;
 			$doc->docowner            = $docObj->createdby;
@@ -955,15 +955,15 @@ class HandoutMigration_Rokdownloads extends HandoutMigration
 			$doc->kunena_discuss_id = null;
 			$doc->mtree_id 			= null;
 			$doc->access             = $docObj->access;
-			$doc->attribs            = null;			
+			$doc->attribs            = null;
 
 			if (! $doc->store()) {
 				$this->error($doc->getError);
 			}
 
-		}		
+		}
 		return;
-	}	
+	}
 
     protected function migrateFiles ()
     {
@@ -972,19 +972,19 @@ class HandoutMigration_Rokdownloads extends HandoutMigration
 
 		//fetch all files recursively
 		$files = JFolder::files($this->documentsPath, '', true, true);
-		foreach ($files as $file) {	
+		foreach ($files as $file) {
 			$oldFile = $file;
 			$newFile = basename($file);
-			$this->renameDuplicate($newFile);		
+			$this->renameDuplicate($newFile);
 			@copy($oldFile, $this->handoutPath . DS . $newFile);
-		}		
+		}
 	}
 
-	protected function setDocumentsPath() 
+	protected function setDocumentsPath()
 	{
-		$this->documentsPath =  JPATH_SITE . '/rokdownloads/'; ////TO DO: need to replace with value from config file	
+		$this->documentsPath =  JPATH_SITE . '/rokdownloads/'; ////TO DO: need to replace with value from config file
 	}
-	
+
 }
 
 class HandoutMigration_Rubberdoc extends HandoutMigration_Docman
@@ -992,11 +992,11 @@ class HandoutMigration_Rubberdoc extends HandoutMigration_Docman
     /**
      * Migrating data from Rubberdoc to Handout
      *
-     */	 
+     */
 
-	protected function init() 
+	protected function init()
 	{
-		parent::init(); 
+		parent::init();
 
 		$this->tablePrefix = '#__rubberdoc';
 		$this->tables = array('categories' , 'rubberdoc_docs');
@@ -1012,20 +1012,20 @@ class HandoutMigration_Rubberdoc extends HandoutMigration_Docman
         $this->back(JText::_('COM_HANDOUT_MGR_SUCCESS'));
     }
 
-	protected function setDocumentsPath() 
+	protected function setDocumentsPath()
 	{
-		$this->documentsPath =  JPATH_SITE . '/rubberdoc/'; //TO DO: need to replace with value from config file	
+		$this->documentsPath =  JPATH_SITE . '/rubberdoc/'; //TO DO: need to replace with value from config file
 	}
 
     protected function migrateHistory ($oldCatid, $newCatid)
     {
 		return;
-	}	
+	}
 
     protected function migrateLogs ($oldCatid, $newCatid)
     {
 		return;
-	}	
+	}
 
     protected function copyDoc ($oldDoc, &$newDoc)
     {
@@ -1033,7 +1033,7 @@ class HandoutMigration_Rubberdoc extends HandoutMigration_Docman
 		$newDoc->catid = $oldDoc->category_id;
 		$newDoc->docname = $oldDoc->title;
 		$newDoc->docdate_published = $oldDoc->created;
-		$newDoc->docowner = -1; //$this->getCurrentUserId(); 
+		$newDoc->docowner = -1; //$this->getCurrentUserId();
 		$newDoc->docfilename = $oldDoc->file;
 		$newDoc->published = $oldDoc->published;
 		$newDoc->doccounter = $oldDoc->downloads;
@@ -1059,7 +1059,7 @@ class HandoutMigration_Rubberdoc extends HandoutMigration_Docman
         }
         return $docs;
     }
-		
+
 }
 
 class HandoutMigration_Folder extends HandoutMigration
@@ -1068,22 +1068,22 @@ class HandoutMigration_Folder extends HandoutMigration
      * Migrating data from Folder to Handout
      *
      */
-	
+
 	private $tmpFolder;
 	private $tmpFolderPath;
-	
-	protected function init() 
+
+	protected function init()
 	{
-		$this->tmpFolder = urldecode(JRequest::getVar('folder', '')); 		
+		$this->tmpFolder = urldecode(JRequest::getVar('folder', ''));
 		$this->tmpFolderPath = JPATH_ROOT . DS . $this->tmpFolder;
 		parent::init();
-	} 
+	}
 
-	protected function check() 
+	protected function check()
 	{
 		//check if folder name is not specified
 		if ($this->tmpFolder == '') {
-        	$this->error(JText::_('COM_HANDOUT_MGR_SERVERFOLDER_SPECIFY') . JPATH_ROOT, false);		
+        	$this->error(JText::_('COM_HANDOUT_MGR_SERVERFOLDER_SPECIFY') . JPATH_ROOT, false);
 		}
 
 		//check if folder exists
@@ -1102,27 +1102,27 @@ class HandoutMigration_Folder extends HandoutMigration
             if (! file_exists($this->handoutPath)) {
                 $this->error(JText::_('COM_HANDOUT_MGR_DIR_NEW_NO_EXISTS') . $this->handoutPath, false);
             }
-        } 
+        }
 		elseif (! is_writable($this->handoutPath)) {
             $this->error(JText::_('COM_HANDOUT_MGR_DIR_IS_UNWRITEABLE') . $this->handoutPath, false);
         }
-	} 
+	}
 
     function migrate ()
     {
 		$this->migrateCategories();
         $this->back(JText::_('COM_HANDOUT_MGR_SUCCESS'));
     }
-		
+
 	protected function migrateCategories ()
 	{
 		$this->traverseFolder($this->tmpFolderPath);
 	}
-	 
+
 	/**
-	 * step through the folder structurecreate categories for each sub-folder and documents for each file 	
-	 * @param string $path folder to traverse 
-	 * @param string $parentId parent category id 
+	 * step through the folder structurecreate categories for each sub-folder and documents for each file
+	 * @param string $path folder to traverse
+	 * @param string $parentId parent category id
 	 */
 	 private function traverseFolder($path, $parentId=0)
 	 {
@@ -1135,32 +1135,32 @@ class HandoutMigration_Folder extends HandoutMigration
                 if (is_dir($dir)) {
 					//add category
 					$category = new HandoutCategory($db);
-					$category->id=0;	
+					$category->id=0;
 					$category->parent_id = $parentId;
 					$category->title = $file;
 					$category->name = $file;
 					$category->section = 'com_handout';
 					$category->published = 1;
-					
+
 					if (! $category->store()) {
 						$this->error($category->getError);
 					}
-					$newCatId = $category->id;					
-					
+					$newCatId = $category->id;
+
 					//traverse subfolder
 					$this->traverseFolder($dir, $newCatId);
-                } 
+                }
 				else {
 					//new document
 					$error='';
 					$oldFname = $file;
-					
+
 					if ($this->validateFileName($file, $error) && $this->validateExtension($file, $error) ) {
 						$this->renameDuplicate($file);
 
 						//copy file
 						copy($path . DS . $oldFname, $this->handoutPath . DS . $file);
-					
+
 						//add document
 						$doc = new HandoutDocument($db);
 						$doc->id                 = null;
@@ -1188,22 +1188,22 @@ class HandoutMigration_Folder extends HandoutMigration
 						$doc->kunena_discuss_id  = null;
 						$doc->mtree_id  		= null;
 						$doc->access             = null;
-						$doc->attribs            = null;			
-			
+						$doc->attribs            = null;
+
 						if (! $doc->store()) {
 							$this->error($doc->getError);
 						}
 					}
 					else {
 						//TO DO: For now, ignore the file in error and load others; how to handle error messages for the ignored file?
-					}	
+					}
                 }
             }
         }
-        closedir($handle);	 	
+        closedir($handle);
 	 }
-	 
-	 private function validateFileName(&$name, &$error="") 
+
+	 private function validateFileName(&$name, &$error="")
 	 {
 	 	//validate file name
 		global $_HANDOUT;
@@ -1211,7 +1211,7 @@ class HandoutMigration_Folder extends HandoutMigration
 		$fname_blank   = $_HANDOUT->getCfg('fname_blank');
 		$fname_reject  = $_HANDOUT->getCfg('fname_reject');
 		$fname_lc      = $_HANDOUT->getCfg('fname_lc'   );
-		
+
 		//change to lowercase
 		if($fname_lc ) {
 			$name = strtolower( $name );
@@ -1243,24 +1243,24 @@ class HandoutMigration_Folder extends HandoutMigration
 					break;
 			}
 		}
-		
+
 		//check files to reject
 		if( ($fname_reject && preg_match( "/^(" . $fname_reject . ")$/i" , $name ) )
             || preg_match( "/^(" . COM_HANDOUT_FNAME_REJECT . ")$/i" , $name )){
 			$error .= "&quot;" . $name . "&quot; ".JText::_('COM_HANDOUT_ISNOTVALID');
 			return false;
 		}
-		
+
 		return true;
 
-	 }		
-	 
+	 }
+
 	function validateExtension($name, &$error)
 	{
 	 	//validate extension
 		global $_HANDOUT;
 		require_once($_HANDOUT->getPath('classes', 'mime'));
-				
+
 		if ($_HANDOUT->getCfg('user_all')) {
 			return true;
 		}
@@ -1290,7 +1290,7 @@ class HandoutMigration_Folder extends HandoutMigration
 			return true;
 		}
 
-		$error .= JText::_('COM_HANDOUT_FILETYPE')." &quot;".$extension."&quot; ".JText::_('COM_HANDOUT_NOTPERMITED');	
+		$error .= JText::_('COM_HANDOUT_FILETYPE')." &quot;".$extension."&quot; ".JText::_('COM_HANDOUT_NOTPERMITED');
 		return false;
 	}
 }

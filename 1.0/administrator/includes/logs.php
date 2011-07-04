@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 include_once dirname(__FILE__) . '/logs.html.php';
@@ -78,7 +78,7 @@ function showLogs($option) {
 
 
     // NAvigation
-    
+
     require_once (JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php');
     $pageNav = new JPagination($total, $limitstart, $limit);
 
@@ -110,9 +110,9 @@ function removeLog($cid)
     HANDOUT_token::check() or die('Invalid Token');
     $mainframe = &JFactory::getApplication();
 
-    $database = &JFactory::getDBO(); 
+    $database = &JFactory::getDBO();
     $_HANDOUT_USER = &HandoutFactory::getHandout();
-    
+
     $log = new HandoutLog($database);
     $rows = $log->loadRows($cid); // For log plugins
 

@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 include_once dirname(__FILE__) . '/codes.html.php';
@@ -51,10 +51,10 @@ function editCode($option, $uid)
 
     $row = new HandoutCodes($database);
     $row->load($uid);
-	
+
 	// build the html radio buttons for published
     $lists['published'] = JHTML::_('select.booleanlist','published', 'class="inputbox"', $row->published);
-	
+
 	// build the html select list for downloads
     $query = "SELECT id AS value, docname AS text"
      . "\n FROM #__handout"
@@ -65,16 +65,16 @@ function editCode($option, $uid)
 	$doclist[]         	= JHTML::_('select.option',  '0', JText::_( '- Select Download -' ), 'value', 'text' );
     $doclist        	= array_merge( $doclist, $database->loadObjectList() );
     $lists['downloads'] = JHTML::_('select.genericlist', $doclist, 'docid', 'class="inputbox" size="1"','value', 'text', intval( $row->docid ) );
-	
+
 	//build the html radio buttons for usage
 	$usage = HandoutCodes::getCodesUsage();
 	$lists['usage'] = JHTML::_( 'select.radiolist', $usage, 'usage', '', 'value', 'text', $row->usage );
-	
+
 	//fetch the set of codes already selected
 	$query="SELECT name FROM #__handout_codes";
 	$database->setQuery($query);
 	$lists['usedcodes'] = $database->loadResultArray();
-	
+
     HTML_HandoutCodes::editCode($option, $row, $lists);
 }
 
@@ -82,7 +82,7 @@ function saveCode($option)
 {
     HANDOUT_token::check() or die('Invalid Token');
 
-    $database = &JFactory::getDBO(); 
+    $database = &JFactory::getDBO();
     $task = JRequest::getCmd('task');
     $mainframe = &JFactory::getApplication();
 
@@ -178,7 +178,7 @@ function removeCode($cid, $option)
 
     $code = new HandoutCodes($database);
     if ($code->remove($cid)) {
-        $mainframe = &JFactory::getApplication(); 
+        $mainframe = &JFactory::getApplication();
 		$mainframe->redirect("index.php?option=com_handout&section=codes");
     } else {
     	echo "<script> alert('Problem removing codes'); window.history.go(-1);</script>\n";
@@ -195,7 +195,7 @@ function publishCode($cid, $publish = 1)
 
     $code = new HandoutCodes($database);
     if ($code->publish($cid, $publish)) {
-        $mainframe = &JFactory::getApplication(); 
+        $mainframe = &JFactory::getApplication();
 		$mainframe->redirect("index.php?option=com_handout&section=codes");
     }
 }

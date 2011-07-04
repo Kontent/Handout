@@ -8,14 +8,14 @@
 	<authorUrl>www.sharehandouts.com</authorUrl>
 	<version>1.0</version>
 	<description>Handout Populate allows you to batch import files uploaded though FTP</description>
-		
+
 	<files folder="components/com_populate">
 		<folder>controllers</folder>
 		<folder>views</folder>
-		<file>metadata.xml</file>	
-		<file>populate.php</file>	
+		<file>metadata.xml</file>
+		<file>populate.php</file>
 	</files>
-		
+
 	<install>
 		<sql>
 			<file driver="mysql" charset="utf8">install/install.sql</file>
@@ -28,7 +28,7 @@
 	</uninstall>
 	<installfile>install/install.php</installfile>
 	<uninstallfile>install/uninstall.php</uninstallfile>
-	
+
 	<administration>
 		<menu>Handout Populate</menu>
 		<submenu>

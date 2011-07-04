@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 include_once dirname(__FILE__) . '/handout.html.php';
@@ -51,7 +51,7 @@ function showCPanel()
 
 function showCredits()
 {
-    
+
 
     ob_start();
     include_once( JPATH_ROOT.'/administrator/components/com_handout/CHANGELOG.php' );
@@ -78,7 +78,7 @@ function showStatistics()
 function installSampleData(){
     $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
-    
+
     $mainframe = &JFactory::getApplication();
     $handoutdoc  = JPATH_ROOT.DS.'handouts';
     $img    = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_handout'.DS.'images';
@@ -160,7 +160,7 @@ function installSampleData(){
     $doc->docversion		= '';
     $doc->doclanguage		= '';
 	$doc->doc_meta_keywords	= '';
-	$doc->doc_meta_description	= '';	
+	$doc->doc_meta_description	= '';
     $doc->kunena_discuss_id     = 0;
     $doc->access            = 0;
     $doc->attribs           = 'crc_checksum=\nmd5_checksum=';

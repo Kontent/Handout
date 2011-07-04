@@ -63,7 +63,7 @@ class HandoutToolBar {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_SAVE');
         HandoutToolBar::icon($task, $alt, $icon);
     }
-    
+
     function apply($task='apply', $alt='', $icon='apply') {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_APPLY');
         HandoutToolBar::icon($task, $alt, $icon);
@@ -78,21 +78,21 @@ class HandoutToolBar {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_NEW_DOC');
         HandoutToolBar::icon($task, $alt, $icon);
     }
-    
+
     function addNewDocument($task = 'new', $alt = '', $icon = 'newdocument') {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_NEW_DOC');
         HandoutToolBar::icon($task, $alt, $icon);
     }
-    
+
     function cpanel() {
         HandoutToolBar::icon('cpanel', JText::_('COM_HANDOUT_TOOLBAR_HOME'), 'cpanel');
     }
-    
+
     function upload($task = 'upload', $alt = '', $icon = 'upload') {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_UPLOAD_FILE');
         HandoutToolBar::icon($task, $alt, $icon);
     }
-    
+
     function move($task = 'move', $alt = '', $icon='move') {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_MOVE');
         HandoutToolBar::icon($task, $alt, $icon);
@@ -151,12 +151,12 @@ class HandoutToolBar {
         $bar = & JToolBar::getInstance('toolbar');
         $bar->appendButton( 'Confirm', JText::_('COM_HANDOUT_ARE_YOU_SURE'), $icon, $alt, $task, true, false );
     }
-    
+
     function clear($task='remove', $alt='') {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_CLEAR');
         HandoutToolBar::deleteList($task, $alt, 'cleardata');
     }
-    
+
     function editList($task='edit', $alt='', $icon='edit') {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_EDIT');
         $bar = & JToolBar::getInstance('toolbar');
@@ -168,7 +168,7 @@ class HandoutToolBar {
         $bar = & JToolBar::getInstance('toolbar');
         $bar->appendButton( 'Standard', $icon, $alt, $task, true, false );
     }
-    
+
     function config( $task='config', $alt='', $icon='config') {
 		if ($alt=='') $alt = JText::_('COM_HANDOUT_TOOLBAR_OPTIONS');
         $bar = & JToolBar::getInstance('toolbar');

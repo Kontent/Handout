@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_HTML_FILES')) {
@@ -20,12 +20,12 @@ if (defined('_HANDOUT_HTML_FILES')) {
 
 class HTML_HandoutFiles
 {
-	
-	
+
+
     function showFiles($rows, $lists, $search, $pageNav)
     {
     	JHTML::_('behavior.tooltip');
-    	
+
         ?>
 
         <form action="index.php" method="post" name="adminForm">
@@ -96,7 +96,7 @@ class HTML_HandoutFiles
 
     function uploadWizard(&$lists)
     {
-        
+
         ?>
 
        <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_UPLOADWIZARD'), 'files' )?>
@@ -138,7 +138,7 @@ class HTML_HandoutFiles
 
     function uploadWizard_http($old_filename = null)
     {
-        
+
         ?>
 		<div id="overDiv" style="position:absolute; visibility:hidden; z-index:10000;"></div>
 		<script language="Javascript" src="<?php echo JURI::root();?>/includes/js/overlib_mini.js"></script>
@@ -195,10 +195,10 @@ class HTML_HandoutFiles
                 <input name="batch" type="checkbox" id="batch" value="1"
 			onClick="if( ! document.fm_upload.localfile.disabled ){document.fm_upload.localfile.value='';}
 				 document.fm_upload.localfile.disabled=!document.fm_upload.localfile.disabled;
-				 return(true);">                
+				 return(true);">
                  <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_CFG_HANDOUT_DESC');?>::<?php echo JText::_('COM_HANDOUT_BATCHMODE_DESC');?>">
 						<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-						
+
             </div>
 	  </td>
         </tr>
@@ -226,7 +226,7 @@ class HTML_HandoutFiles
 
     function uploadWizard_transfer()
     {
-        
+
         ?>
 
 		<div id="overDiv" style="position:absolute; visibility:hidden; z-index:10000;"></div>
@@ -262,7 +262,7 @@ class HTML_HandoutFiles
                 <input name="url" type="text" id="url" value="http://">
             </div></td>
 	    <td align="left">
-	    
+
 	    <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_REMOTEURL');?>::<?php echo JText::_('COM_HANDOUT_REMOTEURL_DESC');?>">
 						<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
 						</td>
@@ -276,10 +276,10 @@ class HTML_HandoutFiles
                 <input name="localfile" type="text" id="url" value="">
             </div></td>
 	    <td align="left" width="40%">
-	    
+
 	    <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_LOCALNAME');?>::<?php echo JText::_('COM_HANDOUT_LOCALNAME_DESC');?>">
 						<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-						
+
 						</td>
         </tr>
         <tr>
@@ -304,7 +304,7 @@ class HTML_HandoutFiles
 
     function uploadWizard_sucess(&$file, $batch = 0, $old_filename = null, $show_completion = 1)
     {
-        
+
         $mainframe = &JFactory::getApplication();
 
         if ($old_filename <> '1') {

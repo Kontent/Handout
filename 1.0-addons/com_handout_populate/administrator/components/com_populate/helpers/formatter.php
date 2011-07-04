@@ -10,19 +10,19 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-class PopulateFormatter 
+class PopulateFormatter
 {
-   
-    public static function stripExtension ($filename) 
+
+    public static function stripExtension ($filename)
     {
         $pos = strrpos($filename, '.');
         if ($pos === false ) {
             return $filename;
-        } else { 
+        } else {
             return substr($filename, 0, $pos );
         }
     }
-    
+
     public static function getNiceTitle ($title) {
         return ucwords( str_replace( '_', ' ', $title) );
     }

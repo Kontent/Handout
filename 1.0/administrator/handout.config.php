@@ -1,8 +1,8 @@
 <?php
 if(defined('_HandoutConfig')) {
 return true;
-} else { 
-define('_HandoutConfig',1); 
+} else {
+define('_HandoutConfig',1);
 
 class HandoutConfig
 {

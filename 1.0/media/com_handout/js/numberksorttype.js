@@ -8,7 +8,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 function replace8a8(str) {
 	str = str.toUpperCase();
 	var splitstr = "____";

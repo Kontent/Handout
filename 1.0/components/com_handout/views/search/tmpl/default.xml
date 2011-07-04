@@ -5,7 +5,7 @@
 	</layout>
 	<state>
 		<name>Search</name>
-		<description>Page for searching in document by various criteria</description>		
+		<description>Page for searching in document by various criteria</description>
 		<url>
 			<param name="task" type="hidden" default="search_form" />
 		</url>
