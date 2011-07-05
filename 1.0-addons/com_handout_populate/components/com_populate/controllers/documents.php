@@ -18,7 +18,7 @@ require_once JPATH_ADMINISTRATOR.DS.'components'.DS.'com_populate'.DS.'tables'.D
 
 jimport( 'joomla.application.component.controller' );
 class PopulateControllerDocuments extends JController
-{	
+{
 	public function assign()
 	{
 		$_HANDOUT = PopulateDocman::get();
@@ -30,14 +30,14 @@ class PopulateControllerDocuments extends JController
 
         $files = array();
         $success = 0; $failed = 0;
-        		
+
 		$filesmodel = new PopulateModelFiles;
 
         $FilesInDatabase    = $filesmodel->getData(); //files that already have a doc entry
         if($FilesInDatabase===false) {
         	die('Error reading file list from database');
         }
-        
+
         // if not set in config, get defaults
         $docowner        = $apConfig->docowner        ? $apConfig->docowner        : $apParams->docowner;
         $docmaintainedby  = $apConfig->docmaintainedby  ? $apConfig->docmaintainedby  : $apParams->docmaintainedby;
@@ -46,7 +46,7 @@ class PopulateControllerDocuments extends JController
             die("Please go to the Handout configuration first, check all settings and make sure to <b>save</b>, even if you change nothing." );
             return;
         }
-        
+
         if ( !$handle = opendir($apParams->handoutpath) ) {
             die( "Problem opening handouts directory " . $apParams->handoutpath
                     .". Make sure you have Handout working correctly before using this component." );
@@ -54,7 +54,7 @@ class PopulateControllerDocuments extends JController
         }
 
 
-        while (false !== ($file = readdir($handle))) 
+        while (false !== ($file = readdir($handle)))
         {
             if (    !in_array($file, explode( "|", $apConfig->skipfiles ) )
                     && !in_array($file, $FilesInDatabase)
@@ -63,7 +63,7 @@ class PopulateControllerDocuments extends JController
             }
         }
 
-        foreach ($files as $file) 
+        foreach ($files as $file)
         {
             $title = $apConfig->stripextension ? PopulateFormatter::stripExtension( $file ) : $file;
             $title = $apConfig->nicetitle ? PopulateFormatter::getNiceTitle( $title ) : $title;
@@ -103,7 +103,7 @@ class PopulateControllerDocuments extends JController
                     .",\n `doclicense_display`	= ".(int) $apConfig->doclicense_display
                     .",\n `access`				= ".(int) $apConfig->access
                     .",\n `attribs`				= ".$db->quote($apConfig->attribs)
-                    );        
+                    );
             if (!$db->query()) {
                 $failed++;
             } else {
@@ -114,5 +114,5 @@ class PopulateControllerDocuments extends JController
         echo 'Populate for Handout: ';
     	echo $success . ' files added successfully, ' . $failed . ' failed.';
     }
-		
+
 }

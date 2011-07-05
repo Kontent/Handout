@@ -10,7 +10,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_HTML_CATEGORIES')) {
@@ -23,7 +23,7 @@ class HTML_HandoutCategories
 {
     function show(&$rows, $myid, &$pageNav, &$lists, $type)
     {
-        $user = &JFactory::getUser();        
+        $user = &JFactory::getUser();
 
         $section = "com_handout";
         $section_name = "Handout";
@@ -158,10 +158,10 @@ class HTML_HandoutCategories
     	 function showToSelect(&$rows, &$pageNav, $type)
     		{
         	?>
-		
+
     		<form action="index.php" method="post" name="adminForm">
     		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_CATS'), 'categories' )?>
-		
+
 			    <table class="adminlist">
 			       <thead>
 					<tr>
@@ -185,7 +185,7 @@ class HTML_HandoutCategories
 					    <td align="center"><img src="images/<?php echo $img;?>"  border="0" alt="<?php echo $alt;?>" /></td>
 					</tr>
 				    <?php $k = 1 - $k; ?>
-						<?php } ?>	
+						<?php } ?>
 				     </tbody>
 			    </table>
 				<input type="hidden" name="option" value="com_handout" />
@@ -222,12 +222,12 @@ class HTML_HandoutCategories
 					submitform( pressbutton );
 					return;
 				}
-	
+
 				if ( form.title.value == "" ) {
 					alert('<?php echo JText::_('COM_HANDOUT_CAT_MUST_SELECT_TITLE');?>');
 				} else {
 					form.getElementById("catname").value = form.title.value; //copy title into name
-					<?php 
+					<?php
 						jimport( 'joomla.html.editor' );
 						$editor =& JFactory::getEditor();
 						echo $editor->save( 'description' );
@@ -345,12 +345,12 @@ class HTML_HandoutCategories
 								<!-- TO DO: hook this textbox up -->
 								<textarea rows="7" cols="50"> </textarea>
 							</td>
-						</tr>						
+						</tr>
 					</table>
 				</td>
 		      </tr>
 		</table>
-	
+
 			<input type="hidden" name="option" value="com_handout" />
 			<input type="hidden" name="section" value="categories" />
 			<input type="hidden" name="task" value="" />

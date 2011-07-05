@@ -87,7 +87,7 @@ class HANDOUT_Token
         {
             return true;
         }
-        
+
         return false;
     }
 

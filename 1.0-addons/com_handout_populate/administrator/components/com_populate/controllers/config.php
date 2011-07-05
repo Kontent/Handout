@@ -16,7 +16,7 @@ class PopulateControllerConfig extends JController
 	public function save()
 	{
 		JRequest::checkToken() or jexit( 'Invalid Token' );
-		
+
         $database  = JFactory::getDBO();
         $apConfig =  TablePopulateConf::getInstance();
 
@@ -30,7 +30,7 @@ class PopulateControllerConfig extends JController
 
         $this->setRedirect( "index.php?option=com_populate&view=config", "Configuration Saved" );
 	}
-	
+
 	public function cancel()
 	{
 		$this->setRedirect( "index.php?option=com_populate", "Configuration Saved" );

@@ -29,14 +29,14 @@ class HandoutViewDocument extends JView {
 
 		//overwrite home link
 		$links->home = 'index.php?option=com_handout&task=cat_view';
-		
+
 		$this->assignRef('data', $data);
 		$this->assignRef('buttons', $buttons);
 		$this->assignRef('paths', $paths); //may not be necessary - only holds thumbs path
 		$this->assignRef('links', $links);
 		$this->assignRef('perms', $perms);
 		$this->assignRef('conf', $handout->getAllCfg());
-		parent::display();						
+		parent::display();
 	}
 
 	function _displayEdit() {
@@ -55,49 +55,49 @@ class HandoutViewDocument extends JView {
 		$this->assignRef('edit_created', $edit_created);
 		$this->assignRef('edit_params', $edit_params);
 		$this->assignRef('conf', $handout->getAllCfg());
-		
+
 		HandoutViewDocument::importScript ();
-		
-		parent::display('edit');						
+
+		parent::display('edit');
 	}
-	
+
 	function _displayMove() {
 		$handout = &HandoutFactory::getHandout ();
 		$gid = HandoutHelper::getGid ();
 		DocumentsHelper::checkMoveDocument ( $gid );
-		
+
 		list($buttons, $paths, $data) = DocumentsHelper::fetchDocument ( $gid );
-		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );	
+		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
 		$lists = DocumentsHelper::fetchMoveDocumentCategories($gid);
 		$action = HandoutHelper::_taskLink('doc_move_process', $data->id);
 		$token = HANDOUT_token::render();
-			
+
 		$this->assignRef('data', $data);
 		$this->assignRef('links', $links);
 		$this->assignRef('perms', $perms);
 		$this->assignRef('action', $action);
 		$this->assignRef('lists', $lists);
 		$this->assignRef('token', $token);
-		
+
 		$this->assignRef('conf', $handout->getAllCfg());
-		
-		parent::display('move');								
+
+		parent::display('move');
 	}
 
 	function _displayUpload($update) {
-		//To Do: Test this functionality	
+		//To Do: Test this functionality
 		$handout = &HandoutFactory::getHandout ();
 		$step = JRequest::getInt ( 'step', 1 );
 		$method = JRequest::getVar ( 'method' );
 		$gid = HandoutHelper::getGid ();
-		
+
 		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
 		$lists = UploadHelper::fetchDocumentUploadForm ( $gid, $step, $method, $update );
-		
+
 		$this->assignRef('links', $links);
 		$this->assignRef('perms', $perms);
 		$this->assignRef('uploadform', $uploadform);
-		$this->assignRef('conf', $handout->getAllCfg());		
+		$this->assignRef('conf', $handout->getAllCfg());
 		$this->assignRef ( 'step', $step );
 		$this->assignRef ( 'method', $method );
 		$this->assignRef ( 'update', $update );
@@ -106,8 +106,8 @@ class HandoutViewDocument extends JView {
 		if ($step == 3) {
 			HandoutViewDocument::importScript ();
 		}
-		
-		parent::display('upload');			
+
+		parent::display('upload');
 	}
 
 	function importScript() {
@@ -115,7 +115,7 @@ class HandoutViewDocument extends JView {
 		echo '
 			onunload = WarnUser;
 			var folderimages = new Array;
-			
+
 			function submitbutton(pressbutton)
 			{
 				var form = document.adminForm;
@@ -128,9 +128,9 @@ class HandoutViewDocument extends JView {
 					form.onsubmit();
 				}
 				catch(e){}
-			
-				msg = \'\';				
-				
+
+				msg = \'\';
+
 				if (form.docname.value == \'\') {
 			  		msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_NAME') .'\';
 				} if (form.docdate_published.value == \'\') {
@@ -158,7 +158,7 @@ class HandoutViewDocument extends JView {
 					alert( msghdr + msg + \'\n\' );
 				} else { ';
 					/* for static content */
-					
+
 						jimport( 'joomla.html.editor' );
 						$editor =& JFactory::getEditor();
 						echo $editor->save( 'docdescription' );
@@ -166,14 +166,14 @@ class HandoutViewDocument extends JView {
 					submitform(pressbutton);
 				}
 			}
-			
+
 			function setgood() {
 				document.adminForm.goodexit.value=1;
 			}
-			
+
 			function WarnUser() {
-			
-			}		
+
+			}
 		</script>';
 	}
 }

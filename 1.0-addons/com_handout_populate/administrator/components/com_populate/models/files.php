@@ -14,7 +14,7 @@ jimport('joomla.application.component.model');
 
 class PopulateModelFiles extends JModel
 {
-    public function getData() 
+    public function getData()
     {
         $database = JFactory::getDBO();
 

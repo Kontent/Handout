@@ -47,7 +47,7 @@ if ($is_mtree_listing) {
 	//check to make sure this is a mtree listing page
 	$link_id = JRequest::getVar('link_id', '');
 	if ((JRequest::getVar('option') == 'com_mtree') && (JRequest::getVar('task') == 'viewlink') && ($link_id)) {
-		$can_display = true;		
+		$can_display = true;
 	}
 	else {
 		$can_display = false;
@@ -58,5 +58,5 @@ $menuid = $_HANDOUT->getMenuId();
 
 if ($can_display) {
 	$rows = modHandoutdocsHelper::getDocs($params);
-	require(JModuleHelper::getLayoutPath('mod_handout_docs'));    
+	require(JModuleHelper::getLayoutPath('mod_handout_docs'));
 }

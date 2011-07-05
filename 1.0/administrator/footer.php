@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  /**
  * Handout - The Joomla Download Manager
@@ -8,8 +8,8 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
-defined ( '_JEXEC' ) or die ( 'Restricted access' ); 
+
+defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 ?>
 <p class="version">Handout <?php echo COM_HANDOUT_VERSION_NUMBER;?> | <a href="http://extensions.kontentdesign.com">Kontent Extensions</a> | <a href="#">Check for update</a></p>

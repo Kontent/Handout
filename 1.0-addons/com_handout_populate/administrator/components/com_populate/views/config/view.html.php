@@ -21,14 +21,14 @@ class PopulateViewConfig extends JView
 		global $_HANDOUT, $_DMUSER;
 		$_HANDOUT = PopulateDocman::get();
 		$_DMUSER = $_HANDOUT->getUser();
-				
+
         require_once(PopulateDocman::get()->getPath('classes', 'html'));
-        
-        
+
+
         JToolBarHelper::title('Handout - Populate');
         JToolbarHelper::save( 'save' );
 		JToolbarHelper::cancel( 'cancel' );
-	    
+
         $database = JFactory::getDBO();
 
         $this->assignRef('config', TablePopulateConf::getInstance());

@@ -10,7 +10,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-class TablePopulateParams 
+class TablePopulateParams
 {
 
     var $doccounter 			= 0;
@@ -25,7 +25,7 @@ class TablePopulateParams
     var $handoutpath				= null;
 
 
-    public function __construct() 
+    public function __construct()
     {
         $this->HANDOUT_version	= _DM_VERSION;
         $this->handoutpath			= PopulateDocman::get()->getCfg( 'handoutpath' );
@@ -34,12 +34,12 @@ class TablePopulateParams
         $this->docdate_published = date( 'Y-m-d H:i:s' );
         $this->doclastupdateon	= date( 'Y-m-d H:i:s' );
     }
-    
+
     public static function getInstance()
     {
     	static $instance;
     	if(!isset($instance))
-    	{ 
+    	{
         	$instance = new TablePopulateParams();
     	}
         return $instance;

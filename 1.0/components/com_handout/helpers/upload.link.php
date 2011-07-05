@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_LINK_TRANSFER')) {
@@ -30,7 +30,7 @@ class HandoutUploadMethod
             {
                 $lists = array();
                 $lists['action']    = HandoutHelper::_taskLink($task, $uid, array('step' => $step + 1), false);
-                
+
 				return $lists;
             } break;
 
@@ -59,7 +59,7 @@ class HandoutUploadMethod
     function linkFileProcess($uid, $step, $url)
     {
         HANDOUT_token::check() or die('Invalid Token');
-        
+
         $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
         $_HANDOUT = &HandoutFactory::getHandout();
 

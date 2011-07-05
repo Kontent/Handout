@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined('_JEXEC') or die('Restricted access');
 
 require_once (dirname(__FILE__) . DS . 'install.handout.helper.php');
@@ -42,7 +42,7 @@ PackageInstallerHelper::displayUninstalled(
 
 function com_uninstall ()
 {
-           
+
     // delete the handouts folder if it's empty
 
     if (HandoutInstallHelper::cntFiles() == 0) {
@@ -54,5 +54,5 @@ function com_uninstall ()
     if (HandoutInstallHelper::cntDbRecords() == 0) {
         HandoutInstallHelper::removeTables();
     }
-    
+
 }

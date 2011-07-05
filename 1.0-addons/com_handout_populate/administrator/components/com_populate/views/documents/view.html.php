@@ -21,12 +21,12 @@ class PopulateViewDocuments extends JView
 
 		JToolBarHelper::title('Handout - Populate');
 		JToolbarHelper::custom( "assign", "publish.png", "publish_f2.png", "Import", false );
-		
-	
+
+
         // config
 		$apConfig   = TablePopulateConf::getInstance();
         $apParams   = TablePopulateParams::getInstance();
-        
+
         // get files from model
         $model = $this->getModel('documents');
         $model->setState('handoutpath', $apParams->handoutpath);
@@ -34,11 +34,11 @@ class PopulateViewDocuments extends JView
         $model->setState('orphansonly', $apConfig->orphansonly);
 
         $this->assignRef('files', $model->getData());
-        
-        
+
+
         $this->setModel(new PopulateModelCategories);
 		$this->assignRef('categories',	$this->getModel('categories')->getData());
-		
+
 		$this->assignRef('params', $apParams);
 
 		parent::display($tpl);

@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
 */
 
 ?>
-<?php 
+<?php
 	if($this->category->data->title != '') :
 	?>
 	<div class="hcat-head">
@@ -43,7 +43,7 @@ defined('_JEXEC') or die;
 			?><div class="hcat-description"><?php echo $this->category->data->description;?></div><?php
 		endif;
 	?>
-	
+
 	</div>
 	<div class="clr"></div>
 <?php endif; ?>

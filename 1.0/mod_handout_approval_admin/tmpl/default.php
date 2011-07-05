@@ -1,5 +1,5 @@
 <?php // no direct access
-defined('_JEXEC') or die('Restricted access'); 
+defined('_JEXEC') or die('Restricted access');
 ?>
 
 <table class="adminlist">
@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 	<tbody>
     	<?php if (!count($docs)): ?>
     		<tr><td style="text-align:center !important;" colspan="3"><?php echo JText::_('All documents are published'); ?></td></tr>
-    	<?php else: ?>	
+    	<?php else: ?>
         <?php foreach ($docs as $doc): ?>
         	<tr>
                 <td width="5%" style="text-align:center">
@@ -25,6 +25,6 @@ defined('_JEXEC') or die('Restricted access');
                 <td align="right"><?php echo $doc->doclastupdateon;?></td>
         	</tr>
         	<?php endforeach;?>
-    	<?php endif; ?>	
+    	<?php endif; ?>
     </tbody>
 </table>

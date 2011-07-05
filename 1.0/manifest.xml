@@ -18,7 +18,7 @@
 	<languages folder="site/language">
       	<language tag="en-GB">en-GB/en-GB.com_handout.ini</language>
     </languages>
-    
+
     <!-- Front-end Files -->
 	<files folder="site">
 		<folder>media</folder>
@@ -46,12 +46,12 @@
 
 		<file>index.html</file>
 	</media>
-	
+
 	<!-- Administrator Files -->
 	<administration>
 
 		<languages folder="admin/language">
-      		<language tag="en-GB">en-GB/en-GB.com_handout.ini</language>    
+      		<language tag="en-GB">en-GB/en-GB.com_handout.ini</language>
     	</languages>
 
 		<menu img="components/com_handout/images/icon-16-home.png">Handout</menu>
@@ -95,7 +95,7 @@
 			<file>toolbar.handout.php</file>
 		</files>
 
-	</administration>		
+	</administration>
 
 	<modules>
 		<module
@@ -108,7 +108,7 @@
 			ordering="1">
 			<files folder="mod_handout_approval_admin">
 				<folder>tmpl</folder>
-			
+
 				<filename>helper.php</filename>
 				<filename>index.html</filename>
 				<filename module="mod_handout_approval">mod_handout_approval.php</filename>
@@ -130,7 +130,7 @@
 			ordering="2">
 			<files folder="mod_handout_latest_additions_admin">
 				<folder>tmpl</folder>
-			
+
 				<filename>helper.php</filename>
 				<filename>index.html</filename>
 				<filename module="mod_handout_latest_additions">mod_handout_latest_additions.php</filename>
@@ -152,7 +152,7 @@
 			ordering="3">
 			<files folder="mod_handout_latest_downloads_admin">
 				<folder>tmpl</folder>
-			
+
 				<filename>helper.php</filename>
 				<filename>index.html</filename>
 				<filename module="mod_handout_latest_downloads">mod_handout_latest_downloads.php</filename>
@@ -174,7 +174,7 @@
 			ordering="4">
 			<files folder="mod_handout_top_downloads_admin">
 				<folder>tmpl</folder>
-			
+
 				<filename>helper.php</filename>
 				<filename>index.html</filename>
 				<filename module="mod_handout_top_downloads">mod_handout_top_downloads.php</filename>
@@ -195,7 +195,7 @@
 			published="1"
 			ordering="10">
 			<files folder="mod_handout_quickicon_admin">
-				<folder>tmpl</folder>			
+				<folder>tmpl</folder>
 				<filename>index.html</filename>
 				<filename module="mod_handout_quickicon_admin">mod_handout_quickicon_admin.php</filename>
 				<filename>mod_handout_quickicon_admin.xml</filename>
@@ -235,13 +235,13 @@
 		      <param name="show_category" type="radio" default="1" label="MOD_HANDOUT_DOCS_CATEGORY_LABEL" description="MOD_HANDOUT_DOCS_CATEGORY_DESC">
 		    		<option value="0">MOD_HANDOUT_DOCS_HIDE</option>
 		    		<option value="1">MOD_HANDOUT_DOCS_SHOW</option>
-		      </param>    
+		      </param>
 		      <param name="text_pfx" type="text" default="" label="MOD_HANDOUT_DOCS_TEXT_PREFIX_LABEL" description="MOD_HANDOUT_DOCS_TEXT_PREFIX_DESC" />
 		      <param name="text_sfx" type="text" default="" label="MOD_HANDOUT_DOCS_TEXT_SUFFIX_LABEL" description="MOD_HANDOUT_DOCS_TEXT_SUFFIX_DESC" />
-		      
+
 		      <param name="limits" type="text" default="" label="MOD_HANDOUT_DOCS_LIMIT_LABEL" description="MOD_HANDOUT_DOCS_LIMIT_DESC" />
 			  <param name="cat_ids" type="text" default="" label="MOD_HANDOUT_DOCS_CATID_LABEL" description="MOD_HANDOUT_DOCS_CATID_DESC" />
-			  
+
 		      <param name="order_by" type="list" default="0" label="MOD_HANDOUT_DOCS_ORDER_LABEL" description="MOD_HANDOUT_DOCS_ORDER_DESC">
 					<option value="0">MOD_HANDOUT_DOCS_ORDER_MOSTDOWNLOADS</option>
 					<option value="1">MOD_HANDOUT_DOCS_ORDER_LEASTDOWNLOADS</option>
@@ -266,11 +266,11 @@
 			plugin="handoutdoclink"
 			group="editors-xtd"
 			name="Handout - Document Link">
-		  
+
 		  <languages folder="plg_handout_doclink/language">
-		  	<language tag="en-GB">en-GB/en-GB.plg_editors-xtd_handoutdoclink.ini</language>    
+		  	<language tag="en-GB">en-GB/en-GB.plg_editors-xtd_handoutdoclink.ini</language>
 		  </languages>
-		
+
 		  <files folder="plg_handout_doclink">
 		  	<folder>handoutdoclink</folder>
 			<filename plugin="handoutdoclink">handoutdoclink.php</filename>
@@ -283,38 +283,38 @@
 			plugin="buttons"
 			group="handout"
 			name="Handout - Buttons">
-		  
+
 			<languages folder="plg_handout_buttons/language">
-		      	<language tag="en-GB">en-GB/en-GB.plg_handout_buttons.ini</language>    
+		      	<language tag="en-GB">en-GB/en-GB.plg_handout_buttons.ini</language>
 		    </languages>
-		
+
 			<files folder="plg_handout_buttons">
 				<filename plugin="buttons">buttons.php</filename>
 				<filename plugin="buttons">buttons.xml</filename>
-			</files>		
+			</files>
 		</plugin>
 
 		<plugin
 			plugin="notify"
 			group="handout"
 			name="Handout - Notify">
-		  
+
 		  <languages folder="plg_handout_notify/language">
-		  	<language tag="en-GB">en-GB/en-GB.plg_handout_notify.ini</language>    
+		  	<language tag="en-GB">en-GB/en-GB.plg_handout_notify.ini</language>
 		  </languages>
-		
+
 		  <files folder="plg_handout_notify">
 		  	<folder>notify</folder>
 			<filename plugin="notify">notify.php</filename>
 			<filename plugin="notify">notify.xml</filename>
 		  </files>
 		</plugin>
-		
+
 		<plugin
 			plugin="thumbs"
 			group="handout"
 			name="Handout - Thumbs">
-		  	
+
 		  <files folder="plg_handout_thumbs">
 		  	<folder>thumbs</folder>
 		  	<filename plugin="thumbs">thumbs.php</filename>
@@ -326,7 +326,7 @@
 			plugin="handout"
 			group="search"
 			name="Search - Handout">
-		  	
+
 		  	<files folder="plg_handout_search">
 				<filename plugin="handout">handout.php</filename>
 			  	<filename plugin="handout">handout.xml</filename>

@@ -30,7 +30,7 @@ JHTML::_('behavior.tooltip');
 
 ?>
 <?php $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'handout' . DS . 'tmpl' );?>
-<?php echo $this->loadTemplate('menu'); ?>    
+<?php echo $this->loadTemplate('menu'); ?>
 
 <div id="handout" class="hupload">
 
@@ -39,15 +39,15 @@ JHTML::_('behavior.tooltip');
 	<?php else : ?>
 		<h2><?php echo JText::_('COM_HANDOUT_TITLE_UPLOAD');?></h2>
 	<?php endif; ?>
-	
+
 	<?php
 		switch($this->step) :
-			case '1' :  
+			case '1' :
 				echo '<p class="hupload-steps">'.JText::_('COM_HANDOUT_UPLOAD_STEP')." ".$this->step." ".JText::_('COM_HANDOUT_UPLOAD_OF')." 3".'</p>';
 				echo uploadMethodsForm ( $this->lists );
 				break;
-			
-			case '2' :  
+
+			case '2' :
 				echo '<p class="hupload-steps">'.JText::_('COM_HANDOUT_UPLOAD_STEP')." ".$this->step." ".JText::_('COM_HANDOUT_UPLOAD_OF')." 3 <span>(";
 				switch($this->method) :
 					case 'http' 	: 	echo JText::_('COM_HANDOUT_UPLOAD_A_FILE'); break;
@@ -63,8 +63,8 @@ JHTML::_('behavior.tooltip');
 					default : break;
 				endswitch;
 				break;
-			
-			case '3' :  
+
+			case '3' :
 				//display the document edit form
 				?>
                 	<ul>
@@ -73,7 +73,7 @@ JHTML::_('behavior.tooltip');
                     </ul>
 				<?php
 				echo $this->loadTemplate('edit_form');
-				echo editDocumentForm ( $this->edit_doc, $this->edit_lists, $this->edit_last, $this->edit_created, $this->edit_params );					
+				echo editDocumentForm ( $this->edit_doc, $this->edit_lists, $this->edit_last, $this->edit_created, $this->edit_params );
 				?>
                 	<ul>
                         <li><a title="<?php echo JText::_('COM_HANDOUT_CANCEL')?>" href="javascript:submitbutton('cancel');" ><span><span><?php echo JText::_('COM_HANDOUT_CANCEL')?></span></span></a></li>
@@ -86,7 +86,7 @@ JHTML::_('behavior.tooltip');
 	<?php include_once(JPATH_COMPONENT . DS . 'footer.php'); ?>
 </div>
 
-<?php 
+<?php
 	function transferFileForm($lists)
     {
         ob_start();
@@ -95,14 +95,14 @@ JHTML::_('behavior.tooltip');
 			<fieldset class="input">
 				<p><label for="url"><?php echo JText::_('COM_HANDOUT_REMOTEURL') ?></label><br />
 				<input name="url" type="text" id="url" value="<?php echo $lists['url'];?>" />
-				
+
 					<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_REMOTEURL');?>::<?php echo JText::_('COM_HANDOUT_REMOTEURL_DESC');?>">
 						<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 						</p>
 				<p><label for="localfile"><?php echo JText::_('COM_HANDOUT_LOCALNAME') ;?></label><br />
 				<input name="localfile" type="text" id="url" value="<?php echo $lists['localfile'];?>">
-				
-				
+
+
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_LOCALNAME');?>::<?php echo JText::_('COM_HANDOUT_LOCALNAME_DESC');?>">
 						<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 				</p>
@@ -127,11 +127,11 @@ JHTML::_('behavior.tooltip');
 			<fieldset class="input">
 				<p><label for="hform-url"><?php echo JText::_('COM_HANDOUT_REMOTEURL');?></label><br />
 				<input name="url" type="text" id="hform-url" value="<?php /*echo $parms['url'];*/ ?>" />
-				
+
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_REMOTEURL');?>::<?php echo JText::_('COM_HANDOUT_LINKURL_DESC');?>">
 						<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 				</p>
-			
+
 				<input name="submit" class="button" value="<?php echo JText::_('COM_HANDOUT_BACK');?>" onclick="window.history.back()" type="button" >
 				<input name="submit" class="button" value="<?php echo JText::_('COM_HANDOUT_LINK');?>" type="submit" />
 			 </fieldset>

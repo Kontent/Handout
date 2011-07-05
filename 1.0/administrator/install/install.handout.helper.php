@@ -51,12 +51,12 @@ class HandoutInstallHelper
         }
         return true;
     }
-    
+
     function getDefaultFiles ()
     {
         return array('.htaccess' , 'index.html');
     }
-    
+
     function getComponentId ()
     {
         static $id;
@@ -67,24 +67,24 @@ class HandoutInstallHelper
         }
         return $id;
     }
-            
+
     function fileOperations ()
     {
-        
+
         $root = JPATH_ROOT;
         $site = $root . DS . 'components' . DS . 'com_handout';
         $admin = $root . DS . 'administrator' . DS . 'components' . DS . 'com_handout';
         $handoutdoc = $root . DS . 'handouts';
-        
+
         @mkdir($handoutdoc, 0755);
         @rename($admin . DS . 'htaccess.txt', $handoutdoc . DS . '.htaccess');
         @copy($site . DS . 'index.html', $handoutdoc . DS . 'index.html');
-        
+
         @chmod($site, 0755);
         @chmod($admin . DS . 'classes' . DS . 'HANDOUT_download.class.php', 0755);
         @chmod($admin . DS . 'classes' . DS . 'HANDOUT_utils.php', 0755);
     }
-    
+
     function showLogo ()
     {
         ?>
@@ -99,7 +99,7 @@ class HandoutInstallHelper
 				font-size: 13px;
 			}
 			#hinstall-container {
-				margin-left: 30px; 
+				margin-left: 30px;
 				width: 700px;
 			}
 			#hinstall-container a {
@@ -109,7 +109,7 @@ class HandoutInstallHelper
 				clear:both;
 			}
 			#hinstall-container .hicon {
-				margin: 0 40px 0 10px; 
+				margin: 0 40px 0 10px;
 				float:left;
 			}
 			#hinstall-container img {
@@ -174,11 +174,11 @@ class HandoutInstallHelper
 			</div>
 		<?php
 			}
-			
+
 			function cpanel ()
 			{
 				?>
-				
+
 				<div id="hinstall-container">
 					<h1 class="hinstall-title">Handout Successfully Installed.</h1>
 					<p>Thank you for installing Handout, the ultimate download manager for Joomla. You can now get started by uploading a file, creating categories, changing the configuration or migrating documents from another extension.</p>
@@ -221,7 +221,7 @@ class HandoutInstallHelper
 				</div>
 		<?php
     }
-    
+
     /**
 
      * Count items in tables
@@ -232,36 +232,36 @@ class HandoutInstallHelper
         $database = &JFactory::getDBO();
         $cnt = array();
         $tables = HandoutInstallHelper::getTablesList();
-        
+
         foreach ($tables as $table) {
             $database->setQuery("SELECT COUNT(*) FROM `$table`");
             $cnt[] = (int) $database->loadResult();
         }
-        
+
         // count categories
 
         $database->setQuery("SELECT COUNT(*) FROM `#__categories` WHERE `section` = 'com_handout'");
         $cnt[] = (int) $database->loadResult();
-        
+
         return array_sum($cnt);
     }
-    
+
     function removeTables ()
     {
         $database = &JFactory::getDBO();
         $tables = HandoutInstallHelper::getTablesList();
-        
+
         foreach ($tables as $table) {
             $database->setQuery("DROP TABLE IF EXISTS `$table`");
             $database->query();
         }
     }
-    
+
     function getTablesList ()
     {
         return array('#__handout' , '#__handout_groups' , '#__handout_history' , '#__handout_licenses' , '#__handout_log');
     }
-    
+
     /**
 
      * Count the number of files in /handouts
@@ -280,24 +280,24 @@ class HandoutInstallHelper
         $dir = JFolder::files($_HANDOUT->getCfg('handoutpath'));
         return count(array_diff($dir, $files));
     }
-    
+
     function removeHandoutDocuments ()
     {
         global $_HANDOUT;
         if (! is_object($_HANDOUT)) {
             $_HANDOUT = new HandoutMainFrame();
         }
-        
+
         $handoutpath = $_HANDOUT->getCfg('handoutpath');
-        
+
         $files = HandoutInstallHelper::getDefaultFiles();
-        
+
         foreach ($files as $file) {
             @unlink($handoutpath . DS . $file);
         }
         @rmdir($handoutpath);
     }
-    
+
     /**
 
      * Create index.html files
@@ -308,7 +308,7 @@ class HandoutInstallHelper
         // create index.html in the path
 
         HandoutInstallHelper::_createIndexFile($path);
-        
+
         if (! file_exists($path)) {
             return false;
         }
@@ -324,15 +324,15 @@ class HandoutInstallHelper
             }
         }
     }
-    
+
     function _createIndexFile ($dir)
     {
         @$handle = fopen($dir . DS . 'index.html', 'w');
         @fwrite($handle, 'Restricted access');
     }
-    
-        
-        
+
+
+
     /**
      * Upgrade tables
      */
@@ -340,7 +340,7 @@ class HandoutInstallHelper
     {
         $database = &JFactory::getDBO();
         $queries = array();
-        
+
         $database->setQuery("SHOW INDEX FROM #__handout");
         $database->query();
         $num_keys = $database->getNumRows();
@@ -355,7 +355,7 @@ class HandoutInstallHelper
             default:
                 break;
         }
-        
+
         foreach ($queries as $query) {
             $database->setQuery($query);
             if (! $database->query()) {
@@ -815,7 +815,7 @@ endif; ?>
 	 */
 	public static function uninstallModules($installer)
 	{
-		$result = array();	
+		$result = array();
 
 		$modules = &$installer->manifest->getElementByPath('modules');
 		if (is_a($modules, 'JSimpleXMLElement') && count($modules->children())) {
@@ -916,7 +916,7 @@ endif; ?>
 	 */
 	public static function uninstallPlugins(&$installer)
 	{
-		$result = array();	
+		$result = array();
 		$plugins = &$installer->manifest->getElementByPath('plugins');
 		if (is_a($plugins, 'JSimpleXMLElement') && count($plugins->children())) {
 

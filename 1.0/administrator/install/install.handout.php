@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 require_once (dirname ( __FILE__ ) . DS . 'install.handout.helper.php');
@@ -45,25 +45,25 @@ function com_install() {
 
 	// Logo
 	HandoutInstallHelper::showLogo ();
-	
+
 	if (! HandoutInstallHelper::checkWritable ()) {
 		$link = 'index.php?option=com_installer&type=components&task=manage';
 		// this should get the attention of people who prefer to ignore error messages!
 ?>
 		<p style="font-size: 200%">
-			Installation failed! 
+			Installation failed!
 			<a href="<?php echo $link?>">Click here to uninstall Handout</a>. Make the folders listed above writeable and try again.
 		</p>
 <?php
 		$return = false;
 	}
-	
+
 	// Upgrade tables
 	HandoutInstallHelper::upgradeTables ();
-	
+
 	// Files
 	HandoutInstallHelper::fileOperations ();
-	
+
 	// index.html files
 
 	$paths = array ('components' . DS . 'com_handout', 'administrator' . DS . 'components' . DS . 'com_handout', 'handouts' );
@@ -71,10 +71,10 @@ function com_install() {
 		$path = $absolute_path . DS . $path;
 		HandoutInstallHelper::createIndex ( $path );
 	}
-	
+
 	// Link to add sample data
-	HandoutInstallHelper::cpanel (); 
-		
+	HandoutInstallHelper::cpanel ();
+
 	return $return;
 }
 

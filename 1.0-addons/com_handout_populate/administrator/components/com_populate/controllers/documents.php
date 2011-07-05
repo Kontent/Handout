@@ -19,7 +19,7 @@ class PopulateControllerDocuments extends JController
 	public function display()
 	{
         // check path
-	    if ( TablePopulateParams::getInstance()->handoutpath == '' ) 
+	    if ( TablePopulateParams::getInstance()->handoutpath == '' )
 	    {
             throw new Exception("Please go to the Handout configuration first, check all settings and make sure to save." );
             return;
@@ -27,11 +27,11 @@ class PopulateControllerDocuments extends JController
         parent::display();
 	}
 
-	
+
 	public function assign()
 	{
 		JRequest::checkToken() or jexit( 'Invalid Token' );
-        
+
         $my       	= JFactory::getUser();
         $db 		= JFactory::getDBO();
 
@@ -48,7 +48,7 @@ class PopulateControllerDocuments extends JController
 
         // count
         $success = 0; $failed = 0;
-        foreach ($files as $file) 
+        foreach ($files as $file)
         {
             $title = $apConfig->stripextension ? PopulateFormatter::stripExtension( $file ) : $file;
             $title = $apConfig->nicetitle ? PopulateFormatter::getNiceTitle( $title ) : $title;
@@ -56,10 +56,10 @@ class PopulateControllerDocuments extends JController
             // filetimes
             $docdate_published = $apParams->docdate_published;
             $doclastupdateon = $apParams->doclastupdateon;
-            if ($apConfig->usefiletime) 
+            if ($apConfig->usefiletime)
             {
                 $st = @stat($apParams->handoutpath.'/'.escapeshellarg($file));
-                if ($st) 
+                if ($st)
                 {
                     $docdate_published = strftime('%Y-%m-%d %T', $st[10]);
                     $doclastupdateon = strftime('%Y-%m-%d %T', $st[9]);
@@ -102,5 +102,5 @@ class PopulateControllerDocuments extends JController
         $this->setRedirect('index.php?option=com_populate&view=documents', "$success documents added, $failed failed");
 
     }
-		
+
 }

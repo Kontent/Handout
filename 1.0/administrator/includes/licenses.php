@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 include_once dirname(__FILE__) . '/licenses.html.php';
@@ -52,7 +52,7 @@ function saveLicense($option)
 {
     HANDOUT_token::check() or die('Invalid Token');
 
-    $database = &JFactory::getDBO(); 
+    $database = &JFactory::getDBO();
     $task = JRequest::getCmd('task');
     $mainframe = &JFactory::getApplication();
 

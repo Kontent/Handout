@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_HTML_AGREEMENTS')) {
@@ -35,10 +35,10 @@ class HTML_HandoutAgreements {
 				if (form.name.value == "") {
 					alert ( "<?php echo _E_WARNTITLE;?>" );
 				} else {
-				  <?php 
+				  <?php
 				  	  jimport( 'joomla.html.editor' );
 					  $editor =& JFactory::getEditor();
-	                  echo $editor->save( 'license' );	
+	                  echo $editor->save( 'license' );
 				  ?>
 				  submitform( pressbutton );
 				}

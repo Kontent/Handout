@@ -16,7 +16,7 @@ require_once (JPATH_BASE . DS . 'components' . DS . 'com_handout' . DS . 'elemen
 class JElementDocument extends JElement
 {
     public $_name = 'Document';
-    
+
     function fetchElement ($name, $value, &$node, $control_name)
     {
         $db = &JFactory::getDBO();

@@ -65,7 +65,7 @@
 
 
 function SortableTable(oTable, oSortTypes) {
-	
+
 	this.element = oTable;
 	this.tHead = oTable.tHead;
 	this.tBody = oTable.tBodies[0];

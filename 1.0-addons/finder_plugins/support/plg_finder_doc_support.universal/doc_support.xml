@@ -10,15 +10,15 @@
 	<authorUrl>http://jxtended.com/</authorUrl>
 	<copyright>Copyright 2008 - 2010 JXtended, LLC. All rights reserved.</copyright>
 	<description>FINDER_DOC_SUPPORT_DESC</description>
-	
+
 	<files>
 		<file plugin="doc_support">doc_support.php</file>
 		<folder>antiword</folder>
 	</files>
-	
+
 	<languages>
 		<language tag="en-GB">en-GB.plg_finder_doc_support.ini</language>
 	</languages>
-	
+
 	<params />
 </install>

@@ -19,13 +19,13 @@ if (defined('_HANDOUT_HTML_CODE')) {
 
 class CodesHelper {
 
-	function processCode($codeVal, $usertype) {		
+	function processCode($codeVal, $usertype) {
 		$email = trim(JRequest::getVar('email', ''));
 
 		if (!$codeVal) {
-			HandoutHelper::_returnTo ( 'doc_code', JText::_('COM_HANDOUT_CODE_INVALID'), '', $params) ;		
+			HandoutHelper::_returnTo ( 'doc_code', JText::_('COM_HANDOUT_CODE_INVALID'), '', $params) ;
 		}
-		
+
 		//fetch code for given code and docid
 		$code = CodesHelper::getCode($codeVal);
 
@@ -49,11 +49,11 @@ class CodesHelper {
 					//do nothing
 					break;
 			}
-			
+
 			$handout = &HandoutFactory::getHandout ();
 			$handoutUser = &HandoutFactory::getHandoutUser ();
 			$database = &JFactory::getDBO ();
-			
+
 			//check if user may be anonymous or needs to be registered or an email id is required
 			switch ($usertype) {
 				case '0': //anonymous
@@ -68,22 +68,22 @@ class CodesHelper {
 					}
 					else {
 						//logged in - redirect to download page
-						HandoutHelper::_returnTo ( 'doc_download', '', $docid);						
+						HandoutHelper::_returnTo ( 'doc_download', '', $docid);
 					}
 					break;
-				case '2': // email required 				
-					//validity of email	
+				case '2': // email required
+					//validity of email
 					if (!$email || !preg_match("/^[a-z0-9]+([_\\.-][a-z0-9]+)*@([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$/i", $email)) {
-						HandoutHelper::_returnTo ( 'doc_code', JText::_('COM_HANDOUT_CODE_INVALID_EMAIL'), '', $params);						
+						HandoutHelper::_returnTo ( 'doc_code', JText::_('COM_HANDOUT_CODE_INVALID_EMAIL'), '', $params);
 					}
-						
+
 					//check to see if email exists in the user table
-					$query = "SELECT COUNT(*) FROM #__users WHERE email='".$email."'"; 	
+					$query = "SELECT COUNT(*) FROM #__users WHERE email='".$email."'";
 					$database->setQuery($query);
 					$numUsers = $database->loadResult();
 					if ($numUsers>0){
-						//email exists, so go to download page 
-						HandoutHelper::_returnTo ( 'doc_download', '', $docid);												
+						//email exists, so go to download page
+						HandoutHelper::_returnTo ( 'doc_download', '', $docid);
 					}
 					else {
 						//register new user with email and no password
@@ -91,7 +91,7 @@ class CodesHelper {
 						$database->setQuery($query);
 						$database->query();
 						$userid=$database->insertid();
-			
+
 						//Insert into jos_core_acl_aro
 						$query="INSERT INTO #__core_acl_aro (section_value,value,name) VALUES('users','{$userid}','{$email}')";
 						$database->setQuery($query);
@@ -101,16 +101,16 @@ class CodesHelper {
 						$query="INSERT INTO jos_core_acl_groups_aro_map (group_id,aro_id) VALUES ('18','${aroid}')";
 						$database->setQuery($query);
 						$database->query();
-						
+
 						$_SESSION['handout.anonuser'] = $userid;
 						//go to download page
-						HandoutHelper::_returnTo ( 'doc_download', '', $docid);																			
-					} 										
+						HandoutHelper::_returnTo ( 'doc_download', '', $docid);
+					}
 					break;
-			} 	
+			}
 		}
 	}
-		
+
 	function getCode($codeVal) {
 		$database = &JFactory::getDBO ();
 		$query = "SELECT * FROM #__handout_codes " .
@@ -118,14 +118,14 @@ class CodesHelper {
 				 " LIMIT 1";
 		$database->setQuery($query);
 		return $database->loadObject();
-	}	
-	
+	}
+
 	function getUsage($codeVal, $docid) {
 		$database = &JFactory::getDBO ();
 		$query = "SELECT COUNT(*) FROM #__handout_log " .
 			 	 " WHERE `log_code`='".$codeVal."'" .
-				 " AND `log_docid`='". (int) $docid."'";	
-		 			 
+				 " AND `log_docid`='". (int) $docid."'";
+
 		$database->setQuery($query);
 		return $database->loadResult();
 	}

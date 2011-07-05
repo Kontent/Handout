@@ -24,13 +24,13 @@ class HandoutViewDownload extends JView {
 		$gid = HandoutHelper::getGid ();
 		$doc = new HANDOUT_Document ( $gid );
 		$data = &$doc->getDataObject ();
-		
+
 		//check if we need to display an agreement
 		if ($handout->getCfg ( 'display_license' ) && ($data->doclicense_display && $data->doclicense_id)) {
 			//fetch the license form action
 			$action = HandoutHelper::_taskLink('license_result', $gid , array('bid' => $data->id));
 			$inline = 0;
-					
+
 			//get the agreement text
 			$license = new HandoutLicenses ( $db );
 			$license->load ( $data->doclicense_id );
@@ -40,7 +40,7 @@ class HandoutViewDownload extends JView {
 			$this->assignRef('action', $action);
 			$this->assignRef('license', $license->license);
 			$this->assignRef('conf', $handout->getAllCfg());
-			parent::display();											
+			parent::display();
 		} else {
 			DownloadsHelper::download ( $doc, false );
 		}

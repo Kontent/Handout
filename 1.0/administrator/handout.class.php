@@ -91,7 +91,7 @@ class HandoutMainFrame
 		if (file_exists( "$basePath/components/com_handout/includes_frontend")) {
 			$this->_path->includes_f = "/components/com_handout/includes_frontend";
 		}
-		
+
 		if (file_exists( "$basePath/components/com_handout/helpers")) {
 			$this->_path->helpers = "/components/com_handout/helpers";
 		}
@@ -107,12 +107,12 @@ class HandoutMainFrame
 	*
 	*/
 	function getPath( $folder, $file = '', $type = 0)
-	{						
+	{
 		$root_path = JPATH_ROOT;
 		$live_site = JURI::base();
         $folder = $this->cleanPath( $folder );
         $file   = $this->cleanPath( $file );
-        
+
 		$result = null;
 		if (isset( $this->_path->$folder ))
 		{
@@ -121,7 +121,7 @@ class HandoutMainFrame
 				case 'classes' :
 				{
 					if($file) {
-						$path = $this->_path->$folder.'/HANDOUT_'.$file.'.class.php';						
+						$path = $this->_path->$folder.'/HANDOUT_'.$file.'.class.php';
 						if(file_exists($root_path.$path))
 						 $result = $path;
 					} else
@@ -158,7 +158,7 @@ class HandoutMainFrame
 					} else
 					  	$result = $this->_path->$folder;
 				} break;
-				
+
 				case 'helpers':
 				{
 					if($file) {
@@ -272,8 +272,8 @@ class HandoutMainFrame
     {
     	return $this->_config->getAllCfg();
     }
-	
-	
+
+
 	/**
 	* Create a user object
 	*/
@@ -398,7 +398,7 @@ class HandoutDocument extends JTable {
 	var $mtree_id	= null;
     var $access             = null;
     var $attribs            = null;
-	
+
 	function __construct (&$db)
 	{
 		parent::__construct ('#__handout', 'id', $db);
@@ -466,7 +466,7 @@ class HandoutDocument extends JTable {
         {
             $this->docfilename = COM_HANDOUT_DOCUMENT_LINK.$document_url;
         }
-		
+
 		if( ! $this->catid ){
 			$this->_error .= "\\n" . JText::_('COM_HANDOUT_ENTRY_CAT');
 		}
@@ -504,7 +504,7 @@ class HandoutDocument extends JTable {
         $this->docversion  			= strip_tags($this->docversion);
         $this->doclanguage  		= 	strip_tags($this->doclanguage);
 		$this->doc_meta_keywords	= strip_tags($this->doc_meta_keywords);
-		$this->doc_meta_description	= strip_tags($this->doc_meta_description);	
+		$this->doc_meta_description	= strip_tags($this->doc_meta_description);
         $this->kunena_discuss_id  = (int) $this->kunena_discuss_id;
         $this->mtree_id  			= (int) $this->mtree_id;
         $this->access             = (int) $this->access;
@@ -530,7 +530,7 @@ class HandoutDocument extends JTable {
 				$this->docfilename = COM_HANDOUT_DOCUMENT_LINK . $document_url;
 			}
 		}
-		
+
 		if( $this->_error ){
 			$this->_error = JText::_('COM_HANDOUT_ENTRY_ERRORS')
 			. "\\n---------------------------------"
@@ -604,7 +604,7 @@ class HandoutDocument extends JTable {
 
 	function move( $cid, $catid )
 	{
-		$db = &JFactory::getDBO(); 
+		$db = &JFactory::getDBO();
 		$user = &JFactory::getUser();
 
 		if (!(is_array($cid)) || (count($cid) < 1)) {
@@ -686,7 +686,7 @@ class HandoutDocument extends JTable {
 	function save()
 	{
 		$post = HANDOUT_Utils::stripslashes($_POST);
-			
+
 		if (!$this->bind($post)) {
 			echo "<script> alert('".$this->_error ."'); window.history.go(-1); </script>\n";
 			exit();
@@ -825,7 +825,7 @@ class HandoutGroups extends JTable {
 	{
 		parent::__construct('#__handout_groups', 'groups_id', $db);
 	}
-	
+
 	function getId(){
 		return ( -1 * $this->groups_id + COM_HANDOUT_PERMIT_GROUP ) ;
 	}
@@ -863,7 +863,7 @@ class HandoutCodes extends JTable {
 	{
 		parent::__construct('#__handout_codes', 'id', $db);
 	}
-	
+
 	/*
 	* @desc Publish a code
 	* @param array an array with ids
@@ -884,7 +884,7 @@ class HandoutCodes extends JTable {
 		$db->setQuery(
 			"UPDATE #__handout_codes SET published=" . (int) $publish
 			." \n WHERE id IN ($cids) ");
-		
+
 		if (!$db->query()) {
 			echo "<script> alert('".$db->getErrorMsg() ."'); window.history.go(-1); </script>\n";
 			return false;
@@ -892,7 +892,7 @@ class HandoutCodes extends JTable {
 
 		return true;
 	}
-	
+
 
 	/*
 	* @desc Deletes codes
@@ -918,7 +918,7 @@ class HandoutCodes extends JTable {
 
 		return true;
 	}
-	
+
 	public static function getCodesUsage() {
 		$usage1 = new stdClass();
 		$usage1->value = 0;
@@ -926,7 +926,7 @@ class HandoutCodes extends JTable {
 		$usage2 = new stdClass();
 		$usage2->value = 1;
 		$usage2->text = JText::_('COM_HANDOUT_CODES_UNLIMITED');
-		return array('0' => $usage1, '1' => $usage2);		
+		return array('0' => $usage1, '1' => $usage2);
 	}
 
 	public static function getCodesUser() {
@@ -939,7 +939,7 @@ class HandoutCodes extends JTable {
 		$user3 = new stdClass();
 		$user3->value = 2;
 		$user3->text = JText::_('COM_HANDOUT_CODES_EMAIL_REQUIRED');
-		return array('0' => $user1, '1' => $user2, '2' => $user3);		
+		return array('0' => $user1, '1' => $user2, '2' => $user3);
 	}
 
 }

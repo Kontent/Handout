@@ -1,5 +1,5 @@
 <?php // no direct access
-defined('_JEXEC') or die('Restricted access'); 
+defined('_JEXEC') or die('Restricted access');
 ?>
 
 <table class="adminlist">
@@ -12,9 +12,9 @@ defined('_JEXEC') or die('Restricted access');
     	</tr>
 	</thead>
 	<tbody>
-    	<?php if (!$_HANDOUT->getCfg('log') || !count($docs)): ?> 
+    	<?php if (!$_HANDOUT->getCfg('log') || !count($docs)): ?>
     		<tr><td style="text-align:center !important;" colspan="4"><?php echo JText::_('MOD_HANDOUT_LOGS_LOGGING_IS_DISABLED_IN_THE_CONFIGURATION'); ?></td></tr>
-    	<?php else: ?>	
+    	<?php else: ?>
         <?php foreach ($docs as $doc): ?>
         	<tr>
         	    <td>

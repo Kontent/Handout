@@ -1,5 +1,5 @@
 <?php // no direct access
-defined('_JEXEC') or die('Restricted access'); 
+defined('_JEXEC') or die('Restricted access');
 ?>
 
 <table class="adminlist">
@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 	<tbody>
         <?php if (!count($docs)): ?>
         	<tr><td colspan="2" style="text-align:center !important;"><?php echo JText::_('MOD_HANDOUT_TOP_THERE_ARE_NO_DOCUMENTS_DOWNLOADED'); ?></td></tr>
-        <?php else: ?>	
+        <?php else: ?>
         <?php foreach ($docs as $doc): ?>
         	<tr>
         	    <td><a href="index.php?option=com_handout&amp;section=documents&amp;task=edit&amp;cid[]=<?php echo $doc->id;?>"><?php echo $doc->docname;?></a>
