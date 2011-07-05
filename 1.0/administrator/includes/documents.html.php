@@ -611,7 +611,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
     {
    		?>
     	<table class="adminform">
-    	
+		<!--
     	<tr>
     		<td width="250" ><?php echo JText::_('COM_HANDOUT_KUNENA_DISCUSS_LABEL');?></td>
     		<td>
@@ -621,7 +621,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
         	?>
     		</td>
     	</tr>
-
+		-->		
     	<tr>
     		<td width="250" ><?php echo JText::_('COM_HANDOUT_MTREE_LABEL');?></td>
     		<td>

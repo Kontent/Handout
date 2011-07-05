@@ -246,6 +246,7 @@ class HANDOUT_Utils
         return $link;
     }
 
+
     //  @desc returning diff in days.
     //  @args string date in format dd-mm-yyyy
     //  @return int 0 is today. positive is future
@@ -520,13 +521,21 @@ class HANDOUT_Utils
         $params     = new JParameter( '' ); // fake params
         $row        = new stdClass();
 	
-		//Kunena Discuss settings
-		$row->id = '999999'; // high article id
-        $row->text  = '{kunena_discuss:'.$dataObj->kunena_discuss_id.'}';
-		$mainframe->scope = 'com_content'; //most content plugins will work only for com_content
-
-		//Load specific content plugins
-		JPluginHelper::importPlugin('content', 'kunenadiscuss');
+		if (JRequest::getVar('task')=='doc_details') {
+			//Kunena Discuss settings
+			$row->id = '100000' + $dataObj->id; // high article id
+			$row->catid = $dataObj->catid;	
+			$row->text ='';
+			$row->title = $dataObj->docname . ' (Handout ID: ' . $dataObj->id . ")";
+			if ($dataObj->kunena_discuss_id)
+			{
+				$row->text  = '{kunena_discuss:'.$dataObj->kunena_discuss_id.'}';
+			}
+			$mainframe->scope = 'com_content'; //most content plugins will work only for com_content
+	
+			//Load specific content plugins
+			JPluginHelper::importPlugin('content', 'kunenadiscuss');
+		}	
 
         $mainframe->triggerEvent( 'onPrepareContent', array( &$row, &$params, 0 ), true );
         $results = $mainframe->triggerEvent( 'onAfterDisplayContent', array( &$row, &$params, 0 ), true );		

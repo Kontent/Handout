@@ -11,15 +11,7 @@
  **/
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
-/*if (!($acl -> acl_check('administration', 'edit', 'users', $user -> usertype, 'components', 'all') | $acl -> acl_check('administration', 'edit', 'users', $user -> usertype, 'components', 'com_handout'))){
-
-    $mainframe->redirect('index.php', JText::_('COM_HANDOUT_NOT_AUTHORIZED'));
-
-}*/
-
-require_once $mainframe->getPath ( 'admin_html' );
 require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'handout.class.php');
-
 require_once (JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'factory.php');
 
 global $_HANDOUT, $_HANDOUT_USER, $cid, $gid, $id, $pend, $updatedoc, $sort, $view_type, $css, $task, $option, $database, $user;

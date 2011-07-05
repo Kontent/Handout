@@ -57,8 +57,11 @@ class HTML_HandoutCodes {
 				  submitform( pressbutton );
 				}
 			}
+			document.codeIndex=0;
 			function generatecode() {
-				document.getElementById("codename").value ='<?php echo strtoupper(md5(time()))?>';
+				<?php  $seed=time(); $codes = array(); for ($i=0; $i<20; $i++) {$codes[]=md5($seed+$i); } ?>
+				var availablecodes = ['<?php echo implode("','", $codes);?>'];
+				document.getElementById("codename").value = availablecodes[document.codeIndex++ % 20];
 			}
         </script>
 		<form action="index.php" method="post" name="adminForm" id="adminForm">

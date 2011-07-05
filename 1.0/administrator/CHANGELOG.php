@@ -22,7 +22,14 @@ Legend:
 - -> Removed
 ! -> Note
 
-------------
+-------------
+
+
+4-Jul-2011 Arvind
+^ Renamed admin.handout.php to handout.php
+- Removed admin.handout.html.php
+^ Modified Code generator to keep generating new codes for each click of Autogenerate
+^ Modified Kunena Discuss integration to work without kunena_discuss tags
 
 30-Jun-2011 Arvind
 ^ Moved code from helpers/*.html files to templates (for edit and upload sections)
