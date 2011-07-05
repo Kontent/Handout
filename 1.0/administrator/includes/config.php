@@ -48,9 +48,9 @@ function showConfig($option)
     foreach(array('isDown' , 'display_license', 'log' , 'emailgroups',
             'user_all', 'fname_lc' , 'overwrite' , 'security_anti_leech',
             'trimwhitespace', 'process_bots', 'individual_perm', 'hide_remote',
-    		'allow_bulk_download', 'notify_onupload', 'notify_onedit', 'notify_ondownload', 
+    		'allow_bulk_download', 'notify_onupload', 'notify_onedit', 'notify_ondownload',
 			'notify_onedit_admin', 'thumbs_grayscale'
-    
+
             )
         AS $field) {
         $lists[ $field ] = JHTML::_('select.booleanlist',$field, $std_opt,
@@ -58,9 +58,9 @@ function showConfig($option)
     }
 
     // Create the 'yes-no' radio options with default 1
-    foreach(array('buttons_download', 'buttons_view', 'buttons_details', 'buttons_edit', 
+    foreach(array('buttons_download', 'buttons_view', 'buttons_details', 'buttons_edit',
 					'buttons_move', 'buttons_delete', 'buttons_update', 'buttons_reset',
-					'buttons_checkout', 'buttons_publish'    
+					'buttons_checkout', 'buttons_publish'
             )
         AS $field) {
         $lists[ $field ] = JHTML::_('select.booleanlist',$field, $std_opt,
@@ -69,49 +69,49 @@ function showConfig($option)
 
 
     //Create the show-hide radio options
-    foreach(array('cat_empty' , 'cat_empty_notice' ,'menu_home', 'menu_search', 'menu_upload' ,'show_share', 
+    foreach(array('cat_empty' , 'cat_empty_notice' ,'menu_home', 'menu_search', 'menu_upload' ,'show_share',
 					'show_share_facebook', 'show_share_twitter', 'show_share_googleplusone', 'show_share_email', 'show_share_compact',
-    				'item_description' , 'item_homepage' , 'item_hits', 
+    				'item_description' , 'item_homepage' , 'item_hits',
     				'item_filesize', 'item_filetype', 'item_date', 'item_tooltip', 'item_title_link',
-    				'details_name', 'details_image', 'details_description', 
-            'details_filename' , 'details_filesize' , 'details_filetype' , 'details_fileversion', 
-            'details_filelanguage', 'details_submitter', 'details_created' , 'details_readers' , 
-            'details_maintainers' , 'details_downloads', 'details_updated' , 'details_homepage' , 
+    				'details_name', 'details_image', 'details_description',
+            'details_filename' , 'details_filesize' , 'details_filetype' , 'details_fileversion',
+            'details_filelanguage', 'details_submitter', 'details_created' , 'details_readers' ,
+            'details_maintainers' , 'details_downloads', 'details_updated' , 'details_homepage' ,
             'details_md5_checksum' , 'details_crc_checksum'
             )
         AS $field) {
         $lists[ $field ] = JHTML::_('select.booleanlist',$field, $std_opt,
             $_HANDOUT->getCfg($field , 0), 'Show', 'Hide');
     }
-    
+
 	$thumbs_output_format[] = JHTML::_( 'select.option', 'png', 'PNG' );
 	$thumbs_output_format[] = JHTML::_( 'select.option', 'gif', 'GIF' );
 	$thumbs_output_format[] = JHTML::_( 'select.option', 'jpeg', 'JPEG' );
 	$lists['thumbs_output_format'] = JHTML::_( 'select.radiolist', $thumbs_output_format, 'thumbs_output_format',  '', 'value', 'text', $_HANDOUT->getCfg('thumbs_output_format' , 'png'));
-	
+
     $cat_image[] = JHTML::_('select.option','0' , JText::_('COM_HANDOUT_NOIMAGE_LABEL'));
     $cat_image[] = JHTML::_('select.option','1' , JText::_('COM_HANDOUT_FOLDERICON_LABEL'));
     $cat_image[] = JHTML::_('select.option','2' , JText::_('COM_HANDOUT_THUMBNAIL_LABEL'));
     $lists['cat_image'] = JHTML::_('select.genericlist',$cat_image, 'cat_image',
         '' , 'value', 'text', $_HANDOUT->getCfg('cat_image', '0'));
-    
+
     unset($cat_image);
-    
+
     $doc_image[] = JHTML::_('select.option','0' , JText::_('COM_HANDOUT_NOIMAGE_LABEL'));
     $doc_image[] = JHTML::_('select.option','1' , JText::_('COM_HANDOUT_FILEICON_LABEL'));
     $doc_image[] = JHTML::_('select.option','2' , JText::_('COM_HANDOUT_THUMBNAIL_LABEL'));
     $lists['doc_image'] = JHTML::_('select.genericlist',$doc_image, 'doc_image',
         '' , 'value', 'text', $_HANDOUT->getCfg('doc_image', '0'));
-    
+
     unset($doc_image);
-    
+
     $guest[] = JHTML::_('select.option',COM_HANDOUT_GRANT_NO , JText::_('COM_HANDOUT_GUEST_NO_LABEL'));
     $guest[] = JHTML::_('select.option',COM_HANDOUT_GRANT_X , JText::_('COM_HANDOUT_GUEST_X_LABEL'));
     $guest[] = JHTML::_('select.option',COM_HANDOUT_GRANT_RX , JText::_('COM_HANDOUT_GUEST_RX_LABEL'));
     $lists['guest'] = JHTML::_('select.genericlist',$guest, 'registered',
         '' , 'value', 'text',
         $_HANDOUT->getCfg('registered', COM_HANDOUT_GRANT_RX));
-    
+
     unset($guest);
 
   	$upload = new HandoutHTML_UserSelect('user_upload', 1 );
@@ -122,7 +122,7 @@ function showConfig($option)
     $upload->addUsers();
     $upload->setSelectedValues(array($_HANDOUT->getCfg('user_upload', 0)));
     $lists['user_upload'] = $upload->toHtml();
-    
+
     unset($upload);
 
     $publish = new HandoutHTML_UserSelect('user_publish', 1 );
@@ -133,7 +133,7 @@ function showConfig($option)
     $publish->addUsers();
     $publish->setSelectedValues(array($_HANDOUT->getCfg('user_publish', 0)));
     $lists['user_publish'] = $publish->toHtml();
-    
+
     unset($publish);
 
     $viewer = new HandoutHTML_UserSelect('default_viewer', 1 );
@@ -144,7 +144,7 @@ function showConfig($option)
     $viewer->addUsers();
     $viewer->setSelectedValues(array($_HANDOUT->getCfg('default_viewer', 0)));
     $lists['default_viewer'] = $viewer->toHtml();
-    
+
     unset($viewer);
 
     $maintainer = new HandoutHTML_UserSelect('default_editor', 1 );
@@ -155,7 +155,7 @@ function showConfig($option)
     $maintainer->addUsers();
     $maintainer->setSelectedValues(array($_HANDOUT->getCfg('default_editor', 0)));
     $lists['default_maintainer'] = $maintainer->toHtml();
-    
+
     unset($maintainer);
 
     $author_can = array();
@@ -165,7 +165,7 @@ function showConfig($option)
     $lists['creator_can'] = JHTML::_('select.genericlist',$author_can, 'author_can',
         '', 'value', 'text',
         $_HANDOUT->getCfg('author_can', COM_HANDOUT_AUTHOR_CAN_EDIT));
-        
+
     unset($author_can);
 
     // Blank handling for filenames
@@ -177,18 +177,18 @@ function showConfig($option)
     $lists['fname_blank'] = JHTML::_('select.genericlist',$blanks, 'fname_blank',
         '', 'value', 'text',
         $_HANDOUT->getCfg('fname_blank', 0));
-        
+
     unset($blanks);
 
     // assemble icon sizes
     $size[] = JHTML::_('select.option','32', '32x32 pixel');
-    $size[] = JHTML::_('select.option','64', '64x64 pixel');    
+    $size[] = JHTML::_('select.option','64', '64x64 pixel');
     foreach(array('doc_icon_size' , 'toolbar_icon_size')
         AS $field) {
         $lists[ $field ] = JHTML::_('select.genericlist',$size, $field,
         $std_inp, 'value', 'text',
         $_HANDOUT->getCfg($field, 0));
-    }        
+    }
     unset($size);
 
     // assemble displaying order
@@ -203,7 +203,7 @@ function showConfig($option)
     $lists['default_order2'] = JHTML::_('select.genericlist',$order2, 'default_order2',
         'style="width: 125px"', 'value', 'text',
         $_HANDOUT->getCfg('default_order2', 'DESC'));
-        
+
     unset($order2);
 
     // Assemble the methods we allow
@@ -220,7 +220,7 @@ function showConfig($option)
 
     $lists['methods'] = JHTML::_('select.genericlist',$methods, 'methods[]',
         'size="3" multiple', 'value', 'text', $class_methods);
-    
+
     unset($methods);
     unset($class_methods);
 

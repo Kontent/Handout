@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_HTML_CODES')) {
@@ -30,29 +30,29 @@ class HTML_HandoutCodes {
 					submitform( pressbutton );
 					return;
 				  }
-				var errors = '';  
+				var errors = '';
 				if (form.name.value == "") {
 					errors += "<?php echo JText::_('COM_HANDOUT_CODES_EMPTY');?>\n";
-				} 
+				}
 				if (form.docid.value == "0" || form.docid.value == "") {
 					errors += "<?php echo JText::_('COM_HANDOUT_CODES_DOC_EMPTY');?>\n";
-				} 				
+				}
 				if (!form.getElementById('usage0').checked && !form.getElementById('usage1').checked) {
 					errors += "<?php echo JText::_('COM_HANDOUT_CODES_USAGE_EMPTY');?>\n";
 				}
 				<?php if ($row->id==0): ?>
-					//check duplicate codes if adding new code 
+					//check duplicate codes if adding new code
 					var usedcodes = ['<?php if (sizeof($lists['usedcodes'])) echo implode("','", $lists['usedcodes']); ?>'];
 					for (var i=0; i<usedcodes.length; i++) {
 						if (usedcodes[i] == form.name.value) {
 							errors += "<?php echo JText::_('COM_HANDOUT_CODES_DUPLICATE');?>\n";
 							break;
 						}
-					} 	
+					}
 				<?php endif; ?>
 				if (errors) {
 					alert(errors);
-				}			
+				}
 				else {
 				  submitform( pressbutton );
 				}
@@ -90,7 +90,7 @@ class HTML_HandoutCodes {
 			</tr>
 			<tr>
 				<td> </td>
-                <td><?php echo JText::_('COM_HANDOUT_CODES_USER_DESC'); ?></td>				
+                <td><?php echo JText::_('COM_HANDOUT_CODES_USER_DESC'); ?></td>
              </tr>
 			<input type="hidden" name="id" value="<?php echo $row->id;?>" />
 			<input type="hidden" name="option" value="com_handout" />
@@ -108,7 +108,7 @@ class HTML_HandoutCodes {
 		<form action="index.php" method="post" name="adminForm">
         <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_CODES'), 'codes' )?>
         <div class="hfilter">
-            <?php echo JText::_('COM_HANDOUT_FILTER_CODE');?>: 
+            <?php echo JText::_('COM_HANDOUT_FILTER_CODE');?>:
             <input type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
         </div>
 
@@ -139,7 +139,7 @@ class HTML_HandoutCodes {
 				$alt = $row->published ? JText::_('COM_HANDOUT_PUBLISHED') : JText::_('COM_HANDOUT_UNPUBLISH') ;
 
                 ?>
-						<?php echo JHTML::_('grid.id',$i, $row->id);?>				
+						<?php echo JHTML::_('grid.id',$i, $row->id);?>
     					</td>
     					<td align="left">
     						<a href="index.php?option=com_handout&section=codes&task=edit&cid[0]=<?php echo $row->id?>">

@@ -9,8 +9,8 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
- 
+
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 include_once dirname(__FILE__) . '/documents.html.php';
@@ -78,7 +78,7 @@ function showDocuments($pend, $sort, $view_type)
     $section = JRequest::getCmd('section');
 	$list_limit = $mainframe->getCfg('list_limit');
     global $menutype;
-	
+
     $catid = $mainframe->getUserStateFromRequest("catidarc{option}{$section}", 'catid', 0);
     $limit = $mainframe->getUserStateFromRequest("viewlistlimit", 'limit', $list_limit);
     $limitstart = $mainframe->getUserStateFromRequest("view{$option}{$section}limitstart", 'limitstart', 0);
@@ -172,12 +172,12 @@ function showDocuments($pend, $sort, $view_type)
 */
 function editDocument($uid)
 {
-    
+
 
 	require_once (JPATH_ROOT ."/administrator/components/com_handout/classes/HANDOUT_utils.class.php");
     require_once (JPATH_ROOT ."/administrator/components/com_handout/classes/HANDOUT_params.class.php");
 
-    $database = &JFactory::getDBO(); 
+    $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
     global $_HANDOUT, $_HANDOUT_USER;
 
@@ -185,7 +185,7 @@ function editDocument($uid)
     $_REQUEST['hidemainmenu']=1;
 
     $request = HANDOUT_Utils::stripslashes($_REQUEST);
-    $uploaded_file = isset($request['uploaded_file']) ? $request['uploaded_file'] : ''; 
+    $uploaded_file = isset($request['uploaded_file']) ? $request['uploaded_file'] : '';
 	//$uploaded_file = JRequest::getString("uploaded_file", "",HANDOUT_Utils::stripslashes($_REQUEST));
 
     $doc = new HandoutDocument($database);
@@ -201,7 +201,7 @@ function editDocument($uid)
     } else {
         $doc->init_record();
     }
-	
+
     // Begin building interface information...
     $lists = array();
 
@@ -250,8 +250,8 @@ function editDocument($uid)
 	foreach( $xml->document->language as $lang ) {
 	   $newlang['name'] = $lang->getElementByPath('name')->data();
 	   $newlang['code'] = $lang->getElementByPath('code')->data();
-		$lists['languages'][] = $newlang;	   
-	 }	
+		$lists['languages'][] = $newlang;
+	 }
 
     if ($uploaded_file == '')
     {
@@ -272,7 +272,7 @@ function editDocument($uid)
                 if ( @is_dir($handout_path . '/' . $file) ) continue; //ignore directories
                 if ( $fname_reject && preg_match("/^(".$fname_reject.")$/i", $file) ) continue; //ignore certain filenames
                 if ( preg_match("/^(".COM_HANDOUT_FNAME_REJECT.")$/i", $file) ) continue; //ignore certain filenames
-				
+
                 $docs[] = JHTML::_('select.option',$file);
 				/*
                	//$query = "SELECT * FROM #__handout WHERE docfilename='" . $database->getEscaped($file) . "'";
@@ -397,7 +397,7 @@ function publishDocument($cid, $publish = 1)
 function saveDocument()
 {
     HANDOUT_token::check() or die('Invalid Token');
-	
+
     $database = &JFactory::getDBO();
     global $task, $_HANDOUT_USER;
 
@@ -500,9 +500,9 @@ function moveDocumentForm($cid)
 function moveDocumentProcess($cid)
 {
     HANDOUT_token::check() or die('Invalid Token');
-    $database = &JFactory::getDBO(); 
+    $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
-	
+
     // get the id of the category to move the document to
     $categoryMove = JRequest::getVar( 'catid', '');
     // preform move
@@ -543,9 +543,9 @@ function copyDocumentProcess($cid)
 {
     HANDOUT_token::check() or die('Invalid Token');
 
-    $database = &JFactory::getDBO(); 
+    $database = &JFactory::getDBO();
 	$user = &JFactory::getUser();
-    
+
 	// get the id of the category to copy the document to
     $categoryCopy = JRequest::getVar( 'catid', '');
     // preform move

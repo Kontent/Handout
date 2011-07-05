@@ -48,10 +48,10 @@ class HANDOUT_Utils
 
         echo $pane->endPane();
     }
-    
+
 	function categoryArray()
     {
-        $database = &JFactory::getDBO(); 
+        $database = &JFactory::getDBO();
         $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
 
         // get a list of the menu items
@@ -94,7 +94,7 @@ class HANDOUT_Utils
     {
 
         $_HANDOUT = &HandoutFactory::getHandout();
-        
+
         $icon_path = $_HANDOUT->_path->themes .'/'. $_HANDOUT->getCfg('icon_theme') . "/images/";
 
         // set icon size
@@ -106,10 +106,10 @@ class HANDOUT_Utils
             $icon_path_size = "icon-" . substr($size, 0, 2) . '-';
         }
 
-		//Testing to see which folder the icon is in b/c of the change in folder structure. 
-		//TO DO: This needs to be re-worked  
+		//Testing to see which folder the icon is in b/c of the change in folder structure.
+		//TO DO: This needs to be re-worked
 		if (file_exists(JPATH_ROOT . $icon_path . 'icons/' . $icon_path_size . $icon)) {
-			$icon_path .= 'icons/' . $icon_path_size;		
+			$icon_path .= 'icons/' . $icon_path_size;
 		}
 		else {
 			$icon_path .= $icon_path_size;
@@ -135,7 +135,7 @@ class HANDOUT_Utils
     }
 
     function pathThumb($thumbnail, $path="images/stories/handout/")
-    {        
+    {
         $thumb_path = JURI::root() . $path . $thumbnail;
         return $thumb_path;
     }
@@ -200,7 +200,7 @@ class HANDOUT_Utils
     {
         $link = HANDOUT_Utils::_rawLink($task, $gid, $params);
         $link = htmlspecialchars($link);
-		
+
 		$link = $sef ?  JRoute::_($link) : $link;
         return $link;
     }
@@ -214,7 +214,7 @@ class HANDOUT_Utils
 
     function _rawLink($task, $gid = '', $params = null)
     {
-        $limitstart = JRequest::getInt('limitstart');  
+        $limitstart = JRequest::getInt('limitstart');
         $limit = JRequest::getInt('limit');
 		$order = JRequest::getVar('order');
 		$dir = JRequest::getVar('dir');
@@ -245,7 +245,6 @@ class HANDOUT_Utils
 
         return $link;
     }
-
 
     //  @desc returning diff in days.
     //  @args string date in format dd-mm-yyyy
@@ -403,7 +402,7 @@ class HANDOUT_Utils
 
 	function checkDomainAuthorization()
 	{
-		
+
 		$_HANDOUT = &HandoutFactory::getHandout();
 
 		if(!$_HANDOUT->getCfg('security_anti_leech')) {
@@ -503,7 +502,7 @@ class HANDOUT_Utils
         if(!$_HANDOUT->getCfg('process_bots', 0)) {
             return;
         }
-			
+
 		if ($doc instanceof HANDOUT_Document)
 		{
 			// get data from object
@@ -511,11 +510,11 @@ class HANDOUT_Utils
 			$comments = HANDOUT_Utils::processKunenaDiscussPlugin($dataObj);
 			$dataObj->kunena_discuss_contents = $comments ;
 			$dataObj->kunena_discuss_count = substr_count($comments, 'class="kdiscuss-item');
-		}	
+		}
     }
-	
-    function processKunenaDiscussPlugin ($dataObj) {
-        $mainframe = &JFactory::getApplication('site');        
+        
+	function processKunenaDiscussPlugin ($dataObj) {
+        $mainframe = &JFactory::getApplication('site');
 
         // initialize objects
         $params     = new JParameter( '' ); // fake params
@@ -536,10 +535,11 @@ class HANDOUT_Utils
 			//Load specific content plugins
 			JPluginHelper::importPlugin('content', 'kunenadiscuss');
 		}	
-
-        $mainframe->triggerEvent( 'onPrepareContent', array( &$row, &$params, 0 ), true );
-        $results = $mainframe->triggerEvent( 'onAfterDisplayContent', array( &$row, &$params, 0 ), true );		
-		return trim(implode("\n", $results));
+		
+		$mainframe->triggerEvent( 'onPrepareContent', array( &$row, &$params, 0 ), true );
+        $results = $mainframe->triggerEvent( 'onAfterDisplayContent', array( &$row, &$params, 0 ), true );
+		
+        return trim(implode("\n", $results));
     }
 
     /**
@@ -1144,7 +1144,7 @@ class HANDOUT_Docs
          . "\n  AND HANDOUT.published=1 "
          . "\n  AND ($where) "
          . "\nORDER BY $order";
-         
+
 
         // TODO: add proper pagination instead of hardcoded limit?
         $database->setQuery($query, 0, 20);
@@ -1175,7 +1175,7 @@ class HANDOUT_Docs
 
     function _handoutCheckGroupsUserIn()
     {
-        $user = &JFactory::getUser(); 
+        $user = &JFactory::getUser();
         $database = &JFactory::getDBO();
 
         $this_user = intval($user->id);

@@ -93,7 +93,7 @@ class HTML_HandoutDoclink {
     function createHeader()
     {
         ?>
-        <!-- 
+        <!--
         <style>body {margin:0}</style>
         <table class="sort-table" id="tableHead" cellspacing="0" width="100%">
         <col style="width: 20px" />
@@ -108,14 +108,14 @@ class HTML_HandoutDoclink {
             <td onclick="st.sort(4);" style="text-align:left"><?php echo JText::_('Modified'); ?></td>
         </tr>
         </thead>
-        <tbody style="display: none;"> 
+        <tbody style="display: none;">
         <tr>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
-                
+
         </tbody>
         </table>
         <div id="tableContainer" class="tableContainer">
@@ -179,9 +179,9 @@ class HTML_HandoutDoclink {
             $cid    = $details->id;
             $pid    = $details->parent_id;
 
-            $icon   = JURI::root(true) . '/media/com_handout/images/icon-16-folder.png'; //$cat->getPath('icon', 1, '16'); 
+            $icon   = JURI::root(true) . '/media/com_handout/images/icon-16-folder.png'; //$cat->getPath('icon', 1, '16');
             $url    = HANDOUT_Utils::_rawLink('cat_view', $details->id);
-            
+
             ?>
             <tr>
                 <td><img src="<?php echo $icon ?>" alt="<?php echo $details->name ?>" /></td>

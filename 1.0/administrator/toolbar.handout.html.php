@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_TOOLBAR')) {
@@ -60,7 +60,7 @@ class TOOLBAR_handout {
     {
         HandoutToolBar::startPanelle();
         HandoutToolBar::logo();
-       
+
         HandoutToolBar::addNew();
         HandoutToolBar::editList();
         HandoutToolBar::copy('copy_form');
@@ -129,9 +129,9 @@ class TOOLBAR_handout {
     {
         HandoutToolBar::startPanelle();
         HandoutToolBar::logo();
-       
+
         HandoutToolBar::addNew('new', JText::_('COM_HANDOUT_ADD'));
-        HandoutToolBar::editList();        
+        HandoutToolBar::editList();
         HandoutToolBar::deleteList('delete', JText::_('COM_HANDOUT_TOOLBAR_DELETE'));
         HandoutToolBar::divider();
         HandoutToolBar::publishList();
@@ -221,7 +221,7 @@ class TOOLBAR_handout {
         HandoutToolBar::spacer();
         HandoutToolBar::endPanelle();
     }
-	
+
 	function EDIT_CODES_MENU()
     {
         HandoutToolBar::startPanelle();

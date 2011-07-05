@@ -9,8 +9,8 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
- 
+
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_HTML_DOCUMENTS')) {
@@ -26,9 +26,9 @@ class HTML_HandoutDocuments
         $database = &JFactory::getDBO();
         $user = &JFactory::getUser();
         $_HANDOUT = &HandoutFactory::getHandout();
-        
+
         JHTML::_('behavior.tooltip');
-        
+
         ?>
 
         <form action="index.php" method="post" name="adminForm" id="adminForm">
@@ -41,7 +41,7 @@ class HTML_HandoutDocuments
             <?php echo $lists['catid'];?>
 
             <span class="small">
-                <?php 
+                <?php
                 if ($number_unpublished > 0) {
                     echo " [$number_unpublished " . JText::_('COM_HANDOUT_DOCS_NOT_PUBLISHED') . "] ";
                 }
@@ -167,7 +167,7 @@ class HTML_HandoutDocuments
 			?>
 			</tbody>
 		  </table>
-	
+
 		  <input type="hidden" name="option" value="com_handout" />
 		  <input type="hidden" name="section" value="documents" />
 		  <input type="hidden" name="task" value="" />
@@ -177,14 +177,14 @@ class HTML_HandoutDocuments
 
    	  <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
     }
-    
+
 function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpublished, $view_type = 1)
     {
         $database = &JFactory::getDBO();
         $user = &JFactory::getUser();
         $_HANDOUT = &HandoutFactory::getHandout();
-        
-        
+
+
         $link = 'index.php?option=com_handout&section=documents&task=element&tmpl=component&object=' . JRequest::getString('object').'&sort=';
         ?>
 
@@ -244,12 +244,12 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
             ?>
             	</td>
             	<td width="15%"><?php echo $row->treename ?></td>
-               	
-               	
+
+
                	<td width="5%" align="center">
                		<img src="images/<?php echo $row->published ? 'tick' : 'publish_x'; ?>.png" border=0 alt="<?php echo $row->published ? 'unpublish' : 'publish'; ?>" />
                	</td>
-            
+
             </tr><?php
             $k = 1 - $k;
         }
@@ -273,7 +273,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 
     function editDocument(&$row, &$lists, $last, $created, &$params)
     {
-        
+
         $tabs = new JPaneTabs(1);
         JFilterOutput::objectHTMLSafe($row);
 
@@ -323,46 +323,46 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 				<tr>
 					<th colspan="3"><?php echo JText::_('COM_HANDOUT_TITLE_DOCINFORMATION') ?></th>
 				</tr>
-		
+
 				<?php HTML_HandoutDocuments::_showTabBasic($row, $lists, $last, $created);?>
-		
+
 				<tr>
 					<td colspan="2">
 						<?php
 						echo $tabs->startPane("content-pane");
 						echo $tabs->startPanel(JText::_('COM_HANDOUT_DOC'), "document-page");
-				
+
 						HTML_HandoutDocuments::_showTabDocument($row, $lists, $last, $created);
-				
+
 						echo $tabs->endPanel();
 						echo $tabs->startPanel(JText::_('COM_HANDOUT_TAB_PERMISSIONS'), "ownership-page");
-				
+
 						HTML_HandoutDocuments::_showTabPermissions($row, $lists, $last, $created);
-				
+
 						echo $tabs->endPanel();
 						echo $tabs->startPanel(JText::_('COM_HANDOUT_TAB_AGREEMENT'), "license-page");
-				
+
 						HTML_HandoutDocuments::_showTabLicense($row, $lists, $last, $created);
-				
+
 						if(isset($params)) :
 						echo $tabs->endPanel();
 						echo $tabs->startPanel(JText::_('COM_HANDOUT_TAB_DETAILS'), "details-page");
-				
+
 						HTML_HandoutDocuments::_showTabDetails($row, $lists, $last, $created, $params);
 						endif;
-				
+
 						echo $tabs->endPanel();
 						echo $tabs->startPanel(JText::_('COM_HANDOUT_TAB_META'), "meta-page");
-				
+
 						HTML_HandoutDocuments::_showTabMetadata($row, $lists, $last, $created);
 
 						echo $tabs->endPanel();
 						echo $tabs->startPanel(JText::_('COM_HANDOUT_TAB_INTEGRATION'), "integration-page");
-				
+
 						HTML_HandoutDocuments::_showTabIntegration($row, $lists, $last, $created);
 						echo $tabs->endPanel();
 						echo $tabs->endPane();
-						
+
 						?>
 					</td>
 				</tr>
@@ -464,7 +464,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 				<td>
 					<select size="1" class="inputbox" id="doclanguage" name="doclanguage">
 						<option selected="selected" value="">Select Language</option>
-						<?php 						
+						<?php
 							foreach ($lists['languages'] as $lang) {
 								$sel = $row->doclanguage == $lang['code'] ? ' selected="selected"' : '';
 								echo '<option value="'.$lang['code'].'" '.$sel.'>'.$lang['name'].'</option>';
@@ -475,7 +475,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 			</tr>
 			<tr>
 				<td valign="top"><?php echo JText::_('COM_HANDOUT_DOCURL_LABEL'); ?>
-				
+
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DOCURL_LABEL');?>::<?php echo JText::_('COM_HANDOUT_DOCURL_DESC');?>">
 								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
 								</td>
@@ -485,11 +485,11 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 			</tr>
 			<tr>
 				<td width="250" valign="top"><?php echo JText::_('COM_HANDOUT_INFOURL_LABEL');?>
-				
+
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_INFOURL_LABEL');?>::<?php echo JText::_('COM_HANDOUT_INFOURL_DESC');?>">
 								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-								
-								
+
+
 					<!--<i>(<?php echo JText::_('COM_HANDOUT_MAKE_SURE');?>)</i>-->
 				</td>
 				<td>
@@ -504,7 +504,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
     {
    		?>
     	<table class="adminform">
-    	
+
     	<tr>
     		<td width="250" align="right"><?php echo JText::_('COM_HANDOUT_OWNER_LABEL');?></td>
     		<td>
@@ -537,7 +537,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
             	echo " on " . HandoutFactory::getFormatDate($row->doclastupdateon);
         	}
         	?>
-    		
+
     		</td>
     	</tr>
     	</table>
@@ -548,7 +548,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
     {
    		?>
     	<table class="adminform">
-    	
+
     	<tr>
     		<td width="250" ><?php echo JText::_('COM_HANDOUT_SELECT_AGREEMENT_LABEL');?></td>
     		<td>
@@ -583,7 +583,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 		</table>
         <?php
 	}
-	
+
 	  function _showTabMetadata(&$row, &$lists, &$last, &$created)
 	{
 		?>
@@ -592,14 +592,14 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 					<td>
 						<?php echo JText::_('COM_HANDOUT_METADESCRIPTION_LABEL');?>
 					</td>
-					<td><textarea rows="3" cols="80" wrap="virtual" name="doc_meta_description"><?php echo $row->doc_meta_description;?></textarea>						
+					<td><textarea rows="3" cols="80" wrap="virtual" name="doc_meta_description"><?php echo $row->doc_meta_description;?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<?php echo JText::_('COM_HANDOUT_METAKEYWORDS_LABEL');?>
 					</td>
-					<td><textarea rows="3" cols="80" wrap="virtual" name="doc_meta_keywords"><?php echo $row->doc_meta_keywords;?></textarea>						
+					<td><textarea rows="3" cols="80" wrap="virtual" name="doc_meta_keywords"><?php echo $row->doc_meta_keywords;?></textarea>
 					</td>
 				</tr>
 		</table>
@@ -621,7 +621,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
         	?>
     		</td>
     	</tr>
-		-->		
+		//-->		
     	<tr>
     		<td width="250" ><?php echo JText::_('COM_HANDOUT_MTREE_LABEL');?></td>
     		<td>
@@ -674,7 +674,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 
     function copyDocumentForm($cid, &$lists, &$items)
     {
-        
+
         ?>
         <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_COPYTOCAT'), 'categories' )?>
 

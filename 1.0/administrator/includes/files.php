@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 include_once dirname(__FILE__) . '/files.html.php';
@@ -99,7 +99,7 @@ function showFiles()
 
     $total = count($files);
 
-	jimport('joomla.html.pagination');    
+	jimport('joomla.html.pagination');
     $pageNav = new JPagination($total, $limitstart, $limit);
 
      // slice out elements based on limits
@@ -123,7 +123,7 @@ function removeFile($cid)
     HANDOUT_token::check() or die('Invalid Token');
     $mainframe = &JFactory::getApplication();
     $database = &JFactory::getDBO();
-    
+
     global $_HANDOUT;
 
     foreach($cid as $name) {
@@ -210,7 +210,7 @@ function uploadWizard($step = 1, $method = 'http', $old_filename)
 
                             @unlink ($target_directory . "/" . $result->name);
                         }
-						
+
                         if ($old_filename) {
 
                             $file = $_HANDOUT->getCfg('handoutpath') . "/" . $old_filename;

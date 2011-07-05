@@ -12,7 +12,7 @@
 define('_JEXEC', 1);
 define('JPATH_BASE', substr(substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "plugins")),0,-1));
 if (!isset($_SERVER["HTTP_REFERER"])) exit("Direct access not allowed.");
-$mosConfig_absolute_path =substr(JPATH_BASE, 0, strpos(JPATH_BASE, "/administra")); 
+$mosConfig_absolute_path =substr(JPATH_BASE, 0, strpos(JPATH_BASE, "/administra"));
 define( 'DS', DIRECTORY_SEPARATOR );
 require_once ( JPATH_BASE .DS.'includes'.DS.'defines.php' );
 require_once ( JPATH_BASE .DS.'includes'.DS.'framework.php' );
@@ -28,8 +28,8 @@ $options = array ("host" => $config->host,"user" => $config->user,"password" => 
 $database = new JDatabaseMySQL($options);
 
 	function existComponent($component){
-		global $database;		
-		$sql = "select count(*) from #__components where link = 'option=".$component."'";			
+		global $database;
+		$sql = "select count(*) from #__components where link = 'option=".$component."'";
 		$database->setQuery($sql);
 		$database->query();
 		$result = $database->loadResult();
@@ -38,26 +38,26 @@ $database = new JDatabaseMySQL($options);
 		}
 		return false;
 	}
-	
+
 	function getComponentName($component){
-		global $database;		
-		$sql = "select name from #__components where link = 'option=".$component."'";			
+		global $database;
+		$sql = "select name from #__components where link = 'option=".$component."'";
 		$database->setQuery($sql);
 		$database->query();
 		$result = $database->loadResult();
 		return $result;
 	}
-	
+
 	function getCurrentVersionData($component){
-		$version = "";		
-		$data = 'update.kontentdesign.com/kontent_latest_version.txt';		
+		$version = "";
+		$data = 'update.kontentdesign.com/kontent_latest_version.txt';
 		$ch = @curl_init($data);
 		@curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		@curl_setopt($ch, CURLOPT_TIMEOUT, 10); 							
-		
+		@curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+
 		$version = @curl_exec($ch);
-		if(isset($version) && trim($version) != ""){					
-			$pattern = "/".$component."=(.*);/msU";		
+		if(isset($version) && trim($version) != ""){
+			$pattern = "/".$component."=(.*);/msU";
 			preg_match($pattern, $version, $result);
 			if(is_array($result) && count($result) > 0){
 				$version = trim($result["1"]);
@@ -66,39 +66,39 @@ $database = new JDatabaseMySQL($options);
 		}
 		return false;
 	}
-	
-	function getLocalVersionString($component, $xml_file){			
+
+	function getLocalVersionString($component, $xml_file){
 		$version = '';
 		$parser			=& JFactory::getXMLParser('Simple');
-		$xml			= JPATH_ROOT.DS.'administrator'.DS.'components'.DS.$component.DS.$xml_file;		
+		$xml			= JPATH_ROOT.DS.'administrator'.DS.'components'.DS.$component.DS.$xml_file;
 		$parser->loadFile($xml);
 		$document =& $parser->document;
-		
+
 		if($document){
-			$element =& $document->getElementByPath('version');			
+			$element =& $document->getElementByPath('version');
 			$version = $element->data();
 		}
 		return $version;
 	}
-	
+
 	$list_changelog = array("com_handout"=>"http://update.kontentdesign.com/handout/changelog/",
 							"com_podcastpro"=>"http://update.kontentdesign.com/podcastpro/changelog/",
 							"mod_kontenttweet"=>"http://update.kontentdesign.com/kontenttweet/changelog/",
 							"mod_kontentbox"=>"http://update.kontentdesign.com/kontentbox/changelog/");
-							
-	$list_all_components = array("com_handout"=>"handout.xml", 
-								 "com_podcastpro"=>"podcastpro.xml", 
-								 "mod_kontenttweet"=>"kontenttweet.xml", 
+
+	$list_all_components = array("com_handout"=>"handout.xml",
+								 "com_podcastpro"=>"podcastpro.xml",
+								 "mod_kontenttweet"=>"kontenttweet.xml",
 								 "mod_kontentbox"=>"kontentbox.xml");
-									 
+
 	$list_installed_components = array();
-	
+
 	foreach($list_all_components as $key=>$value){
 		if(existComponent($key)){
 			$list_installed_components[$key] = $value;
-			$show_button = true; 
+			$show_button = true;
 		}
-	}		
+	}
 ?>
 <style>
 	.adminlist{
@@ -108,14 +108,14 @@ $database = new JDatabaseMySQL($options);
 		width:100%;
 		text-align:center;
 		font-family:Arial, Helvetica, sans-serif;
-		font-size:13px;	
+		font-size:13px;
 	}
-	
+
 	.pagetitle{
 		font:bold;
 		font-size:18px;
 	}
-	
+
 	.header{
 		background:#F0F0F0 none repeat scroll 0 0;
 		border-bottom:1px solid #999999;
@@ -123,14 +123,14 @@ $database = new JDatabaseMySQL($options);
 		color:#666666;
 		text-align:center;
 	}
-	
+
 	.row1{
 		background:#F9F9F9 none repeat scroll 0 0;
 		border-top:1px solid #FFFFFF;
 	}
-	
+
 	a{
-		color: blue;	
+		color: blue;
 	}
 </style>
 <img src="<?php echo JURI::root()."logo.png"; ?>" />

@@ -5,7 +5,7 @@
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/ 
+ **/
 defined('_JEXEC') or die('Restricted access');
 
 require_once NOTIFY_PATH.DS.'includes'.DS.'handoutdata.php';
@@ -22,9 +22,9 @@ class NotifyFile extends NotifyHandoutData
      */
 	protected function _loadParams()
     {
-        
+
         global $_HANDOUT;
-    	
+
 		$vars = array( 'name', 'mime', 'ext', 'size', 'date');
 
         foreach( $vars as $var ) {

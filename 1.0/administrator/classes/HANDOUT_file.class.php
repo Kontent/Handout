@@ -424,7 +424,7 @@ class HANDOUT_FileUpload
 
     function uploadURL($url, $path, $validate=COM_HANDOUT_VALIDATE_ALL, $name=null )
     {
-		
+
 		$errid  = null;
         $errmsg = null;
 

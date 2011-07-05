@@ -38,18 +38,18 @@ $mainframe->setPageTitle( JText::_('COM_HANDOUT_TITLE_BROWSE') . ' | ' . $this->
 ?>
 
 <div id="handout">
-	<!-- menu -->	
+	<!-- menu -->
 	<?php echo $this->loadTemplate('menu'); ?>
 
-	<!-- category details -->	
+	<!-- category details -->
 	<?php echo $this->loadTemplate('category'); ?>
 
 	<!-- subcategories -->
 	<?php echo $this->loadTemplate('categories_list'); ?>
 
-	<!-- documents -->	
+	<!-- documents -->
 	<?php echo $this->loadTemplate('documents_list'); ?>
-	
+
 	<?php if ($this->pagenav):  ?>
 	<!-- pagination for documents  -->
 	<div id="hnav">
@@ -59,6 +59,6 @@ $mainframe->setPageTitle( JText::_('COM_HANDOUT_TITLE_BROWSE') . ' | ' . $this->
 		</div>
 	</div>
 	<?php endif; ?>
-	
+
 	<?php include_once(JPATH_COMPONENT . DS . 'footer.php'); ?>
 </div>

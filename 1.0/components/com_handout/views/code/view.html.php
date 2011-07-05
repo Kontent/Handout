@@ -21,23 +21,23 @@ class HandoutViewCode extends JView {
 	function display() {
 		$handout = &HandoutFactory::getHandout();
 		$db = &JFactory::getDBO ();
-		
+
 		$params = &JComponentHelper::getParams( 'com_handout' );
-		
+
 		$gid = HandoutHelper::getGid ();
 		$doc = new HANDOUT_Document ( $gid );
-		$data = &$doc->getDataObject ();	
+		$data = &$doc->getDataObject ();
 
 		if (JRequest::getVar('code')) {
 			//process the code
-			CodesHelper::processCode($data->id);	
+			CodesHelper::processCode($data->id);
 		}
 		else {
 			$code = CodesHelper::getCode($data->id);
 			$this->assignRef('data', $data);
 			$this->assignRef('code', $code);
 			$this->assignRef('conf', $handout->getAllCfg());
-			parent::display();											
-		}				
+			parent::display();
+		}
 	}
 }

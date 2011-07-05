@@ -10,7 +10,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-class TablePopulateConf extends JTable 
+class TablePopulateConf extends JTable
 {
 
     var $id = 1;
@@ -60,18 +60,18 @@ class TablePopulateConf extends JTable
         parent::__construct('#__populate_conf', 'id', $db);
     }
 
-    public function getInstance() 
+    public function getInstance()
     {
     	static $instance;
-            
-        if(!isset($instance)) 
+
+        if(!isset($instance))
         {
        		$instance = new TablePopulateConf(JFactory::getDBO());
         	$instance->load(1);
         }
         return $instance;
     }
-    
+
     public function check() {return true;}
 
     public function checkin(){return true;}

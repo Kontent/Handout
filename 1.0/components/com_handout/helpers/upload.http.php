@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_METHOD_HTTP')) {
@@ -30,7 +30,7 @@ class HandoutUploadMethod
             {
                 $lists = array();
                 $lists['action'] = HandoutHelper::_taskLink($task, $uid, array('step' => $step + 1), false);
-                
+
 				return $lists;
             } break;
 
@@ -47,7 +47,7 @@ class HandoutUploadMethod
 
    				$catid = $update ? 0 : $uid;
                 $docid = $update ? $uid : 0;
-				
+
   				return DocumentsHelper::fetchEditDocumentForm($docid , $file->name, $catid);
 
             } break;
@@ -60,7 +60,7 @@ class HandoutUploadMethod
     function uploadFileProcess($uid, $step, &$file)
 	{
         HANDOUT_token::check() or die('Invalid Token');
-        
+
   		$_HANDOUT_USER = &HandoutFactory::getHandoutUser();
   		$_HANDOUT = &HandoutFactory::getHandout();
 

@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).DS.'thumbs'.DS.'defines.php');
 jimport( 'joomla.plugin.plugin' );
 class plgHandoutThumbs extends JPlugin
 {
-	public function onFetchDocument($params) 
+	public function onFetchDocument($params)
 	{
         global $_HANDOUT;
     	if(!is_object($_HANDOUT)){
@@ -24,20 +24,20 @@ class plgHandoutThumbs extends JPlugin
 			require_once ($handoutBase . 'helpers' . DS . 'factory.php');
     		$_HANDOUT = &HandoutFactory::getHandout();
 		}
-		
+
 	    // load plugin params info
 	 	$plugin =& JPluginHelper::getPlugin('handout', 'thumbs');
 	 	$pluginParams = new JParameter( $plugin->params );
 
 		//set parameters from Handout config
-		$pluginParams->set('extensions', $_HANDOUT->getCfg('thumbs_extensions'));		
-		$pluginParams->set('width', $_HANDOUT->getCfg('thumbs_width', '64'));		
-		$pluginParams->set('height', $_HANDOUT->getCfg('thumbs_height', '64'));		
-		$pluginParams->set('output_format', $_HANDOUT->getCfg('thumbs_output_format', 'png'));		
-		$pluginParams->set('jpeg_quality', $_HANDOUT->getCfg('thumbs_jpeg_quality', '75'));		
-		$pluginParams->set('background_color', $_HANDOUT->getCfg('thumbs_background_color', 'FFFFFF'));		
-		$pluginParams->set('grayscale', $_HANDOUT->getCfg('thumbs_grayscale', '0'));	
-			
+		$pluginParams->set('extensions', $_HANDOUT->getCfg('thumbs_extensions'));
+		$pluginParams->set('width', $_HANDOUT->getCfg('thumbs_width', '64'));
+		$pluginParams->set('height', $_HANDOUT->getCfg('thumbs_height', '64'));
+		$pluginParams->set('output_format', $_HANDOUT->getCfg('thumbs_output_format', 'png'));
+		$pluginParams->set('jpeg_quality', $_HANDOUT->getCfg('thumbs_jpeg_quality', '75'));
+		$pluginParams->set('background_color', $_HANDOUT->getCfg('thumbs_background_color', 'FFFFFF'));
+		$pluginParams->set('grayscale', $_HANDOUT->getCfg('thumbs_grayscale', '0'));
+
 	    // Handout config
 	    $handoutpath = $_HANDOUT->getCfg('handoutpath', JPATH_ROOT.DS.'handouts');
 
@@ -46,7 +46,7 @@ class plgHandoutThumbs extends JPlugin
 	    $type   = $params['type'];
 
 	    // get the document instance
-	    $doc = & HANDOUT_Document::getInstance($id);	
+	    $doc = & HANDOUT_Document::getInstance($id);
 
 	    // check for existing thumbnail
 	    if($doc->objDBTable->docthumbnail) { return; }
@@ -65,7 +65,7 @@ class plgHandoutThumbs extends JPlugin
 			chmod(_AT_PATH_IMAGES, 0755);
 			copy (JPATH_ROOT . DS . 'tmp' . DS . 'index.html', _AT_PATH_IMAGES . DS . 'index.html');
 		}
-		
+
 	    if(!is_writable(_AT_PATH_IMAGES)) { return; }
 
 	    // build target filename
@@ -99,7 +99,7 @@ class plgHandoutThumbs extends JPlugin
 	    $doc->objDBTable->docthumbnail       = basename($target);
 	    $doc->objFormatData->docthumbnail    = $doc->objDBTable->docthumbnail;
 	    $doc->objFormatPath->thumb 			= HANDOUT_Utils::pathThumb($doc->objDBTable->docthumbnail);
-	
+
 	    // store
 	    $doc->objDBTable->store();
 	    return;

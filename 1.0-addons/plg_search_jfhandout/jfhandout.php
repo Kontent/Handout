@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined('_JEXEC') or die('Restricted access');
 
 $handoutBase = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS;
@@ -32,26 +32,26 @@ function plgSearchJFHandout ($text, $phrase = '', $ordering = '', $areas = null)
 {
     $db = & JFactory::getDBO();
     $user = & JFactory::getUser();
-    
+
     $searchText = $text;
-    
+
     if (is_array($areas)) {
         if (! array_intersect($areas, array_keys(plgSearchJFHandoutAreas()))) {
             return array();
         }
     }
-    
+
     $plugin = & JPluginHelper::getPlugin('search', 'jfhandout');
     $pluginParams = new JParameter($plugin->params);
-    
+
     $limit = $pluginParams->def('search_limit', 50);
     $activeLang = $pluginParams->def('active_language_only', 0);
-    
+
     $text = trim($text);
     if ($text == '') {
         return array();
     }
-    
+
     $wheres = array();
     switch ($phrase) {
         case 'exact':
@@ -61,7 +61,7 @@ function plgSearchJFHandout ($text, $phrase = '', $ordering = '', $areas = null)
             $wheres2[] = 'text LIKE ' . $text;
             $where = '(' . implode(') OR (', $wheres2) . ')';
             break;
-        
+
         case 'all':
         case 'any':
         default:
@@ -77,38 +77,38 @@ function plgSearchJFHandout ($text, $phrase = '', $ordering = '', $areas = null)
             $where = '(' . implode(($phrase == 'all' ? ') AND (' : ') OR ('), $wheres) . ')';
             break;
     }
-    
+
     switch ($ordering) {
         case 'oldest':
             $order = 'created ASC';
             break;
-        
+
         case 'popular':
             $order = 'hits DESC';
             break;
-        
+
         case 'alpha':
             $order = 'title ASC';
             break;
-        
+
         case 'category':
             $order = 'section ASC, title ASC';
             break;
-        
+
         case 'newest':
         default:
             $order = 'created DESC';
     }
-    
+
     $registry = & JFactory::getConfig();
     $lang = $registry->getValue("config.jflang");
-    
+
     $query = "SELECT id FROM #__languages WHERE code = '$lang'";
     $db->setQuery($query);
     $lid = (int) $db->loadResult();
-    
+
     $join = $activeLang ? 'RIGHT' : 'LEFT';
-    
+
     $query = 'SELECT * FROM ( SELECT jmd.id, catid, COALESCE(jf1.value,docname) AS title, COALESCE(jf3.value,title) AS section,';
     $query .= ' COALESCE(jf2.value,docdescription) AS text, docdate_published AS created, doccounter AS hits';
     $query .= ' FROM #__handout AS jmd LEFT JOIN #__categories AS cat ON jmd.catid = cat.id';
@@ -123,7 +123,7 @@ function plgSearchJFHandout ($text, $phrase = '', $ordering = '', $areas = null)
     $db->setQuery($query, 0, $limit);
     $rows = $db->loadObjectList();
     $handoutuser = HandoutFactory::getHandoutUser();
-    
+
     foreach ($rows as $i => &$row) {
         $row->browsernav = 2;
         if ($handoutuser->canDownload($row->id) === false) {
@@ -131,7 +131,7 @@ function plgSearchJFHandout ($text, $phrase = '', $ordering = '', $areas = null)
         }
         $row->href = HANDOUT_Utils::taskLink('doc_details', $row->id, null, true);
     }
-    
+
     return $rows;
 }
 ?>

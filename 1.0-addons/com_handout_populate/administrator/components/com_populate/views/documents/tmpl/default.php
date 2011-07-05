@@ -24,7 +24,7 @@ $catselectlist	= JHTML::_('populate.selects.tree', $this->categories, 0, array()
 <fieldset class="adminform">
 	<legend>Documents</legend>
 	<table class="admintable">
-	
+
 		<tr>
 			<td class="key">
 				<label class="hasTip" title="<?php echo 'Files::Select the files you want to add. Use Ctrl and Shift to select multiple files.<br />You can add more files by uploading them to <br />' ?>">
@@ -35,7 +35,7 @@ $catselectlist	= JHTML::_('populate.selects.tree', $this->categories, 0, array()
 				<?php echo $fileselectlist;?>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td class="key">
 				<label class="hasTip" title="<?php echo 'Categories::Select the category where you want to add the files.' ?>">
@@ -55,4 +55,3 @@ $catselectlist	= JHTML::_('populate.selects.tree', $this->categories, 0, array()
 </fieldset>
 </form>
 
-    

@@ -29,73 +29,73 @@ class HANDOUT_User {
 	 * @var 		int
 	 */
 	var $userid = null;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		string
 	 */
 	var $usertype = null;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		int
 	 */
 	var $gid = null;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		string
 	 */
 	var $username = null;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		bool
 	 */
 	var $isAdmin = 0;
-	
+
 	/**
 	 * @access   public
 	 * @var      bool
 	 */
 	var $isSpecial = 0;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		bool
 	 */
 	var $isEditor = 0;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		bool
 	 */
 	var $isPublisher = 0;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		bool
 	 */
 	var $isAuthor = 0;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		bool
 	 */
 	var $isManager = 0;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		bool
 	 */
 	var $isRegistered = 0;
-	
+
 	/**
 	 * @access 	public
 	 * @var 		string 		Contains a 'negative' number list.
 	 */
 	var $groupsIn = null;
-	
+
 	/**
 	 * @access	public
 	 * @var		integer		Special Compatibility mode
@@ -103,7 +103,7 @@ class HANDOUT_User {
 	 * Change this here in the code if needed.
 	 */
 	var $specialcompat = 0;
-	
+
 	/**
 	 * @desc 	constructor
 	 * @return 	void
@@ -111,17 +111,17 @@ class HANDOUT_User {
 
 	function HANDOUT_User() {
 		$user = &JFactory::getUser ();
-		
+
 		$this->userid = $user->id;
 		$this->username = $user->username;
 		$this->usertype = strtolower ( $user->usertype );
 		$this->gid = $user->gid;
-		
+
 		$this->setUsertype ();
 		$this->groupsIn = $this->getGroupsIn ();
-	
+
 	}
-	
+
 	function setUsertype() {
 		switch ($this->usertype) {
 			case 'super administrator' :
@@ -175,7 +175,7 @@ class HANDOUT_User {
 				break;
 		}
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can access the component.
@@ -183,17 +183,17 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function getGroupsIn() {
 		$db = &JFactory::getDBO ();
-		
+
 		$groups_in = array ();
-		
+
 		//Add Handout groups
 
 		$db->setQuery ( "SELECT groups_id,groups_members " . "\n FROM #__handout_groups" );
 		$all_groups = $db->loadObjectList ();
-		
+
 		if (count ( $all_groups )) {
 			foreach ( $all_groups as $a_group ) {
 				$group_list = array ();
@@ -203,7 +203,7 @@ class HANDOUT_User {
 				}
 			}
 		}
-		
+
 		//Add Joomla groups
 
 		if ($this->isAuthor) {
@@ -215,13 +215,13 @@ class HANDOUT_User {
 		if ($this->isPublisher) {
 			$groups_in [] = COM_HANDOUT_PERMIT_PUBLISHER;
 		}
-		
+
 		if (empty ( $groups_in ))
 			return '0,0';
-		
+
 		return implode ( ',', $groups_in );
 	}
-	
+
 	/**
 
 	 * @desc 			Checks if the the user is a member of a group
@@ -231,11 +231,11 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function isInGroup($group_number) {
 		return preg_match ( "/(^|,)$group_number(,|$)/", $this->groupsIn );
 	}
-	
+
 	/**
 
 	 * @desc 	checks if the user can preform a certain task
@@ -247,19 +247,19 @@ class HANDOUT_User {
 	 */
 	function canPreformTask($doc = null, $task) {
 		$err = '';
-		
+
 		if ($this->userid > COM_HANDOUT_PERMIT_USER) {
 			//Make sure we have a document object
 
 			$this->isDocument ( $doc );
-			
+
 			// user has no permissions to preform the operation
 
 			$func = "can" . $task;
 			if (! call_user_func ( array (&$this, "" . $func . "" ), $doc )) {
 				$err .= JText::_('COM_HANDOUT_NOT_AUTHORIZED');
 			}
-			
+
 			// document already checked out by other user
 
 			if (! is_null ( $doc ) && $doc->checked_out) {
@@ -270,10 +270,10 @@ class HANDOUT_User {
 		} else {
 			$err .= JText::_('COM_HANDOUT_NOLOG');
 		}
-		
+
 		return $err;
 	}
-	
+
 	/**
 
 	 * @desc checks in the user can access the component.
@@ -283,7 +283,7 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canAccess() {
 		$handout = &HandoutFactory::getHandout ();
 		// if the user is not logged in...
@@ -296,10 +296,10 @@ class HANDOUT_User {
 		if (! $this->isSpecial && $handout->getCfg ( 'isDown' )) {
 			return - 1;
 		}
-		
+
 		return 1;
 	}
-	
+
 	/**
 
 	 * @desc 	checks if the user can download a document
@@ -309,43 +309,43 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canUpload() {
 		$handout = &HandoutFactory::getHandout ();
-		
+
 		// preform checks
 
 		if ($this->isAdmin) {
 			return true;
 		}
-		
+
 		if ($this->userid) {
 			$upload = $handout->getCfg ( 'user_upload' );
-			
+
 			if ($upload == $this->userid || $upload == COM_HANDOUT_PERMIT_REGISTERED) {
 				return true;
 			}
-			
+
 			if ($upload == COM_HANDOUT_PERMIT_AUTHOR and ($this->isAuthor or $this->isEditor or $this->isPublisher)) {
 				return true;
 			}
-			
+
 			if ($upload == COM_HANDOUT_PERMIT_EDITOR and ($this->isEditor or $this->isPublisher)) {
 				return true;
 			}
-			
+
 			if ($upload == COM_HANDOUT_PERMIT_PUBLISHER and $this->isPublisher) {
 				return true;
 			}
-			
+
 			if ($this->isInGroup ( $upload )) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can download a document
@@ -360,48 +360,48 @@ class HANDOUT_User {
 	function canDownload($doc = null) {
 		$handout = &HandoutFactory::getHandout ();
 		$db = &JFactory::getDBO ();
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		//check if user has access to the document's category
 
 		if (! $this->canAccessCategory ( $doc->catid )) {
 			return false;
 		}
-		
+
 		// preform checks
 
 		if ($this->isSpecial) {
 			return true;
 		}
-		
+
 		if ($this->canEdit ( $doc, false )) {
 			return true;
 		}
-		
+
 		if ($this->userid == 0 && $handout->getCfg ( 'registered' ) != COM_HANDOUT_GRANT_RX) {
 			return false;
 		}
-		
+
 		if ($doc->docowner == COM_HANDOUT_PERMIT_EVERYONE) {
 			return true;
 		}
-		
+
 		if ($this->userid) {
 			if ($doc->docowner == COM_HANDOUT_PERMIT_REGISTERED) {
 				return true;
 			}
-			
+
 			if ($doc->docowner > COM_HANDOUT_PERMIT_USER && $doc->docowner == $this->userid) {
 				return true;
 			}
-			
+
 			if ($doc->docowner < COM_HANDOUT_PERMIT_GROUP && $this->isInGroup ( $doc->docowner )) {
 				return true;
 			}
-			
+
 			if ($doc->docsubmittedby == $this->userid) {
 				if (is_a ( $doc, 'HandoutDocument' )) {
 					$authorCan = $doc->authorCan ();
@@ -418,7 +418,7 @@ class HANDOUT_User {
 		}
 		return false;
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can edit a document entry
@@ -430,35 +430,35 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canEdit($doc = null, $checkCreator = true) {
 		$db = &JFactory::getDBO ();
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		// preform checks
 
 		if ($this->isSpecial) { // admin
 
 			return true;
 		}
-		
+
 		//check if user has access to the document's category
 
 		if (! $this->canAccessCategory ( $doc->catid )) {
 			return false;
 		}
-		
+
 		$maintainer = $doc->docmaintainedby;
-		
+
 		if ($this->userid) {
 			if (($maintainer == $this->userid) || ($maintainer == COM_HANDOUT_PERMIT_REGISTERED)) { // maintainer
 
 				return true;
 			}
-			
+
 			// Check Creator
 
 			if ($checkCreator && $doc->docsubmittedby == $this->userid) {
@@ -474,17 +474,17 @@ class HANDOUT_User {
 					return true;
 				}
 			}
-			
+
 			if ($this->isInGroup ( $maintainer )) {
 				return true;
 			}
 		}
-		
+
 		return false; // DEFAULT: can't edit
 
 	}
-	
-	
+
+
 	/**
 
 	 * @desc 	Checks if the user can publish a document
@@ -496,25 +496,25 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canPublish($doc = null) {
 		$handout = &HandoutFactory::getHandout ();
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-				
+
 		if ($this->isSpecial) {
 			return true;
 		}
-		
+
 		if ($this->userid) {
 			$publish = $handout->getCfg ( 'user_publish' );
-			
+
 			if ($publish == $this->userid || $publish == COM_HANDOUT_PERMIT_REGISTERED) {
 				return true;
 			}
-			
+
 			if ($this->isInGroup ( $publish )) {
 				return true;
 			}
@@ -522,7 +522,7 @@ class HANDOUT_User {
 		return false; // DEFAULT: can't publish
 
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can unpublish a document
@@ -534,25 +534,25 @@ class HANDOUT_User {
 	 * @return	bool
 
 	 */
-	
+
 	function canUnPublish($doc = null) {
 		$handout = &HandoutFactory::getHandout ();
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-				
+
 		if ($this->isSpecial) {
 			return true;
 		}
-		
+
 		if ($this->userid) {
 			$publish = $handout->getCfg ( 'user_publish' );
-			
+
 			if ($publish == $this->userid || $publish == COM_HANDOUT_PERMIT_REGISTERED) {
 				return true;
 			}
-			
+
 			if ($this->isInGroup ( $publish )) {
 				return true;
 			}
@@ -560,7 +560,7 @@ class HANDOUT_User {
 		return false; // DEFAULT: can't unpublish
 
 	}
-	
+
 	/**
 
 	 * @desc 	checks if the user can checkout a document
@@ -572,21 +572,21 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canCheckOut($doc = null) {
 		$handout = &HandoutFactory::getHandout ();
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		if ($doc->checked_out) {
 			return false;
 		}
-		
+
 		return $this->canEdit ( $doc );
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can checkin a document
@@ -598,21 +598,21 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canCheckIn($doc = null) {
 		$handout = &HandoutFactory::getHandout();
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		if (! $doc->checked_out) {
 			return false;
 		}
-		
+
 		return $this->canEdit ( $doc );
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can move a document
@@ -624,15 +624,15 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canMove($doc = null) {
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		return $this->canEdit ( $doc );
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can reset a documents hit counter
@@ -646,14 +646,14 @@ class HANDOUT_User {
 	 */
 	function canReset($doc = null) {
 		global $_HANDOUT;
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		return $this->canEdit ( $doc );
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can delete a document
@@ -665,15 +665,15 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canDelete($doc = null) {
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		return $this->canEdit ( $doc );
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can update a document
@@ -685,15 +685,15 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canUpdate($doc = null) {
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		return $this->canEdit ( $doc );
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can assign viewers
@@ -705,34 +705,34 @@ class HANDOUT_User {
 	 * @return 	bool
 
 	 */
-	
+
 	function canAssignViewer($doc = null) {
 		$handout = &HandoutFactory::getHandout();
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		if ($this->isSpecial) {
 			return true;
 		}
-		
+
 		if ($handout->getCfg ( 'reader_assign' ) & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
 			if ($this->userid == $doc->docsubmittedby) {
 				return true;
 			}
 		}
-		
+
 		if ($handout->getCfg ( 'reader_assign' ) & COM_HANDOUT_ASSIGN_BY_EDITOR) {
 			if ($this->canEdit ( $doc, false )) {
 				return true;
 			}
 		}
-		
+
 		return false; // DEFAULT: can't assign viewer
 
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can assign maintainer
@@ -746,31 +746,31 @@ class HANDOUT_User {
 	 */
 	function canAssignMaintainer($doc = null) {
 		$handout = &HandoutFactory::getHandout ();
-		
+
 		//Make sure we have a document object
 
 		$this->isDocument ( $doc );
-		
+
 		if ($this->isSpecial) {
 			return true;
 		}
-		
+
 		if ($handout->getCfg ( 'editor_assign' ) & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
 			if ($this->userid == $doc->docsubmittedby) {
 				return true;
 			}
 		}
-		
+
 		if ($handout->getCfg ( 'editor_assign' ) & COM_HANDOUT_ASSIGN_BY_EDITOR) {
 			if ($this->canEdit ( $doc, false )) {
 				return true;
 			}
 		}
-		
+
 		return false; // DEFAULT: can't assign maintainer
 
 	}
-	
+
 	/**
 
 	 * @desc 	Checks if the user can access a category
@@ -786,11 +786,11 @@ class HANDOUT_User {
 		//Make sure we have a document object
 
 		$category = $this->isCategory ( $category );
-		
+
 		if (! $category->published and ! $this->isSpecial) {
 			return false;
 		}
-		
+
 		switch ($category->access) {
 			case '0' : //public
 
@@ -813,7 +813,7 @@ class HANDOUT_User {
 		}
 		return false;
 	}
-	
+
 	/**
 
 	 * @desc 	Transform the document to a object if necessary
@@ -825,10 +825,10 @@ class HANDOUT_User {
 	 * @return 	object 	a document object
 
 	 */
-	
+
 	function isDocument(&$doc) {
 		$db = &JFactory::getDBO ();
-		
+
 		// check to see if we have a object
 
 		if (! is_a ( $doc, 'HandoutDocument' )) {
@@ -841,7 +841,7 @@ class HANDOUT_User {
 			}
 		}
 	}
-	
+
 	/**
 
 	 * @desc 	Transform the document to a object if necessary
@@ -853,9 +853,9 @@ class HANDOUT_User {
 	 * @return 	object 	a document object
 
 	 */
-	
+
 	function isCategory(&$category) {
-		
+
 		// check to see if we have a object
 
 		if (! is_a ( $category, 'HandoutCategory' )) {
@@ -866,10 +866,10 @@ class HANDOUT_User {
 			} else {
 				$id = ( int ) $category;
 			}
-			
+
 			$category = & HandoutCategory::getInstance ( $id );
 		}
-		
+
 		return $category;
 	}
 
@@ -878,7 +878,7 @@ class HANDOUT_User {
 
 
 class HANDOUT_users {
-	
+
 	/**
 
 	 * Provides a list of all users
@@ -890,16 +890,16 @@ class HANDOUT_users {
 	 */
 	function &getList() {
 		static $users;
-		
+
 		if (! isset ( $users )) {
 			$db = &JFactory::getDBO ();
 			$db->setQuery ( "SELECT * " . "\n FROM #__users " . "\n ORDER BY name ASC" );
 			$users = $db->loadObjectList ( 'id' );
 		}
-		
+
 		return $users;
 	}
-	
+
 	/**
 
 	 * Get a User object, caches results
@@ -907,15 +907,15 @@ class HANDOUT_users {
 	 */
 	function &get($id) {
 		static $users;
-		
+
 		if (! isset ( $users )) {
 			$users = array ();
 		}
-		
+
 	    if (! isset ( $users [$id] )) {
 			$users [$id] = new JUser($id);
 		}
-		
+
 		return $users [$id];
 	}
 }

@@ -34,7 +34,7 @@ JRequest::setVar('view', $view); // set in case default is used
 
 
 require_once JPATH_COMPONENT.DS.'controllers'.DS.$view.'.php';
-$controllerName = 'PopulateController'.$view; 
+$controllerName = 'PopulateController'.$view;
 $controller		= new $controllerName;
 
 // Perform the Request task

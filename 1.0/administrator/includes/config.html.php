@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 if (defined('_HANDOUT_HTML_CONFIG')) {
@@ -34,7 +34,7 @@ class HTML_HandoutConfig
         <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_CONFIGURATION'), 'config' )?>
 
         <div class="hfilter">
-            <p class="componentheading">The configuration file is 
+            <p class="componentheading">The configuration file is
 			 <?php echo is_writable(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_handout'.DS.'handout.config.php') ? '<span class="hactive">'.JText::_('COM_HANDOUT_WRITABLE').'</span>.' : '<span color="inactive">'.JText::_('COM_HANDOUT_UNWRITABLE').'</span>.' ?>
 			</p>
         </div>
@@ -119,7 +119,7 @@ class HTML_HandoutConfig
             <td>
             	<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_PATH_LABEL');?>::<?php echo JText::_('COM_HANDOUT_PATH_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
                 <input type="button" value="<?php echo JText::_('COM_HANDOUT_RESETDEFAULT_LABEL');?>" name="Reset" onclick="document.adminForm.handoutpath.value='<?php echo addslashes($newpath);?>';" />
             </td>
         </tr>
@@ -143,7 +143,7 @@ class HTML_HandoutConfig
     <table class="adminform">
         <tr>
         	<td class="hadmin-subtitle" colspan="3"><?php echo JText::_('COM_HANDOUT_DOCUMENT_SETTINGS');?></td>
-        </tr>	
+        </tr>
          <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_DAYSFORNEW_LABEL');?></td>
             <td class="col2"><input type="text" name="days_for_new" value="<?php echo $_HANDOUT->getCfg('days_for_new', 5);?>" /></td>
@@ -156,10 +156,10 @@ class HTML_HandoutConfig
             <td><?php echo JText::_('COM_HANDOUT_HOT_LABEL');?></td>
             <td><input type="text" name="hot" value="<?php echo $_HANDOUT->getCfg('hot', 100);?>" /></td>
             <td>
-            
+
                 <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_HOT_LABEL');?>::<?php echo JText::_('COM_HANDOUT_HOT_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
         </tr>
         <tr >
             <td><?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENTS_LABEL');?></td>
@@ -177,46 +177,46 @@ class HTML_HandoutConfig
         <tr>
         	<td class="hadmin-subtitle" colspan="3"><?php echo JText::_('COM_HANDOUT_GENERAL_SETTINGS');?></td>
         </tr>
-     
+
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_EXTENSIONSVIEWING_LABEL');?>:</td>
             <td class="col2"><input type="text" name="viewtypes" value="<?php
         echo $_HANDOUT->getCfg('viewtypes', "pdf|doc|txt|jpg|jpeg|gif|png")?>" style="width: 200px" /></td>
             <td>
-            
+
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_EXTENSIONSVIEWING_LABEL');?>::<?php echo JText::_('COM_HANDOUT_EXTENSIONSVIEWING_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td><?php echo JText::_('COM_HANDOUT_NUMBEROFDOCS_LABEL');?></td>
             <td><input type="text" name="perpage" value="<?php echo $_HANDOUT->getCfg('perpage', 5);?>" /></td>
             <td>
-            
+
         	<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_NUMBEROFDOCS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_NUMBER_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
         </td>
         </tr>
          <tr>
             <td><?php echo JText::_('COM_HANDOUT_DEFAULTLISTING_LABEL');?></td>
             <td width="300"><?php echo $lists['default_order'];?>&nbsp;&nbsp;<?php echo $lists['default_order2'];?></td>
             <td>
-            
+
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DEFAULTLISTING_LABEL');?>::<?php echo JText::_('COM_HANDOUT_DEFAULTLISTING_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
 		</td>
         </tr>
         <tr>
             <td><?php echo JText::_('COM_HANDOUT_EMAILGROUP_LABEL');?></td>
             <td><?php echo $lists['emailgroups'];?></td>
             <td>
-            
+
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_EMAILGROUP_LABEL');?>::<?php echo JText::_('COM_HANDOUT_EMAILGROUP_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
 		</td>
         </tr>
         <tr>
@@ -239,7 +239,7 @@ class HTML_HandoutConfig
             <td class="col1"><?php echo JText::_('COM_HANDOUT_SHOWSHARE_LABEL');?></td>
             <td class="col2"><?php echo $lists['show_share'];?></td>
             <td>
-            
+
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_SHOWSHARE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_SHOWSHARE_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
 					</td>
@@ -273,14 +273,14 @@ class HTML_HandoutConfig
             <td class="col1"><?php echo JText::_('COM_HANDOUT_ALLOW_BULK_DOWNLOAD_LABEL');?></td>
             <td class="col2"><?php echo $lists['allow_bulk_download'];?></td>
             <td>
-            
+
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_ALLOW_BULK_DOWNLOAD_LABEL');?>::<?php echo JText::_('COM_HANDOUT_ALLOW_BULK_DOWNLOAD_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
         </td>
         </tr>
 	</table>
-	
+
 	<table class="adminform">
         <tr>
         	<td class="hadmin-subtitle" colspan="3"><?php echo JText::_('COM_HANDOUT_IMAGES_AND_ICONS');?></td>
@@ -320,7 +320,7 @@ class HTML_HandoutConfig
             <td class="col2"><?php echo $lists['doc_image'];?></td>
             <td>&nbsp;</td>
         </tr>
-    </table>    
+    </table>
 
 	<table class="adminform">
         <tr>
@@ -366,7 +366,7 @@ class HTML_HandoutConfig
             <td class="col2"><?php echo $lists['item_title_link'];?></td>
             <td>&nbsp;</td>
         </tr>
-    </table>    
+    </table>
 
 	<table class="adminform">
         <tr>
@@ -457,104 +457,104 @@ class HTML_HandoutConfig
             <td class="col2"><?php echo $lists['details_crc_checksum'];?></td>
             <td>&nbsp;</td>
         </tr>
-    </table>    
+    </table>
 
 	<table class="adminform">
         <tr>
         	<td class="hadmin-subtitle" colspan="3"><?php echo JText::_('COM_HANDOUT_BUTTONS_SETTINGS');?></td>
-        </tr>     
+        </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_DOWNLOAD_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_download']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_DOWNLOAD_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_DOWNLOAD_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_VIEW_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_view']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_VIEW_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_VIEW_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_DETAILS_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_details']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_DETAILS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_DETAILS_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_EDIT_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_edit']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_EDIT_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_EDIT_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_MOVE_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_move']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_MOVE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_MOVE_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_DELETE_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_delete']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_DELETE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_DELETE_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_UPDATE_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_update']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_UPDATE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_UPDATE_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_RESET_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_reset']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_RESET_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_RESET_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_CHECKOUT_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_checkout']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_CHECKOUT_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_CHECKOUT_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
         <tr>
             <td class="col1"><?php echo JText::_('COM_HANDOUT_BUTTONS_PUBLISH_LABEL');?>:</td>
             <td class="col2"><?php echo $lists['buttons_publish']?></td>
-            <td>            
+            <td>
         <span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_BUTTONS_PUBLISH_LABEL');?>::<?php echo JText::_('COM_HANDOUT_BUTTONS_PUBLISH_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-					
+
        </td>
         </tr>
 	</table>
-    
+
 	<?php
 	echo $tabs->endPanel();
 	echo $tabs->startPanel(JText::_('COM_HANDOUT_PERMISSIONS'), "permissions-page");
@@ -816,16 +816,16 @@ class HTML_HandoutConfig
     <table class="adminform">
       	<tr>
         	<td class="hadmin-subtitle" colspan="5"><?php echo JText::_('COM_HANDOUT_CHOOSE_IMPORT');?></td>
-        </tr>       
+        </tr>
         <tr>
-            <td class="bgwhite center vtop"> 
-            
+            <td class="bgwhite center vtop">
+
 	            <div class="hserver-import">
 	            <div class="himport-title"><?php echo JText::_('COM_HANDOUT_MIGRATE_EXTENSION_TITLE');?></div>
 		            <div class="himport-icon">
 						<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_docman" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'DOCman'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_DOCMAN_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_DOCMAN_DESC');?>"><img src="components/com_handout/images/migrate_docman.jpg" /></a>
 		            </div>
-		            <!-- Disabled until ready 
+		            <!-- Disabled until ready
 		            <div class="himport-icon">
 						<a href="#" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_REMOSITORY_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_REMOSITORY_DESC');?>"><img src="components/com_handout/images/migrate_remository.jpg" /></a>
 		            </div>
@@ -833,7 +833,7 @@ class HTML_HandoutConfig
 		             <div class="himport-icon">
 						<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_rokdownloads" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'RokDownloads'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_ROKDOWNLOADS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_ROKDOWNLOADS_DESC');?>"><img src="components/com_handout/images/migrate_rokdownloads.jpg" /></a>
 		            </div>
-		            
+
 		             <div class="himport-icon">
 						<a href="index.php?option=com_handout&amp;task=migration&amp;migratefrom=com_joomdoc" target="_self" onclick="return confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'JoomDoc'); ?>');" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_JOOMDOC_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_JOOMDOC_DESC');?>"><img src="components/com_handout/images/migrate_joomdoc.jpg" /></a>
 		            </div>
@@ -842,16 +842,16 @@ class HTML_HandoutConfig
 		            </div>
 		            <div class="clr"></div>
 	            </div>
-	        </td> 
+	        </td>
 	        </tr>
 	        <tr>
-	        <td class="bgwhite center vtop">   
+	        <td class="bgwhite center vtop">
 	            <div class="hserver-import">
 	            	<div class="himport-title"><?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_TITLE');?></div>
 					<div class="himport-icon">
-						<a href="#" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_DESC');?>" ><img src="components/com_handout/images/migrate_server.jpg" /></a> 
+						<a href="#" class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_LABEL');?>::<?php echo JText::_('COM_HANDOUT_MIGRATE_SERVER_DESC');?>" ><img src="components/com_handout/images/migrate_server.jpg" /></a>
 	            	</div>
-	            	<div class="hlabel"><?php echo JText::_('COM_HANDOUT_MIGRATE_FOLDER_NAME_LABEL');?>: 
+	            	<div class="hlabel"><?php echo JText::_('COM_HANDOUT_MIGRATE_FOLDER_NAME_LABEL');?>:
 	            	<br /><input type="text" size="20" name="serverfolder" id="serverfolder" />
 					<br /><input type="button" onclick="serverfoldersubmit()" value="<?php echo JText::_('COM_HANDOUT_MIGRATE_START_IMPORT');?>"></div>
 	            	<div class="clr"></div>
@@ -860,18 +860,18 @@ class HTML_HandoutConfig
         </tr>
     </table>
 		<script language="javascript" type="text/javascript">
-        	function serverfoldersubmit() 
+        	function serverfoldersubmit()
 			{
 				var foldername = document.getElementById('serverfolder').value;
-				if (foldername=='') {	
+				if (foldername=='') {
 					alert('<?php echo JText::_('COM_HANDOUT_MGR_SERVERFOLDER_SPECIFY')?>');
-				}	
+				}
 				else {
 					var x = confirm('<?php echo JText::sprintf('COM_HANDOUT_MGR_CONFIRM', 'Server Folder'); ?>');
 					if (x) {
 						window.location = 'index.php?option=com_handout&task=migration&migratefrom=folder&folder=' + encodeURIComponent(foldername);
 					}
-				} 
+				}
 			}
         </script>
         <?php

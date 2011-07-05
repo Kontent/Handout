@@ -143,7 +143,7 @@ Testing commit on Github
 # Fixed path to logo_header and kontet_extensions_logo in install file
 ^ Completed functionality of Clear Data within Config tab
 # Made batch mode upload of zip file functional - was not working in JoomDOC either
-# Fix bug arising from removing Category Name 
+# Fix bug arising from removing Category Name
 ^ Show last updated on only if the doc has been updated (to prevent 1970 being shown when a doc has not been updated)
 
 6-Jun-2011 Severdia
@@ -162,7 +162,7 @@ Testing commit on Github
 
 4-Jun-2011 Arvind
 - Modules lister, top_downloads, latest_downloads moved to trash
-+ Module handout_docs is a cleaned up MVC version of handout_lister module 
++ Module handout_docs is a cleaned up MVC version of handout_lister module
 
 3-Jun-2011 Arvind
 + Andrew's Single Package Installer
@@ -296,7 +296,7 @@ Testing commit on Github
 11-May-2011 Arvind
 ^ Modifed plg_handout_search
 ^ Consolidated language .ini and .php files into two .ini files
-^ Changed references to language strings to JText::_() references across the site 
+^ Changed references to language strings to JText::_() references across the site
 
 10-May-2011 Severdia
 ^ Renamed search plug-in
@@ -317,7 +317,7 @@ Testing commit on Github
 9-May-2011 Arvind
 ^ Changed folders, filenames, classes and other instances of JoomDOC and DOCman to Handout
 ^ Rearranged some files and folders to create a proper component installation package
-^ Modified manifest.xml to reflect above changes. 
+^ Modified manifest.xml to reflect above changes.
 + Added htaccess file to prevent access to the /handouts folder
 
 9-May-2011 Severdia

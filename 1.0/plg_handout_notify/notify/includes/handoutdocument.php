@@ -5,7 +5,7 @@
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/ 
+ **/
 defined('_JEXEC') or die('Restricted access');
 
 require_once NOTIFY_PATH.DS.'includes'.DS.'handoutdata.php';
@@ -45,7 +45,7 @@ class NotifyDocument  extends NotifyHandoutData
 
 		// Category
         global $_HANDOUT;
-                
+
 		require_once $_HANDOUT->getPath('classes', 'model');
 		$cat = new HANDOUT_Category($this->catid);
 		$this->category = $cat->objDBTable->title;

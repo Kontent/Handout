@@ -63,7 +63,7 @@ class HANDOUT_Config {
         }
     }
 
-   
+
     /**
     *
     * @param string $ The name of the variable
@@ -136,7 +136,7 @@ class HANDOUT_Config {
     {
     	return $this->_config;
     }
-    
+
     function check(){
         /**
          * Handle single and double quotes

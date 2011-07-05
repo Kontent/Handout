@@ -73,7 +73,7 @@ class HANDOUT_Tree {
 
     function createData()
     {
-        $database = &JFactory::getDBO(); 
+        $database = &JFactory::getDBO();
         $user = &JFactory::getUser();
 
         /* If a user has signed in, get their user type */

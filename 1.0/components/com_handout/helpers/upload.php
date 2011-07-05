@@ -9,7 +9,7 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 $_HANDOUT = &HandoutFactory::getHandout ();
@@ -17,10 +17,10 @@ $_HANDOUT = &HandoutFactory::getHandout ();
 require_once ($_HANDOUT->getPath ( 'classes', 'plugins' ));
 require_once ($_HANDOUT->getPath ( 'classes', 'file' ));
 
-class UploadHelper {	
+class UploadHelper {
 	function fetchDocumentUploadForm($uid, $step, $method, $update) {
-		$_HANDOUT_USER = &HandoutFactory::getHandoutUser(); 
-		
+		$_HANDOUT_USER = &HandoutFactory::getHandoutUser();
+
 		//preform permission check
 
 		if ($_HANDOUT_USER->canPreformTask ( null, 'Upload' )) {
@@ -37,26 +37,26 @@ class UploadHelper {
 				break;
 			case '2' :
 			case '3' :
-				return UploadHelper::fetchMethodForm ( $uid, $step, $method, $update );				
+				return UploadHelper::fetchMethodForm ( $uid, $step, $method, $update );
 				break;
-			
+
 			default :
 				break;
 		}
 	}
-	
+
 	function fetchMethodsForm($uid, $step, $method) {
 		$task = JRequest::getCmd('task');
-		
+
 		// Prompt with a list of upload methods
 
 		$lists = array ();
 		$lists ['methods'] = HandoutHTML::uploadSelectList ();
 		$lists ['action'] = HandoutHelper::_taskLink ( $task, $uid, array ('step' => $step + 1 ), false );
-		
+
 		return $lists;
 	}
-	
+
 	function fetchMethodForm($uid, $step, $method, $update) {
 		$_HANDOUT = &HandoutFactory::getHandout();
 		$task = JRequest::getCmd('task');
@@ -65,18 +65,18 @@ class UploadHelper {
 			HandoutHelper::_returnTo ( $task, "Protocol " . $method . " not supported", '', array ('step' => 1 ) );
 		}
 		require_once ($method_file);
-		
+
 		return HandoutUploadMethod::fetchMethodForm ( $uid, $step, $update );
 	}
-	
+
 	function methodAvailable($method) {
 		$_HANDOUT = &HandoutFactory::getHandout();
 		$_HANDOUT_USER = &HandoutFactory::getHandoutUser();
-		
+
 		if ($_HANDOUT_USER->isSpecial || is_null ( $method )) {
 			return true;
 		}
-		
+
 		$methods = $_HANDOUT->getCfg ( 'methods', array ('http' ) );
 		if (! in_array ( $method, $methods )) {
 			return false;

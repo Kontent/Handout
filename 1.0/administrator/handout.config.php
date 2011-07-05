@@ -1,12 +1,12 @@
 <?php
 if(defined('_HandoutConfig')) {
 return true;
-} else { 
-define('_HandoutConfig',1); 
+} else {
+define('_HandoutConfig',1);
 
 class HandoutConfig
 {
-// Last Edit: Tue, 2011-Jun-14 13:25
+// Last Edit: Thu, 2011-Jun-30 08:16
 // Edited by: admin
 var $HANDOUT_version = '1.0';
 var $allow_bulk_download = '0';
@@ -57,7 +57,7 @@ var $fname_blank = '0';
 var $fname_lc = '0';
 var $fname_reject = 'index.htm|index.html|index.php';
 var $ga_code = '';
-var $handoutpath = '/Applications/MAMP/htdocs/Joomla_1.5_Handout/handouts';
+var $handoutpath = '/handouts';
 var $hide_remote = '0';
 var $hot = '100';
 var $icon_size = '1';
@@ -82,11 +82,11 @@ var $methods = array (
   1 => 'link',
   2 => 'transfer',
 );
-var $notify_ondownload='0';
-var $notify_onedit='0';
-var $notify_onedit_admin='0';
-var $notify_onupload='0';
-var $notify_sendto='';
+var $notify_ondownload = '0';
+var $notify_onedit = '0';
+var $notify_onedit_admin = '0';
+var $notify_onupload = '0';
+var $notify_sendto = '';
 var $overwrite = '0';
 var $perpage = '10';
 var $process_bots = '1';

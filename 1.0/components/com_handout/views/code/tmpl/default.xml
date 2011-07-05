@@ -5,7 +5,7 @@
 	</layout>
 	<state>
 		<name>Code Download</name>
-		<description>Download document based on code</description>		
+		<description>Download document based on code</description>
 		<url addpath="/administrator/components/com_handout/elements">
 			<param name="usertype" type="list" default="0" label="Select an option" description="COM_HANDOUT_CODES_USERTYPE_DESC">
 			  <option value="0">COM_HANDOUT_CODES_ANONYMOUS</option>

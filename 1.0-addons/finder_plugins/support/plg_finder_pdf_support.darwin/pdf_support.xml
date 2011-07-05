@@ -10,15 +10,15 @@
 	<authorUrl>http://jxtended.com/</authorUrl>
 	<copyright>Copyright 2008 - 2010 JXtended, LLC. All rights reserved.</copyright>
 	<description>FINDER_PDF_SUPPORT_DESC</description>
-	
+
 	<files>
 		<file plugin="pdf_support">pdf_support.php</file>
 		<folder>xpdf</folder>
 	</files>
-	
+
 	<languages>
 		<language tag="en-GB">en-GB.plg_finder_pdf_support.ini</language>
 	</languages>
-	
+
 	<params />
 </install>

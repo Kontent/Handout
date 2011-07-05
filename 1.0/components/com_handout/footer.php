@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  /**
  * Handout - The Joomla Download Manager
@@ -8,11 +8,11 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
-defined ( '_JEXEC' ) or die ( 'Restricted access' ); 
+
+defined ( '_JEXEC' ) or die ( 'Restricted access' );
 ?>
 <p class="credit"><a href="http://extensions.kontentdesign.com/" target="_blank">Handout for Joomla</a></p>
-<?php 
+<?php
 if ($this->conf->ga_code):
 ?>
 <div class="handout_ga">
@@ -30,6 +30,6 @@ if ($this->conf->ga_code):
 
 </script>
 </div>
-<?php 
+<?php
 endif;
 ?>

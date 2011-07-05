@@ -24,8 +24,8 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 <?php if(count($this->doc_list->items)) { ?>
     <div id="hdoc-list">
-    
-		<ul class="hdoc-order"> 
+
+		<ul class="hdoc-order">
 			<li class="horder-title"><?php echo JText::_('COM_HANDOUT_ORDER_BY'); ?>:</li>
 			<?php
 				if($this->doc_list->order->orderby != 'name') :
@@ -33,19 +33,19 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
 				<?php else :
 					?><li class="active"><?php echo JText::_('COM_HANDOUT_ORDER_NAME'); ?></li>
 				<?php endif;
-			
+
 				if($this->doc_list->order->orderby != 'date') :
 					?><li><a href="<?php echo $this->doc_list->order->links['date'] ?>"><?php echo JText::_('COM_HANDOUT_ORDER_DATE'); ?></a></li>
 				<?php else :
 					?><li class="active"><?php echo JText::_('COM_HANDOUT_ORDER_DATE'); ?></li>
 				<?php endif;
-			
+
 				if($this->doc_list->order->orderby != 'hits') :
 					?><li><a href="<?php echo $this->doc_list->order->links['hits'] ?>"><?php echo JText::_('COM_HANDOUT_ORDER_DOWNLOADS'); ?></a></li>
 				<?php else :
 					?><li class="active"><?php echo JText::_('COM_HANDOUT_ORDER_DOWNLOADS'); ?></li>
 				<?php endif;
-			
+
 				if ($this->doc_list->order->direction == 'ASC') :
 					?><li><a href="<?php echo $this->doc_list->order->links['dir'] ?>">[<?php echo JText::_('COM_HANDOUT_ORDER_DESCENT'); ?>]</a></li><?php
 				else :
@@ -54,7 +54,7 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
 			?>
 		</ul>
 		<h3><?php echo JText::_('COM_HANDOUT_DOCS'); ?></h3>
-		
+
 		<ul>
 		<?php
 			foreach($this->doc_list->items as $item) :

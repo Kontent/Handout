@@ -7,8 +7,8 @@
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/ 
- 
+ **/
+
 defined('_JEXEC') or die('Restricted access');
 
 class NotifyConfig extends JParameter
@@ -42,12 +42,12 @@ class NotifyConfig extends JParameter
 		$cc = $this->get( 'cc', false );
 		if($cc)
 		{
-			if (strstr($cc, "|")) {	//more than one recipient	
+			if (strstr($cc, "|")) {	//more than one recipient
 				$string = explode( '|', $cc );
 			}
 			else { // no pipe - single recipient
 				$string = array($cc);
-			}	
+			}
 			return $string;
 		}
 		return false;

@@ -67,8 +67,8 @@ defined('_JEXEC') or die;
 			endswitch;
 		endif;
 		?>
-	</div>		
+	</div>
 	<div class="clr"></div>
-	<?php 
+	<?php
     }
     ?>

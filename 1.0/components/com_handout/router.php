@@ -9,14 +9,14 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  **/
- 
+
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
 require_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_handout'.DS.'handout.class.php');
 require_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_handout'.DS.'classes'.DS.'HANDOUT_utils.class.php');
 require_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_handout'.DS.'helpers'.DS.'factory.php');
 
-$_HANDOUT = &HandoutFactory::getHandout(); 
+$_HANDOUT = &HandoutFactory::getHandout();
 $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
 if(!is_object($_HANDOUT)) {
 	$_HANDOUT = new HandoutMainFrame();
