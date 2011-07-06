@@ -41,8 +41,8 @@
 
 		<!-- Site modules -->
 		<phingcall target="build">
-			<property name="extpath" value="modules/mod_handout_approval_admin" />
-			<property name="extname" value="mod_handout_approval_admin" />
+			<property name="extpath" value="administrator/modules/mod_handout_approval" />
+			<property name="extname" value="mod_handout_approval" />
 		</phingcall>
 
 		<exec command="chmod -R 775 *" dir="${targetdir}" />
@@ -58,24 +58,24 @@
 		</if>
 
 		<if>
-			<available file="${targetdir}/package/com_${package}/admin/${package}.xml" type="file" />
+			<available file="${targetdir}/package/admin/${package}.xml" type="file" />
 			<then>
-				<copy file="${targetdir}/package/com_${package}/admin/${package}.xml" tofile="${targetdir}/package/${package}.xml" overwrite="true" />
-				<delete file="${targetdir}/package/com_${package}/admin/${package}.xml" />
+				<copy file="${targetdir}/package/admin/${package}.xml" tofile="${targetdir}/package/${package}.xml" overwrite="true" />
+				<delete file="${targetdir}/package/admin/${package}.xml" />
 			</then>
 		</if>
 
 		<!-- Copy the installer scripts up one -->
 		<if>
-			<available file="${targetdir}/package/com_${package}/admin/install/install.php" type="file" />
+			<available file="${targetdir}/package/admin/install/install.php" type="file" />
 			<then>
-				<copy file="${targetdir}/package/com_${package}/admin/install/install.php" tofile="${targetdir}/package/install/install.php" overwrite="true" />
+				<copy file="${targetdir}/package/admin/install/install.php" tofile="${targetdir}/package/install/install.php" overwrite="true" />
 			</then>
 		</if>
 		<if>
-			<available file="${targetdir}/package/com_${package}/admin/install/uninstall.php" type="file" />
+			<available file="${targetdir}/package/admin/install/uninstall.php" type="file" />
 			<then>
-				<copy file="${targetdir}/package/com_${package}/admin/install/uninstall.php" tofile="${targetdir}/pacakge/install/uninstall.php" overwrite="true" />
+				<copy file="${targetdir}/package/admin/install/uninstall.php" tofile="${targetdir}/package/install/uninstall.php" overwrite="true" />
 			</then>
 		</if>
 
