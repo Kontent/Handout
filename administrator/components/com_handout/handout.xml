@@ -76,11 +76,8 @@
 			<folder>images</folder>
 			<folder>install</folder>
 			<folder>includes</folder>
-			<folder>language</folder>
 			<folder>temp</folder>
 
-			<file>admin.handout.html.php</file>
-			<file>admin.handout.php</file>
 			<file>COPYRIGHT.php</file>
 			<file>footer.php</file>
 			<file>handout.class.php</file>
@@ -88,6 +85,7 @@
 			<file>handout.doc.languages.xml</file>
 			<file>handout.migration.php</file>
 			<file>handout.params.xml</file>
+			<file>handout.php</file>
 			<file>htaccess.txt</file>
 			<file>index.html</file>
 			<file>toolbar.handout.class.php</file>
