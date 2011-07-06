@@ -39,10 +39,73 @@
 			<property name="extsub" value="site" />
 		</phingcall>
 
-		<!-- Site modules -->
+		<!-- Admin modules -->
 		<phingcall target="build">
 			<property name="extpath" value="administrator/modules/mod_handout_approval" />
 			<property name="extname" value="mod_handout_approval" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="administrator/modules/mod_handout_latest_additions" />
+			<property name="extname" value="mod_handout_latest_additions" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="administrator/modules/mod_handout_latest_downloads" />
+			<property name="extname" value="mod_handout_latest_downloads" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="administrator/modules/mod_handout_quickicon" />
+			<property name="extname" value="mod_handout_quickicon" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="administrator/modules/mod_handout_top_downloads" />
+			<property name="extname" value="mod_handout_top_downloads" />
+		</phingcall>
+
+		<!-- Site modules -->
+		<phingcall target="build">
+			<property name="extpath" value="modules/mod_handout_docs" />
+			<property name="extname" value="mod_handout_docs" />
+		</phingcall>
+
+		<!-- Media -->
+		<phingcall target="build">
+			<property name="extpath" value="media" />
+			<property name="extname" value="media" />
+		</phingcall>
+
+		<!-- Plugins -->
+		<phingcall target="build">
+			<property name="extpath" value="plugins/handout/buttons" />
+			<property name="extsub" value="plg_handout_buttons" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="plugins/editors-xtd/doclink" />
+			<property name="extsub" value="plg_editors_xtd_doclink" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="plugins/handout/notify" />
+			<property name="extsub" value="plg_handout_notify" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="plugins/search/handout" />
+			<property name="extsub" value="plg_search_handout" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="plugins/handout/thumbs" />
+			<property name="extsub" value="plg_handout_thumbs" />
+		</phingcall>
+
+		<phingcall target="build">
+			<property name="extpath" value="plugins/system/kontentupdate" />
+			<property name="extsub" value="plg_system_kontentupdate" />
 		</phingcall>
 
 		<exec command="chmod -R 775 *" dir="${targetdir}" />
