@@ -11,8 +11,8 @@
 	<description>Joomla Download Manager</description>
 
 	<!-- Installation Files -->
-	<installfile>install/install.handout.php</installfile>
-	<uninstallfile>install/uninstall.handout.php</uninstallfile>
+	<installfile>install/install.php</installfile>
+	<uninstallfile>install/uninstall.php</uninstallfile>
 
 	<!-- Front-end Translation Files -->
 	<languages folder="site/language">
