@@ -52,7 +52,7 @@ function com_install() {
 ?>
 		<p style="font-size: 200%">
 			Installation failed!
-			<a href="<?php echo $link?>">Click here to uninstall Handout</a>. Make the folders listed above writeable and try again.
+			<a href="<?php echo $link?>">Click here to uninstall Handout</a>. Make the folders listed above writable and try again.
 		</p>
 <?php
 		$return = false;
