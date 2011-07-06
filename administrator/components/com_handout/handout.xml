@@ -104,7 +104,7 @@
 			showtitle="1"
 			published="1"
 			ordering="1">
-			<files folder="mod_handout_approval_admin">
+			<files folder="mod_handout_approval">
 				<folder>tmpl</folder>
 
 				<filename>helper.php</filename>
@@ -113,7 +113,7 @@
 				<filename>mod_handout_approval.xml</filename>
 			</files>
 
-			<languages folder="mod_handout_approval_admin/language">
+			<languages folder="mod_handout_approval/language">
 				<language tag="en-GB">en-GB/en-GB.mod_handout_approval.ini</language>
 			</languages>
 		</module>
@@ -126,7 +126,7 @@
 			showtitle="1"
 			published="1"
 			ordering="2">
-			<files folder="mod_handout_latest_additions_admin">
+			<files folder="mod_handout_latest_additions">
 				<folder>tmpl</folder>
 
 				<filename>helper.php</filename>
@@ -135,7 +135,7 @@
 				<filename>mod_handout_latest_additions.xml</filename>
 			</files>
 
-			<languages folder="mod_handout_latest_additions_admin/language">
+			<languages folder="mod_handout_latest_additions/language">
 				<language tag="en-GB">en-GB/en-GB.mod_handout_latest_additions.ini</language>
 			</languages>
 		</module>
@@ -148,7 +148,7 @@
 			showtitle="1"
 			published="1"
 			ordering="3">
-			<files folder="mod_handout_latest_downloads_admin">
+			<files folder="mod_handout_latest_downloads">
 				<folder>tmpl</folder>
 
 				<filename>helper.php</filename>
@@ -157,7 +157,7 @@
 				<filename>mod_handout_latest_downloads.xml</filename>
 			</files>
 
-			<languages folder="mod_handout_latest_downloads_admin/language">
+			<languages folder="mod_handout_latest_downloads/language">
 				<language tag="en-GB">en-GB/en-GB.mod_handout_latest_downloads.ini</language>
 			</languages>
 		</module>
@@ -170,7 +170,7 @@
 			showtitle="1"
 			published="1"
 			ordering="4">
-			<files folder="mod_handout_top_downloads_admin">
+			<files folder="mod_handout_top_downloads">
 				<folder>tmpl</folder>
 
 				<filename>helper.php</filename>
@@ -179,24 +179,24 @@
 				<filename>mod_handout_top_downloads.xml</filename>
 			</files>
 
-			<languages folder="mod_handout_top_downloads_admin/language">
+			<languages folder="mod_handout_top_downloads/language">
 				<language tag="en-GB">en-GB/en-GB.mod_handout_top_downloads.ini</language>
 			</languages>
 		</module>
 
 		<module
-			module="mod_handout_quickicon_admin"
+			module="mod_handout_quickicon"
 			title="Handout Control Panel Quick Icon"
 			position="icon"
 			client="administrator"
 			showtitle="0"
 			published="1"
 			ordering="10">
-			<files folder="mod_handout_quickicon_admin">
+			<files folder="mod_handout_quickicon">
 				<folder>tmpl</folder>
 				<filename>index.html</filename>
-				<filename module="mod_handout_quickicon_admin">mod_handout_quickicon_admin.php</filename>
-				<filename>mod_handout_quickicon_admin.xml</filename>
+				<filename module="mod_handout_quickicon">mod_handout_quickicon.php</filename>
+				<filename>mod_handout_quickicon.xml</filename>
 			</files>
 		</module>
 
