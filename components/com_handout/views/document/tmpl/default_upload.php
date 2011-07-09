@@ -51,14 +51,14 @@ JHTML::_('behavior.tooltip');
 				switch($this->method) :
 					case 'http' 	: 	echo JText::_('COM_HANDOUT_UPLOAD_A_FILE'); break;
 					case 'transfer' : 	echo JText::_('COM_HANDOUT_REMOTELY_TRANSFER_A_FILE'); break;
-					case 'link'     :	echo JText::_('COM_HANDOUT_LINK_TO_FILE'); break;
+					case 'link'	 :	echo JText::_('COM_HANDOUT_LINK_TO_FILE'); break;
 					default : break;
 				endswitch;
 				echo ')</span></p>';
 				switch($this->method) :
 					case 'http' 	: 	echo uploadFileForm($this->lists); break;
 					case 'transfer' : 	echo transferFileForm($this->lists); break;
-					case 'link'     :	echo linkFileForm($this->lists); break;
+					case 'link'	 :	echo linkFileForm($this->lists); break;
 					default : break;
 				endswitch;
 				break;
@@ -66,18 +66,18 @@ JHTML::_('behavior.tooltip');
 			case '3' :
 				//display the document edit form
 				?>
-                	<ul>
-                        <li><a title="<?php echo JText::_('COM_HANDOUT_CANCEL')?>" href="javascript:submitbutton('cancel');" ><span><span><?php echo JText::_('COM_HANDOUT_CANCEL')?></span></span></a></li>
-                        <li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
-                    </ul>
+					<ul>
+						<li><a title="<?php echo JText::_('COM_HANDOUT_CANCEL')?>" href="javascript:submitbutton('cancel');" ><span><span><?php echo JText::_('COM_HANDOUT_CANCEL')?></span></span></a></li>
+						<li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
+					</ul>
 				<?php
 				echo $this->loadTemplate('edit_form');
 				echo editDocumentForm ( $this->edit_doc, $this->edit_lists, $this->edit_last, $this->edit_created, $this->edit_params );
 				?>
-                	<ul>
-                        <li><a title="<?php echo JText::_('COM_HANDOUT_CANCEL')?>" href="javascript:submitbutton('cancel');" ><span><span><?php echo JText::_('COM_HANDOUT_CANCEL')?></span></span></a></li>
-                        <li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
-                    </ul>
+					<ul>
+						<li><a title="<?php echo JText::_('COM_HANDOUT_CANCEL')?>" href="javascript:submitbutton('cancel');" ><span><span><?php echo JText::_('COM_HANDOUT_CANCEL')?></span></span></a></li>
+						<li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
+					</ul>
 				<?php
 				break;
 		endswitch;
@@ -87,10 +87,10 @@ JHTML::_('behavior.tooltip');
 
 <?php
 	function transferFileForm($lists)
-    {
-        ob_start();
-        ?>
-    	<form action="<?php echo $lists['action'] ; ?>" method="post" id="hupload-form" class="hform">
+	{
+		ob_start();
+		?>
+		<form action="<?php echo $lists['action'] ; ?>" method="post" id="hupload-form" class="hform">
 			<fieldset class="input">
 				<p><label for="url"><?php echo JText::_('COM_HANDOUT_REMOTEURL') ?></label><br />
 				<input name="url" type="text" id="url" value="<?php echo $lists['url'];?>" />
@@ -108,21 +108,21 @@ JHTML::_('behavior.tooltip');
 				<input name="submit" class="button" value="<?php echo JText::_('COM_HANDOUT_BACK');?>" onclick="window.history.back()" type="button" >
 				<input name="submit" class="button" value="<?php echo JText::_('COM_HANDOUT_REMOTELY_TRANSFER_A_FILE');?>" type="submit" />
 			</fieldset>
-        	<input type="hidden" name="method" value="transfer" />
-        	<?php echo HANDOUT_token::render();?>
-        </form>
-    	<?php
+			<input type="hidden" name="method" value="transfer" />
+			<?php echo HANDOUT_token::render();?>
+		</form>
+		<?php
 		$html = ob_get_contents();
-        ob_end_clean();
-        return $html;
-    }
+		ob_end_clean();
+		return $html;
+	}
 
 
-    function linkFileForm($lists)
-    {
-        ob_start();
-        ?>
-    	<form action="<?php echo $lists['action'] ;?>" method="post" id="hupload-form" class="hform">
+	function linkFileForm($lists)
+	{
+		ob_start();
+		?>
+		<form action="<?php echo $lists['action'] ;?>" method="post" id="hupload-form" class="hform">
 			<fieldset class="input">
 				<p><label for="hform-url"><?php echo JText::_('COM_HANDOUT_REMOTEURL');?></label><br />
 				<input name="url" type="text" id="hform-url" value="<?php /*echo $parms['url'];*/ ?>" />
@@ -135,19 +135,19 @@ JHTML::_('behavior.tooltip');
 				<input name="submit" class="button" value="<?php echo JText::_('COM_HANDOUT_LINK');?>" type="submit" />
 			 </fieldset>
 			<input type="hidden" name="method" value="link" />
-         	<?php echo HANDOUT_token::render();?>
-       	</form>
+		 	<?php echo HANDOUT_token::render();?>
+	   	</form>
    		<?php
 			$html = ob_get_contents();
 			ob_end_clean();
 			return $html;
-    }
+	}
 
 	function uploadFileForm($lists)
-    {
-        $progressImg = JURI::root().'/administrator/components/com_handout/images/uploader.gif';
-        ob_start();
-        ?>
+	{
+		$progressImg = JURI::root().'/administrator/components/com_handout/images/uploader.gif';
+		ob_start();
+		?>
 		<form action="<?php echo $lists['action'] ;?>" method="post" enctype="multipart/form-data" id="hupload-form" class="hform">
 			<fieldset class="input">
 				<div>
@@ -165,25 +165,25 @@ JHTML::_('behavior.tooltip');
 		<?php
 			$html = ob_get_contents();
 			ob_end_clean();
-       		return $html;
-    }
+	   		return $html;
+	}
 
-    function uploadMethodsForm($lists)
-    {
-        ob_start();
-        ?>
+	function uploadMethodsForm($lists)
+	{
+		ob_start();
+		?>
 	   <form action="<?php echo $lists['action'];?>" method="post" id="hupload-form" class="hform">
 		   <fieldset>
 				<p><label for="method"><?php echo JText::_('COM_HANDOUT_UPLOADMETHOD');?></label></p>
 				<p><?php echo $lists['methods'];?></p>
 				<p><input name="submit" class="button" value="<?php echo JText::_('COM_HANDOUT_NEXT');?>" type="submit" /></p>
 		   </fieldset>
-    	</form>
+		</form>
 		<?php
  		$html = ob_get_contents();
-        ob_end_clean();
+		ob_end_clean();
 
-        return $html;
-    }
+		return $html;
+	}
 
 ?>

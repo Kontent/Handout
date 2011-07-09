@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
 JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 
 if ($this->conf->item_tooltip) :
-    JHTML::_('behavior.tooltip');
+	JHTML::_('behavior.tooltip');
 endif;
 
 $app = &JFactory::getApplication();
@@ -77,7 +77,7 @@ $app->setPageTitle( JText::_('COM_HANDOUT_TITLE_SEARCH'));
 					</table>
 				</fieldset>
 			</form>
-        </div>
+		</div>
 
 	<?php
 	// If we have no items to show

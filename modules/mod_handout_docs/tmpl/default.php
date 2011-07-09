@@ -3,7 +3,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 <?php
-    $html = '<div class="' . $moduleclass_sfx . '">';
+	$html = '<div class="' . $moduleclass_sfx . '">';
 
 	// If we have a textual prefix, show it now
 	if ( strlen($text_pfx) > 0 ) {

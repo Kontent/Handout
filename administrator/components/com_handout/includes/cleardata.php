@@ -15,32 +15,32 @@ include_once dirname(__FILE__) . DS.'cleardata.html.php';
 require_once $_HANDOUT->getPath('classes', 'cleardata');
 /*
 switch ($task) {
-    case 'remove':
-        clearData( $cid );
-        break;
+	case 'remove':
+		clearData( $cid );
+		break;
 
-    default:
-    case 'show':
-        showClearData();
+	default:
+	case 'show':
+		showClearData();
 }
 */
 function clearData( $cid = array() )
 {
-    HANDOUT_token::check() or die('Invalid Token');
+	HANDOUT_token::check() or die('Invalid Token');
 	$app = &JFactory::getApplication();
-    $msgs=array();
+	$msgs=array();
 
-    $cleardata = new HANDOUT_Cleardata( $cid );
-    $cleardata->clear();
-    $rows = & $cleardata->getList();
-    foreach( $rows as $row ){
-        $msgs[] = $row->msg;
-    }
-    $app->redirect( 'index.php?option=com_handout&section=config', implode(' | ', $msgs));
+	$cleardata = new HANDOUT_Cleardata( $cid );
+	$cleardata->clear();
+	$rows = & $cleardata->getList();
+	foreach( $rows as $row ){
+		$msgs[] = $row->msg;
+	}
+	$app->redirect( 'index.php?option=com_handout&section=config', implode(' | ', $msgs));
 }
 
 function showClearData(){
-    $cleardata = new HANDOUT_Cleardata();
-    $rows = & $cleardata->getList();
+	$cleardata = new HANDOUT_Cleardata();
+	$rows = & $cleardata->getList();
 	HTML_HandoutClear::showClearData( $rows );
 }

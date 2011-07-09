@@ -29,15 +29,15 @@ defined('_JEXEC') or die;
 	<div class="hcat-head">
 	<?php
 		if($this->category->data->image) :
-	        ?>
-	        <div class="hcat-icon h<?php echo $this->category->data->image_position;?>" ><img src="<?php echo $this->category->paths->thumb; ?>" alt="<?php echo $this->category->data->title;?>" /></div><?php
-	    endif;
+			?>
+			<div class="hcat-icon h<?php echo $this->category->data->image_position;?>" ><img src="<?php echo $this->category->paths->thumb; ?>" alt="<?php echo $this->category->data->title;?>" /></div><?php
+		endif;
 
 		 echo $this->loadTemplate('addthis');
 
-	    if($this->category->data->title != '') :
-	        ?><h2 class="hcat-name"><?php echo $this->category->data->title;?></h2><?php
-	    endif;
+		if($this->category->data->title != '') :
+			?><h2 class="hcat-name"><?php echo $this->category->data->title;?></h2><?php
+		endif;
 		if($this->category->data->description != '') :
 			?><div class="hcat-description"><?php echo $this->category->data->description;?></div><?php
 		endif;

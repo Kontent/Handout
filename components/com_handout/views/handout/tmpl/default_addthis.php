@@ -20,35 +20,35 @@ defined('_JEXEC') or die;
 ?>
 	<?php
 	if ($this->conf->show_share):
-    ?>
-     <div class="hdoc-share">
+	?>
+	 <div class="hdoc-share">
 		<div class="addthis_toolbox addthis_default_style ">
-        	<?php if ($this->conf->show_share_facebook): ?>
+			<?php if ($this->conf->show_share_facebook): ?>
 				<a class="addthis_button_facebook" rel="nofollow"></a>
-            <?php endif; ?>
-        	<?php if ($this->conf->show_share_twitter): ?>
+			<?php endif; ?>
+			<?php if ($this->conf->show_share_twitter): ?>
 				<a class="addthis_button_twitter" rel="nofollow"></a>
-            <?php endif; ?>
-            <?php if ($this->conf->show_share_googleplusone): ?>
+			<?php endif; ?>
+			<?php if ($this->conf->show_share_googleplusone): ?>
 				<a class="addthis_button_google_plusone" g:plusone:size="small" g:plusone:count="false" rel="nofollow" ></a>
-            <?php endif; ?>
-        	<?php if ($this->conf->show_share_email): ?>
+			<?php endif; ?>
+			<?php if ($this->conf->show_share_email): ?>
 				<a class="addthis_button_email" rel="nofollow"></a>
-            <?php endif; ?>
-        	<?php if ($this->conf->show_share_compact): ?>
+			<?php endif; ?>
+			<?php if ($this->conf->show_share_compact): ?>
 				<a class="addthis_button_compact" rel="nofollow"></a>
-            <?php endif; ?>
+			<?php endif; ?>
 		</div>
 		<?php
-        if ($this->conf->ga_code):
-        ?>
-        <script type="text/javascript">
+		if ($this->conf->ga_code):
+		?>
+		<script type="text/javascript">
 		 var addthis_config = {
 			data_ga_property: 'UA-<?php echo $this->conf->ga_code; ?>',
 			data_track_clickback: true
 		 };
 		</script>
-        <?php endif; ?>
+		<?php endif; ?>
 		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ded34232959f910"></script>
-    </div>
-    <?php endif; ?>
+	</div>
+	<?php endif; ?>

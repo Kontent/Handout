@@ -13,7 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 if (! defined('DS'))
-    define('DS', DIRECTORY_SEPARATOR);
+	define('DS', DIRECTORY_SEPARATOR);
 
 require_once dirname(__FILE__) . DS . '..' . DS. 'handout.class.php';
 
@@ -31,63 +31,63 @@ define('COM_HANDOUT_INSTALLER_ICONPATH', JURI::root() . 'administrator/component
  */
 class HandoutInstallHelper
 {
-    function checkWritable ()
-    {
-        $absolute_path = JPATH_ROOT;
-        $paths = array(DS , DS . 'administrator' . DS . 'modules' . DS , DS . 'plugins' . DS);
-        clearstatcache();
-        $msgs = array();
-        foreach ($paths as $path) {
-            if (! is_writable($absolute_path . $path)) {
-                $msgs[] = '<font color="red">Unwriteable: &lt;joomla root&gt;' . $path . '</font><br />';
-            }
-        }
-        if (count($msgs)) {
-            echo '<br /><p style="font-size:200%">';
-            echo implode("\n", $msgs);
-            echo '</p>';
-            return false;
-        }
-        return true;
-    }
+	function checkWritable ()
+	{
+		$absolute_path = JPATH_ROOT;
+		$paths = array(DS , DS . 'administrator' . DS . 'modules' . DS , DS . 'plugins' . DS);
+		clearstatcache();
+		$msgs = array();
+		foreach ($paths as $path) {
+			if (! is_writable($absolute_path . $path)) {
+				$msgs[] = '<font color="red">Unwriteable: &lt;joomla root&gt;' . $path . '</font><br />';
+			}
+		}
+		if (count($msgs)) {
+			echo '<br /><p style="font-size:200%">';
+			echo implode("\n", $msgs);
+			echo '</p>';
+			return false;
+		}
+		return true;
+	}
 
-    function getDefaultFiles ()
-    {
-        return array('.htaccess' , 'index.html');
-    }
+	function getDefaultFiles ()
+	{
+		return array('.htaccess' , 'index.html');
+	}
 
-    function getComponentId ()
-    {
-        static $id;
-        if (! $id) {
-            $database = &JFactory::getDBO();
-            $database->setQuery("SELECT id FROM #__components WHERE name= 'Handout'");
-            $id = $database->loadResult();
-        }
-        return $id;
-    }
+	function getComponentId ()
+	{
+		static $id;
+		if (! $id) {
+			$database = &JFactory::getDBO();
+			$database->setQuery("SELECT id FROM #__components WHERE name= 'Handout'");
+			$id = $database->loadResult();
+		}
+		return $id;
+	}
 
-    function fileOperations ()
-    {
+	function fileOperations ()
+	{
 
-        $root = JPATH_ROOT;
-        $site = $root . DS . 'components' . DS . 'com_handout';
-        $admin = $root . DS . 'administrator' . DS . 'components' . DS . 'com_handout';
-        $handoutdoc = $root . DS . 'handouts';
+		$root = JPATH_ROOT;
+		$site = $root . DS . 'components' . DS . 'com_handout';
+		$admin = $root . DS . 'administrator' . DS . 'components' . DS . 'com_handout';
+		$handoutdoc = $root . DS . 'handouts';
 
-        @mkdir($handoutdoc, 0755);
-        @rename($admin . DS . 'htaccess.txt', $handoutdoc . DS . '.htaccess');
-        @copy($site . DS . 'index.html', $handoutdoc . DS . 'index.html');
+		@mkdir($handoutdoc, 0755);
+		@rename($admin . DS . 'htaccess.txt', $handoutdoc . DS . '.htaccess');
+		@copy($site . DS . 'index.html', $handoutdoc . DS . 'index.html');
 
-        @chmod($site, 0755);
-        @chmod($admin . DS . 'classes' . DS . 'HANDOUT_download.class.php', 0755);
-        @chmod($admin . DS . 'classes' . DS . 'HANDOUT_utils.php', 0755);
-    }
+		@chmod($site, 0755);
+		@chmod($admin . DS . 'classes' . DS . 'HANDOUT_download.class.php', 0755);
+		@chmod($admin . DS . 'classes' . DS . 'HANDOUT_utils.php', 0755);
+	}
 
-    function showLogo ()
-    {
-        ?>
-        <style type="text/css">
+	function showLogo ()
+	{
+		?>
+		<style type="text/css">
 			h1.hinstall-title {
 				margin-left: 0;
 				font-family: Helvetica, sans-serif;
@@ -219,149 +219,149 @@ class HandoutInstallHelper
 					</div>
 				</div>
 		<?php
-    }
+	}
 
-    /**
+	/**
 
-     * Count items in tables
+	 * Count items in tables
 
-     */
-    function cntDbRecords ()
-    {
-        $database = &JFactory::getDBO();
-        $cnt = array();
-        $tables = HandoutInstallHelper::getTablesList();
+	 */
+	function cntDbRecords ()
+	{
+		$database = &JFactory::getDBO();
+		$cnt = array();
+		$tables = HandoutInstallHelper::getTablesList();
 
-        foreach ($tables as $table) {
-            $database->setQuery("SELECT COUNT(*) FROM `$table`");
-            $cnt[] = (int) $database->loadResult();
-        }
+		foreach ($tables as $table) {
+			$database->setQuery("SELECT COUNT(*) FROM `$table`");
+			$cnt[] = (int) $database->loadResult();
+		}
 
-        // count categories
+		// count categories
 
-        $database->setQuery("SELECT COUNT(*) FROM `#__categories` WHERE `section` = 'com_handout'");
-        $cnt[] = (int) $database->loadResult();
+		$database->setQuery("SELECT COUNT(*) FROM `#__categories` WHERE `section` = 'com_handout'");
+		$cnt[] = (int) $database->loadResult();
 
-        return array_sum($cnt);
-    }
+		return array_sum($cnt);
+	}
 
-    function removeTables ()
-    {
-        $database = &JFactory::getDBO();
-        $tables = HandoutInstallHelper::getTablesList();
+	function removeTables ()
+	{
+		$database = &JFactory::getDBO();
+		$tables = HandoutInstallHelper::getTablesList();
 
-        foreach ($tables as $table) {
-            $database->setQuery("DROP TABLE IF EXISTS `$table`");
-            $database->query();
-        }
-    }
+		foreach ($tables as $table) {
+			$database->setQuery("DROP TABLE IF EXISTS `$table`");
+			$database->query();
+		}
+	}
 
-    function getTablesList ()
-    {
-        return array('#__handout' , '#__handout_groups' , '#__handout_history' , '#__handout_licenses' , '#__handout_log');
-    }
+	function getTablesList ()
+	{
+		return array('#__handout' , '#__handout_groups' , '#__handout_history' , '#__handout_licenses' , '#__handout_log');
+	}
 
-    /**
+	/**
 
-     * Count the number of files in /handouts
+	 * Count the number of files in /handouts
 
-     */
-    function cntFiles ()
-    {
-        global $_HANDOUT;
-        if (! is_object($_HANDOUT)) {
-            $_HANDOUT = new HandoutMainFrame();
-        }
-        if (! is_object($_HANDOUT)) {
-            $_HANDOUT = new HandoutMainFrame();
-        }
-        $files = HandoutInstallHelper::getDefaultFiles();
-        $dir = JFolder::files($_HANDOUT->getCfg('handoutpath'));
-        return count(array_diff($dir, $files));
-    }
+	 */
+	function cntFiles ()
+	{
+		global $_HANDOUT;
+		if (! is_object($_HANDOUT)) {
+			$_HANDOUT = new HandoutMainFrame();
+		}
+		if (! is_object($_HANDOUT)) {
+			$_HANDOUT = new HandoutMainFrame();
+		}
+		$files = HandoutInstallHelper::getDefaultFiles();
+		$dir = JFolder::files($_HANDOUT->getCfg('handoutpath'));
+		return count(array_diff($dir, $files));
+	}
 
-    function removeHandoutDocuments ()
-    {
-        global $_HANDOUT;
-        if (! is_object($_HANDOUT)) {
-            $_HANDOUT = new HandoutMainFrame();
-        }
+	function removeHandoutDocuments ()
+	{
+		global $_HANDOUT;
+		if (! is_object($_HANDOUT)) {
+			$_HANDOUT = new HandoutMainFrame();
+		}
 
-        $handoutpath = $_HANDOUT->getCfg('handoutpath');
+		$handoutpath = $_HANDOUT->getCfg('handoutpath');
 
-        $files = HandoutInstallHelper::getDefaultFiles();
+		$files = HandoutInstallHelper::getDefaultFiles();
 
-        foreach ($files as $file) {
-            @unlink($handoutpath . DS . $file);
-        }
-        @rmdir($handoutpath);
-    }
+		foreach ($files as $file) {
+			@unlink($handoutpath . DS . $file);
+		}
+		@rmdir($handoutpath);
+	}
 
-    /**
+	/**
 
-     * Create index.html files
+	 * Create index.html files
 
-     */
-    function createIndex ($path)
-    {
-        // create index.html in the path
+	 */
+	function createIndex ($path)
+	{
+		// create index.html in the path
 
-        HandoutInstallHelper::_createIndexFile($path);
+		HandoutInstallHelper::_createIndexFile($path);
 
-        if (! file_exists($path)) {
-            return false;
-        }
-        // create index.html in subdirs
+		if (! file_exists($path)) {
+			return false;
+		}
+		// create index.html in subdirs
 
-        $handle = opendir($path);
-        while ($file = readdir($handle)) {
-            if ($file != '.' and $file != '..') {
-                $dir = $path . DS . $file;
-                if (is_dir($dir)) {
-                    HandoutInstallHelper::createIndex($dir);
-                }
-            }
-        }
-    }
+		$handle = opendir($path);
+		while ($file = readdir($handle)) {
+			if ($file != '.' and $file != '..') {
+				$dir = $path . DS . $file;
+				if (is_dir($dir)) {
+					HandoutInstallHelper::createIndex($dir);
+				}
+			}
+		}
+	}
 
-    function _createIndexFile ($dir)
-    {
-        @$handle = fopen($dir . DS . 'index.html', 'w');
-        @fwrite($handle, 'Restricted access');
-    }
+	function _createIndexFile ($dir)
+	{
+		@$handle = fopen($dir . DS . 'index.html', 'w');
+		@fwrite($handle, 'Restricted access');
+	}
 
 
 
-    /**
-     * Upgrade tables
-     */
-    function upgradeTables ()
-    {
-        $database = &JFactory::getDBO();
-        $queries = array();
+	/**
+	 * Upgrade tables
+	 */
+	function upgradeTables ()
+	{
+		$database = &JFactory::getDBO();
+		$queries = array();
 
-        $database->setQuery("SHOW INDEX FROM #__handout");
-        $database->query();
-        $num_keys = $database->getNumRows();
-        switch ($num_keys) {
-            case 1: // there's only a primary index, add some more
+		$database->setQuery("SHOW INDEX FROM #__handout");
+		$database->query();
+		$num_keys = $database->getNumRows();
+		switch ($num_keys) {
+			case 1: // there's only a primary index, add some more
 
-                $queries[] = "ALTER TABLE `#__handout` ADD INDEX `pub_own_cat_name`  (`published`, `docowner`, `catid`, `docname`(64))";
-                $queries[] = "ALTER TABLE `#__handout` ADD INDEX `pub_own_cat_date`  (`published`, `docowner`, `catid`, `docdate_published`)";
-                $queries[] = "ALTER TABLE `#__handout` ADD INDEX `own_pub_cat_count` (`docowner`, `published`, `catid`, `doccounter`)";
-            // pass through (more can be added later on)
+				$queries[] = "ALTER TABLE `#__handout` ADD INDEX `pub_own_cat_name`  (`published`, `docowner`, `catid`, `docname`(64))";
+				$queries[] = "ALTER TABLE `#__handout` ADD INDEX `pub_own_cat_date`  (`published`, `docowner`, `catid`, `docdate_published`)";
+				$queries[] = "ALTER TABLE `#__handout` ADD INDEX `own_pub_cat_count` (`docowner`, `published`, `catid`, `doccounter`)";
+			// pass through (more can be added later on)
 
-            default:
-                break;
-        }
+			default:
+				break;
+		}
 
-        foreach ($queries as $query) {
-            $database->setQuery($query);
-            if (! $database->query()) {
-                echo 'Error upgrading tables';
-            }
-        }
-    }
+		foreach ($queries as $query) {
+			$database->setQuery($query);
+			if (! $database->query()) {
+				echo 'Error upgrading tables';
+			}
+		}
+	}
 }
 
 abstract class PackageInstallerHelper

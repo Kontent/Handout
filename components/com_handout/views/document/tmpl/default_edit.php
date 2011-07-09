@@ -27,12 +27,12 @@ defined('_JEXEC') or die;
 ?>
 <?php
 	$app = &JFactory::getApplication();
-    $app->setPageTitle(JText::_('COM_HANDOUT_TITLE_EDIT') . ' | ' . $this->data->docname);
-    $pathway = & $app->getPathWay();
-    $pathway->addItem($this->data->docname);
-    $pathway->addItem('Edit');
+	$app->setPageTitle(JText::_('COM_HANDOUT_TITLE_EDIT') . ' | ' . $this->data->docname);
+	$pathway = & $app->getPathWay();
+	$pathway->addItem($this->data->docname);
+	$pathway->addItem('Edit');
 
-    JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
+	JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 	JHTML::_('behavior.tooltip');
 	JHTML::_('behavior.calendar');
 ?>
@@ -75,15 +75,15 @@ defined('_JEXEC') or die;
 
 <?php
 
-    function editDocumentForm(&$row, &$lists, $last, $created, &$params)
-    {
-        $Itemid = JRequest::getInt('Itemid');
+	function editDocumentForm(&$row, &$lists, $last, $created, &$params)
+	{
+		$Itemid = JRequest::getInt('Itemid');
 
-        JFilterOutput::objectHTMLSafe( $row );
+		JFilterOutput::objectHTMLSafe( $row );
 
-        ob_start();
-        ?>
-        <form action="index.php" method="post" name="adminForm" onsubmit="javascript:setgood();" id="hform-edit" class="hform">
+		ob_start();
+		?>
+		<form action="index.php" method="post" name="adminForm" onsubmit="javascript:setgood();" id="hform-edit" class="hform">
 			<?php
 
 			$tabs = new HandoutTabs(0);
@@ -122,7 +122,7 @@ defined('_JEXEC') or die;
 				?>
 			</p>
 
-            <input type="hidden" name="goodexit" value="0" />
+			<input type="hidden" name="goodexit" value="0" />
 			<input type="hidden" name="id" value="<?php echo $row->id;?>" />
 			<input type="hidden" name="option" value="com_handout" />
 			<input type="hidden" name="task" value="doc_save" />
@@ -131,18 +131,18 @@ defined('_JEXEC') or die;
 			<input type="hidden" name="doclastupdateon" value="<?php echo date('Y-m-d H:i:s') ?>" />
 			<?php echo HANDOUT_token::render();?>
 		</form>
-        <?php
-        $html = ob_get_contents();
-        ob_end_clean();
-        return $html;
-    }
+		<?php
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
+	}
 
-    function _showTabDocument(&$row, &$lists, $last, $created)
-    {
-    	$_HANDOUT_USER = &HandoutFactory::getHandoutUser();
-        JHTML::_('behavior.calendar');
-    	?>
-        <table class="adminform">
+	function _showTabDocument(&$row, &$lists, $last, $created)
+	{
+		$_HANDOUT_USER = &HandoutFactory::getHandoutUser();
+		JHTML::_('behavior.calendar');
+		?>
+		<table class="adminform">
 			<tbody>
 				<tr>
 					<td>
@@ -204,15 +204,15 @@ defined('_JEXEC') or die;
 					</td>
 				</tr>
 			</tbody>
-        </table>
-        <?php
-    }
+		</table>
+		<?php
+	}
 
-    function _showTabPermissions(&$row, &$lists, $last, $created)
-    {
-    	$_HANDOUT = &HandoutFactory::getHandout(); $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
-    	?>
-    	<fieldset class="input">
+	function _showTabPermissions(&$row, &$lists, $last, $created)
+	{
+		$_HANDOUT = &HandoutFactory::getHandout(); $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
+		?>
+		<fieldset class="input">
 			<p>
 				<label for="hform-owner"><?php echo JText::_('COM_HANDOUT_OWNER');?></label><br />
 				<?php echo $lists['viewer'];?>
@@ -254,13 +254,13 @@ defined('_JEXEC') or die;
 			</p>
   		</fieldset>
   		<?php
-    }
+	}
 
-    function _showTabLicense(&$row, &$lists, $last, $created)
-    {
-    	$_HANDOUT = &HandoutFactory::getHandout(); $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
-    	?>
-    	<fieldset class="input">
+	function _showTabLicense(&$row, &$lists, $last, $created)
+	{
+		$_HANDOUT = &HandoutFactory::getHandout(); $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
+		?>
+		<fieldset class="input">
 			<p>
 				<label for="hform-agreement-type"><?php echo JText::_('COM_HANDOUT_AGREEMENT_TYPE');?></label><br />
 				<?php echo $lists['licenses']; ?>
@@ -277,18 +277,16 @@ defined('_JEXEC') or die;
 								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
 
 			</p>
-        </fieldset>
-        <?php
-    }
+		</fieldset>
+		<?php
+	}
 
-    function _showTabDetails(&$row, &$lists, $last, $created, &$params)
-    {
-    	$_HANDOUT = &HandoutFactory::getHandout(); $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
-    	?>
-    	<fieldset class="input">
+	function _showTabDetails(&$row, &$lists, $last, $created, &$params)
+	{
+		$_HANDOUT = &HandoutFactory::getHandout(); $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
+		?>
+		<fieldset class="input">
 			<?php echo $params->render('params', 'Tableless');?>
-    	</fieldset>
-    	<?php
-    }
-
-?>
+		</fieldset>
+		<?php
+	}

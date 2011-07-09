@@ -50,7 +50,7 @@ class HandoutMainFrame
 
 		//load common language defines
 		$lang = &JFactory::getLanguage();
-        $lang->load('com_handout', JPATH_ADMINISTRATOR);
+		$lang->load('com_handout', JPATH_ADMINISTRATOR);
 
 		//include php compatibility files
 		$this->loadCompatibility();
@@ -109,8 +109,8 @@ class HandoutMainFrame
 	{
 		$root_path = JPATH_ROOT;
 		$live_site = JURI::base();
-        $folder = $this->cleanPath( $folder );
-        $file   = $this->cleanPath( $file );
+		$folder = $this->cleanPath( $folder );
+		$file   = $this->cleanPath( $file );
 
 		$result = null;
 		if (isset( $this->_path->$folder ))
@@ -201,40 +201,40 @@ class HandoutMainFrame
 		require_once $this->getPath('classes', 'config');
 		$this->_config = new HANDOUT_Config('HandoutConfig', dirname(__FILE__)."/handout.config.php" );
 
-        $this->_checkConfig();
+		$this->_checkConfig();
 	}
 
-    /**
-     * Check if the configuration values are valid
-     */
-    function _checkConfig() {
-    	$task = JRequest::getCmd('task');
-        $root_path = JPATH_ROOT;
-        $save = false;
+	/**
+	 * Check if the configuration values are valid
+	 */
+	function _checkConfig() {
+		$task = JRequest::getCmd('task');
+		$root_path = JPATH_ROOT;
+		$save = false;
 
-        // Get the path (ignore result) ... this sets a default value
-        if(is_null($this->_config->getCfg('handoutpath'))) {
-            $this->_config->setCfg('handoutpath', $root_path.DS.'handouts', true );
-            $save = true;
-        }
+		// Get the path (ignore result) ... this sets a default value
+		if(is_null($this->_config->getCfg('handoutpath'))) {
+			$this->_config->setCfg('handoutpath', $root_path.DS.'handouts', true );
+			$save = true;
+		}
 
-        // trim pipes and spaces in $fname_reject
-        if(isset($this->_config->fname_reject)) {
-            $this->_config->fname_reject = trim($this->_config->fname_reject, '| ');
-            $save = true;
-        }
+		// trim pipes and spaces in $fname_reject
+		if(isset($this->_config->fname_reject)) {
+			$this->_config->fname_reject = trim($this->_config->fname_reject, '| ');
+			$save = true;
+		}
 
-        // never save config during download
-        if( $task=='license_result' OR $task=='doc_download' ){
-        	$save = false;
-        }
+		// never save config during download
+		if( $task=='license_result' OR $task=='doc_download' ){
+			$save = false;
+		}
 
-        // save the config if necessary
-        if($save) {
-        	$this->_config->saveConfig();
-        }
+		// save the config if necessary
+		if($save) {
+			$this->_config->saveConfig();
+		}
 
-    }
+	}
 
 	/**
 	* @param string The name of the variable
@@ -257,20 +257,20 @@ class HandoutMainFrame
 	* Saves the configuration object
 	*/
 	function saveConfig() {
-        $handoutpath = $this->cleanPath($this->getCfg('handoutpath'));
-        $this->setCfg('handoutpath', $handoutpath);
+		$handoutpath = $this->cleanPath($this->getCfg('handoutpath'));
+		$this->setCfg('handoutpath', $handoutpath);
 
 		return $this->_config->saveConfig();
 	}
 
 	/**
-    *
-    * @return object The configuration object
-    */
-    function getAllCfg()
-    {
-    	return $this->_config->getAllCfg();
-    }
+	*
+	* @return object The configuration object
+	*/
+	function getAllCfg()
+	{
+		return $this->_config->getAllCfg();
+	}
 
 
 	/**
@@ -282,7 +282,7 @@ class HandoutMainFrame
 	}
 
 	function & getUser() {
-        $null = null;
+		$null = null;
 		if (isset( $this->_user )) {
 			return $this->_user;
 		} else {
@@ -329,9 +329,9 @@ class HandoutMainFrame
 		$lang = $config->getValue('config.language');
 
 		if (file_exists($this->getPath('language').'/'.$lang.'.'.$type.'.php')) {
-    		include_once ($this->getPath('language').'/'.$lang.'.'.$type.'.php');
+			include_once ($this->getPath('language').'/'.$lang.'.'.$type.'.php');
 		} else {
-    		include_once ($this->getPath('language').'/en-GB.'.$type.'.php');
+			include_once ($this->getPath('language').'/en-GB.'.$type.'.php');
 		}
 		*/
 		return;
@@ -347,19 +347,19 @@ class HandoutMainFrame
 		}
 	}
 
-    /**
-    * Check a filename or path for '..', '//' or '\\'
-    */
-    function cleanPath( $path )
-    {
-        $path = trim( $path );
-        // remove '..'
-        $path = str_replace( '..', '', $path );
-        // Remove double slashes and backslahses and convert all slashes and backslashes to DS
-        $path = preg_replace('#[/\\\\]+#', DIRECTORY_SEPARATOR, $path);
+	/**
+	* Check a filename or path for '..', '//' or '\\'
+	*/
+	function cleanPath( $path )
+	{
+		$path = trim( $path );
+		// remove '..'
+		$path = str_replace( '..', '', $path );
+		// Remove double slashes and backslahses and convert all slashes and backslashes to DS
+		$path = preg_replace('#[/\\\\]+#', DIRECTORY_SEPARATOR, $path);
 
-        return $path;
-    }
+		return $path;
+	}
 
 
 }
@@ -370,33 +370,33 @@ class HandoutMainFrame
 */
 
 class HandoutDocument extends JTable {
-    var $id                 = null;
-    var $catid              = null;
-    var $docname             = null;
-    var $docfilename         = null;
-    var $docdescription      = null;
-    var $docdate_published   = null;
-    var $docowner            = null;
-    var $published          = null;
-    var $docurl              = null;
-    var $doccounter          = null;
-    var $checked_out        = null;
-    var $checked_out_time   = null;
-    var $docthumbnail        = null;
-    var $doclastupdateon     = null;
-    var $doclastupdateby     = null;
-    var $docsubmittedby       = null;
-    var $docmaintainedby      = null;
-    var $doclicense_id       = null;
-    var $doclicense_display  = null;
+	var $id				 = null;
+	var $catid			  = null;
+	var $docname			 = null;
+	var $docfilename		 = null;
+	var $docdescription	  = null;
+	var $docdate_published   = null;
+	var $docowner			= null;
+	var $published		  = null;
+	var $docurl			  = null;
+	var $doccounter		  = null;
+	var $checked_out		= null;
+	var $checked_out_time   = null;
+	var $docthumbnail		= null;
+	var $doclastupdateon	 = null;
+	var $doclastupdateby	 = null;
+	var $docsubmittedby	   = null;
+	var $docmaintainedby	  = null;
+	var $doclicense_id	   = null;
+	var $doclicense_display  = null;
 	var $docversion			= null;
 	var $doclanguage		= null;
 	var $doc_meta_keywords	= null;
 	var $doc_meta_description	= null;
 	var $kunena_discuss_id	= null;
 	var $mtree_id	= null;
-    var $access             = null;
-    var $attribs            = null;
+	var $access			 = null;
+	var $attribs			= null;
 
 	function __construct (&$db)
 	{
@@ -423,8 +423,8 @@ class HandoutDocument extends JTable {
 		$handout = &HandoutFactory::getHandout();
 
 		$this->id		= null;
-		$this->published        = 0;
-		$this->docsubmittedby     = $user->id;
+		$this->published		= 0;
+		$this->docsubmittedby	 = $user->id;
 		$this->doclastupdateby   = $user->id;
 
 		$this->docowner		 = $handout->getCfg( 'default_viewer' );
@@ -459,12 +459,12 @@ class HandoutDocument extends JTable {
 		if( $this->docfilename == "" ){
 			$this->_error .= "\\n". JText::_('COM_HANDOUT_ENTRY_DOC');
 		}
-        if( $this->docfilename == COM_HANDOUT_DOCUMENT_LINK
-            AND $document_url = JRequest::getVar( 'document_url', false)
-            AND parse_url($document_url))
-        {
-            $this->docfilename = COM_HANDOUT_DOCUMENT_LINK.$document_url;
-        }
+		if( $this->docfilename == COM_HANDOUT_DOCUMENT_LINK
+			AND $document_url = JRequest::getVar( 'document_url', false)
+			AND parse_url($document_url))
+		{
+			$this->docfilename = COM_HANDOUT_DOCUMENT_LINK.$document_url;
+		}
 
 		if( ! $this->catid ){
 			$this->_error .= "\\n" . JText::_('COM_HANDOUT_ENTRY_CAT');
@@ -475,39 +475,39 @@ class HandoutDocument extends JTable {
 		}
 
 		if( $this->docmaintainedby == COM_HANDOUT_PERMIT_NOOWNER ||
-		    	$this->docmaintainedby == "" ){
+				$this->docmaintainedby == "" ){
 			$this->_error .= "\\n" . JText::_('COM_HANDOUT_ENTRY_MAINT');
 		}
 		if( $this->docdate_published == "" ){
 			$this->_error .= "\\n" . JText::_('COM_HANDOUT_ENTRY_DATE');
 		}
 
-        // making sure...
-        $this->id                 = (int) $this->id;
-        $this->catid              = (int) $this->catid;
-        $this->docname             = strip_tags($this->docname);
-        $this->docdate_published   = strip_tags($this->docdate_published);
-        $this->docowner            = (int) $this->docowner;
-        $this->published          = strip_tags($this->published);
-        $this->docurl              = strip_tags($this->docurl);
-        $this->doccounter          = (int) $this->doccounter;
-        $this->checked_out        = (int) $this->checked_out;
-        $this->checked_out_time   = strip_tags($this->checked_out_time);
-        $this->docthumbnail        = strip_tags($this->docthumbnail);
-        $this->doclastupdateon     = strip_tags($this->doclastupdateon);
-        $this->doclastupdateby     = (int) $this->doclastupdateby;
-        $this->docsubmittedby       = (int) $this->docsubmittedby;
-        $this->docmaintainedby      = (int) $this->docmaintainedby;
-        $this->doclicense_id       = (int) $this->doclicense_id;
-        $this->doclicense_display  = (int) $this->doclicense_display;
-        $this->docversion  			= strip_tags($this->docversion);
-        $this->doclanguage  		= 	strip_tags($this->doclanguage);
+		// making sure...
+		$this->id				 = (int) $this->id;
+		$this->catid			  = (int) $this->catid;
+		$this->docname			 = strip_tags($this->docname);
+		$this->docdate_published   = strip_tags($this->docdate_published);
+		$this->docowner			= (int) $this->docowner;
+		$this->published		  = strip_tags($this->published);
+		$this->docurl			  = strip_tags($this->docurl);
+		$this->doccounter		  = (int) $this->doccounter;
+		$this->checked_out		= (int) $this->checked_out;
+		$this->checked_out_time   = strip_tags($this->checked_out_time);
+		$this->docthumbnail		= strip_tags($this->docthumbnail);
+		$this->doclastupdateon	 = strip_tags($this->doclastupdateon);
+		$this->doclastupdateby	 = (int) $this->doclastupdateby;
+		$this->docsubmittedby	   = (int) $this->docsubmittedby;
+		$this->docmaintainedby	  = (int) $this->docmaintainedby;
+		$this->doclicense_id	   = (int) $this->doclicense_id;
+		$this->doclicense_display  = (int) $this->doclicense_display;
+		$this->docversion  			= strip_tags($this->docversion);
+		$this->doclanguage  		= 	strip_tags($this->doclanguage);
 		$this->doc_meta_keywords	= strip_tags($this->doc_meta_keywords);
 		$this->doc_meta_description	= strip_tags($this->doc_meta_description);
-        $this->kunena_discuss_id  = (int) $this->kunena_discuss_id;
-        $this->mtree_id  			= (int) $this->mtree_id;
-        $this->access             = (int) $this->access;
-        $this->attribs            = strip_tags( $this->attribs );
+		$this->kunena_discuss_id  = (int) $this->kunena_discuss_id;
+		$this->mtree_id  			= (int) $this->mtree_id;
+		$this->access			 = (int) $this->access;
+		$this->attribs			= strip_tags( $this->attribs );
 
 		// Check for links...
 		if( strncasecmp( $this->docfilename , COM_HANDOUT_DOCUMENT_LINK , COM_HANDOUT_DOCUMENT_LINK_LNG )==0){
@@ -521,9 +521,9 @@ class HandoutDocument extends JTable {
 			}else if( ! preg_match( '/^' . $rmatch . ':\/\/(.+)$/' , $document_url ) ){
 				$this->_error .= "\\n" . JText::_('COM_HANDOUT_ENTRY_DOCLINK_NAME') . ' (code 152) '.$document_url;
 			/* Removed test, user is responsible for submitting existing urls
-              }else if( ($fh = fopen( $document_url , 'r' ) ) == false ){
+			  }else if( ($fh = fopen( $document_url , 'r' ) ) == false ){
 				$this->_error .= "\\n" . JText::_('COM_HANDOUT_ENTRY_DOCLINK_INVALID') . ' (code 153) '.$document_url;
-                */
+				*/
 			}else{
 				//fclose( $fh );
 				$this->docfilename = COM_HANDOUT_DOCUMENT_LINK . $document_url;
@@ -550,7 +550,7 @@ class HandoutDocument extends JTable {
 				$this->docmaintainedby = $this->docsubmittedby;
 			}
 			if( ! $this->docsubmittedby  ){
-        		$this->docsubmittedby     = $user->id;
+				$this->docsubmittedby	 = $user->id;
 			}
 		}
 
@@ -612,9 +612,9 @@ class HandoutDocument extends JTable {
 		}
 
 		$cids = implode(',', $cid);
-        $query = "UPDATE #__handout SET catid=". (int) $catid
-                ."\n WHERE id IN ($cids)"
-                ."\n AND (checked_out = 0 OR (checked_out=".$user->id."))";
+		$query = "UPDATE #__handout SET catid=". (int) $catid
+				."\n WHERE id IN ($cids)"
+				."\n AND (checked_out = 0 OR (checked_out=".$user->id."))";
 		$db->setQuery($query);
 
 		if (!$db->query()) {
@@ -622,40 +622,40 @@ class HandoutDocument extends JTable {
 			return false;
 		}
 
-	        return true;
+			return true;
 	}
 
    /*
-    * @desc Copy a document
-    * @param array an array with ids
-    * @param int an int with the new category id
-    */
+	* @desc Copy a document
+	* @param array an array with ids
+	* @param int an int with the new category id
+	*/
 
-    function copy( $cid, $catid )
-    {
-        $db = &JFactory::getDBO();
+	function copy( $cid, $catid )
+	{
+		$db = &JFactory::getDBO();
 
-        if (!(is_array($cid)) || (count($cid) < 1)) {
-            echo "<script> alert('". JText::_('COM_HANDOUT_SELECT_ITEM_COPY') ." ); window.history.go(-1);</script>\n";
-            return false;
-        }
+		if (!(is_array($cid)) || (count($cid) < 1)) {
+			echo "<script> alert('". JText::_('COM_HANDOUT_SELECT_ITEM_COPY') ." ); window.history.go(-1);</script>\n";
+			return false;
+		}
 
-        foreach( $cid as $id ) {
-           $docold = new HandoutDocument($db);
-           $docnew = new HandoutDocument($db);
-           $docold->load($id);
-           $docnew->bind( (array) $docold );
-           $docnew->id = 0;
-           $docnew->catid = $catid;
-           if($docold->catid == $docnew->catid) {
-               $docnew->docname = JText::_('COM_HANDOUT_COPY_OF') . ' ' . $docnew->docname;
-           }
-           $docnew->store();
-        }
+		foreach( $cid as $id ) {
+		   $docold = new HandoutDocument($db);
+		   $docnew = new HandoutDocument($db);
+		   $docold->load($id);
+		   $docnew->bind( (array) $docold );
+		   $docnew->id = 0;
+		   $docnew->catid = $catid;
+		   if($docold->catid == $docnew->catid) {
+			   $docnew->docname = JText::_('COM_HANDOUT_COPY_OF') . ' ' . $docnew->docname;
+		   }
+		   $docnew->store();
+		}
 
 
-        return true;
-    }
+		return true;
+	}
 
 	/*
 	* @desc Deletes documents
@@ -740,7 +740,7 @@ class HandoutDocument extends JTable {
 		}
 		return $handout->getCfg( $config_field );
 	}
-	function authorCan($a=null)    { return $this->_returnParam( 'author_can'   ,'',$a );}
+	function authorCan($a=null)	{ return $this->_returnParam( 'author_can'   ,'',$a );}
 	function readerAssign($a=null) { return $this->_returnParam( 'reader_assign','',$a );}
 	function editorAssign($a=null) { return $this->_returnParam( 'editor_assign','',$a );}
 }
@@ -776,27 +776,27 @@ class HandoutCategory extends JTable {
 		parent::__construct( '#__categories', 'id', $db );
 	}
 
-    static function & getInstance( $id = 0 ) {
-        $db = &JFactory::getDBO();
-    	static $instances = array();
+	static function & getInstance( $id = 0 ) {
+		$db = &JFactory::getDBO();
+		static $instances = array();
 
-        if( !$id) {
-        	$new = new HandoutCategory( $db );
-            return $new;
-        }
+		if( !$id) {
+			$new = new HandoutCategory( $db );
+			return $new;
+		}
 
-        if( !isset( $instances[$id] )) {
+		if( !isset( $instances[$id] )) {
 
-            $instances[$id] = new HandoutCategory( $db );
-            //$instances[$id]->load( $id );
+			$instances[$id] = new HandoutCategory( $db );
+			//$instances[$id]->load( $id );
 
-            // instead of loading, we'll use the the following method to improve performance
-            $list = & HANDOUT_Cats::getCategoryList(); // get a list of categories, $list[$id] is our current category
-            $instances[$id]->bind( (array) $list[$id] ); // assign each property of the category to the category object
-        }
+			// instead of loading, we'll use the the following method to improve performance
+			$list = & HANDOUT_Cats::getCategoryList(); // get a list of categories, $list[$id] is our current category
+			$instances[$id]->bind( (array) $list[$id] ); // assign each property of the category to the category object
+		}
 
-        return $instances[$id];
-    }
+		return $instances[$id];
+	}
 
 	/**
 	* @desc	  generic check method

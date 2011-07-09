@@ -52,4 +52,4 @@ $MY_MESSAGES['category'] = "Category";
 $MY_MESSAGES['inserticon'] = 'Insert filetype icon';
 $MY_MESSAGES['insertsize'] = 'Insert file size';
 $MY_MESSAGES['insertdate'] = 'Insert file modification date';
-$MY_MESSAGES['loading']    = 'Loading ...';
+$MY_MESSAGES['loading']	= 'Loading ...';

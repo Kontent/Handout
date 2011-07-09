@@ -12,18 +12,18 @@
 defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_HTML_CODES')) {
-    return;
+	return;
 } else {
-    define('_HANDOUT_HTML_CODES', 1);
+	define('_HANDOUT_HTML_CODES', 1);
 }
 
 class HTML_HandoutCodes {
-    function editCode($option, &$row, $lists)
-    {
-        JFilterOutput::objectHTMLSafe($row);
-        ?>
-        <script language="javascript" type="text/javascript">
-            function submitbutton(pressbutton) {
+	function editCode($option, &$row, $lists)
+	{
+		JFilterOutput::objectHTMLSafe($row);
+		?>
+		<script language="javascript" type="text/javascript">
+			function submitbutton(pressbutton) {
 				  var form = document.adminForm;
 				  if (pressbutton == 'cancel') {
 					submitform( pressbutton );
@@ -62,14 +62,14 @@ class HTML_HandoutCodes {
 				var availablecodes = ['<?php echo implode("','", $codes);?>'];
 				document.getElementById("codename").value = availablecodes[document.codeIndex++ % 20];
 			}
-        </script>
+		</script>
 		<form action="index.php" method="post" name="adminForm" id="adminForm">
 		<?php
-        $tmp = ($row->id ? JText::_('COM_HANDOUT_EDIT') : JText::_('COM_HANDOUT_ADD')) .' '.JText::_('COM_HANDOUT_CODE');
-        HandoutHTML::adminHeading( $tmp, 'codes' )
-        ?>
+		$tmp = ($row->id ? JText::_('COM_HANDOUT_EDIT') : JText::_('COM_HANDOUT_ADD')) .' '.JText::_('COM_HANDOUT_CODE');
+		HandoutHTML::adminHeading( $tmp, 'codes' )
+		?>
 
-        <table cellpadding="4" cellspacing="1" border="0" width="100%" class="adminform">
+		<table cellpadding="4" cellspacing="1" border="0" width="100%" class="adminform">
 			<tr>
 				<td width="20%" align="right"><?php echo JText::_('COM_HANDOUT_CODE');?>:</td>
 				<td width="80%">
@@ -89,83 +89,83 @@ class HTML_HandoutCodes {
 			</tr>
 			<tr>
 				<td> </td>
-                <td><?php echo JText::_('COM_HANDOUT_CODES_USER_DESC'); ?></td>
-             </tr>
+				<td><?php echo JText::_('COM_HANDOUT_CODES_USER_DESC'); ?></td>
+			 </tr>
 			<input type="hidden" name="id" value="<?php echo $row->id;?>" />
 			<input type="hidden" name="option" value="com_handout" />
 			<input type="hidden" name="section" value="codes" />
 			<input type="hidden" name="task" value="" />
-            <?php echo HANDOUT_token::render();?>
+			<?php echo HANDOUT_token::render();?>
 	</table>
 	</form>
-    <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
-    function showCodes($option, $rows, $search, $pageNav)
-    {
-        $absolute_path = JPATH_ROOT;
-        ?>
+	<?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
+	}
+	function showCodes($option, $rows, $search, $pageNav)
+	{
+		$absolute_path = JPATH_ROOT;
+		?>
 		<form action="index.php" method="post" name="adminForm">
-        <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_CODES'), 'codes' )?>
-        <div class="hfilter">
-            <?php echo JText::_('COM_HANDOUT_FILTER_CODE');?>:
-            <input type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
-        </div>
+		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_CODES'), 'codes' )?>
+		<div class="hfilter">
+			<?php echo JText::_('COM_HANDOUT_FILTER_CODE');?>:
+			<input type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
+		</div>
 
 		<table cellpadding="4" cellspacing="0" border="0" width="100%" class="adminlist">
-            <thead>
+			<thead>
 			<tr>
 				<th width="2%" class="title"><input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($rows);?>);" /></th>
-                <th class="title" width="15%"><?php echo JText::_('COM_HANDOUT_CODE')?></th>
+				<th class="title" width="15%"><?php echo JText::_('COM_HANDOUT_CODE')?></th>
 				<th class="title" width="20%" nowrap="nowrap"><?php echo JText::_('COM_HANDOUT_CODE_DOWNLOAD')?></th>
-                <th class="title" width="20%"><?php echo JText::_('COM_HANDOUT_CAT_LABEL')?></th>
+				<th class="title" width="20%"><?php echo JText::_('COM_HANDOUT_CAT_LABEL')?></th>
 				<!--<th class="title" width="10%" nowrap="nowrap"><?php //echo JText::_('COM_HANDOUT_CREATION_DATE')?></th>-->
 				<th class="title" width="5%" nowrap="nowrap"><?php echo JText::_('COM_HANDOUT_PUBLISHED')?></th>
 				<th class="title" width="10%" nowrap="nowrap"><?php echo JText::_('COM_HANDOUT_CODES_USAGE')?></th>
 			</tr>
-            </thead>
+			</thead>
 
-            <tfoot><tr><td colspan="11"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
+			<tfoot><tr><td colspan="11"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
 
-            <tbody>
+			<tbody>
 		   <?php
-            $k = 0;
-            for ($i = 0, $n = count($rows);$i < $n;$i++) {
-                $row = &$rows[$i];
-                echo "<tr class=\"row$k\">";
-                echo "<td width=\"20\">";
+			$k = 0;
+			for ($i = 0, $n = count($rows);$i < $n;$i++) {
+				$row = &$rows[$i];
+				echo "<tr class=\"row$k\">";
+				echo "<td width=\"20\">";
 				$task = $row->published ? 'unpublish' : 'publish';
 				$img = $row->published ? 'publish_g.png' : 'publish_x.png';
 				$alt = $row->published ? JText::_('COM_HANDOUT_PUBLISHED') : JText::_('COM_HANDOUT_UNPUBLISH') ;
 
-                ?>
+				?>
 						<?php echo JHTML::_('grid.id',$i, $row->id);?>
-    					</td>
-    					<td align="left">
-    						<a href="index.php?option=com_handout&section=codes&task=edit&cid[0]=<?php echo $row->id?>">
-    						<?php echo $row->name;?>
-    						</a>
-    					</td>
-                        <td align="left">
-                            <?php echo $row->docname;?>
-                        </td>
-                        <td align="left">
-                            <?php echo $row->category;?>
-                        </td>
-                        <td align="center">
-                            <a href="javascript: void(0);" onclick="return listItemTask('cb<?php echo $i;?>','<?php echo $task;?>')">
-                            <img src="images/<?php echo $img;?>" border="0" alt="<?php echo $alt;?>" />
-                            </a>
-                        </td>
-                        <td align="left">
-                            <?php  $usage = HandoutCodes::getCodesUsage();	echo $usage[$row->usage]->text;?>
-                        </td>
-    				</tr>
-    				<?php
-                $k = 1 - $k;
-            }
+						</td>
+						<td align="left">
+							<a href="index.php?option=com_handout&section=codes&task=edit&cid[0]=<?php echo $row->id?>">
+							<?php echo $row->name;?>
+							</a>
+						</td>
+						<td align="left">
+							<?php echo $row->docname;?>
+						</td>
+						<td align="left">
+							<?php echo $row->category;?>
+						</td>
+						<td align="center">
+							<a href="javascript: void(0);" onclick="return listItemTask('cb<?php echo $i;?>','<?php echo $task;?>')">
+							<img src="images/<?php echo $img;?>" border="0" alt="<?php echo $alt;?>" />
+							</a>
+						</td>
+						<td align="left">
+							<?php  $usage = HandoutCodes::getCodesUsage();	echo $usage[$row->usage]->text;?>
+						</td>
+					</tr>
+					<?php
+				$k = 1 - $k;
+			}
 
-            ?>
-            </tbody>
+			?>
+			</tbody>
 		  </table>
 
 
@@ -173,9 +173,9 @@ class HTML_HandoutCodes {
 		  <input type="hidden" name="section" value="codes" />
 		  <input type="hidden" name="task" value="codes" />
 		  <input type="hidden" name="boxchecked" value="0" />
-          <?php echo HANDOUT_token::render();?>
+		  <?php echo HANDOUT_token::render();?>
 		</form>
 	   <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+	}
 }
 

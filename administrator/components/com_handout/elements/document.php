@@ -14,19 +14,19 @@ require_once JPATH_BASE . DS . 'components' . DS . 'com_handout' . DS . 'element
 
 class JElementDocument extends JElement
 {
-    public $_name = 'Document';
+	public $_name = 'Document';
 
-    function fetchElement ($name, $value, &$node, $control_name)
-    {
-        $db = &JFactory::getDBO();
-        $document = new HandoutDocument($db);
-        if ($value) {
-            $document->load($value);
-            $document->title = $document->docname;
-        } else {
-            $document->title = JText::_('COM_HANDOUT_SELECT_DOCUMENT');
-        }
-        return JElementHandoutHelper::fetchElement($name, $value, $control_name, $document, 'documents', 'Document');
-    }
+	function fetchElement ($name, $value, &$node, $control_name)
+	{
+		$db = &JFactory::getDBO();
+		$document = new HandoutDocument($db);
+		if ($value) {
+			$document->load($value);
+			$document->title = $document->docname;
+		} else {
+			$document->title = JText::_('COM_HANDOUT_SELECT_DOCUMENT');
+		}
+		return JElementHandoutHelper::fetchElement($name, $value, $control_name, $document, 'documents', 'Document');
+	}
 }
 ?>

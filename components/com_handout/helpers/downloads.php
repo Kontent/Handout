@@ -11,9 +11,9 @@
 defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_HTML_DOWNLOAD')) {
-    return;
+	return;
 } else {
-    define('_HANDOUT_HTML_DOWNLOAD', 1);
+	define('_HANDOUT_HTML_DOWNLOAD', 1);
 }
 
 class DownloadsHelper {
@@ -42,7 +42,7 @@ class DownloadsHelper {
 		$data = &$doc->getDataObject ();
 
 		/* ------------------------------ *
-	 *   CORE AUTHORIZATIONS          *
+	 *   CORE AUTHORIZATIONS		  *
 	 * ------------------------------ */
 
 		// if the user is not authorized to download this document, redirect
@@ -98,7 +98,7 @@ class DownloadsHelper {
 		$postbot->setParmArray ( $logbot->getParm () );
 
 		/* ------------------------------ *
-	 *   PLUGIN - PREDOWNLOAD         *
+	 *   PLUGIN - PREDOWNLOAD		 *
 	 * ------------------------------ */
 		$prebot->trigger ();
 		if ($prebot->getError ()) {
@@ -139,7 +139,7 @@ class DownloadsHelper {
 		$file->download ( $inline );
 
 		/* ------------------------------ *
-	 *   PLUGIN - PostDownload        *
+	 *   PLUGIN - PostDownload		*
 	 * Currently - we die and no out  *
 	 * ------------------------------ */
 		$postbot->trigger ();

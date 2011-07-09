@@ -15,160 +15,160 @@ include_once dirname(__FILE__) . '/licenses.html.php';
 JArrayHelper::toInteger(( $cid ));
 
 switch ($task) {
-    case "edit":
-        $cid = (isset( $cid[0] )) ? $cid[0] : 0;
-        editAgreement($option, $cid);
-        break;
-    case "delete":
-    case "remove":
-        removeLicense($cid, $option);
-        break;
-    case "apply":
-    case "save":
-        saveLicense($option);
-        break;
-    case "cancel":
-        cancelLicense($option);
-        break;
-    case "show":
-    default :
-        showAgreements($option);
+	case "edit":
+		$cid = (isset( $cid[0] )) ? $cid[0] : 0;
+		editAgreement($option, $cid);
+		break;
+	case "delete":
+	case "remove":
+		removeLicense($cid, $option);
+		break;
+	case "apply":
+	case "save":
+		saveLicense($option);
+		break;
+	case "cancel":
+		cancelLicense($option);
+		break;
+	case "show":
+	default :
+		showAgreements($option);
 }
 
 function editAgreement($option, $uid)
 {
-    $database = &JFactory::getDBO();
+	$database = &JFactory::getDBO();
 
-    // disable the main menu to force user to use buttons
-    $_REQUEST['hidemainmenu']=1;
+	// disable the main menu to force user to use buttons
+	$_REQUEST['hidemainmenu']=1;
 
-    $row = new HandoutLicenses($database);
-    $row->load($uid);
-    HTML_HandoutAgreements::editAgreement($option, $row);
+	$row = new HandoutLicenses($database);
+	$row->load($uid);
+	HTML_HandoutAgreements::editAgreement($option, $row);
 }
 
 function saveLicense($option)
 {
-    HANDOUT_token::check() or die('Invalid Token');
+	HANDOUT_token::check() or die('Invalid Token');
 
-    $database = &JFactory::getDBO();
-    $task = JRequest::getCmd('task');
-    $app = &JFactory::getApplication();
+	$database = &JFactory::getDBO();
+	$task = JRequest::getCmd('task');
+	$app = &JFactory::getApplication();
 
-    $row = new HandoutLicenses($database);
-    //$isNew = ($row->id == 0);
+	$row = new HandoutLicenses($database);
+	//$isNew = ($row->id == 0);
 
-    if (!$row->bind(HANDOUT_Utils::stripslashes($_POST))) {
-        echo "<script> alert('" . $row->getError() . "'); window.history.go(-1); </script>\n";
-        exit();
-    }
-    if (!$row->check()) {
-        echo "<script> alert('" . $row->getError() . "'); window.history.go(-1); </script>\n";
-        exit();
-    }
-    if (!$row->store()) {
-        echo "<script> alert('" . $row->getError() . "'); window.history.go(-1); </script>\n";
-        exit();
-    }
-    $row->checkin();
+	if (!$row->bind(HANDOUT_Utils::stripslashes($_POST))) {
+		echo "<script> alert('" . $row->getError() . "'); window.history.go(-1); </script>\n";
+		exit();
+	}
+	if (!$row->check()) {
+		echo "<script> alert('" . $row->getError() . "'); window.history.go(-1); </script>\n";
+		exit();
+	}
+	if (!$row->store()) {
+		echo "<script> alert('" . $row->getError() . "'); window.history.go(-1); </script>\n";
+		exit();
+	}
+	$row->checkin();
 
-    if( $task == 'save' ) {
-        $url = 'index.php?option=com_handout&section=licenses';
-    } else { // $task = 'apply'
-        $url = 'index.php?option=com_handout&section=licenses&task=edit&cid[0]='.$row->id;
-    }
+	if( $task == 'save' ) {
+		$url = 'index.php?option=com_handout&section=licenses';
+	} else { // $task = 'apply'
+		$url = 'index.php?option=com_handout&section=licenses&task=edit&cid[0]='.$row->id;
+	}
 
-    $app->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
+	$app->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
 }
 
 function cancelLicense($option)
 {
-    $database = &JFactory::getDBO();
-    $app = &JFactory::getApplication();
-    $row = new HandoutLicenses($database);
-    $row->bind(HANDOUT_Utils::stripslashes($_POST));
-    $row->checkin();
-    $app->redirect("index.php?option=$option&section=licenses");
+	$database = &JFactory::getDBO();
+	$app = &JFactory::getApplication();
+	$row = new HandoutLicenses($database);
+	$row->bind(HANDOUT_Utils::stripslashes($_POST));
+	$row->checkin();
+	$app->redirect("index.php?option=$option&section=licenses");
 }
 
 function showAgreements($option)
 {
-    $database = &JFactory::getDBO();
-    $app = &JFactory::getApplication();
-    global $sectionid;
+	$database = &JFactory::getDBO();
+	$app = &JFactory::getApplication();
+	global $sectionid;
 
-    $catid = (int) $app->getUserStateFromRequest("catid{$option}{$sectionid}", 'catid', 0);
-    $limit = (int) $app->getUserStateFromRequest("viewlistlimit", 'limit', 10);
-    $limitstart = (int) $app->getUserStateFromRequest("view{$option}{$sectionid}limitstart", 'limitstart', 0);
-    $search = $app->getUserStateFromRequest("search{$option}{$sectionid}", 'search', '');
-    $search = $database->getEscaped(trim(strtolower($search)));
-    $where = array();
-    if ($search) {
-        $where[] = "LOWER(name) LIKE '%$search%'";
-    }
-    // get the total number of records
-    $database->setQuery("SELECT count(*) FROM #__handout_licenses" . (count($where) ? "\nWHERE " . implode(' AND ', $where) : ""));
-    $total = $database->loadResult();
-    echo $database->getErrorMsg();
+	$catid = (int) $app->getUserStateFromRequest("catid{$option}{$sectionid}", 'catid', 0);
+	$limit = (int) $app->getUserStateFromRequest("viewlistlimit", 'limit', 10);
+	$limitstart = (int) $app->getUserStateFromRequest("view{$option}{$sectionid}limitstart", 'limitstart', 0);
+	$search = $app->getUserStateFromRequest("search{$option}{$sectionid}", 'search', '');
+	$search = $database->getEscaped(trim(strtolower($search)));
+	$where = array();
+	if ($search) {
+		$where[] = "LOWER(name) LIKE '%$search%'";
+	}
+	// get the total number of records
+	$database->setQuery("SELECT count(*) FROM #__handout_licenses" . (count($where) ? "\nWHERE " . implode(' AND ', $where) : ""));
+	$total = $database->loadResult();
+	echo $database->getErrorMsg();
 
-    $id = JRequest::getVar( 'id', 0);
+	$id = JRequest::getVar( 'id', 0);
 
-    require_once JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php';
-    $pageNav = new JPagination($total, $limitstart, $limit);
+	require_once JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php';
+	$pageNav = new JPagination($total, $limitstart, $limit);
 
-    $query = "SELECT id, name, license"
-            ."\n FROM #__handout_licenses"
-            .(count($where) ? "\n WHERE " . implode(' AND ', $where) : "")
-            ."\n ORDER BY name";
-    $database->setQuery( $query, $limitstart,$limit);
-    $rows = $database->loadObjectList();
+	$query = "SELECT id, name, license"
+			."\n FROM #__handout_licenses"
+			.(count($where) ? "\n WHERE " . implode(' AND ', $where) : "")
+			."\n ORDER BY name";
+	$database->setQuery( $query, $limitstart,$limit);
+	$rows = $database->loadObjectList();
 
-    // show the beginning of each license text
-    foreach ( $rows as $key=>$row ) {
-        $rows[$key]->license = substr( strip_tags($row->license), 0, 100 ) . ' (...)';
-    }
+	// show the beginning of each license text
+	foreach ( $rows as $key=>$row ) {
+		$rows[$key]->license = substr( strip_tags($row->license), 0, 100 ) . ' (...)';
+	}
 
-    if ($database->getErrorNum()) {
-        echo $database->stderr();
-        return false;
-    }
+	if ($database->getErrorNum()) {
+		echo $database->stderr();
+		return false;
+	}
 
-    HTML_HandoutAgreements::showAgreements($option, $rows, $search, $pageNav);
+	HTML_HandoutAgreements::showAgreements($option, $rows, $search, $pageNav);
 }
 
 function removeLicense($cid, $option)
 {
-    HANDOUT_token::check() or die('Invalid Token');
+	HANDOUT_token::check() or die('Invalid Token');
 	$app = &JFactory::getApplication();
-    $database = &JFactory::getDBO();
+	$database = &JFactory::getDBO();
 
-    if (!is_array($cid) || count($cid) < 1) {
-        echo "<script> alert(" . JText::_('COM_HANDOUT_SELECT_ITEM_DEL') . "); window.history.go(-1);</script>\n";
-        exit;
-    }
+	if (!is_array($cid) || count($cid) < 1) {
+		echo "<script> alert(" . JText::_('COM_HANDOUT_SELECT_ITEM_DEL') . "); window.history.go(-1);</script>\n";
+		exit;
+	}
 
-    if (count($cid)) {
-        $cids = implode(',', $cid);
-        // lets see if some document is using this license
-        for ($g = 0;$g < count($cid);$g++) {
-            $ttt = $cid[$g];
-            $ttt = ($ttt-2 * $ttt) -10;
-            $query = "SELECT id FROM #__handout WHERE doclicense_id=" . (int) $ttt;
-            $database->setQuery($query);
-            if (!($result = $database->query())) {
-                echo "<script> alert('" . $database->getErrorMsg() . "'); window.history.go(-1); </script>\n";
-            }
-            if ($database->getNumRows($result) != 0) {
-                $app->redirect("index.php?option=com_handout&task=viewgroups", JText::_('COM_HANDOUT_CANNOT_DELETE_AGREEMENT'));
-            }
-        }
+	if (count($cid)) {
+		$cids = implode(',', $cid);
+		// lets see if some document is using this license
+		for ($g = 0;$g < count($cid);$g++) {
+			$ttt = $cid[$g];
+			$ttt = ($ttt-2 * $ttt) -10;
+			$query = "SELECT id FROM #__handout WHERE doclicense_id=" . (int) $ttt;
+			$database->setQuery($query);
+			if (!($result = $database->query())) {
+				echo "<script> alert('" . $database->getErrorMsg() . "'); window.history.go(-1); </script>\n";
+			}
+			if ($database->getNumRows($result) != 0) {
+				$app->redirect("index.php?option=com_handout&task=viewgroups", JText::_('COM_HANDOUT_CANNOT_DELETE_AGREEMENT'));
+			}
+		}
 
-        $database->setQuery("DELETE FROM #__handout_licenses WHERE id IN ($cids)");
+		$database->setQuery("DELETE FROM #__handout_licenses WHERE id IN ($cids)");
 
-        if (!$database->query()) {
-            echo "<script> alert('" . $database->getErrorMsg() . "'); window.history.go(-1); </script>\n";
-        }
-    }
-    $app->redirect("index.php?option=com_handout&section=licenses");
+		if (!$database->query()) {
+			echo "<script> alert('" . $database->getErrorMsg() . "'); window.history.go(-1); </script>\n";
+		}
+	}
+	$app->redirect("index.php?option=com_handout&section=licenses");
 }
 

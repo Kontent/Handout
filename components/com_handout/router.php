@@ -19,90 +19,90 @@ $_HANDOUT = &HandoutFactory::getHandout();
 $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
 if(!is_object($_HANDOUT)) {
 	$_HANDOUT = new HandoutMainFrame();
-    $_HANDOUT_USER = $_HANDOUT->getUser();
+	$_HANDOUT_USER = $_HANDOUT->getUser();
 }
 
 class HandoutRouterHelper {
-    function getDoc($id) {
+	function getDoc($id) {
 
-        static $docs;
+		static $docs;
 
-        if(!isset($docs)) {
-        	$docs = array();
-        }
+		if(!isset($docs)) {
+			$docs = array();
+		}
 
-    	if(!isset($docs[$id])) {
-            $docs[$id] = false;
-            $db = & JFactory::getDBO();
-    		$docs[$id] = new HandoutDocument($db);
-            $docs[$id]->load($id);
-        }
+		if(!isset($docs[$id])) {
+			$docs[$id] = false;
+			$db = & JFactory::getDBO();
+			$docs[$id] = new HandoutDocument($db);
+			$docs[$id]->load($id);
+		}
 
-        return $docs[$id];
-    }
+		return $docs[$id];
+	}
 }
 
 
 function HandoutBuildRoute(&$query) {
-    jimport('joomla.filter.output');
+	jimport('joomla.filter.output');
 
 
-    $segments = array();
+	$segments = array();
 
-    // check for task=...
-    if(!isset($query['task'])) {
-        return $segments;
-    }
-    $segments[] = $query['task'];
+	// check for task=...
+	if(!isset($query['task'])) {
+		return $segments;
+	}
+	$segments[] = $query['task'];
 
-    // check for gid=...
-    $gid = isset($query['gid']) ? $query['gid'] : 0;
+	// check for gid=...
+	$gid = isset($query['gid']) ? $query['gid'] : 0;
 
 
-    if(in_array($query['task'], array('cat_view', 'upload')) ) {
-        // create the category slugs
-        $cats = & HANDOUT_Cats::getCategoryList();
-        $cat_slugs = array();
-        while($gid AND isset($cats[$gid])) {
-        	$cat_slugs[] = $gid.':'.JFilterOutput::stringURLSafe($cats[$gid]->title);
-            $gid = $cats[$gid]->parent_id;
-        }
-        $segments = array_merge($segments, array_reverse($cat_slugs));
-    } else {
-        // create the document slug
-        $doc = HandoutRouterHelper::getDoc($gid);
-        if($doc->id) {
-            $segments[] = $gid.':'.JFilterOutput::stringURLSafe($doc->docname);
-        }
-    }
+	if(in_array($query['task'], array('cat_view', 'upload')) ) {
+		// create the category slugs
+		$cats = & HANDOUT_Cats::getCategoryList();
+		$cat_slugs = array();
+		while($gid AND isset($cats[$gid])) {
+			$cat_slugs[] = $gid.':'.JFilterOutput::stringURLSafe($cats[$gid]->title);
+			$gid = $cats[$gid]->parent_id;
+		}
+		$segments = array_merge($segments, array_reverse($cat_slugs));
+	} else {
+		// create the document slug
+		$doc = HandoutRouterHelper::getDoc($gid);
+		if($doc->id) {
+			$segments[] = $gid.':'.JFilterOutput::stringURLSafe($doc->docname);
+		}
+	}
 
-    unset($query['gid']);
-    unset($query['task']);
+	unset($query['gid']);
+	unset($query['task']);
 
-    return $segments;
+	return $segments;
 }
 
 function HandoutParseRoute($segments){
-    $vars = array();
+	$vars = array();
 
-    //Get the active menu item
-    $menu =& JSite::getMenu();
-    $item =& $menu->getActive();
+	//Get the active menu item
+	$menu =& JSite::getMenu();
+	$item =& $menu->getActive();
 
-    // Count route segments
-    if(!($count = count($segments))) {
-        return $vars;
-    }
+	// Count route segments
+	if(!($count = count($segments))) {
+		return $vars;
+	}
 
-    if( isset($segments[0]) ) {
-        $vars['task'] = $segments[0];
+	if( isset($segments[0]) ) {
+		$vars['task'] = $segments[0];
 
-        if(in_array($segments[0], array('cat_view', 'upload'))) {
-            $vars['gid'] = (int) $segments[$count-1];
-    	} else {
-            $vars['gid'] = isset($segments[1]) ? (int) $segments[1] : 0;
-        }
-    }
+		if(in_array($segments[0], array('cat_view', 'upload'))) {
+			$vars['gid'] = (int) $segments[$count-1];
+		} else {
+			$vars['gid'] = isset($segments[1]) ? (int) $segments[1] : 0;
+		}
+	}
 
-    return $vars;
+	return $vars;
 }

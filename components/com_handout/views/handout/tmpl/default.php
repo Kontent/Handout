@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
 JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 
 if ($this->conf->item_tooltip) :
-    JHTML::_('behavior.tooltip');
+	JHTML::_('behavior.tooltip');
 endif;
 
 $app = &JFactory::getApplication();

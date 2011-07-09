@@ -11,9 +11,9 @@
 defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_HTML_CODE')) {
-    return;
+	return;
 } else {
-    define('_HANDOUT_HTML_CODE', 1);
+	define('_HANDOUT_HTML_CODE', 1);
 }
 
 class CodesHelper {

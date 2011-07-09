@@ -41,7 +41,7 @@ function submitbutton(pressbutton)
 					jimport( 'joomla.html.editor' );
 					$editor =& JFactory::getEditor();
 					$editor->display('docdescription',  $this->config->docdescription , '500', '200', '50', '5') ;
-		    ?>
+			?>
 		</td>
 	</tr>
 	</table>
@@ -188,11 +188,11 @@ echo $tabs->startPanel('Config', 'configtab');
 			</label>
 		</td>
 		<td>
-		    <?php $url = JRoute::_(JURI::root().'index.php?option=com_populate&pw='.$this->pw)?>
-		    <input readonly="readonly" size="80" value="wget -q &quot;<?php echo $url?>&quot;" /><br />
-		    OR <br />
-		    <input readonly="readonly" size="80" value="curl --silent --compressed &quot;<?php echo $url?>&quot;" /><br />
-		    OR <br />
+			<?php $url = JRoute::_(JURI::root().'index.php?option=com_populate&pw='.$this->pw)?>
+			<input readonly="readonly" size="80" value="wget -q &quot;<?php echo $url?>&quot;" /><br />
+			OR <br />
+			<input readonly="readonly" size="80" value="curl --silent --compressed &quot;<?php echo $url?>&quot;" /><br />
+			OR <br />
 			<input readonly="readonly" size="80" value="/usr/bin/lynx -source &quot;<?php echo $url?>&quot;" /><br />
 			<br />
 			To test, try this link in your browser: <br />

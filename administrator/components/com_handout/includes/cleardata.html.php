@@ -12,47 +12,47 @@
 defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_HTML_CLEARDATA')) {
-    return;
+	return;
 } else {
-    define('_HANDOUT_HTML_CLEARDATA', 1);
+	define('_HANDOUT_HTML_CLEARDATA', 1);
 }
 
 class HTML_HandoutClear {
-    function showClearData( $rows ) {
+	function showClearData( $rows ) {
 		JHTML::_('behavior.tooltip');
 
-    	?>
-        <table class="adminlist">
-          <thead>
-          <tr>
-            <th width="20" align="left">
-                <input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($rows);?>);" />
-            </th>
-            <th width="98%" align="left">
-                <?php echo JText::_('COM_HANDOUT_CLEARDATA_ITEM');?>
-            </th>
-          </tr>
-          </thead>
+		?>
+		<table class="adminlist">
+		  <thead>
+		  <tr>
+			<th width="20" align="left">
+				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($rows);?>);" />
+			</th>
+			<th width="98%" align="left">
+				<?php echo JText::_('COM_HANDOUT_CLEARDATA_ITEM');?>
+			</th>
+		  </tr>
+		  </thead>
 
-          <tbody>
-          <?php
-          $k = 0;
-          foreach( $rows as $i => $row ){?>
-            <tr class="row<?php echo $k;?>">
-                <td width="20">
-                    <?php echo JHTML::_('grid.id',$i, $row->name);?>
-                </td>
-                <td>
-                    <?php echo $row->friendlyname; ?>
-                </td>
-            </tr><?php
-            $k = 1-$k;
-          } ?>
-          </tbody>
-        </table>
-        <input type="button" value="<?php echo JText::_('COM_HANDOUT_CLEARDATA');?>" name="Reset" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('Please make a selection from the list to Clear Data');}else{if(confirm('Are you sure?')){submitbutton('cleardata');}}" />
-        <input type="hidden" name="boxchecked" value="0" />
-        <?php echo HANDOUT_token::render();?>
-        <?php
-    }
+		  <tbody>
+		  <?php
+		  $k = 0;
+		  foreach( $rows as $i => $row ){?>
+			<tr class="row<?php echo $k;?>">
+				<td width="20">
+					<?php echo JHTML::_('grid.id',$i, $row->name);?>
+				</td>
+				<td>
+					<?php echo $row->friendlyname; ?>
+				</td>
+			</tr><?php
+			$k = 1-$k;
+		  } ?>
+		  </tbody>
+		</table>
+		<input type="button" value="<?php echo JText::_('COM_HANDOUT_CLEARDATA');?>" name="Reset" onclick="javascript:if(document.adminForm.boxchecked.value==0){alert('Please make a selection from the list to Clear Data');}else{if(confirm('Are you sure?')){submitbutton('cleardata');}}" />
+		<input type="hidden" name="boxchecked" value="0" />
+		<?php echo HANDOUT_token::render();?>
+		<?php
+	}
 }

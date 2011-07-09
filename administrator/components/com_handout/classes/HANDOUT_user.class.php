@@ -55,7 +55,7 @@ class HANDOUT_User {
 
 	/**
 	 * @access   public
-	 * @var      bool
+	 * @var	  bool
 	 */
 	var $isSpecial = 0;
 
@@ -911,7 +911,7 @@ class HANDOUT_users {
 			$users = array ();
 		}
 
-	    if (! isset ( $users [$id] )) {
+		if (! isset ( $users [$id] )) {
 			$users [$id] = new JUser($id);
 		}
 

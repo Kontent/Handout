@@ -28,53 +28,53 @@ $lang->load('plg_editors-xtd_handoutdoclink');
 
 function showDoclink()
 {
-    $assets = COM_HANDOUT_MEDIA;
+	$assets = COM_HANDOUT_MEDIA;
 
-    // add styles and scripts
-    $doc =& JFactory::getDocument();
-    JHTML::_('behavior.mootools');
-    $doc->addStyleSheet($assets.'/css/doclink.css');
-    $doc->addScript($assets.'/js/dlutils.js');
-    $doc->addScript($assets.'/js/popup.js');
-    $doc->addScript($assets.'/js/dialog.js');
+	// add styles and scripts
+	$doc =& JFactory::getDocument();
+	JHTML::_('behavior.mootools');
+	$doc->addStyleSheet($assets.'/css/doclink.css');
+	$doc->addScript($assets.'/js/dlutils.js');
+	$doc->addScript($assets.'/js/popup.js');
+	$doc->addScript($assets.'/js/dialog.js');
 
-    $rows = HANDOUT_utils::categoryArray();
+	$rows = HANDOUT_utils::categoryArray();
 
-    HTML_HandoutDoclink::showDoclink($rows);
+	HTML_HandoutDoclink::showDoclink($rows);
 }
 
 function showListview()
 {
-    global $_HANDOUT;
+	global $_HANDOUT;
 
 	$assets = COM_HANDOUT_MEDIA;
-    // add styles and scripts
-    $doc =& JFactory::getDocument();
-    JHTML::_('behavior.mootools');
-    $doc->addStyleSheet($assets.'/css/doclink.css');
-    $doc->addScript($assets.'/js/sortabletable.js');
-    $doc->addScript($assets.'/js/listview.js');
-    $doc->addScript($assets.'/js/dldialog.js');
+	// add styles and scripts
+	$doc =& JFactory::getDocument();
+	JHTML::_('behavior.mootools');
+	$doc->addStyleSheet($assets.'/css/doclink.css');
+	$doc->addScript($assets.'/js/sortabletable.js');
+	$doc->addScript($assets.'/js/listview.js');
+	$doc->addScript($assets.'/js/dldialog.js');
 
-    if (isset($_REQUEST['catid'])) {
-        $cid =  intval($_REQUEST['catid']);
-    } else {
-        $cid = 0;
-    }
+	if (isset($_REQUEST['catid'])) {
+		$cid =  intval($_REQUEST['catid']);
+	} else {
+		$cid = 0;
+	}
 
-    //get folders
-    $cats = HANDOUT_Cats::getChildsByUserAccess($cid);
+	//get folders
+	$cats = HANDOUT_Cats::getChildsByUserAccess($cid);
 
-    //get items
-    if ($cid) {
-        $docs = HANDOUT_Docs::getDocsByUserAccess($cid, 'name', 'ASC', 999, 0);
-    } else {
-        $docs = array();
-    }
+	//get items
+	if ($cid) {
+		$docs = HANDOUT_Docs::getDocsByUserAccess($cid, 'name', 'ASC', 999, 0);
+	} else {
+		$docs = array();
+	}
 
-    //if ($entries_cnt)
-    HTML_HandoutDoclink::createHeader();
-    HTML_HandoutDoclink::createFolders($cats,$cid);
-    HTML_HandoutDoclink::createItems($docs, $cid);
-    HTML_HandoutDoclink::createFooter();
+	//if ($entries_cnt)
+	HTML_HandoutDoclink::createHeader();
+	HTML_HandoutDoclink::createFolders($cats,$cid);
+	HTML_HandoutDoclink::createItems($docs, $cid);
+	HTML_HandoutDoclink::createFooter();
 }

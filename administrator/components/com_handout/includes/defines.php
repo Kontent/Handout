@@ -24,7 +24,7 @@ define('COM_HANDOUT_VERSION_NUMBER', '1.0');
 define('COM_HANDOUT_HELP_URL', 'http://extensions.kontentdesign.com/support');
 
 // HANDOUT mainframe types
-define('COM_HANDOUT_TYPE_UNKNOWN'       , 0);
+define('COM_HANDOUT_TYPE_UNKNOWN'	   , 0);
 define('COM_HANDOUT_TYPE_SITE'			, 1);
 define('COM_HANDOUT_TYPE_ADMIN'			, 2);
 define('COM_HANDOUT_TYPE_MODULE'		, 3);
@@ -39,7 +39,7 @@ define('COM_HANDOUT_PERMIT_GROUP' 		, -10); // Handout groups (if < JText::_('CO
 define('COM_HANDOUT_PERMIT_NOOWNER' 	, -9); 	// Special flag
 
 define('COM_HANDOUT_PERMIT_PUBLISHER'  	, -3);  //Joomla publisher group
-define('COM_HANDOUT_PERMIT_EDITOR'    	, -6);  //Joomla editor group
+define('COM_HANDOUT_PERMIT_EDITOR'		, -6);  //Joomla editor group
 define('COM_HANDOUT_PERMIT_AUTHOR'   	, -4);  //Joomla author group
 
 define('COM_HANDOUT_PERMIT_CREATOR'   	, -2); 	// Permit the creator only
@@ -81,13 +81,13 @@ define('COM_HANDOUT_VALIDATE_EXISTS'	, 0x0010);
 define('COM_HANDOUT_VALIDATE_PROTO' 	, 0x0020); // Protocol (URL transfer )
 
 // Hard-coded filename regexes to reject, separate by '|'.
-define('COM_HANDOUT_FNAME_REJECT'       , "\.htaccess|Thumbs\.db");
+define('COM_HANDOUT_FNAME_REJECT'	   , "\.htaccess|Thumbs\.db");
 
 // Meta-validate values
 define('COM_HANDOUT_VALIDATE_ADMIN' 	, COM_HANDOUT_VALIDATE_NAME | COM_HANDOUT_VALIDATE_PATH | COM_HANDOUT_VALIDATE_PROTO | COM_HANDOUT_VALIDATE_EXISTS);
 define('COM_HANDOUT_VALIDATE_USER' 		, 0x00ff);
 define('COM_HANDOUT_VALIDATE_ALL' 		, 0x00ff);
-define('COM_HANDOUT_VALIDATE_USER_ALL'       , 0x00ff); // alias
+define('COM_HANDOUT_VALIDATE_USER_ALL'	   , 0x00ff); // alias
 define('COM_HANDOUT_VALIDATE_DEFAULT'	, 0x00ff);
 
 // Special tags for files:

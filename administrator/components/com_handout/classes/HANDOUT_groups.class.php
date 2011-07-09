@@ -11,49 +11,49 @@
 defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_GROUPS')) {
-    return true;
+	return true;
 } else {
-    define('_HANDOUT_GROUPS', 1);
+	define('_HANDOUT_GROUPS', 1);
 }
 
 class HANDOUT_groups {
 
-    /**
-     * Provides a list of all groups
-     *
-     * @deprecated
-     */
-    function & getList() {
-        static $groups;
+	/**
+	 * Provides a list of all groups
+	 *
+	 * @deprecated
+	 */
+	function & getList() {
+		static $groups;
 
-        if( !isset( $groups )) {
-            $database = &JFactory::getDBO();
-            $database->setQuery("SELECT groups_id, groups_name "
-             . "\n  FROM #__handout_groups "
-             . "\n ORDER BY groups_name ASC");
-            $groups = $database->loadObjectList();
-        }
+		if( !isset( $groups )) {
+			$database = &JFactory::getDBO();
+			$database->setQuery("SELECT groups_id, groups_name "
+			 . "\n  FROM #__handout_groups "
+			 . "\n ORDER BY groups_name ASC");
+			$groups = $database->loadObjectList();
+		}
 
-        return $groups;
-    }
+		return $groups;
+	}
 
-    /**
-     * Get a group object, caches results
-     */
-    function & get($id)
-    {
-        static $groups;
+	/**
+	 * Get a group object, caches results
+	 */
+	function & get($id)
+	{
+		static $groups;
 
-        if( !isset( $groups )) {
-            $groups = array();
-        }
+		if( !isset( $groups )) {
+			$groups = array();
+		}
 
-        if( !isset( $groups[$id] )) {
-            $database = &JFactory::getDBO();
-            $groups[$id] = new HandoutGroups($database);
-            $groups[$id]->load($id);
-        }
+		if( !isset( $groups[$id] )) {
+			$database = &JFactory::getDBO();
+			$groups[$id] = new HandoutGroups($database);
+			$groups[$id]->load($id);
+		}
 
-        return $groups[$id];
-    }
+		return $groups[$id];
+	}
 }

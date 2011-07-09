@@ -33,8 +33,8 @@ $show_icon 		 = abs($params->def( 'show_icon', 1 ));
 $show_counter	 = abs($params->def( 'show_counter', 1 ));
 $show_category 	 = abs($params->def( 'show_category', 1 ));
 $moduleclass_sfx = $params->get( 'moduleclass_sfx' );
-$text_pfx     	 = $params->def( 'text_pfx', '' );
-$text_sfx     	 = $params->def( 'text_sfx', '' );
+$text_pfx	 	 = $params->def( 'text_pfx', '' );
+$text_sfx	 	 = $params->def( 'text_sfx', '' );
 
 $class_prefix 	= "hmodule-prefix" . $moduleclass_sfx;
 $class_suffix 	= "hmodule-suffix" . $moduleclass_sfx;

@@ -19,7 +19,7 @@ class modHandoutTopDownloadsHelper
 		$database = &JFactory::getDBO();
 
 		$query = "SELECT * FROM #__handout "
-        ." ORDER BY doccounter DESC ";
+		." ORDER BY doccounter DESC ";
 
 		$database->setQuery( $query, 0, $params->get('limit', 10) );
 		$rows = $database->loadObjectList();

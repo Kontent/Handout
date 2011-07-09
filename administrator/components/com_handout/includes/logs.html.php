@@ -12,19 +12,19 @@
 defined('_JEXEC') or die;
 
 class HTML_HandoutLogs {
-    function showLogs($option, $rows, $search, $pageNav)
-    {
-        $absolute_path = JPATH_ROOT;
+	function showLogs($option, $rows, $search, $pageNav)
+	{
+		$absolute_path = JPATH_ROOT;
 
-        ?>
+		?>
 		<form action="index.php" method="post" name="adminForm">
-        <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_DOWNLOAD_LOG'), 'logs' )?>
+		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_DOWNLOAD_LOG'), 'logs' )?>
 			<div class="hfilter">
-                <?php echo JText::_('COM_HANDOUT_FILTER');?>
+				<?php echo JText::_('COM_HANDOUT_FILTER');?>
 				<input type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
-            </div>
+			</div>
 			<table cellpadding="4" cellspacing="0" border="0" width="100%" class="adminlist">
-            <thead>
+			<thead>
 				<tr>
 					<th width="2%" class="title"><input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($rows);?>);" /></th>
 					<th class="title" width="10%" nowrap="nowrap"><div align="center"><?php echo JText::_('COM_HANDOUT_DOWNLOAD_DATE');?></div></th>
@@ -35,19 +35,19 @@ class HTML_HandoutLogs {
 					<th class="title" width="10%" nowrap="nowrap"><div align="center"><?php echo JText::_('COM_HANDOUT_CODE');?></div></th>
 					<th class="title" width="10%" nowrap="nowrap"><div align="center"><?php echo JText::_('COM_HANDOUT_OS');?></div></th>
 				</tr>
-             </thead>
+			 </thead>
 
-             <tfoot><tr><td colspan="11"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
+			 <tfoot><tr><td colspan="11"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
 
-             <tbody>
+			 <tbody>
 
 				<?php
-        $k = 0;
-        for ($i = 0, $n = count($rows);$i < $n;$i++) {
-            $row = &$rows[$i];
-            echo "<tr class=\"row$k\">";
-            echo "<td width=\"20\">";
-            ?>
+		$k = 0;
+		for ($i = 0, $n = count($rows);$i < $n;$i++) {
+			$row = &$rows[$i];
+			echo "<tr class=\"row$k\">";
+			echo "<td width=\"20\">";
+			?>
 
 			<input type="checkbox" id="cb<?php echo $i;?>" name="cid[]" value="<?php echo $row->id;?>" onclick="isChecked(this.checked);" />
 					</td>
@@ -74,20 +74,20 @@ class HTML_HandoutLogs {
 					</td>
 				</tr>
 				<?php
-            $k = 1 - $k;
-        }
+			$k = 1 - $k;
+		}
 
-        ?>
-        </tbody>
+		?>
+		</tbody>
 		</table>
 
 		<input type="hidden" name="option" value="com_handout" />
 		<input type="hidden" name="section" value="logs" />
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
-        <?php echo HANDOUT_token::render();?>
+		<?php echo HANDOUT_token::render();?>
 		</form>
 
 		 <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+	}
 }

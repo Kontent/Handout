@@ -236,9 +236,9 @@ class DocumentsHelper {
 
 		/* ------------------------------ *
 
-     *   PLUGIN - Setup All Plugins   *
+	 *   PLUGIN - Setup All Plugins   *
 
-     * ------------------------------ */
+	 * ------------------------------ */
 		$prebot = new HANDOUT_plugin ( 'onBeforeEditDocument' );
 		$prebot->setParm ( 'document', $doc );
 		$prebot->setParm ( 'filename', $filename );
@@ -370,9 +370,9 @@ class DocumentsHelper {
 
 		/* ------------------------------ *
 
-     *   PLUGIN - Setup All Plugins   *
+	 *   PLUGIN - Setup All Plugins   *
 
-     * ------------------------------ */
+	 * ------------------------------ */
 		$logbot = new HANDOUT_plugin ( 'onLog' );
 		$postbot = new HANDOUT_plugin ( 'onAfterEditDocument' );
 		$logbot->setParm ( 'document', $doc );
@@ -409,11 +409,11 @@ class DocumentsHelper {
 			}
 			/* removed $message: undefined
 
-         * original code:
+		 * original code:
 
-         * HandoutHelper::_returnTo('cat_view', JText::_('COM_HANDOUT_THANKSHANDOUT') . $message ? "<br />" . $message : '', $doc->catid);
+		 * HandoutHelper::_returnTo('cat_view', JText::_('COM_HANDOUT_THANKSHANDOUT') . $message ? "<br />" . $message : '', $doc->catid);
 
-         */
+		 */
 			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_THANKS_FOR_SUBMISSION'), $doc->catid );
 		}
 		// doc->save failed. Log error
@@ -568,11 +568,11 @@ class DocumentsHelper {
 
 	 * PROGRAMMER NOTE:
 
-     * Do NOT use FULL url for description on links. This could expose passwords
+	 * Do NOT use FULL url for description on links. This could expose passwords
 
-     * (Not a wise idea though they could get them elsewhere in the system...)
+	 * (Not a wise idea though they could get them elsewhere in the system...)
 
-     */
+	 */
 
 		$options = array ();
 		$selected = null;

@@ -22,7 +22,7 @@ defined('_JEXEC') or die;
 ?>
 
 <?php if(count($this->doc_list->items)) { ?>
-    <div id="hdoc-list">
+	<div id="hdoc-list">
 
 		<ul class="hdoc-order">
 			<li class="horder-title"><?php echo JText::_('COM_HANDOUT_ORDER_BY'); ?>:</li>
@@ -62,8 +62,8 @@ defined('_JEXEC') or die;
 			endforeach;
 		?>
 		</ul>
-    </div>
+	</div>
 <?php } else { ?>
 	<!--  Add conditional to show/hide the below notice based on config setting  -->
-    <div id="hdoc-list"><?php echo JText::_('COM_HANDOUT_NO_DOCS'); ?></div>
+	<div id="hdoc-list"><?php echo JText::_('COM_HANDOUT_NO_DOCS'); ?></div>
 <?php } ?>

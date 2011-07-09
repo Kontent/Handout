@@ -24,12 +24,12 @@ defined('_JEXEC') or die;
 ?>
 	<?php
 	if( !$this->conf->menu_home
-	    && !$this->conf->menu_search
-	    && !$this->conf->menu_upload
-	    && $this->perms->upload != COM_HANDOUT_AUTHORIZED) {
-	        // No buttons to show
-    }
-    else {
+		&& !$this->conf->menu_search
+		&& !$this->conf->menu_upload
+		&& $this->perms->upload != COM_HANDOUT_AUTHORIZED) {
+			// No buttons to show
+	}
+	else {
 		?>
 		<div id="htoolbar">
 			<?php if($this->conf->menu_home) :?>
@@ -69,5 +69,5 @@ defined('_JEXEC') or die;
 	</div>
 	<div class="clr"></div>
 	<?php
-    }
-    ?>
+	}
+	?>

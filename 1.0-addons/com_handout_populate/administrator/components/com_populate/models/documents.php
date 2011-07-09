@@ -5,7 +5,7 @@
  * @copyright	Copyright (C) 2011 Kontent Design. All rights reserved.
  * @copyright	Copyright (C) 2003 - 2010 Johan Janssens and Mathias Verraes. All rights reserved.
  * @license		GNU GPLv2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
- * @link     	http://www.sharehandouts.com
+ * @link	 	http://www.sharehandouts.com
  */
 defined('_JEXEC') or die('Restricted access');
 
@@ -26,23 +26,23 @@ class PopulateModelDocuments extends JModel
 		$handoutpath 	= $this->getState('handoutpath');
 		$skipfiles	= explode( "|", $this->getState('skipfiles'));
 
-	    if(!$handoutpath || !$handle = opendir($handoutpath))
-	    {
-            throw new Exception("Problem opening handouts directory <b>" . $handoutpath
-                    ."</b>. Make sure you have Handout working correctly before using this component." );
-        }
+		if(!$handoutpath || !$handle = opendir($handoutpath))
+		{
+			throw new Exception("Problem opening handouts directory <b>" . $handoutpath
+					."</b>. Make sure you have Handout working correctly before using this component." );
+		}
 
 		$files = array();
-        while (false !== ($file = readdir($handle)))
-        {
-            if (!in_array($file, $skipfiles )
-                    && !in_array($file, $FilesInDatabase)
-                    && !is_dir($file) ) {
-                $files[] = $file;
-            }
-        }
+		while (false !== ($file = readdir($handle)))
+		{
+			if (!in_array($file, $skipfiles )
+					&& !in_array($file, $FilesInDatabase)
+					&& !is_dir($file) ) {
+				$files[] = $file;
+			}
+		}
 
-        natcasesort($files);
+		natcasesort($files);
 		return $files;
 	}
 

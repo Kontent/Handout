@@ -29,12 +29,12 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 ?>
 <?php
 	$app = &JFactory::getApplication();
-    $app->setPageTitle(JText::_('COM_HANDOUT_TITLE_MOVE') );
-    $pathway = & $app->getPathWay();
-    $pathway->addItem($this->data->docname);
-    $pathway->addItem('Move');
+	$app->setPageTitle(JText::_('COM_HANDOUT_TITLE_MOVE') );
+	$pathway = & $app->getPathWay();
+	$pathway->addItem($this->data->docname);
+	$pathway->addItem('Move');
 
-    JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
+	JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 	JHTML::_('behavior.tooltip');
 ?>
 <div id="handout" class="hmove">
@@ -48,7 +48,7 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 			<p><?php echo JText::_('COM_HANDOUT_DOCUMENT');?>: <span class="hdoc-docname"><?php echo $this->data->docname;?> (<?php echo $this->data->filename;?>)</span></p>
 			<p><label for="hform-catid"><?php echo JText::_('COM_HANDOUT_MOVETO');?></label>: <?php echo $this->lists['categories'];?> <input name="submit" class="button" value="<?php echo JText::_('COM_HANDOUT_MOVE');?>" type="submit" /><a href="javascript: history.go(-1);"><span class="hcancel"><?php echo JText::_('COM_HANDOUT_CANCEL') ?></span></a></p>
 	 	</fieldset>
-	    <?php echo $this->token; ?>
+		<?php echo $this->token; ?>
  	</form>
 	<div class="clr"></div>
 	<?php include_once(JPATH_COMPONENT . DS . 'footer.php'); ?>

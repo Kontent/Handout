@@ -14,18 +14,18 @@ require_once JPATH_BASE . DS . 'components' . DS . 'com_handout' . DS . 'element
 
 class JElementCategory extends JElement
 {
-    public $_name = 'Document';
+	public $_name = 'Document';
 
-    function fetchElement ($name, $value, &$node, $control_name)
-    {
-        $db = &JFactory::getDBO();
-        $category = new HandoutCategory($db);
-        if ($value) {
-            $category->load($value);
-        } else {
-            $category->title = JText::_('COM_HANDOUT_SELECT_CATEGORY');
-        }
-        return JElementHandoutHelper::fetchElement($name, $value, $control_name, $category, 'categories', 'Category');
-    }
+	function fetchElement ($name, $value, &$node, $control_name)
+	{
+		$db = &JFactory::getDBO();
+		$category = new HandoutCategory($db);
+		if ($value) {
+			$category->load($value);
+		} else {
+			$category->title = JText::_('COM_HANDOUT_SELECT_CATEGORY');
+		}
+		return JElementHandoutHelper::fetchElement($name, $value, $control_name, $category, 'categories', 'Category');
+	}
 }
 ?>

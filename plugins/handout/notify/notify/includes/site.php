@@ -10,12 +10,12 @@ defined('_JEXEC') or die('Restricted access');
 
 class NotifySite
 {
-    public $name;
-    public $url;
-    public function __construct()
-     {
-        $app = JFactory::getApplication();
-        $this->name	= $app->getCfg('sitename');
-        $this->url	= JURI::root();
-     }
+	public $name;
+	public $url;
+	public function __construct()
+	 {
+		$app = JFactory::getApplication();
+		$this->name	= $app->getCfg('sitename');
+		$this->url	= JURI::root();
+	 }
 }

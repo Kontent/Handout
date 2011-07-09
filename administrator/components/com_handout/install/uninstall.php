@@ -42,16 +42,16 @@ PackageInstallerHelper::displayUninstalled(
 function com_uninstall ()
 {
 
-    // delete the handouts folder if it's empty
+	// delete the handouts folder if it's empty
 
-    if (HandoutInstallHelper::cntFiles() == 0) {
-        HandoutInstallHelper::removeHandoutDocuments();
-    }
+	if (HandoutInstallHelper::cntFiles() == 0) {
+		HandoutInstallHelper::removeHandoutDocuments();
+	}
 
-    // if there's no more data, we remove the tables
+	// if there's no more data, we remove the tables
 
-    if (HandoutInstallHelper::cntDbRecords() == 0) {
-        HandoutInstallHelper::removeTables();
-    }
+	if (HandoutInstallHelper::cntDbRecords() == 0) {
+		HandoutInstallHelper::removeTables();
+	}
 
 }

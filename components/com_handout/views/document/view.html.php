@@ -133,15 +133,15 @@ class HandoutViewDocument extends JView {
 				if (form.docname.value == \'\') {
 			  		msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_NAME') .'\';
 				} if (form.docdate_published.value == \'\') {
-			     	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_DATE') .'\';
+				 	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_DATE') .'\';
 				} if (form.docfilename.value == \'\') {
-			     	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_DOC') .'\';
+				 	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_DOC') .'\';
 				} if (form.catid.value == \'0\') {
-			     	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_CAT') .'\';
+				 	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_CAT') .'\';
 				} if (form.docowner.value == \''.COM_HANDOUT_PERMIT_NOOWNER.'\' || form.docowner.value == \'\' ) {
-			     	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_OWNER') .'\';
+				 	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_OWNER') .'\';
 				} if (form.docmaintainedby.value == \''.  COM_HANDOUT_PERMIT_NOOWNER .'\' || form.docmaintainedby.value == \'\' ) {
-			     	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_MAINT') .'\';
+				 	msg += \'\n' . JText::_('COM_HANDOUT_ENTRY_MAINT') .'\';
 				} if( form.document_url ){
 					if( form.document_url.value != \'\' ){
 						if( form.docfilename.value != \''. COM_HANDOUT_DOCUMENT_LINK .'\'){
