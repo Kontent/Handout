@@ -91,6 +91,7 @@
 			<file>toolbar.handout.class.php</file>
 			<file>toolbar.handout.html.php</file>
 			<file>toolbar.handout.php</file>
+			<file>version.php</file>
 		</files>
 
 	</administration>
