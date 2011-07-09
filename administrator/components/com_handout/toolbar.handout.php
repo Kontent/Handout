@@ -11,11 +11,8 @@
 
 defined('_JEXEC') or die;
 
-$app = JFactory::getApplication();
-require_once $app->getPath('toolbar_html');
-require_once $app->getPath('toolbar_default');
-
-require_once dirname(__FILE__) . '/toolbar.handout.class.php';
+require_once JPATH_COMPONENT.'/toolbar.handout.html.php';
+require_once JPATH_COMPONENT.'/toolbar.handout.class.php';
 
 global $section;
 
