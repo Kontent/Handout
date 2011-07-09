@@ -1,17 +1,16 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: handout.class.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	Improved by JoomDOC by Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
-require_once( dirname( __FILE__ ) .'/includes/defines.php');
+require_once dirname( __FILE__ ) .'/includes/defines.php';
 
 /**
 * Handout Mainframe class using a singleton pattern
@@ -199,7 +198,7 @@ class HandoutMainFrame
 	* Loads the configuration file and creates a new class
 	*/
 	function _setConfig( ) {
-		require_once( $this->getPath('classes', 'config') );
+		require_once $this->getPath('classes', 'config');
 		$this->_config = new HANDOUT_Config('HandoutConfig', dirname(__FILE__)."/handout.config.php" );
 
         $this->_checkConfig();
@@ -278,7 +277,7 @@ class HandoutMainFrame
 	* Create a user object
 	*/
 	function _setUser( ) {
-		require_once( $this->getPath('classes', 'user') );
+		require_once $this->getPath('classes', 'user');
 		$this->_user = new HANDOUT_User( $this->getCfg('specialcompat'));
 	}
 
@@ -344,7 +343,7 @@ class HandoutMainFrame
 	function loadCompatibility()
 	{
 		if (phpversion() < '4.2.0') {
-			require_once( $this->getPath('contrib', 'pear').'/PHP_Compat.php' );
+			require_once $this->getPath('contrib', 'pear').'/PHP_Compat.php';
 		}
 	}
 

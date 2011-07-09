@@ -1,6 +1,5 @@
 <?php
 /**
- * @version		$Id$
  * @category	HandoutPopulate
  * @package		HandoutPopulate
  * @copyright	Copyright (C) 2011 Kontent Design. All rights reserved.
@@ -22,7 +21,7 @@ class PopulateViewConfig extends JView
 		$_HANDOUT = PopulateDocman::get();
 		$_DMUSER = $_HANDOUT->getUser();
 
-        require_once(PopulateDocman::get()->getPath('classes', 'html'));
+        require_once PopulateDocman::get()->getPath('classes', 'html');
 
 
         JToolBarHelper::title('Handout - Populate');

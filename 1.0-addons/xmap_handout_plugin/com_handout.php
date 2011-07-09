@@ -1,15 +1,14 @@
 <?php
 
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: com_handout.php
  * @package 	Xmap
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The Handout Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
@@ -80,9 +79,9 @@ class xmap_com_handout
         $_HANDOUT->setType(COM_HANDOUT_TYPE_MODULE);
         $_HANDOUT->loadLanguage('modules');
 
-        require_once($_HANDOUT->getPath('classes', 'utils'));
-        require_once($_HANDOUT->getPath('classes', 'file'));
-        require_once($_HANDOUT->getPath('classes', 'model'));
+        require_once $_HANDOUT->getPath('classes', 'utils');
+        require_once $_HANDOUT->getPath('classes', 'file');
+        require_once $_HANDOUT->getPath('classes', 'model');
 
         xmap_com_handout::getCategoryTree($xmap, $parent, $params, $catid);
         return true;

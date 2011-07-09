@@ -1,16 +1,15 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: codes.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+defined('_JEXEC') or die;
 
 include_once dirname(__FILE__) . '/codes.html.php';
 JArrayHelper::toInteger(( $cid ));
@@ -144,7 +143,7 @@ function showCodes($option)
 
     $id = JRequest::getVar( 'id', 0);
 
-    require_once (JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php');
+    require_once JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php';
     $pageNav = new JPagination($total, $limitstart, $limit);
 
     $query = "SELECT c.id, c.name, c.published, c.usage, h.docname, cat.name as category"

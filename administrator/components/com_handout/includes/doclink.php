@@ -1,14 +1,13 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: doclink.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 defined('_JEXEC') or die('Restricted access');
 
@@ -18,9 +17,9 @@ include_once dirname(__FILE__).DS.'defines.php';
 global $_HANDOUT;
 
 // Load classes and language
-require_once($_HANDOUT->getPath('classes', 'utils'));
-require_once($_HANDOUT->getPath('classes', 'file'));
-require_once($_HANDOUT->getPath('classes', 'model'));
+require_once $_HANDOUT->getPath('classes', 'utils');
+require_once $_HANDOUT->getPath('classes', 'file');
+require_once $_HANDOUT->getPath('classes', 'model');
 
 JRequest::setVar('tmpl', 'component');
 

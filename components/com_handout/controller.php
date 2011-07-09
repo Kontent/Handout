@@ -1,20 +1,19 @@
 <?php
 
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: controller.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.controller');
-require_once (JPATH_COMPONENT_HELPERS . DS . 'documents.php');
+require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
 
 //component constants
 define('COM_HANDOUT_IMAGESPATH', JURI::root(true) . '/components/com_handout/media/images/');
@@ -100,7 +99,7 @@ class HandoutController extends JController
 
     function license_result ()
     {
-        require_once (JPATH_COMPONENT . DS . 'helpers' . DS . 'downloads.php');
+        require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'downloads.php';
         DownloadsHelper::licenseDocumentProcess(HandoutHelper::getGid());
     }
 }

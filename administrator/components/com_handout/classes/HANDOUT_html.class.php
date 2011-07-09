@@ -1,15 +1,14 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: handout_html.class.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_HTML_CLASS')) {
     return;
@@ -136,7 +135,7 @@ class HandoutHTML extends JHTML
     function categoryList($id, $action, $options = array())
     {
         $handout = &HandoutFactory::getHandout();
-        require_once($handout->getPath('classes', 'utils'));
+        require_once $handout->getPath('classes', 'utils');
         $list = HANDOUT_utils::categoryArray();
         // assemble menu items to the array
 
@@ -151,7 +150,7 @@ class HandoutHTML extends JHTML
     function categoryParentList($id, $action, $options = array())
     {
         $handout = &HandoutFactory::getHandout();
-        require_once($handout->getPath('classes', 'utils'));
+        require_once $handout->getPath('classes', 'utils');
         $list = HANDOUT_utils::categoryArray();
 
         // using getInstance for performance
@@ -387,7 +386,7 @@ class HandoutHTML extends JHTML
     }
 }
 
-require_once (JPATH_ROOT .DS .'libraries'.DS.'joomla'.DS.'html'.DS.'pane.php');
+require_once JPATH_ROOT .DS .'libraries'.DS.'joomla'.DS.'html'.DS.'pane.php';
 
 class HandoutTabs extends JPaneTabs {
 	function startPanel($text, $id) {

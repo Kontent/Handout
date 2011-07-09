@@ -1,19 +1,18 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: logs.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+defined('_JEXEC') or die;
 
 include_once dirname(__FILE__) . '/logs.html.php';
-require_once($_HANDOUT->getPath('classes', 'plugins'));
+require_once $_HANDOUT->getPath('classes', 'plugins');
 JArrayHelper::toInteger(( $cid ));
 
 switch ($task) {
@@ -79,7 +78,7 @@ function showLogs($option) {
 
     // NAvigation
 
-    require_once (JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php');
+    require_once JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php';
     $pageNav = new JPagination($total, $limitstart, $limit);
 
     // Query

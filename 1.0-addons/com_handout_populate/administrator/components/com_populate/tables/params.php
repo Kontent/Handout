@@ -1,6 +1,5 @@
 <?php
 /**
- * @version		$Id$
  * @category	HandoutPopulate
  * @package		HandoutPopulate
  * @copyright	Copyright (C) 2011 Kontent Design. All rights reserved.

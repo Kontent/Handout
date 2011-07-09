@@ -1,15 +1,14 @@
 <?php
 
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: handout.migration.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 class HandoutMigration
 {
@@ -1259,7 +1258,7 @@ class HandoutMigration_Folder extends HandoutMigration
 	{
 	 	//validate extension
 		global $_HANDOUT;
-		require_once($_HANDOUT->getPath('classes', 'mime'));
+		require_once $_HANDOUT->getPath('classes', 'mime');
 
 		if ($_HANDOUT->getCfg('user_all')) {
 			return true;

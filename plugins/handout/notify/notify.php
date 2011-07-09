@@ -1,18 +1,18 @@
 <?php
-/* @version 	$Id: notify.php
+/**
  * @package 	Handout Notify
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 defined('_JEXEC') or die('Restricted access');
 
 global $_HANDOUT;
 if(!is_object($_HANDOUT)){
 	$handoutBase = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS;
-	require_once ($handoutBase . 'helpers' . DS . 'factory.php');
+	require_once $handoutBase . 'helpers' . DS . 'factory.php';
 	$_HANDOUT = &HandoutFactory::getHandout();
 }
 

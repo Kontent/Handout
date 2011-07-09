@@ -1,18 +1,17 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: admin.handout.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	Improved by JoomDOC by Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
-require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'handout.class.php');
-require_once (JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'factory.php');
+require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'handout.class.php';
+require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'factory.php';
 
 global $_HANDOUT, $_HANDOUT_USER, $cid, $gid, $id, $pend, $updatedoc, $sort, $view_type, $css, $task, $option, $database, $user;
 
@@ -24,7 +23,7 @@ $lang->load('com_handout', JPATH_ADMINISTRATOR);
 
 if($task=='migration'){
 	$src = JRequest::getCmd ( 'migratefrom', '' );
-	require_once (JPATH_COMPONENT_ADMINISTRATOR.DS.'handout.migration.php');
+	require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'handout.migration.php';
 	$migrator = & HandoutMigration::getInstance($src);
 	$migrator->migrate();
 }
@@ -34,8 +33,8 @@ $user = &JFactory::getUser ();
 $_HANDOUT_USER = $_HANDOUT->getUser ();
 
 require_once $_HANDOUT->getPath ( 'classes', 'html' );
-require_once ($_HANDOUT->getPath ( 'classes', 'utils' ));
-require_once ($_HANDOUT->getPath ( 'classes', 'token' ));
+require_once $_HANDOUT->getPath ( 'classes', 'utils' );
+require_once $_HANDOUT->getPath ( 'classes', 'token' );
 
 $cid = JRequest::getVar ( 'cid', array () );
 if (! is_array ( $cid )) {

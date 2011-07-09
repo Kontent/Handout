@@ -1,15 +1,14 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: handout_cleardata.class.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
 
 if (defined('_HANDOUT_cleardata')) {
@@ -131,7 +130,7 @@ class HANDOUT_CleardataItem_files extends HANDOUT_CleardataItem{
             return false;
         }
         global $_HANDOUT;
-        require_once($_HANDOUT->getPath('classes', 'file'));
+        require_once $_HANDOUT->getPath('classes', 'file');
     	$folder = new HANDOUT_Folder( $_HANDOUT->getCfg('handoutpath' ));
         $files = $folder->getFiles();
         $this->msg = JText::_('COM_HANDOUT_CLEARDATA_CLEARED').$this->friendlyname;

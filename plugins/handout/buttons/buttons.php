@@ -1,15 +1,14 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: buttons.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	Improved by JoomDOC by Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-    defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+    defined('_JEXEC') or die;
 
     $mainframe->registerEvent( 'onFetchButtons', 'bot_buttons' );
 
@@ -24,8 +23,8 @@
 
         $_HANDOUT = &HandoutFactory::getHandout();
     	$_HANDOUT_USER = &HandoutFactory::getHandoutUser();
-        require_once($_HANDOUT->getPath('classes', 'button'));
-        require_once($_HANDOUT->getPath('classes', 'token'));
+        require_once $_HANDOUT->getPath('classes', 'button');
+        require_once $_HANDOUT->getPath('classes', 'token');
 
         $doc        = & $params['doc'];
         $file       = & $params['file'];

@@ -1,5 +1,5 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
  * @package 	Handout
  * @subpackage	com_handout

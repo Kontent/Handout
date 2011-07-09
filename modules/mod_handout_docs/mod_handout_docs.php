@@ -1,33 +1,32 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: mod_handout_latest_downloads.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	Improved by JoomDOC by Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
 // Include the syndicate functions only once
-require_once (dirname(__FILE__).DS.'helper.php');
+require_once dirname(__FILE__).DS.'helper.php';
 
 // Attach the Handout stylesheet to the document head
 JHTML::stylesheet('handout.css', 'components/com_handout/media/css/');
 
-require_once(JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS . 'helpers' . DS . 'factory.php');
-require_once(JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS . 'handout.class.php');
+require_once JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS . 'helpers' . DS . 'factory.php';
+require_once JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS . 'handout.class.php';
 
 global $_HANDOUT;
 if (!$_HANDOUT) {
 	$_HANDOUT = HandoutFactory::getHandout();
 }
 
-require_once ($_HANDOUT->getPath('classes', 'model'));
+require_once $_HANDOUT->getPath('classes', 'model');
 
 // Get the parameters
 $show_icon 		 = abs($params->def( 'show_icon', 1 ));

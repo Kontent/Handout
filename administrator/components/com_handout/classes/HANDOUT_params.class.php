@@ -1,15 +1,14 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: handout_params.class.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_PARAMS')) {
     return true;
@@ -17,7 +16,7 @@ if (defined('_HANDOUT_PARAMS')) {
     define('_HANDOUT_PARAMS', 1);
 }
 
-require_once( JPATH_ROOT . '/includes/domit/xml_domit_lite_include.php' );
+require_once JPATH_ROOT . '/includes/domit/xml_domit_lite_include.php';
 
 
 
@@ -218,7 +217,7 @@ class HandoutParameters {
 
         if ($this->_path) {
             if (!is_object( $this->_xmlElem )) {
-                require_once( JPATH_ROOT . '/includes/domit/xml_domit_lite_include.php' );
+                require_once JPATH_ROOT . '/includes/domit/xml_domit_lite_include.php';
 
                 $xmlDoc = new DOMIT_Lite_Document();
                 $xmlDoc->resolveErrors( true );

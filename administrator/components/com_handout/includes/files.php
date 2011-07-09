@@ -1,21 +1,20 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: files.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+defined('_JEXEC') or die;
 
 include_once dirname(__FILE__) . '/files.html.php';
 
-require_once($_HANDOUT->getPath('classes', 'file'));
-require_once($_HANDOUT->getPath('classes', 'utils'));
+require_once $_HANDOUT->getPath('classes', 'file');
+require_once $_HANDOUT->getPath('classes', 'utils');
 
 // retrieve some expected url (or form) arguments
 $old_filename = JRequest::getInt( 'old_filename', 1);
@@ -194,7 +193,7 @@ function uploadWizard($step = 1, $method = 'http', $old_filename)
                         $batch = JRequest::getVar( 'batch', null);
 
                         if ($batch && $old_filename <> null) {
-                            require_once("includes/pcl/pclzip.lib.php");
+                            require_once 'includes/pcl/pclzip.lib.php';
 
                             if (!extension_loaded('zlib')) {
                                 $mainframe->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ZLIB_ERROR'));

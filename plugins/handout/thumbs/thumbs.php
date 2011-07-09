@@ -1,17 +1,16 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: thumbs.php
  * @package 	Handout Thumbnails
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 defined('_JEXEC') or die('Restricted access');
 
 // requires
-require_once(dirname(__FILE__).DS.'thumbs'.DS.'defines.php');
+require_once dirname(__FILE__).DS.'thumbs'.DS.'defines.php';
 
 jimport( 'joomla.plugin.plugin' );
 class plgHandoutThumbs extends JPlugin
@@ -21,7 +20,7 @@ class plgHandoutThumbs extends JPlugin
         global $_HANDOUT;
     	if(!is_object($_HANDOUT)){
 			$handoutBase = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS;
-			require_once ($handoutBase . 'helpers' . DS . 'factory.php');
+			require_once $handoutBase . 'helpers' . DS . 'factory.php';
     		$_HANDOUT = &HandoutFactory::getHandout();
 		}
 
@@ -73,7 +72,7 @@ class plgHandoutThumbs extends JPlugin
 	    $target = _AT_PATH_IMAGES.DS.$doc->objDBTable->docfilename.'_'.$doc->objDBTable->id.'.'.$output_format;
 
 	    // phpThumb
-	    require_once(_AT_PATH_LIBRARIES.DS.'phpthumb'.DS.'phpthumb.class.php');
+	    require_once _AT_PATH_LIBRARIES.DS.'phpthumb'.DS.'phpthumb.class.php';
 	    $phpThumb  = new phpThumb();
 
 	    // parameters

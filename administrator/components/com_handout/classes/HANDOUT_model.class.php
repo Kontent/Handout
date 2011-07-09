@@ -1,15 +1,14 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: handout_modeln.class.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_MODEL')) {
     return;
@@ -17,8 +16,8 @@ if (defined('_HANDOUT_MODEL')) {
     define('_HANDOUT_MODEL', 1);
 }
 
-require_once($_HANDOUT->getPath('classes', 'utils'));
-require_once($_HANDOUT->getPath('classes', 'user'));
+require_once $_HANDOUT->getPath('classes', 'utils');
+require_once $_HANDOUT->getPath('classes', 'user');
 
 class HANDOUT_Model
 {
@@ -90,7 +89,7 @@ class HANDOUT_Model
     function _formatLink($task, $params = array(), $sef = true, $token = false)
     {
 		$_HANDOUT = &HandoutFactory::getHandout();
-        require_once($_HANDOUT->getPath('classes', 'token'));
+        require_once $_HANDOUT->getPath('classes', 'token');
 
         if($token)
         {
@@ -192,9 +191,9 @@ class HANDOUT_Document extends HANDOUT_Model
     function _format(&$objDBDoc)
     {
         $_HANDOUT = &HandoutFactory::getHandout();
-        require_once($_HANDOUT->getPath('classes', 'file'));
-        require_once($_HANDOUT->getPath('classes', 'params'));
-        require_once($_HANDOUT->getPath('classes', 'plugins'));
+        require_once $_HANDOUT->getPath('classes', 'file');
+        require_once $_HANDOUT->getPath('classes', 'params');
+        require_once $_HANDOUT->getPath('classes', 'plugins');
 
         $file = new HANDOUT_file($objDBDoc->docfilename, $_HANDOUT->getCfg('handoutpath'));
         $params = new HandoutParametersHandler( $objDBDoc->attribs, '' , 'params' );
@@ -254,8 +253,8 @@ class HANDOUT_Document extends HANDOUT_Model
     function _formatUserName($userid)
     {
         $_HANDOUT = &HandoutFactory::getHandout();
-        require_once($_HANDOUT->getPath('classes', 'user'));
-        require_once($_HANDOUT->getPath('classes', 'groups'));
+        require_once $_HANDOUT->getPath('classes', 'user');
+        require_once $_HANDOUT->getPath('classes', 'groups');
 
         switch ($userid)
         {

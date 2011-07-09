@@ -1,7 +1,5 @@
 <?php
 /**
- * @version		$Id$
- * @category	HandoutPopulate
  * @package		HandoutPopulate
  * @copyright	Copyright (C) 2011 Kontent Design. All rights reserved.
  * @copyright	Copyright (C) 2003 - 2010 Johan Janssens and Mathias Verraes. All rights reserved.

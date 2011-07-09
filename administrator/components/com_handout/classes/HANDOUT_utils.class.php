@@ -1,15 +1,14 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: handout_utils.class.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_UTILS')) {
     return true;
@@ -89,7 +88,7 @@ class HANDOUT_Utils
      * @param string  $ Image size
      * @param boolean $ The browser supports png alpha transparency
      * @return string the icon path
-     **/
+     */
     function pathIcon($icon, $type = null, $size = null )
     {
 
@@ -512,18 +511,18 @@ class HANDOUT_Utils
 			$dataObj->kunena_discuss_count = substr_count($comments, 'class="kdiscuss-item');
 		}
     }
-        
+
 	function processKunenaDiscussPlugin ($dataObj) {
         $mainframe = &JFactory::getApplication('site');
 
         // initialize objects
         $params     = new JParameter( '' ); // fake params
         $row        = new stdClass();
-	
+
 		if (JRequest::getVar('task')=='doc_details') {
 			//Kunena Discuss settings
 			$row->id = '100000' + $dataObj->id; // high article id
-			$row->catid = $dataObj->catid;	
+			$row->catid = $dataObj->catid;
 			$row->text ='';
 			$row->title = $dataObj->docname . ' (Handout ID: ' . $dataObj->id . ")";
 			if ($dataObj->kunena_discuss_id)
@@ -531,14 +530,14 @@ class HANDOUT_Utils
 				$row->text  = '{kunena_discuss:'.$dataObj->kunena_discuss_id.'}';
 			}
 			$mainframe->scope = 'com_content'; //most content plugins will work only for com_content
-	
+
 			//Load specific content plugins
 			JPluginHelper::importPlugin('content', 'kunenadiscuss');
-		}	
-		
+		}
+
 		$mainframe->triggerEvent( 'onPrepareContent', array( &$row, &$params, 0 ), true );
         $results = $mainframe->triggerEvent( 'onAfterDisplayContent', array( &$row, &$params, 0 ), true );
-		
+
         return trim(implode("\n", $results));
     }
 

@@ -1,15 +1,14 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: handout_config.class.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_config')) {
     return true;
@@ -86,7 +85,7 @@ class HANDOUT_Config {
     function _loadConfig()
     {
         if (file_exists($this->_path)) {
-            require_once($this->_path);
+            require_once $this->_path;
             if( class_exists($this->_name)) {
                 $this->_config = new $this->_name();
             } else {

@@ -1,6 +1,5 @@
 <?php
 /**
- * @version		$Id$
  * @category	HandoutPopulate
  * @package		HandoutPopulate
  * @copyright	Copyright (C) 2011 Kontent Design. All rights reserved.
@@ -21,7 +20,7 @@ class PopulateDocman
     public static function get()
     {
     	require_once JPATH_ADMINISTRATOR.DS.'components'.DS.'com_handout'.DS.'includes'.DS.'defines.php';
-    	require_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_handout'.DS.'handout.class.php');
+    	require_once JPATH_ADMINISTRATOR.DS.'components'.DS.'com_handout'.DS.'handout.class.php';
 		global $_HANDOUT, $_DMUSER;
 		if(!is_object($_HANDOUT)) {
 			$_HANDOUT = new HandoutMainFrame();
