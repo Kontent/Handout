@@ -27,7 +27,7 @@ $options = array ("host" => $config->host,"user" => $config->user,"password" => 
 $database = new JDatabaseMySQL($options);
 
 	function existComponent($component){
-		global $database;
+		$database = JFactory::getDbo();
 		$sql = "select count(*) from #__components where link = 'option=".$component."'";
 		$database->setQuery($sql);
 		$database->query();
@@ -39,7 +39,7 @@ $database = new JDatabaseMySQL($options);
 	}
 
 	function getComponentName($component){
-		global $database;
+		$database = JFactory::getDbo();
 		$sql = "select name from #__components where link = 'option=".$component."'";
 		$database->setQuery($sql);
 		$database->query();

@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'handout.class.php';
 require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'factory.php';
 
-global $_HANDOUT, $_HANDOUT_USER, $cid, $gid, $id, $pend, $updatedoc, $sort, $view_type, $css, $task, $option, $database, $user;
+global $_HANDOUT, $_HANDOUT_USER;
 
 $task = JRequest::getCmd ( 'task' );
 
