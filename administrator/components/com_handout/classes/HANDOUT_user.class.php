@@ -114,7 +114,7 @@ class HANDOUT_User {
 		$this->userid = $user->id;
 		$this->username = $user->username;
 		$this->usertype = strtolower ( $user->usertype );
-		$this->gid = $user->gid;
+		$this->gid = $user->get('gid');
 
 		$this->setUsertype ();
 		$this->groupsIn = $this->getGroupsIn ();
