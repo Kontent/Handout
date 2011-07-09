@@ -776,7 +776,7 @@ class HandoutCategory extends JTable {
 		parent::__construct( '#__categories', 'id', $db );
 	}
 
-	static function & getInstance( $id = 0 ) {
+	function & getInstance( $id = 0 ) {
 		$db = &JFactory::getDBO();
 		static $instances = array();
 
