@@ -27,7 +27,7 @@ switch ($task) {
 function clearData( $cid = array() )
 {
     HANDOUT_token::check() or die('Invalid Token');
-	$mainframe = &JFactory::getApplication();
+	$app = &JFactory::getApplication();
     $msgs=array();
 
     $cleardata = new HANDOUT_Cleardata( $cid );
@@ -36,7 +36,7 @@ function clearData( $cid = array() )
     foreach( $rows as $row ){
         $msgs[] = $row->msg;
     }
-    $mainframe->redirect( 'index.php?option=com_handout&section=config', implode(' | ', $msgs));
+    $app->redirect( 'index.php?option=com_handout&section=config', implode(' | ', $msgs));
 }
 
 function showClearData(){

@@ -254,7 +254,7 @@ class HANDOUT_File
     }
 
     function getDate($type = 'm') {
-        $mainframe = JFactory::getApplication();
+        $app = JFactory::getApplication();
 
 		if( $this->_isLink ){
 			return "";
@@ -274,7 +274,7 @@ class HANDOUT_File
     			break;
     	}
 
-        return strftime( JText::_('COM_HANDOUT_DATEFORMAT_LONG'), $date + ($mainframe->getCfg('offset')*60*60) );
+        return strftime( JText::_('COM_HANDOUT_DATEFORMAT_LONG'), $date + ($app->getCfg('offset')*60*60) );
 
     }
 

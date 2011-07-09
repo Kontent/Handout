@@ -26,10 +26,10 @@ defined('_JEXEC') or die;
 
 JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 
-$mainframe = &JFactory::getApplication();
-$pathway = & $mainframe->getPathWay();
+$app = &JFactory::getApplication();
+$pathway = & $app->getPathWay();
 $pathway->addItem($this->data->docname);
-$mainframe->setPageTitle( JText::_('COM_HANDOUT_TITLE_DETAILS') . ' | ' . $this->data->docname );
+$app->setPageTitle( JText::_('COM_HANDOUT_TITLE_DETAILS') . ' | ' . $this->data->docname );
 
 //append meta keywords and description to page head
 $document =& JFactory::getDocument();

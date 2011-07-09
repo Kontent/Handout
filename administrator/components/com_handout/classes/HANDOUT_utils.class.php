@@ -31,8 +31,9 @@ class HANDOUT_Utils
     	return get_magic_quotes_gpc() ? HandoutFactory::getStripslashes($post) : $post;
     }
 
-	function loadAdminModules( $position='left', $style=0 ) {
-        global $mainframe;
+	function loadAdminModules( $position='left', $style=0 )
+	{
+		$app = JFactory::getApplication();
 
         $modules    =& JModuleHelper::getModules($position);
         $pane       =& JPane::getInstance('sliders');
@@ -206,9 +207,9 @@ class HANDOUT_Utils
 
     function returnTo($task, $msg = '', $gid = '', $params = null)
     {
-        $mainframe = &JFactory::getApplication();
+		$app = JFactory::getApplication();
     	$link = HANDOUT_Utils::_rawLink($task, $gid, $params);
-        $mainframe->redirect($link, $msg);
+        $app->redirect($link, $msg);
     }
 
     function _rawLink($task, $gid = '', $params = null)
@@ -513,7 +514,7 @@ class HANDOUT_Utils
     }
 
 	function processKunenaDiscussPlugin ($dataObj) {
-        $mainframe = &JFactory::getApplication('site');
+        $app = &JFactory::getApplication('site');
 
         // initialize objects
         $params     = new JParameter( '' ); // fake params
@@ -529,14 +530,14 @@ class HANDOUT_Utils
 			{
 				$row->text  = '{kunena_discuss:'.$dataObj->kunena_discuss_id.'}';
 			}
-			$mainframe->scope = 'com_content'; //most content plugins will work only for com_content
+			$app->scope = 'com_content'; //most content plugins will work only for com_content
 
 			//Load specific content plugins
 			JPluginHelper::importPlugin('content', 'kunenadiscuss');
 		}
 
-		$mainframe->triggerEvent( 'onPrepareContent', array( &$row, &$params, 0 ), true );
-        $results = $mainframe->triggerEvent( 'onAfterDisplayContent', array( &$row, &$params, 0 ), true );
+		$app->triggerEvent( 'onPrepareContent', array( &$row, &$params, 0 ), true );
+        $results = $app->triggerEvent( 'onAfterDisplayContent', array( &$row, &$params, 0 ), true );
 
         return trim(implode("\n", $results));
     }

@@ -146,7 +146,7 @@ class HANDOUT_plugin {
 
     function trigger($trigger = null , $pub = false) {
 
-        $mainframe = &JFactory::getApplication();
+        $app = &JFactory::getApplication();
 
         $trigger = $trigger ? $trigger : $this->_trigger;
         if ($trigger == null || ! $this->_group) {
@@ -163,7 +163,7 @@ class HANDOUT_plugin {
             'mambo_ds' => &$this->_ds);
 
 		JPluginHelper::importPlugin('handout');
-		$this->_return = $mainframe->triggerEvent( $trigger, array($this->_parms), $pub);
+		$this->_return = $app->triggerEvent( $trigger, array($this->_parms), $pub);
 
         $this->_error = $this->getFirst('_error');
         $errmsg = $this->getAll('_errmsg');

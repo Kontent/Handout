@@ -26,9 +26,9 @@ defined('_JEXEC') or die;
 
 ?>
 <?php
-	$mainframe = &JFactory::getApplication();
-    $mainframe->setPageTitle(JText::_('COM_HANDOUT_TITLE_EDIT') . ' | ' . $this->data->docname);
-    $pathway = & $mainframe->getPathWay();
+	$app = &JFactory::getApplication();
+    $app->setPageTitle(JText::_('COM_HANDOUT_TITLE_EDIT') . ' | ' . $this->data->docname);
+    $pathway = & $app->getPathWay();
     $pathway->addItem($this->data->docname);
     $pathway->addItem('Edit');
 

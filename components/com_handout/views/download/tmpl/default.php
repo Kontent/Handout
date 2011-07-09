@@ -31,10 +31,10 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 ?>
 <div id="handout">
 	<?php
-	$mainframe = &JFactory::getApplication();
-    $pathway = & $mainframe->getPathWay();
+	$app = &JFactory::getApplication();
+    $pathway = & $app->getPathWay();
     $pathway->addItem($this->data->docname);
-    $mainframe->setPageTitle( JText::_('COM_HANDOUT_AGREEMENT_DOC') . ' | ' . $this->data->docname );
+    $app->setPageTitle( JText::_('COM_HANDOUT_AGREEMENT_DOC') . ' | ' . $this->data->docname );
     ?>
 
     <div class="hdoc-license">

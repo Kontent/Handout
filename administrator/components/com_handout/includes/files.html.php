@@ -304,10 +304,10 @@ class HTML_HandoutFiles
     function uploadWizard_sucess(&$file, $batch = 0, $old_filename = null, $show_completion = 1)
     {
 
-        $mainframe = &JFactory::getApplication();
+        $app = &JFactory::getApplication();
 
         if ($old_filename <> '1') {
-            $mainframe->redirect("index.php?option=com_handout&section=files", "&quot;" . $old_filename . "&quot; - " . JText::_('COM_HANDOUT_DOCUPDATED'));
+            $app->redirect("index.php?option=com_handout&section=files", "&quot;" . $old_filename . "&quot; - " . JText::_('COM_HANDOUT_DOCUPDATED'));
         }
         ?>
 

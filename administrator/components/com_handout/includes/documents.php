@@ -72,18 +72,18 @@ function showDocuments($pend, $sort, $view_type)
     require_once $_HANDOUT->getPath('classes', 'utils');
 
     $database = &JFactory::getDBO();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     $option = JRequest::getCmd('option');
     $section = JRequest::getCmd('section');
-	$list_limit = $mainframe->getCfg('list_limit');
+	$list_limit = $app->getCfg('list_limit');
     global $menutype;
 
-    $catid = $mainframe->getUserStateFromRequest("catidarc{option}{$section}", 'catid', 0);
-    $limit = $mainframe->getUserStateFromRequest("viewlistlimit", 'limit', $list_limit);
-    $limitstart = $mainframe->getUserStateFromRequest("view{$option}{$section}limitstart", 'limitstart', 0);
-    $levellimit = $mainframe->getUserStateFromRequest("view{$option}{$section}limit", 'levellimit', 10);
+    $catid = $app->getUserStateFromRequest("catidarc{option}{$section}", 'catid', 0);
+    $limit = $app->getUserStateFromRequest("viewlistlimit", 'limit', $list_limit);
+    $limitstart = $app->getUserStateFromRequest("view{$option}{$section}limitstart", 'limitstart', 0);
+    $levellimit = $app->getUserStateFromRequest("view{$option}{$section}limit", 'levellimit', 10);
 
-    $search = $mainframe->getUserStateFromRequest("searcharc{$option}{$section}", 'search', '');
+    $search = $app->getUserStateFromRequest("searcharc{$option}{$section}", 'search', '');
     $search = $database->getEscaped(trim(strtolower($search)));
 
     $where = array();
@@ -190,7 +190,8 @@ function editDocument($uid)
         $doc->load($uid);
         if ($doc->checked_out) {
             if ($doc->checked_out <> $user->id) {
-                $mainframe = &JFactory::getApplication(); $mainframe->redirect("index.php?option=$option", JText::_('COM_HANDOUT_THE_MODULE') . " $row->title " . JText::_('COM_HANDOUT_IS_BEING'));
+                $app = &JFactory::getApplication();
+                $app->redirect("index.php?option=$option", JText::_('COM_HANDOUT_THE_MODULE') . " $row->title " . JText::_('COM_HANDOUT_IS_BEING'));
             }
         } else { // check out document...
             $doc->checkout($user->id);
@@ -216,7 +217,8 @@ function editDocument($uid)
     $database->setQuery("SELECT id " . "\n FROM #__categories " . "\n WHERE section='com_handout'", 0, 1);
 
     if (!$checkcats = $database->loadObjectList()) {
-        $mainframe = &JFactory::getApplication(); $mainframe->redirect("index.php?option=com_handout&section=categories", JText::_('COM_HANDOUT_PLEASE_SEL_CAT'));
+        $app = &JFactory::getApplication();
+        $app->redirect("index.php?option=com_handout&section=categories", JText::_('COM_HANDOUT_PLEASE_SEL_CAT'));
     }
 
     // select lists
@@ -286,7 +288,8 @@ function editDocument($uid)
         }
 
         if ( count($docs) < 1 ) {
-            $mainframe = &JFactory::getApplication(); $mainframe->redirect("index.php?option=$option&task=upload", JText::_('COM_HANDOUT_YOU_MUST_UPLOAD'));
+            $app = &JFactory::getApplication();
+            $app->redirect("index.php?option=$option&task=upload", JText::_('COM_HANDOUT_YOU_MUST_UPLOAD'));
         }
 
         $lists['docfilename'] = JHTML::_('select.genericlist',$docs, 'docfilename',
@@ -345,7 +348,8 @@ function editDocument($uid)
     $prebot->trigger();
 
     if ($prebot->getError()) {
-    	$mainframe = &JFactory::getApplication(); $mainframe->redirect("index.php?option=com_handout&section=documents", $prebot->getErrorMsg());
+    	$app = &JFactory::getApplication();
+    	$app->redirect("index.php?option=com_handout&section=documents", $prebot->getErrorMsg());
     }
 
     HTML_HandoutDocuments::editDocument($doc, $lists, $last, $created, $params);
@@ -358,7 +362,8 @@ function removeDocument($cid)
 
     $doc = new HandoutDocument($database);
     if ($doc->remove($cid)) {
-        $mainframe = &JFactory::getApplication(); $mainframe->redirect("index.php?option=com_handout&section=documents");
+        $app = &JFactory::getApplication();
+        $app->redirect("index.php?option=com_handout&section=documents");
     } else {
     	echo "<script> alert('Problem removing documents'); window.history.go(-1);</script>\n";
         exit();
@@ -371,7 +376,8 @@ function cancelDocument()
 
     $doc = new HandoutDocument($database);
     if ($doc->cancel()) {
-        $mainframe = &JFactory::getApplication(); $mainframe->redirect("index.php?option=com_handout&section=documents");
+        $app = &JFactory::getApplication();
+        $app->redirect("index.php?option=com_handout&section=documents");
     }
 }
 
@@ -382,7 +388,8 @@ function publishDocument($cid, $publish = 1)
 
     $doc = new HandoutDocument($database);
     if ($doc->publish($cid, $publish)) {
-        $mainframe = &JFactory::getApplication(); $mainframe->redirect("index.php?option=com_handout&section=documents");
+        $app = &JFactory::getApplication();
+        $app->redirect("index.php?option=com_handout&section=documents");
     }
 }
 
@@ -438,7 +445,8 @@ function saveDocument()
       	$logbot->copyParm('msg' , $postbot->getErrorMsg());
        	$logbot->copyParm('status' , 'LOG_ERROR');
         $logbot->trigger();
-        $mainframe = &JFactory::getApplication(); $mainframe->redirect("index.php?option=com_handout&section=documents", $postbot->getErrorMsg());
+        $app = &JFactory::getApplication();
+        $app->redirect("index.php?option=com_handout&section=documents", $postbot->getErrorMsg());
    	}
 
     if ($doc->save()) { // Update from browser
@@ -452,14 +460,16 @@ function saveDocument()
             $url = 'index.php?option=com_handout&section=documents&task=edit&cid[0]='.$doc->id;
         }
 
-        $mainframe = &JFactory::getApplication(); $mainframe->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
+        $app = &JFactory::getApplication();
+        $app->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
     }
 
     $logbot->copyParm('msg' , $doc->getError());
     $logbot->copyParm('status' , 'LOG_ERROR');
     $logbot->trigger();
 
-    $mainframe = &JFactory::getApplication(); $mainframe->redirect( 'index.php?option=com_handout&section=documents', $doc->getError());
+    $app = &JFactory::getApplication();
+    $app->redirect( 'index.php?option=com_handout&section=documents', $doc->getError());
 }
 
 function downloadDocument($bid)
@@ -513,7 +523,8 @@ function moveDocumentProcess($cid)
     $cat->load($categoryMove);
 
     $msg = $total . ' '.JText::_('COM_HANDOUT_DOCUMENTS_MOVED_TO').' '. $cat->name;
-    $mainframe = &JFactory::getApplication(); $mainframe->redirect('index.php?option=com_handout&section=documents',  $msg);
+    $app = &JFactory::getApplication();
+    $app->redirect('index.php?option=com_handout&section=documents',  $msg);
 }
 
 function copyDocumentForm($cid)
@@ -556,5 +567,6 @@ function copyDocumentProcess($cid)
     $cat->load($categoryCopy);
 
     $msg = $total . ' '.JText::_('COM_HANDOUT_DOCUMENTS_COPIED_TO').' '. $cat->name;
-    $mainframe = &JFactory::getApplication(); $mainframe->redirect('index.php?option=com_handout&section=documents',  $msg);
+    $app = &JFactory::getApplication();
+    $app->redirect('index.php?option=com_handout&section=documents',  $msg);
 }

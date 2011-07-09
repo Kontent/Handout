@@ -78,7 +78,7 @@ function installSampleData(){
     $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
 
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     $handoutdoc  = JPATH_ROOT.DS.'handouts';
     $img    = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_handout'.DS.'images';
     $now = date('Y-m-d H:i:s');
@@ -95,7 +95,7 @@ function installSampleData(){
     $group->groups_members      = $admins;
     if(!$group->store())
     {
-    	$mainframe->redirect('index.php?option=com_handout', 'Error: installSampleData, $groups->store()');
+    	$app->redirect('index.php?option=com_handout', 'Error: installSampleData, $groups->store()');
     }
     $groupid = (-1 * $database->insertid()) + COM_HANDOUT_PERMIT_GROUP;
 
@@ -105,7 +105,7 @@ function installSampleData(){
     $license->license   = JText::_('COM_HANDOUT_SAMPLE_AGREEMENT_DESC');
     if(!$license->store())
     {
-        $mainframe->redirect('index.php?option=com_handout', 'Error: installSampleData, $license->store()');
+        $app->redirect('index.php?option=com_handout', 'Error: installSampleData, $license->store()');
     }
     $licenseid = $database->insertid();
 
@@ -132,7 +132,7 @@ function installSampleData(){
     $category->params           = '';
     if(!$category->store())
     {
-        $mainframe->redirect('index.php?option=com_handout', 'Error: installSampleData, $category->store()');
+        $app->redirect('index.php?option=com_handout', 'Error: installSampleData, $category->store()');
     }
     $catid = $database->insertId();
 
@@ -165,8 +165,8 @@ function installSampleData(){
     $doc->attribs           = 'crc_checksum=\nmd5_checksum=';
     if(!$doc->store())
     {
-        $mainframe->redirect('index.php?option=com_handout', 'Error: installSampleData, $doc->store()');
+        $app->redirect('index.php?option=com_handout', 'Error: installSampleData, $doc->store()');
     }
 
-    $mainframe->redirect('index.php?option=com_handout', JText::_('COM_HANDOUT_SAMPLE_COMPLETED'));
+    $app->redirect('index.php?option=com_handout', JText::_('COM_HANDOUT_SAMPLE_COMPLETED'));
 }

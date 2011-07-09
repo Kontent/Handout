@@ -53,7 +53,7 @@ function saveLicense($option)
 
     $database = &JFactory::getDBO();
     $task = JRequest::getCmd('task');
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     $row = new HandoutLicenses($database);
     //$isNew = ($row->id == 0);
@@ -78,29 +78,29 @@ function saveLicense($option)
         $url = 'index.php?option=com_handout&section=licenses&task=edit&cid[0]='.$row->id;
     }
 
-    $mainframe->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
+    $app->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
 }
 
 function cancelLicense($option)
 {
     $database = &JFactory::getDBO();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     $row = new HandoutLicenses($database);
     $row->bind(HANDOUT_Utils::stripslashes($_POST));
     $row->checkin();
-    $mainframe->redirect("index.php?option=$option&section=licenses");
+    $app->redirect("index.php?option=$option&section=licenses");
 }
 
 function showAgreements($option)
 {
     $database = &JFactory::getDBO();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     global $sectionid;
 
-    $catid = (int) $mainframe->getUserStateFromRequest("catid{$option}{$sectionid}", 'catid', 0);
-    $limit = (int) $mainframe->getUserStateFromRequest("viewlistlimit", 'limit', 10);
-    $limitstart = (int) $mainframe->getUserStateFromRequest("view{$option}{$sectionid}limitstart", 'limitstart', 0);
-    $search = $mainframe->getUserStateFromRequest("search{$option}{$sectionid}", 'search', '');
+    $catid = (int) $app->getUserStateFromRequest("catid{$option}{$sectionid}", 'catid', 0);
+    $limit = (int) $app->getUserStateFromRequest("viewlistlimit", 'limit', 10);
+    $limitstart = (int) $app->getUserStateFromRequest("view{$option}{$sectionid}limitstart", 'limitstart', 0);
+    $search = $app->getUserStateFromRequest("search{$option}{$sectionid}", 'search', '');
     $search = $database->getEscaped(trim(strtolower($search)));
     $where = array();
     if ($search) {
@@ -139,7 +139,7 @@ function showAgreements($option)
 function removeLicense($cid, $option)
 {
     HANDOUT_token::check() or die('Invalid Token');
-	$mainframe = &JFactory::getApplication();
+	$app = &JFactory::getApplication();
     $database = &JFactory::getDBO();
 
     if (!is_array($cid) || count($cid) < 1) {
@@ -159,7 +159,7 @@ function removeLicense($cid, $option)
                 echo "<script> alert('" . $database->getErrorMsg() . "'); window.history.go(-1); </script>\n";
             }
             if ($database->getNumRows($result) != 0) {
-                $mainframe->redirect("index.php?option=com_handout&task=viewgroups", JText::_('COM_HANDOUT_CANNOT_DELETE_AGREEMENT'));
+                $app->redirect("index.php?option=com_handout&task=viewgroups", JText::_('COM_HANDOUT_CANNOT_DELETE_AGREEMENT'));
             }
         }
 
@@ -169,6 +169,6 @@ function removeLicense($cid, $option)
             echo "<script> alert('" . $database->getErrorMsg() . "'); window.history.go(-1); </script>\n";
         }
     }
-    $mainframe->redirect("index.php?option=com_handout&section=licenses");
+    $app->redirect("index.php?option=com_handout&section=licenses");
 }
 

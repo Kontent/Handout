@@ -10,7 +10,8 @@
  */
     defined('_JEXEC') or die;
 
-    $mainframe->registerEvent( 'onFetchButtons', 'bot_buttons' );
+    $app = JFactory::getApplication();
+    $app->registerEvent( 'onFetchButtons', 'bot_buttons' );
 
     $factory = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS . 'helpers' . DS . 'factory.php';
     if(file_exists($factory)){

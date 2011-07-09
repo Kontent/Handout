@@ -59,16 +59,16 @@ function showFiles()
 	$database = &JFactory::getDBO();
 	$option = JRequest::getCmd('option');
 	$section = JRequest::getCmd('option');
-    $mainframe = &JFactory::getApplication();
-	$list_limit = $mainframe->getCfg('list_limit');
+    $app = &JFactory::getApplication();
+	$list_limit = $app->getCfg('list_limit');
     global $_HANDOUT;
 
-    $limit      = $mainframe->getUserStateFromRequest("viewlistlimit", 'limit', $list_limit);
-    $limitstart = $mainframe->getUserStateFromRequest("view{$option}{$section}limitstart", 'limitstart', 0);
-    $levellimit = $mainframe->getUserStateFromRequest("view{$option}{$section}limit", 'levellimit', 10);
+    $limit      = $app->getUserStateFromRequest("viewlistlimit", 'limit', $list_limit);
+    $limitstart = $app->getUserStateFromRequest("view{$option}{$section}limitstart", 'limitstart', 0);
+    $levellimit = $app->getUserStateFromRequest("view{$option}{$section}limit", 'levellimit', 10);
 
-    $filter = $mainframe->getUserStateFromRequest("filterarc{$option}{$section}", 'filter', 0);
-    $search = $mainframe->getUserStateFromRequest( "search{$option}{$section}", 'search', '' );
+    $filter = $app->getUserStateFromRequest("filterarc{$option}{$section}", 'filter', 0);
+    $search = $app->getUserStateFromRequest( "search{$option}{$section}", 'search', '' );
 
     // read directory content
     $folder = new HANDOUT_Folder($_HANDOUT->getCfg('handoutpath'));
@@ -120,7 +120,7 @@ function showFiles()
 function removeFile($cid)
 {
     HANDOUT_token::check() or die('Invalid Token');
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     $database = &JFactory::getDBO();
 
     global $_HANDOUT;
@@ -135,22 +135,22 @@ function removeFile($cid)
         }
 
         if ($result != 0)
-            $mainframe->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ORPHANS_LINKED'));
+            $app->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ORPHANS_LINKED'));
 
         $file = $_HANDOUT->getCfg('handoutpath') . "/" . $name;
 
         if (!unlink($file)) {
-            $mainframe->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ORPHANS_PROBLEM'));
+            $app->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ORPHANS_PROBLEM'));
         }
     }
 
-    $mainframe->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ORPHANS_DELETED'));
+    $app->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ORPHANS_DELETED'));
 }
 
 function uploadWizard($step = 1, $method = 'http', $old_filename)
 {
     $_HANDOUT = &HandoutFactory::getHandout(); $database = &JFactory::getDBO();
-	$mainframe = &JFactory::getApplication();
+	$app = &JFactory::getApplication();
     switch ($step) {
         case 1:
             $lists['methods'] = HandoutHTML::uploadSelectList($method);
@@ -166,14 +166,14 @@ function uploadWizard($step = 1, $method = 'http', $old_filename)
                     HTML_HandoutFiles::uploadWizard_ftp();
                     break;
                 case 'link':
-                    $mainframe->redirect("index.php?option=com_handout&section=documents&task=new&makelink=1",JText::_('COM_HANDOUT_CREATEALINK'));
+                    $app->redirect("index.php?option=com_handout&section=documents&task=new&makelink=1",JText::_('COM_HANDOUT_CREATEALINK'));
                     // HTML_HandoutFiles::uploadWizard_link();
                     break;
                 case 'transfer':
                     HTML_HandoutFiles::uploadWizard_transfer();
                     break;
                 default:
-                    $mainframe->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_SELECTMETHODFIRST'));
+                    $app->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_SELECTMETHODFIRST'));
             }
             break;
         case 3:
@@ -188,7 +188,7 @@ function uploadWizard($step = 1, $method = 'http', $old_filename)
                     $result = &$upload->uploadHTTP($file_upload, $path, COM_HANDOUT_VALIDATE_ADMIN);
 
                     if (!$result) {
-                        $mainframe->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ERROR_UPLOADING') . " - " . $upload->_err);
+                        $app->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ERROR_UPLOADING') . " - " . $upload->_err);
                     } else {
                         $batch = JRequest::getVar( 'batch', null);
 
@@ -196,7 +196,7 @@ function uploadWizard($step = 1, $method = 'http', $old_filename)
                             require_once 'includes/pcl/pclzip.lib.php';
 
                             if (!extension_loaded('zlib')) {
-                                $mainframe->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ZLIB_ERROR'));
+                                $app->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_ZLIB_ERROR'));
                             }
 
                             $target_directory = $_HANDOUT->getCfg('handoutpath');
@@ -204,7 +204,7 @@ function uploadWizard($step = 1, $method = 'http', $old_filename)
                             $file_to_unzip = preg_replace('/(.+)\..*$/', '$1', $target_directory . "/" . $result->name);
 
                             if (!$zip->extract(PCLZIP_OPT_PATH, $target_directory)) {
-                                $mainframe->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_UNZIP_ERROR'));
+                                $app->redirect("index.php?option=com_handout&section=files", JText::_('COM_HANDOUT_UNZIP_ERROR'));
                             }
 
                             @unlink ($target_directory . "/" . $result->name);
@@ -224,7 +224,7 @@ function uploadWizard($step = 1, $method = 'http', $old_filename)
                         }
 
                         //HTML_HandoutFiles::uploadWizard_sucess($result, $batch, $old_filename);
-                        $mainframe->redirect("index.php?option=com_handout&section=files&task=upload&step=4" . "&result=" . urlencode($result->name) . "&batch=" . (0 + $batch) . "&old_filename=" . $old_filename,
+                        $app->redirect("index.php?option=com_handout&section=files&task=upload&step=4" . "&result=" . urlencode($result->name) . "&batch=" . (0 + $batch) . "&old_filename=" . $old_filename,
                             JText::_('COM_HANDOUT_SUCCESS') . ' &quot;' . $result->name . '&quot; - ' . JText::_('COM_HANDOUT_FILEUPLOADED'));
                     }
                     break;
@@ -244,10 +244,10 @@ function uploadWizard($step = 1, $method = 'http', $old_filename)
 
                     if ($result) {
                         // HTML_HandoutFiles::uploadWizard_sucess($result, 0, 1);
-                        $mainframe->redirect("index.php?option=com_handout&section=files&task=upload&step=4" . "&result=" . urlencode($result->name) . "&batch=0&old_filename=1",
+                        $app->redirect("index.php?option=com_handout&section=files&task=upload&step=4" . "&result=" . urlencode($result->name) . "&batch=0&old_filename=1",
                             JText::_('COM_HANDOUT_SUCCESS') . ' &quot;' . $result->name . '&quot; - ' . JText::_('COM_HANDOUT_FILEUPLOADED'));
                     } else {
-                        $mainframe->redirect("index.php?option=com_handout&section=files", $upload->_err);
+                        $app->redirect("index.php?option=com_handout&section=files", $upload->_err);
                     }
                     break;
             }

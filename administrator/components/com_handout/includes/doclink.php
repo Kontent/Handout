@@ -26,11 +26,9 @@ JRequest::setVar('tmpl', 'component');
 $lang = JFactory::getLanguage();
 $lang->load('plg_editors-xtd_handoutdoclink');
 
-function showDoclink() {
-    $mainframe = &JFactory::getApplication();
-
+function showDoclink()
+{
     $assets = COM_HANDOUT_MEDIA;
-
 
     // add styles and scripts
     $doc =& JFactory::getDocument();
@@ -40,15 +38,13 @@ function showDoclink() {
     $doc->addScript($assets.'/js/popup.js');
     $doc->addScript($assets.'/js/dialog.js');
 
-
     $rows = HANDOUT_utils::categoryArray();
 
     HTML_HandoutDoclink::showDoclink($rows);
 }
 
-function showListview(){
-    $mainframe = &JFactory::getApplication();
-
+function showListview()
+{
     global $_HANDOUT;
 
 	$assets = COM_HANDOUT_MEDIA;
@@ -60,27 +56,25 @@ function showListview(){
     $doc->addScript($assets.'/js/listview.js');
     $doc->addScript($assets.'/js/dldialog.js');
 
-
     if (isset($_REQUEST['catid'])) {
         $cid =  intval($_REQUEST['catid']);
     } else {
         $cid = 0;
     }
-        //get folders
-        $cats = HANDOUT_Cats::getChildsByUserAccess($cid);
 
-        //get items
-        if ($cid) {
-            $docs = HANDOUT_Docs::getDocsByUserAccess($cid, 'name', 'ASC', 999, 0);
-        } else {
-            $docs = array();
-        }
+    //get folders
+    $cats = HANDOUT_Cats::getChildsByUserAccess($cid);
 
+    //get items
+    if ($cid) {
+        $docs = HANDOUT_Docs::getDocsByUserAccess($cid, 'name', 'ASC', 999, 0);
+    } else {
+        $docs = array();
+    }
 
-        //if ($entries_cnt)
-        HTML_HandoutDoclink::createHeader();
-        HTML_HandoutDoclink::createFolders($cats,$cid);
-        HTML_HandoutDoclink::createItems($docs, $cid);
-        HTML_HandoutDoclink::createFooter();
-
+    //if ($entries_cnt)
+    HTML_HandoutDoclink::createHeader();
+    HTML_HandoutDoclink::createFolders($cats,$cid);
+    HTML_HandoutDoclink::createItems($docs, $cid);
+    HTML_HandoutDoclink::createFooter();
 }

@@ -30,9 +30,9 @@ if ($this->conf->item_tooltip) :
     JHTML::_('behavior.tooltip');
 endif;
 
-$mainframe = &JFactory::getApplication();
-$mainframe->appendPathway(JText::_('COM_HANDOUT_TITLE_SEARCH'));
-$mainframe->setPageTitle( JText::_('COM_HANDOUT_TITLE_SEARCH'));
+$app = &JFactory::getApplication();
+$app->appendPathway(JText::_('COM_HANDOUT_TITLE_SEARCH'));
+$app->setPageTitle( JText::_('COM_HANDOUT_TITLE_SEARCH'));
 ?>
 <div id="handout">
 	<?php $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'handout' . DS . 'tmpl' );?>

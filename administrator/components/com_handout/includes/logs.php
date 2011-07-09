@@ -27,13 +27,13 @@ switch ($task) {
 
 function showLogs($option) {
 	$database = &JFactory::getDBO();
-	$mainframe = &JFactory::getApplication();
+	$app = &JFactory::getApplication();
 	global $sectionid;
 
     // request
-    $limit = $mainframe->getUserStateFromRequest("viewlistlimit", 'limit', 10);
-    $limitstart = $mainframe->getUserStateFromRequest("view{$option}{$sectionid}limitstart", 'limitstart', 0);
-    $search = $mainframe->getUserStateFromRequest("search{$option}{$sectionid}", 'search', '');
+    $limit = $app->getUserStateFromRequest("viewlistlimit", 'limit', 10);
+    $limitstart = $app->getUserStateFromRequest("view{$option}{$sectionid}limitstart", 'limitstart', 0);
+    $search = $app->getUserStateFromRequest("search{$option}{$sectionid}", 'search', '');
     $search = $database->getEscaped(trim(strtolower($search)));
     $wheres = array();
     $wheres2 = array();
@@ -107,7 +107,7 @@ function showLogs($option) {
 function removeLog($cid)
 {
     HANDOUT_token::check() or die('Invalid Token');
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     $database = &JFactory::getDBO();
     $_HANDOUT_USER = &HandoutFactory::getHandout();
@@ -123,6 +123,6 @@ function removeLog($cid)
             $logbot->setParm('rows' , $rows);
             $logbot->trigger(); // Delete the logs
         }
-        $mainframe->redirect("index.php?option=com_handout&section=logs");
+        $app->redirect("index.php?option=com_handout&section=logs");
     }
 }

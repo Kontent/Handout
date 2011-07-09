@@ -16,7 +16,8 @@ require_once JPATH_COMPONENT.DS. 'helpers'.DS.'handout.php' ;
 // auth
 $user = & JFactory::getUser();
 if (!$user->authorize( 'com_users', 'manage' )) {
-	$mainframe->redirect( 'index.php', JText::_('ALERTNOTAUTH') );
+	$app = JFactory::getApplication();
+	$app->redirect( 'index.php', JText::_('ALERTNOTAUTH') );
 }
 
 

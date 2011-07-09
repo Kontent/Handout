@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class HTML_HandoutDoclink {
     function showDoclink($rows){
-        $mainframe = &JFactory::getApplication();
+        $app = &JFactory::getApplication();
     	?>
         <script>var editor = '<?php echo JRequest::getWord('e_name'); ?>';</script>
 

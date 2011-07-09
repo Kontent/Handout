@@ -14,8 +14,8 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 ?>
 <div id="handout">
 	<?php
-		$mainframe = &JFactory::getApplication();
-    	$mainframe->setPageTitle( JText::_('COM_HANDOUT_CODE_DOC') );
+		$app = &JFactory::getApplication();
+    	$app->setPageTitle( JText::_('COM_HANDOUT_CODE_DOC') );
     ?>
 	<div class="hdoc-code-form">
 		<?php // show form for inputing code and email id?>

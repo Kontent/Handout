@@ -11,8 +11,9 @@
 
 defined('_JEXEC') or die;
 
-require_once $mainframe->getPath('toolbar_html');
-require_once $mainframe->getPath('toolbar_default');
+$app = JFactory::getApplication();
+require_once $app->getPath('toolbar_html');
+require_once $app->getPath('toolbar_default');
 
 require_once dirname(__FILE__) . '/toolbar.handout.class.php';
 

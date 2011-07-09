@@ -18,7 +18,8 @@ include_once dirname(__FILE__) . '/cleardata.php';
 
 switch ($task) {
     case "cancel":
-        $mainframe->redirect("index.php?option=com_handout");
+    	$app = JFactory::getApplication();
+        $app->redirect("index.php?option=com_handout");
         break;
     case "apply":
     case "save":
@@ -234,7 +235,7 @@ function saveConfig()
 
     global $_HANDOUT;
     $task = JRequest::getCmd('task');
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     $_POST = HANDOUT_Utils::stripslashes($_POST);
 
@@ -246,7 +247,7 @@ function saveConfig()
     $max = min($sysUploadMax , $sysPostMax);
 
     if ($handoutMax < 0) {
-        $mainframe->redirect("index.php?option=com_handout&section=config", JText::_('COM_HANDOUT_CONFIG_ERROR_UPLOAD'));
+        $app->redirect("index.php?option=com_handout&section=config", JText::_('COM_HANDOUT_CONFIG_ERROR_UPLOAD'));
     }
 
     $override_edit = COM_HANDOUT_ASSIGN_NONE;
@@ -287,12 +288,12 @@ function saveConfig()
 
     if ($_HANDOUT->saveConfig()) {
         if ($max < $handoutMax) {
-            $mainframe->redirect("index.php?option=com_handout&section=config", JText::_('COM_HANDOUT_CONFIG_WARNING') . HANDOUT_UTILS::number2text($max));
+            $app->redirect("index.php?option=com_handout&section=config", JText::_('COM_HANDOUT_CONFIG_WARNING') . HANDOUT_UTILS::number2text($max));
         } else {
             $section = ($task=='apply') ? '&section=config' : '';
-            $mainframe->redirect('index.php?option=com_handout'.$section, JText::_('COM_HANDOUT_CONFIG_UPDATED'));
+            $app->redirect('index.php?option=com_handout'.$section, JText::_('COM_HANDOUT_CONFIG_UPDATED'));
         }
     } else {
-        $mainframe->redirect("index.php?option=com_handout&section=config", JText::_('COM_HANDOUT_CONFIG_ERROR'));
+        $app->redirect("index.php?option=com_handout&section=config", JText::_('COM_HANDOUT_CONFIG_ERROR'));
     }
 }

@@ -101,7 +101,7 @@ function saveGroup($option)
 {
     HANDOUT_token::check() or die('Invalid Token');
 
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     $database = &JFactory::getDBO(); $task = JRequest::getCmd('task');
 
@@ -132,7 +132,7 @@ function saveGroup($option)
         $url = 'index.php?option=com_handout&section=groups&task=edit&cid[0]='.$row->groups_id;
     }
 
-    $mainframe->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
+    $app->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
 }
 
 function showGroups($option)
@@ -179,7 +179,7 @@ function removeGroup($cid)
     HANDOUT_token::check() or die('Invalid Token');
 
     $database = &JFactory::getDBO();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     if (!is_array($cid) || count($cid) < 1) {
         echo "<script> alert('" . JText::_('COM_HANDOUT_SELECT_ITEM_DEL') . "'); window.history.go(-1);</script>\n";
         exit;
@@ -196,7 +196,7 @@ function removeGroup($cid)
                 echo "<script> alert('" . $database->getErrorMsg() . "'); window.history.go(-1); </script>\n";
             }
             if ($database->getNumRows($result) != 0) {
-                $mainframe->redirect("index.php?option=com_handout&section=groups", JText::_('COM_HANDOUT_CANNOT_DEL_GROUP'));
+                $app->redirect("index.php?option=com_handout&section=groups", JText::_('COM_HANDOUT_CANNOT_DEL_GROUP'));
             }
         }
         $database->setQuery("DELETE FROM #__handout_groups WHERE groups_id IN ($cids)");
@@ -204,7 +204,7 @@ function removeGroup($cid)
             echo "<script> alert('" . $database->getErrorMsg() . "'); window.history.go(-1); </script>\n";
         }
     }
-    $mainframe->redirect("index.php?option=com_handout&section=groups");
+    $app->redirect("index.php?option=com_handout&section=groups");
 }
 
 function emailGroup($gid)
@@ -226,11 +226,11 @@ function emailGroup($gid)
 function cancelGroup($option)
 {
     $database = &JFactory::getDBO();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     $row = new HandoutGroups($database);
     $row->bind(HANDOUT_Utils::stripslashes($_POST));
     $row->checkin();
-    $mainframe->redirect("index.php?option=$option&section=groups");
+    $app->redirect("index.php?option=$option&section=groups");
 }
 
 function sendEmail($gid)
@@ -241,7 +241,7 @@ function sendEmail($gid)
     // From frontend you will find a email to group function specific for a document.
     $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     $config = &JFactory::getConfig();
 
@@ -255,12 +255,12 @@ function sendEmail($gid)
     $leadin = JRequest::getVar( "mm_leadin", '');
 
     if (!$message || !$subject) {
-        $mainframe->redirect($this_index . '&task=emailgroup&gid=' . $gid , JText::_('COM_HANDOUT_FILL_FORM'));
+        $app->redirect($this_index . '&task=emailgroup&gid=' . $gid , JText::_('COM_HANDOUT_FILL_FORM'));
     }
 
     $usertmp = trim(strtolower($user->usertype));
     if ($usertmp != "super administrator" && $usertmp != "superadministrator" && $usertmp != "manager") {
-        $mainframe->redirect("index.php", JText::_('COM_HANDOUT_ONLY_ADMIN_EMAIL'));
+        $app->redirect("index.php", JText::_('COM_HANDOUT_ONLY_ADMIN_EMAIL'));
     }
     // Get the 'TO' list of addresses
     $database->setQuery("SELECT * "
@@ -274,7 +274,7 @@ function sendEmail($gid)
          . "\n   AND email !=''");
     $listofusers = $database->loadObjectList();
     if (! count($listofusers)) {
-        $mainframe->redirect($this_index , JText::_('COM_HANDOUT_NO_TARGET_EMAIL') . " " . $email_group[0]->name);
+        $app->redirect($this_index , JText::_('COM_HANDOUT_NO_TARGET_EMAIL') . " " . $email_group[0]->name);
     }
     // Get 'FROM' sending email address (Use default)
     if (! $mailfrom) {
@@ -295,5 +295,5 @@ function sendEmail($gid)
     foreach($listofusers as $emailtosend) {
         JUTility::sendMail($mailfrom, $fromname, $emailtosend->email, $subject, $message );
     }
-    $mainframe->redirect($this_index, JText::_('COM_HANDOUT_EMAIL_SENT_TO') . " " . count($listofusers) . " " . JText::_('COM_HANDOUT_USERS'));
+    $app->redirect($this_index, JText::_('COM_HANDOUT_EMAIL_SENT_TO') . " " . count($listofusers) . " " . JText::_('COM_HANDOUT_USERS'));
 }

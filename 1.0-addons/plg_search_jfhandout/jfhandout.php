@@ -18,8 +18,9 @@ require_once $handoutBase . 'classes' . DS . 'HANDOUT_utils.class.php';
 require_once $handoutBase . 'helpers' . DS . 'factory.php';
 require_once $handoutBase . 'handout.class.php';
 
-$mainframe->registerEvent('onSearch', 'plgSearchJFHandout');
-$mainframe->registerEvent('onSearchAreas', 'plgSearchJFHandoutAreas');
+$app = JFactory::getApplication();
+$app->registerEvent('onSearch', 'plgSearchJFHandout');
+$app->registerEvent('onSearchAreas', 'plgSearchJFHandoutAreas');
 
 function &plgSearchJFHandoutAreas ()
 {

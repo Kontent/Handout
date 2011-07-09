@@ -28,9 +28,9 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 
 ?>
 <?php
-	$mainframe = &JFactory::getApplication();
-    $mainframe->setPageTitle(JText::_('COM_HANDOUT_TITLE_MOVE') );
-    $pathway = & $mainframe->getPathWay();
+	$app = &JFactory::getApplication();
+    $app->setPageTitle(JText::_('COM_HANDOUT_TITLE_MOVE') );
+    $pathway = & $app->getPathWay();
     $pathway->addItem($this->data->docname);
     $pathway->addItem('Move');
 

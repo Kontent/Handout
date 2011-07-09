@@ -39,8 +39,6 @@ class plgButtonHandoutDocLink extends JPlugin
      */
     function onDisplay ($name)
     {
-        $mainframe = &JFactory::getApplication();
-
         $doc = & JFactory::getDocument();
 
         $lang = JFactory::getLanguage();

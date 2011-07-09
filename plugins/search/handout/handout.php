@@ -18,8 +18,9 @@ require_once $handoutBase . 'classes' . DS . 'HANDOUT_utils.class.php';
 require_once $handoutBase . 'helpers' . DS . 'factory.php';
 require_once $handoutBase . 'handout.class.php';
 
-$mainframe->registerEvent('onSearch', 'plgSearchHandout');
-$mainframe->registerEvent('onSearchAreas', 'plgSearchHandoutAreas');
+$app = JFactory::getApplication();
+$app->registerEvent('onSearch', 'plgSearchHandout');
+$app->registerEvent('onSearchAreas', 'plgSearchHandoutAreas');
 
 JPlugin::loadLanguage('plg_search_handout');
 

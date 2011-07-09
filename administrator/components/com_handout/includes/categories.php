@@ -60,18 +60,18 @@ switch ($task) {
 function showCategories()
 {
 	$option = JRequest::getCmd('option');
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
-	$list_limit = $mainframe->getCfg('list_limit');
+	$list_limit = $app->getCfg('list_limit');
     global $menutype;
 
     $section = "com_handout";
 
-    $sectionid = $mainframe->getUserStateFromRequest("sectionid{$section}{$section}", 'sectionid', 0);
-    $limit = $mainframe->getUserStateFromRequest("viewlistlimit", 'limit', $list_limit);
-    $limitstart = $mainframe->getUserStateFromRequest("view{$section}limitstart", 'limitstart', 0);
-    $levellimit = $mainframe->getUserStateFromRequest("view{$option}limit$menutype", 'levellimit', 10);
+    $sectionid = $app->getUserStateFromRequest("sectionid{$section}{$section}", 'sectionid', 0);
+    $limit = $app->getUserStateFromRequest("viewlistlimit", 'limit', $list_limit);
+    $limitstart = $app->getUserStateFromRequest("view{$section}limitstart", 'limitstart', 0);
+    $levellimit = $app->getUserStateFromRequest("view{$option}limit$menutype", 'levellimit', 10);
 
     $query = "SELECT  c.*, c.checked_out as checked_out_contact_category, c.parent_id as parent, g.name AS groupname, u.name AS editor"
      . "\n FROM #__categories AS c"
@@ -138,6 +138,7 @@ function editCategory($section = '', $uid = 0)
 {
     $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
+    $app = JFactory::getApplication();
 
     // disable the main menu to force user to use buttons
     $_REQUEST['hidemainmenu']=1;
@@ -150,7 +151,7 @@ function editCategory($section = '', $uid = 0)
     $row->load($uid);
     // fail if checked out not by 'me'
     if ($row->checked_out && $row->checked_out <> $user->id) {
-        $mainframe->redirect('index.php?option=com_handout&task=categories', 'The category ' . $row->title . ' is currently being edited by another administrator.');
+        $app->redirect('index.php?option=com_handout&task=categories', 'The category ' . $row->title . ' is currently being edited by another administrator.');
     }
 
     if ($uid) {
@@ -198,7 +199,7 @@ function saveCategory()
     HANDOUT_token::check() or die('Invalid Token');
 
     $database = &JFactory::getDBO(); $task = JRequest::getCmd('task');
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     $row = new HandoutCategory($database);
 
@@ -236,7 +237,7 @@ function saveCategory()
         $url = 'index.php?option=com_handout&section=categories&task=edit&cid[0]='.$row->id;
     }
 
-    $mainframe->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
+    $app->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
 
 }
 
@@ -252,7 +253,7 @@ function removeCategories($section, $cid)
 
     $database = &JFactory::getDBO();
 
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     if (count($cid) < 1) {
         echo "<script> alert('".JText::_('COM_HANDOUT_SELECTCATTODELETE')."'); window.history.go(-1);</script>\n";
@@ -301,11 +302,11 @@ function removeCategories($section, $cid)
         }
         $msg .= ' '.JText::_('COM_HANDOUT_CATS_CANT_BE_REMOVED');
 
-        $mainframe->redirect('index.php?option=com_handout&section=categories' , $msg);
+        $app->redirect('index.php?option=com_handout&section=categories' , $msg);
     }
 
     $msg = (count($err) > 1 ? JText::_('COM_HANDOUT_CATS') : JText::_('COM_HANDOUT_CAT') . " ") . JText::_('COM_HANDOUT_DELETED');
-    $mainframe->redirect('index.php?option=com_handout&section=categories', $msg);
+    $app->redirect('index.php?option=com_handout&section=categories', $msg);
 }
 
 /**
@@ -326,7 +327,7 @@ function publishCategories($section, $categoryid = null, $cid = null, $publish =
 
     $database = &JFactory::getDBO();
     $user = &JFactory::getUser();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     if (!is_array($cid)) {
         $cid = array();
@@ -357,7 +358,7 @@ function publishCategories($section, $categoryid = null, $cid = null, $publish =
         $row->checkin($cid[0]);
     }
 
-    $mainframe->redirect('index.php?option=com_handout&section=categories');
+    $app->redirect('index.php?option=com_handout&section=categories');
 }
 
 /**
@@ -369,11 +370,11 @@ function publishCategories($section, $categoryid = null, $cid = null, $publish =
 function cancelCategory()
 {
     $database = &JFactory::getDBO();
-	$mainframe = &JFactory::getApplication();
+	$app = &JFactory::getApplication();
     $row = new HandoutCategory($database);
     $row->bind(HANDOUT_Utils::stripslashes($_POST));
     $row->checkin();
-    $mainframe->redirect('index.php?option=com_handout&section=categories');
+    $app->redirect('index.php?option=com_handout&section=categories');
 }
 
 /**
@@ -384,11 +385,11 @@ function cancelCategory()
 function orderCategory($uid, $inc)
 {
     $database = &JFactory::getDBO();
-	$mainframe = &JFactory::getApplication();
+	$app = &JFactory::getApplication();
     $row = new HandoutCategory($database);
     $row->load($uid);
     $row->move($inc, "section='$row->section'");
-    $mainframe->redirect('index.php?option=com_handout&section=categories');
+    $app->redirect('index.php?option=com_handout&section=categories');
 }
 
 /**
@@ -401,7 +402,7 @@ function accessCategory($uid, $access)
     if(!HANDOUT_token::check()){
     	die('Invalid Token');
     }
-	$mainframe = &JFactory::getApplication();
+	$app = &JFactory::getApplication();
     $database = &JFactory::getDBO();
 
     $row = new HandoutCategory($database);
@@ -415,5 +416,5 @@ function accessCategory($uid, $access)
         return $row->getError();
     }
 
-    $mainframe->redirect('index.php?option=com_handout&section=categories');
+    $app->redirect('index.php?option=com_handout&section=categories');
 }

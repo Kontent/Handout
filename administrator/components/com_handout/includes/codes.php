@@ -83,7 +83,7 @@ function saveCode($option)
 
     $database = &JFactory::getDBO();
     $task = JRequest::getCmd('task');
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
 
     $row = new HandoutCodes($database);
     //$isNew = ($row->id == 0);
@@ -108,29 +108,29 @@ function saveCode($option)
         $url = 'index.php?option=com_handout&section=codes&task=edit&cid[0]='.$row->id;
     }
 
-    $mainframe->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
+    $app->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
 }
 
 function cancelCode($option)
 {
     $database = &JFactory::getDBO();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     $row = new HandoutCodes($database);
     $row->bind(HANDOUT_Utils::stripslashes($_POST));
     $row->checkin();
-    $mainframe->redirect("index.php?option=$option&section=codes");
+    $app->redirect("index.php?option=$option&section=codes");
 }
 
 function showCodes($option)
 {
     $database = &JFactory::getDBO();
-    $mainframe = &JFactory::getApplication();
+    $app = &JFactory::getApplication();
     global $sectionid;
 
-    $catid = (int) $mainframe->getUserStateFromRequest("catid{$option}{$sectionid}", 'catid', 0);
-    $limit = (int) $mainframe->getUserStateFromRequest("viewlistlimit", 'limit', 10);
-    $limitstart = (int) $mainframe->getUserStateFromRequest("view{$option}{$sectionid}limitstart", 'limitstart', 0);
-    $search = $mainframe->getUserStateFromRequest("search{$option}{$sectionid}", 'search', '');
+    $catid = (int) $app->getUserStateFromRequest("catid{$option}{$sectionid}", 'catid', 0);
+    $limit = (int) $app->getUserStateFromRequest("viewlistlimit", 'limit', 10);
+    $limitstart = (int) $app->getUserStateFromRequest("view{$option}{$sectionid}limitstart", 'limitstart', 0);
+    $search = $app->getUserStateFromRequest("search{$option}{$sectionid}", 'search', '');
     $search = $database->getEscaped(trim(strtolower($search)));
     $where = array();
     if ($search) {
@@ -177,8 +177,8 @@ function removeCode($cid, $option)
 
     $code = new HandoutCodes($database);
     if ($code->remove($cid)) {
-        $mainframe = &JFactory::getApplication();
-		$mainframe->redirect("index.php?option=com_handout&section=codes");
+        $app = &JFactory::getApplication();
+		$app->redirect("index.php?option=com_handout&section=codes");
     } else {
     	echo "<script> alert('Problem removing codes'); window.history.go(-1);</script>\n";
         exit();
@@ -194,8 +194,8 @@ function publishCode($cid, $publish = 1)
 
     $code = new HandoutCodes($database);
     if ($code->publish($cid, $publish)) {
-        $mainframe = &JFactory::getApplication();
-		$mainframe->redirect("index.php?option=com_handout&section=codes");
+        $app = &JFactory::getApplication();
+		$app->redirect("index.php?option=com_handout&section=codes");
     }
 }
 

@@ -405,12 +405,12 @@ class HandoutMigration
      */
     protected function back ($msg = null)
     {
-        $mainframe = &JFactory::getApplication();
+        $app = &JFactory::getApplication();
         $url = 'index.php?option=com_handout&section=config';
         if ($msg) {
-            $mainframe->redirect($url, $msg);
+            $app->redirect($url, $msg);
         } else {
-            $mainframe->redirect($url);
+            $app->redirect($url);
         }
     }
 

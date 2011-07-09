@@ -14,12 +14,12 @@ class HandoutFactory
 
     function getHandout ()
     {
-        $mainframe = &JFactory::getApplication();
+        $app = &JFactory::getApplication();
         static $instance;
         if (! is_object($instance)) {
             $instance = new HandoutMainFrame();
         }
-        if ($mainframe->isSite()) {
+        if ($app->isSite()) {
             $lang = &JFactory::getLanguage();
             $lang->load('com_handout');
         }
