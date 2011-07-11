@@ -28,15 +28,19 @@ class HandoutViewCode extends JView {
 		$doc = new HANDOUT_Document ( $gid );
 		$data = &$doc->getDataObject ();
 
-		if (JRequest::getVar('code')) {
+		$usertype = JRequest::getVar('usertype', 0);
+		$code = JRequest::getVar('code', '');
+
+		if ($code) {
 			//process the code
-			CodesHelper::processCode($data->id);
+			CodesHelper::processCode($code, $usertype);
 		}
 		else {
 			$code = CodesHelper::getCode($data->id);
 			$this->assignRef('data', $data);
 			$this->assignRef('code', $code);
 			$this->assignRef('conf', $handout->getAllCfg());
+			$this->assignRef('usertype', $usertype);
 			parent::display();
 		}
 	}
