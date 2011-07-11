@@ -1,18 +1,18 @@
 <?php
-/* @version 	$Id: notify.php
+/**
  * @package 	Handout Notify
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 defined('_JEXEC') or die('Restricted access');
 
 global $_HANDOUT;
 if(!is_object($_HANDOUT)){
 	$handoutBase = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_handout' . DS;
-	require_once ($handoutBase . 'helpers' . DS . 'factory.php');
+	require_once $handoutBase . 'helpers' . DS . 'factory.php';
 	$_HANDOUT = &HandoutFactory::getHandout();
 }
 
@@ -50,33 +50,33 @@ class plgHandoutNotify extends JPlugin
 
 		$email = new NotifyEmailTemplate( $params );
 
-	    switch($params['process'])
-	    {
-	    	case 'new document':
-	    	case 'edit document':
-	    		$action = 'edit';
-	    		$actionlang = $email->user->name.' '.JText::_('PLG_HANDOUT_NOTIFY_HAS_EDITED_A_FILE');
-	    		break;
-	    	case 'upload':
-	    		$action = 'upload';
-	    		$actionlang = $email->user->name.' '.JText::_('PLG_HANDOUT_NOTIFY_HAS_UPLOADED_A_FILE');
-	    		break;
-	    	case 'download':
-	    		$action = 'download';
-	    		$actionlang = $email->user->name.' '.JText::_('PLG_HANDOUT_NOTIFY_HAS_DOWNLOADED_A_FILE');
-	    		break;
-	    }
+		switch($params['process'])
+		{
+			case 'new document':
+			case 'edit document':
+				$action = 'edit';
+				$actionlang = $email->user->name.' '.JText::_('PLG_HANDOUT_NOTIFY_HAS_EDITED_A_FILE');
+				break;
+			case 'upload':
+				$action = 'upload';
+				$actionlang = $email->user->name.' '.JText::_('PLG_HANDOUT_NOTIFY_HAS_UPLOADED_A_FILE');
+				break;
+			case 'download':
+				$action = 'download';
+				$actionlang = $email->user->name.' '.JText::_('PLG_HANDOUT_NOTIFY_HAS_DOWNLOADED_A_FILE');
+				break;
+		}
 
-	    $cfg =  NotifyConfig::getInstance();
+		$cfg =  NotifyConfig::getInstance();
 
-	    // is the action activated in the plugin params?
-	    if( ! $cfg->doAction($action) ) {
-	        return;
-	    }
+		// is the action activated in the plugin params?
+		if( ! $cfg->doAction($action) ) {
+			return;
+		}
 
-	    $email->action		= $action;
-	    $email->actionlang	= $actionlang;
-	    $email->setSubject($actionlang );
-	    $email->send();
+		$email->action		= $action;
+		$email->actionlang	= $actionlang;
+		$email->setSubject($actionlang );
+		$email->send();
 	}
 }

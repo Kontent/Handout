@@ -1,41 +1,40 @@
 <?php
 
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: categories.html.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_HTML_CATEGORIES')) {
-    return;
+	return;
 } else {
-    define('_HANDOUT_HTML_CATEGORIES', 1);
+	define('_HANDOUT_HTML_CATEGORIES', 1);
 }
 
 class HTML_HandoutCategories
 {
-    function show(&$rows, $myid, &$pageNav, &$lists, $type)
-    {
-        $user = &JFactory::getUser();
+	function show(&$rows, $myid, &$pageNav, &$lists, $type)
+	{
+		$user = &JFactory::getUser();
 
-        $section = "com_handout";
-        $section_name = "Handout";
+		$section = "com_handout";
+		$section_name = "Handout";
 
-        ?>
+		?>
 		<form action="index.php" method="post" name="adminForm">
 
-        <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_CATS'), 'categories' )?>
+		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_CATS'), 'categories' )?>
 
 
 		<table class="adminlist">
-        <thead>
+		<thead>
 		<tr>
 			<th width="20">
 			#
@@ -51,33 +50,33 @@ class HTML_HandoutCategories
 			<th width="12%"># <?php echo JText::_('COM_HANDOUT_DOCS');?></th>
 			<th width="12%"><?php echo JText::_('COM_HANDOUT_CHECKED_OUT');?></th>
 		  </tr>
-        </thead>
-        <tfoot>
-        	<tr>
-       			<td colspan="11"><?php echo $pageNav->getListFooter();?></td>
-        	</tr>
-        </tfoot>
-        <tbody>
+		</thead>
+		<tfoot>
+			<tr>
+	   			<td colspan="11"><?php echo $pageNav->getListFooter();?></td>
+			</tr>
+		</tfoot>
+		<tbody>
 		<?php
-        $k = 0;
-        $i = 0;
-        $n = count($rows);
-        foreach ($rows as $row) {
-            $img = $row->published ? 'tick.png' : 'publish_x.png';
-            $task = $row->published ? 'unpublish' : 'publish';
-            $alt = $row->published ? 'Published' : 'Unpublished';
-            if (!$row->access) {
-                $color_access = 'class="active"';
-                $task_access = 'accessregistered';
-            } else if ($row->access == 1) {
-                $color_access = 'class="inactive"';
-                $task_access = 'accessspecial';
-            } else {
-                $color_access = 'class="black"';
-                $task_access = 'accesspublic';
-            }
+		$k = 0;
+		$i = 0;
+		$n = count($rows);
+		foreach ($rows as $row) {
+			$img = $row->published ? 'tick.png' : 'publish_x.png';
+			$task = $row->published ? 'unpublish' : 'publish';
+			$alt = $row->published ? 'Published' : 'Unpublished';
+			if (!$row->access) {
+				$color_access = 'class="active"';
+				$task_access = 'accessregistered';
+			} else if ($row->access == 1) {
+				$color_access = 'class="inactive"';
+				$task_access = 'accessspecial';
+			} else {
+				$color_access = 'class="black"';
+				$task_access = 'accesspublic';
+			}
 
-            ?>
+			?>
 			<tr class="<?php echo "row$k";?>">
 				<td width="20" align="right">
 					<?php echo ( $i + 1 + $pageNav->limitstart ); ?>
@@ -87,19 +86,19 @@ class HTML_HandoutCategories
 				</td>
 				<td width="35%">
 					<?php
-	           			 if ($row->checked_out_contact_category && ($row->checked_out_contact_category != $user->id)) {
-	                ?>
+			   			 if ($row->checked_out_contact_category && ($row->checked_out_contact_category != $user->id)) {
+					?>
 					<?php echo $row->treename . ' ( ' . $row->title . ' )';?>
 						&nbsp;[ <em><?php echo JText::_('COM_HANDOUT_CHECKED_OUT')?></em> ]
 					<?php
-	           			 } else {
-	                ?>
+			   			 } else {
+					?>
 					<a href="#edit" onClick="return listItemTask('cb<?php echo $i;?>','edit')">
 						<?php echo $row->treename . ' ( ' . $row->title . ' )';?>
 					</a>
 						<?php
-	            		}
-	            	?>
+						}
+					?>
 				</td>
 				<td align="center">
 					<a href="javascript: void(0);" onClick="return listItemTask('cb<?php echo $i;?>','<?php echo $task;?>')">
@@ -107,8 +106,8 @@ class HTML_HandoutCategories
 					</a>
 				</td>
 				<?php
-		            if ($section <> 'content') {
-		                ?>
+					if ($section <> 'content') {
+						?>
 				<td>
 					<?php echo $pageNav->orderUpIcon($i);?>
 				</td>
@@ -116,8 +115,8 @@ class HTML_HandoutCategories
 					<?php echo $pageNav->orderDownIcon($i, $n);?>
 				</td>
 				<?php
-		            }
-		            ?>
+					}
+					?>
 				<td align="center">
 					<a href="javascript: void(0);" onclick="return listItemTask('cb<?php echo $i;?>','<?php echo $task_access;?>')" <?php echo $color_access;?>>
 						<?php echo $row->groupname;?>
@@ -133,15 +132,15 @@ class HTML_HandoutCategories
 					<?php echo $row->checked_out_contact_category ? $row->editor : "";?>
 				</td>
 				<?php
-            		$k = 1 - $k;
-           		?>
+					$k = 1 - $k;
+		   		?>
 			</tr>
 			<?php
-            	$k = 1 - $k;
-            	$i++;
-       			 }
-       		 ?>
-        </tbody>
+				$k = 1 - $k;
+				$i++;
+	   			 }
+	   		 ?>
+		</tbody>
 		</table>
 
 		<input type="hidden" name="option" value="com_handout" />
@@ -151,70 +150,70 @@ class HTML_HandoutCategories
 		<input type="hidden" name="act" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
 		<input type="hidden" name="type" value="<?php echo $type;?>" />
-        <?php echo HANDOUT_token::render();?>
+		<?php echo HANDOUT_token::render();?>
 	</form>
 		<?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    	}
-    	 function showToSelect(&$rows, &$pageNav, $type)
-    		{
-        	?>
+		}
+		 function showToSelect(&$rows, &$pageNav, $type)
+			{
+			?>
 
-    		<form action="index.php" method="post" name="adminForm">
-    		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_CATS'), 'categories' )?>
+			<form action="index.php" method="post" name="adminForm">
+			<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_CATS'), 'categories' )?>
 
-			    <table class="adminlist">
-			       <thead>
+				<table class="adminlist">
+				   <thead>
 					<tr>
 						<th class="title"><?php echo JText::_('COM_HANDOUT_CATNAME_LABEL');?></th>
 						<th width="10%"><?php echo JText::_('COM_HANDOUT_PUBLISHED');?></th>
 					</tr>
-			       </thead>
-			       <tfoot><tr><td colspan="2"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
-				    <tbody>
-				    <?php
-				    $k = 0;
-				    foreach ($rows as $row) {
-				    $img = $row->published ? 'tick.png' : 'publish_x.png';
-				    $alt = $row->published ? 'Published' : 'Unpublished';
-				    ?>
-				    <tr class="<?php echo "row$k";?>">
-					    <td width="35%">
-					    	<a style="cursor: pointer;" href="#" onclick="window.parent.MM_selectElement('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""),$row->title); ?>', '<?php echo JRequest::getVar('object'); ?>');">
+				   </thead>
+				   <tfoot><tr><td colspan="2"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
+					<tbody>
+					<?php
+					$k = 0;
+					foreach ($rows as $row) {
+					$img = $row->published ? 'tick.png' : 'publish_x.png';
+					$alt = $row->published ? 'Published' : 'Unpublished';
+					?>
+					<tr class="<?php echo "row$k";?>">
+						<td width="35%">
+							<a style="cursor: pointer;" href="#" onclick="window.parent.MM_selectElement('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""),$row->title); ?>', '<?php echo JRequest::getVar('object'); ?>');">
 							<?php echo $row->treename . ' ( ' . $row->title . ' )';?></a>
 						</td>
-					    <td align="center"><img src="images/<?php echo $img;?>"  border="0" alt="<?php echo $alt;?>" /></td>
+						<td align="center"><img src="images/<?php echo $img;?>"  border="0" alt="<?php echo $alt;?>" /></td>
 					</tr>
-				    <?php $k = 1 - $k; ?>
+					<?php $k = 1 - $k; ?>
 						<?php } ?>
-				     </tbody>
-			    </table>
+					 </tbody>
+				</table>
 				<input type="hidden" name="option" value="com_handout" />
-			    <input type="hidden" name="section" value="categories" />
-			    <input type="hidden" name="task" value="" />
-			    <input type="hidden" name="chosen" value="" />
-			    <input type="hidden" name="act" value="" />
-			    <input type="hidden" name="task" value="element" />
-			    <input type="hidden" name="tmpl" value="component" />
-			    <input type="hidden" name="object" value="<?php echo JRequest::getString('object'); ?>" />
-			    <input type="hidden" name="type" value="<?php echo $type;?>" />
-			    <?php echo HANDOUT_token::render();?>
-    		</form>
-    <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+				<input type="hidden" name="section" value="categories" />
+				<input type="hidden" name="task" value="" />
+				<input type="hidden" name="chosen" value="" />
+				<input type="hidden" name="act" value="" />
+				<input type="hidden" name="task" value="element" />
+				<input type="hidden" name="tmpl" value="component" />
+				<input type="hidden" name="object" value="<?php echo JRequest::getString('object'); ?>" />
+				<input type="hidden" name="type" value="<?php echo $type;?>" />
+				<?php echo HANDOUT_token::render();?>
+			</form>
+	<?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
+	}
 
-    /**
-    * Writes the edit form for new and existing categories
-    *
-    */
-    function edit(&$row, $section, &$lists, $redirect)
-    {
+	/**
+	* Writes the edit form for new and existing categories
+	*
+	*/
+	function edit(&$row, $section, &$lists, $redirect)
+	{
 		JHTML::_('behavior.tooltip');
 
-        if ($row->image == "") {
-            $row->image = 'blank.png';
-        }
-        JFilterOutput::objectHTMLSafe($row, ENT_QUOTES, 'description');
-        ?>
+		if ($row->image == "") {
+			$row->image = 'blank.png';
+		}
+		JFilterOutput::objectHTMLSafe($row, ENT_QUOTES, 'description');
+		?>
 		<script language="javascript" type="text/javascript">
 			function submitbutton(pressbutton, section) {
 				var form = document.adminForm;
@@ -238,10 +237,10 @@ class HTML_HandoutCategories
 		</script>
 
 		<form action="index.php" method="post" name="adminForm">
-	        <?php
-	        $tmp = ($row->id ? JText::_('COM_HANDOUT_EDIT') : JText::_('COM_HANDOUT_ADD')).' '.JText::_('COM_HANDOUT_CAT_LABEL').' '.$row->title;
+			<?php
+			$tmp = ($row->id ? JText::_('COM_HANDOUT_EDIT') : JText::_('COM_HANDOUT_ADD')).' '.JText::_('COM_HANDOUT_CAT_LABEL').' '.$row->title;
 			HandoutHTML::adminHeading( $tmp, 'categories' )
-	        ?>
+			?>
 			<table width="100%">
 				<tr>
 					<td valign="top">
@@ -257,7 +256,7 @@ class HTML_HandoutCategories
 							</td>
 							<td colspan="2">
 							<input class="text_area" type="text" name="title" value="<?php echo $row->title;?>" size="50" maxlength="50" title="A short name to appear in menus" />
-		                    <input type="hidden" name="name" id="catname" value="<?php echo $row->name;?>" style="display:hidden" />
+							<input type="hidden" name="name" id="catname" value="<?php echo $row->name;?>" style="display:hidden" />
 							</td>
 						</tr>
 						<tr>
@@ -348,7 +347,7 @@ class HTML_HandoutCategories
 						</tr>
 					</table>
 				</td>
-		      </tr>
+			  </tr>
 		</table>
 
 			<input type="hidden" name="option" value="com_handout" />
@@ -358,8 +357,8 @@ class HTML_HandoutCategories
 			<input type="hidden" name="id" value="<?php echo $row->id;?>" />
 			<input type="hidden" name="sectionid" value="com_handout" />
 			<input type="hidden" name="redirect" value="<?php echo $redirect;?>" />
-	        <?php echo HANDOUT_token::render();?>
+			<?php echo HANDOUT_token::render();?>
 		</form>
-        <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+		<?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
+	}
 }

@@ -1,12 +1,12 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
- /**
+/**
  * Handout - The Joomla Download Manager
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 ?>
 <!--
 

@@ -1,27 +1,26 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: doclink.html.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 defined('_JEXEC') or die('Restricted access');
 
 class HTML_HandoutDoclink {
-    function showDoclink($rows){
-        $mainframe = &JFactory::getApplication();
-    	?>
-        <script>var editor = '<?php echo JRequest::getWord('e_name'); ?>';</script>
+	function showDoclink($rows){
+		$app = &JFactory::getApplication();
+		?>
+		<script>var editor = '<?php echo JRequest::getWord('e_name'); ?>';</script>
 
-        <h1 style="color:#BF1E2D !important;">Handout Link</h1>
-        <div id="loading" class="statusLayer">
+		<h1 style="color:#BF1E2D !important;">Handout Link</h1>
+		<div id="loading" class="statusLayer">
 			<div id= "loadingStatus"><?php echo JText::_('Loading'); ?></div>
-        </div>
-        <form id="frminsertlink" >
+		</div>
+		<form id="frminsertlink" >
 			<table class="adminform">
 				<thead><tr><td colspan="2"><strong><?php echo JText::_('Manager'); ?></strong></td></tr></thead>
 				<tbody>
@@ -72,163 +71,163 @@ class HTML_HandoutDoclink {
 			<input id="f_date" name="f_date" type="hidden" value="" >
 			<input id="f_cid"  name="f_cid"  type="hidden" value="" >
 			<input id="f_pid"  name="f_pid"  type="hidden" value="" >
-        </form><?php
-    }
+		</form><?php
+	}
 
    function createListCtrl($rows, $name, $id){
-        $select  =  "<select value=\"0:0\" name=\"$name\" id=\"$id\" onchange=\"onchangeListCtrl(this);\">\n";
-        $select .=  "<option selected=\"selected\" value=\"0:0\">/</option>\n";
+		$select  =  "<select value=\"0:0\" name=\"$name\" id=\"$id\" onchange=\"onchangeListCtrl(this);\">\n";
+		$select .=  "<option selected=\"selected\" value=\"0:0\">/</option>\n";
 
-        foreach($rows as $row) {
-            if (count($row) != "0") {
-                $value = "$row->parent_id:$row->id";
-                $text  = $row->treename;
-                $select .= "<option value=\"$value\">$text</option>\n";
-            }
-        }
-        $select .=  "</select>\n";
-        echo $select;
-    }
+		foreach($rows as $row) {
+			if (count($row) != "0") {
+				$value = "$row->parent_id:$row->id";
+				$text  = $row->treename;
+				$select .= "<option value=\"$value\">$text</option>\n";
+			}
+		}
+		$select .=  "</select>\n";
+		echo $select;
+	}
 
-    function createHeader()
-    {
-        ?>
-        <!--
-        <style>body {margin:0}</style>
-        <table class="sort-table" id="tableHead" cellspacing="0" width="100%">
-        <col style="width: 20px" />
-        <col style="width: 220px" />
-        <col style="width: 100px" />
-        <col style="width: 130px" />
-        <thead>
-        <tr>
-            <td>&nbsp;</td>
-            <td id="sortmefirst" onclick="st.sort(2);" style="text-align:left"><?php echo JText::_('Name'); ?></td>
-            <td onclick="st.sort(3);" style="text-align:left"><?php echo JText::_('Size'); ?></td>
-            <td onclick="st.sort(4);" style="text-align:left"><?php echo JText::_('Modified'); ?></td>
-        </tr>
-        </thead>
-        <tbody style="display: none;">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+	function createHeader()
+	{
+		?>
+		<!--
+		<style>body {margin:0}</style>
+		<table class="sort-table" id="tableHead" cellspacing="0" width="100%">
+		<col style="width: 20px" />
+		<col style="width: 220px" />
+		<col style="width: 100px" />
+		<col style="width: 130px" />
+		<thead>
+		<tr>
+			<td>&nbsp;</td>
+			<td id="sortmefirst" onclick="st.sort(2);" style="text-align:left"><?php echo JText::_('Name'); ?></td>
+			<td onclick="st.sort(3);" style="text-align:left"><?php echo JText::_('Size'); ?></td>
+			<td onclick="st.sort(4);" style="text-align:left"><?php echo JText::_('Modified'); ?></td>
+		</tr>
+		</thead>
+		<tbody style="display: none;">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
 
-        </tbody>
-        </table>
-        <div id="tableContainer" class="tableContainer">
-        <table class="sort-table" id="tableBody" cellspacing="0" width="100%" >
-        <col style="width: 20px" />
-        <col style="width: 220px;" />
-        <col style="width: 100px;" />
-        <col style="width: 130px;" />
-        <thead style="display: none;">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </thead>
-        <tbody>
-         -->
-        <style>body {margin:0}</style>
-        <div id="tableContainer" class="tableContainer">
-        	<table class="sort-table" id="tableBody" cellspacing="0" width="100%" >
-        		<col style="width: 20px" />
-        		<col style="width: 220px;" />
-        		<col style="width: 100px;" />
-        		<col style="width: 130px;" />
-        		<thead>
-        			<tr>
-        				<td>&nbsp;</td>
-            			<td id="sortmefirst" onclick="st.sort(2);" style="text-align:left"><?php echo JText::_('Name'); ?></td>
-            			<td onclick="st.sort(3);" style="text-align:left"><?php echo JText::_('Size'); ?></td>
-            			<td onclick="st.sort(4);" style="text-align:left"><?php echo JText::_('Modified'); ?></td>
-        			</tr>
-        		</thead>
-        		<tbody>
-        <?php
-    }
+		</tbody>
+		</table>
+		<div id="tableContainer" class="tableContainer">
+		<table class="sort-table" id="tableBody" cellspacing="0" width="100%" >
+		<col style="width: 20px" />
+		<col style="width: 220px;" />
+		<col style="width: 100px;" />
+		<col style="width: 130px;" />
+		<thead style="display: none;">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		</thead>
+		<tbody>
+		 -->
+		<style>body {margin:0}</style>
+		<div id="tableContainer" class="tableContainer">
+			<table class="sort-table" id="tableBody" cellspacing="0" width="100%" >
+				<col style="width: 20px" />
+				<col style="width: 220px;" />
+				<col style="width: 100px;" />
+				<col style="width: 130px;" />
+				<thead>
+					<tr>
+						<td>&nbsp;</td>
+						<td id="sortmefirst" onclick="st.sort(2);" style="text-align:left"><?php echo JText::_('Name'); ?></td>
+						<td onclick="st.sort(3);" style="text-align:left"><?php echo JText::_('Size'); ?></td>
+						<td onclick="st.sort(4);" style="text-align:left"><?php echo JText::_('Modified'); ?></td>
+					</tr>
+				</thead>
+				<tbody>
+		<?php
+	}
 
-    function createFooter()
-    {
-        ?>
-        		</tbody>
-        	</table>
-    	</div>
-        <?php
-    }
+	function createFooter()
+	{
+		?>
+				</tbody>
+			</table>
+		</div>
+		<?php
+	}
 
-    function createFolders($rows, $cid )
-    {
-        if(!count($rows))
-            return '';
+	function createFolders($rows, $cid )
+	{
+		if(!count($rows))
+			return '';
 
-        $html = '';
-        foreach($rows as $row)
-        {
-            $cat = new HANDOUT_Category($row->id);
+		$html = '';
+		foreach($rows as $row)
+		{
+			$cat = new HANDOUT_Category($row->id);
 
-            $links   = $cat->getLinkObject();
-            $paths   = $cat->getPathObject();
-            $details = $cat->getDataObject();
+			$links   = $cat->getLinkObject();
+			$paths   = $cat->getPathObject();
+			$details = $cat->getDataObject();
 
-            $cid    = $details->id;
-            $pid    = $details->parent_id;
+			$cid	= $details->id;
+			$pid	= $details->parent_id;
 
-            $icon   = JURI::root(true) . '/media/com_handout/images/icon-16-folder.png'; //$cat->getPath('icon', 1, '16');
-            $url    = HANDOUT_Utils::_rawLink('cat_view', $details->id);
+			$icon   = JURI::root(true) . '/media/com_handout/images/icon-16-folder.png'; //$cat->getPath('icon', 1, '16');
+			$url	= HANDOUT_Utils::_rawLink('cat_view', $details->id);
 
-            ?>
-            <tr>
-                <td><img src="<?php echo $icon ?>" alt="<?php echo $details->name ?>" /></td>
-                <td><a style="color:#BF1E2D !important" href="<?php echo JURI::base(); ?>index.php?option=com_handout&amp;task=doclink-listview&amp;catid=<?php echo $cid ?>" onClick="onclickFolder(<?php echo $pid ?>, <?php echo $cid ?>, '<?php echo $details->name ?>', '<?php echo $url ?>', '<?php echo $icon ?>');"><?php echo $details->name ?></a></td>
-                <td><?php echo JText::_('Folder'); ?></td>
-                <td>&nbsp;</td>
-            </tr>
-            <?php
-        }
-    }
+			?>
+			<tr>
+				<td><img src="<?php echo $icon ?>" alt="<?php echo $details->name ?>" /></td>
+				<td><a style="color:#BF1E2D !important" href="<?php echo JURI::base(); ?>index.php?option=com_handout&amp;task=doclink-listview&amp;catid=<?php echo $cid ?>" onClick="onclickFolder(<?php echo $pid ?>, <?php echo $cid ?>, '<?php echo $details->name ?>', '<?php echo $url ?>', '<?php echo $icon ?>');"><?php echo $details->name ?></a></td>
+				<td><?php echo JText::_('Folder'); ?></td>
+				<td>&nbsp;</td>
+			</tr>
+			<?php
+		}
+	}
 
-    function createItems($rows)
-    {
-        global $_HANDOUT;
+	function createItems($rows)
+	{
+		global $_HANDOUT;
 
-        $html = '';
-        foreach($rows as $row)
-        {
-            $doc = new HANDOUT_Document($row->id);
+		$html = '';
+		foreach($rows as $row)
+		{
+			$doc = new HANDOUT_Document($row->id);
 
-            $links   = $doc->getLinkObject();
-            $paths   = $doc->getPathObject();
-            $details = $doc->getDataObject();
+			$links   = $doc->getLinkObject();
+			$paths   = $doc->getPathObject();
+			$details = $doc->getDataObject();
 
-            $icon   = $doc->getPath('icon', 1, '16');
+			$icon   = $doc->getPath('icon', 1, '16');
 
-            $params = array('Itemid' => HANDOUT_Utils::getItemid() );
-            $url    = HANDOUT_Utils::_rawLink('doc_download', $details->id, $params);
+			$params = array('Itemid' => HANDOUT_Utils::getItemid() );
+			$url	= HANDOUT_Utils::_rawLink('doc_download', $details->id, $params);
 
-            if (!strstr($details->doclastupdateon, "0000-00-00")) {
-                $itemtime  = $details->doclastupdateon;
-            } else {
-                $itemtime  = $details->docdate_published;
-            }
+			if (!strstr($details->doclastupdateon, "0000-00-00")) {
+				$itemtime  = $details->doclastupdateon;
+			} else {
+				$itemtime  = $details->docdate_published;
+			}
 
 
 
-            ?>
-            <tr>
-                <td><img src="<?php echo $icon ?>" alt="<?php echo $details->docname ?>" /></td>
-                <td><a href="javascript:;" onClick="onclickItem('<?php echo addslashes($details->docname) ?>', '<?php echo $url ?>', <?php echo $details->catid ?>, '<?php echo $icon ?>', '<?php echo $details->filesize ?>', '<?php echo $itemtime ?>');"><?php echo $details->docname ?></td>
-                <td><?php echo $details->filesize; ?></td>
-                <td><?php echo $itemtime; ?></td>
-            </tr>
-            <?php
-        }
+			?>
+			<tr>
+				<td><img src="<?php echo $icon ?>" alt="<?php echo $details->docname ?>" /></td>
+				<td><a href="javascript:;" onClick="onclickItem('<?php echo addslashes($details->docname) ?>', '<?php echo $url ?>', <?php echo $details->catid ?>, '<?php echo $icon ?>', '<?php echo $details->filesize ?>', '<?php echo $itemtime ?>');"><?php echo $details->docname ?></td>
+				<td><?php echo $details->filesize; ?></td>
+				<td><?php echo $itemtime; ?></td>
+			</tr>
+			<?php
+		}
 
-        return $html;
-    }
+		return $html;
+	}
 }

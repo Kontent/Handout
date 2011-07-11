@@ -1,109 +1,108 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: documents.html.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_HTML_DOCUMENTS')) {
-    return;
+	return;
 } else {
-    define('_HANDOUT_HTML_DOCUMENTS', 1);
+	define('_HANDOUT_HTML_DOCUMENTS', 1);
 }
 
 class HTML_HandoutDocuments
 {
-    function showDocuments($rows, $lists, $search, $pageNav, $number_unpublished, $view_type = 1)
-    {
-        $database = &JFactory::getDBO();
-        $user = &JFactory::getUser();
-        $_HANDOUT = &HandoutFactory::getHandout();
+	function showDocuments($rows, $lists, $search, $pageNav, $number_unpublished, $view_type = 1)
+	{
+		$database = &JFactory::getDBO();
+		$user = &JFactory::getUser();
+		$_HANDOUT = &HandoutFactory::getHandout();
 
-        JHTML::_('behavior.tooltip');
+		JHTML::_('behavior.tooltip');
 
-        ?>
+		?>
 
-        <form action="index.php" method="post" name="adminForm" id="adminForm">
+		<form action="index.php" method="post" name="adminForm" id="adminForm">
 
-        <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_DOCS'), 'documents' )?>
+		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_TITLE_DOCS'), 'documents' )?>
 
-        <div class="hfilter">
-            <?php echo JText::_('COM_HANDOUT_FILTER');?>
-            <input class="text_area" type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
-            <?php echo $lists['catid'];?>
+		<div class="hfilter">
+			<?php echo JText::_('COM_HANDOUT_FILTER');?>
+			<input class="text_area" type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
+			<?php echo $lists['catid'];?>
 
-            <span class="small">
-                <?php
-                if ($number_unpublished > 0) {
-                    echo " [$number_unpublished " . JText::_('COM_HANDOUT_DOCS_NOT_PUBLISHED') . "] ";
-                }
-                if ($number_unpublished < 1) {
-                    echo " [" . JText::_('COM_HANDOUT_NO_PENDING_DOCS') . "] ";
-                }
-                ?>
-            </span>
-        </div>
+			<span class="small">
+				<?php
+				if ($number_unpublished > 0) {
+					echo " [$number_unpublished " . JText::_('COM_HANDOUT_DOCS_NOT_PUBLISHED') . "] ";
+				}
+				if ($number_unpublished < 1) {
+					echo " [" . JText::_('COM_HANDOUT_NO_PENDING_DOCS') . "] ";
+				}
+				?>
+			</span>
+		</div>
 
-        <table class="adminlist">
-          <thead>
-          <tr>
-            <th width="2%" align="left" >
-            	<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($rows);?>);" />
-            </th>
-            <th width="15%" align="left">
-            	<a href="index.php?option=com_handout&section=documents&sort=name"><?php echo JText::_('COM_HANDOUT_DOCUMENT_NAME_LABEL');?></a>
-            </th>
-            <th width="15%" align="left" >
-           		<a href="index.php?option=com_handout&section=documents&sort=filename"><?php echo JText::_('COM_HANDOUT_FILENAME');?></a>
-            </th>
-            <th width="15%" align="left">
-            	<a href="index.php?option=com_handout&section=documents&sort=catsubcat"><?php echo JText::_('COM_HANDOUT_CAT_LABEL');?></a>
-            </th>
-            <th width="10%" align="center">
-            	<a href="index.php?option=com_handout&section=documents&sort=date"><?php echo JText::_('COM_HANDOUT_PUBLISH_DATE');?></a>
-            </th>
-            <th width="10%">
-            	<?php echo JText::_('COM_HANDOUT_OWNER');?>
-            </th>
-            <th width="5%">
-            	<?php echo JText::_('COM_HANDOUT_PUBLISHED');?>
-            </th>
-            </th -->
-            <th width="5%">
-            	<?php echo JText::_('COM_HANDOUT_SIZE');?>
-            </th>
-            <th width="5%">
-            	<?php echo JText::_('COM_HANDOUT_DOWNLOADS');?>
-            </th>
-            <th width="5%" nowrap="nowrap">
-            	<?php echo JText::_('COM_HANDOUT_CHECKED_OUT');?>
-            </th>
-          </tr>
-          </thead>
+		<table class="adminlist">
+		  <thead>
+		  <tr>
+			<th width="2%" align="left" >
+				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($rows);?>);" />
+			</th>
+			<th width="15%" align="left">
+				<a href="index.php?option=com_handout&section=documents&sort=name"><?php echo JText::_('COM_HANDOUT_DOCUMENT_NAME_LABEL');?></a>
+			</th>
+			<th width="15%" align="left" >
+		   		<a href="index.php?option=com_handout&section=documents&sort=filename"><?php echo JText::_('COM_HANDOUT_FILENAME');?></a>
+			</th>
+			<th width="15%" align="left">
+				<a href="index.php?option=com_handout&section=documents&sort=catsubcat"><?php echo JText::_('COM_HANDOUT_CAT_LABEL');?></a>
+			</th>
+			<th width="10%" align="center">
+				<a href="index.php?option=com_handout&section=documents&sort=date"><?php echo JText::_('COM_HANDOUT_PUBLISH_DATE');?></a>
+			</th>
+			<th width="10%">
+				<?php echo JText::_('COM_HANDOUT_OWNER');?>
+			</th>
+			<th width="5%">
+				<?php echo JText::_('COM_HANDOUT_PUBLISHED');?>
+			</th>
+			</th -->
+			<th width="5%">
+				<?php echo JText::_('COM_HANDOUT_SIZE');?>
+			</th>
+			<th width="5%">
+				<?php echo JText::_('COM_HANDOUT_DOWNLOADS');?>
+			</th>
+			<th width="5%" nowrap="nowrap">
+				<?php echo JText::_('COM_HANDOUT_CHECKED_OUT');?>
+			</th>
+		  </tr>
+		  </thead>
 
-          <tfoot><tr><td colspan="11"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
+		  <tfoot><tr><td colspan="11"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
 
-          <tbody>
-          <?php
-        $k = 0;
-        for ($i = 0, $n = count($rows);$i < $n;$i++) {
-            $row = &$rows[$i];
-            $task = $row->published ? 'unpublish' : 'publish';
-            $img = $row->published ? 'publish_g.png' : 'publish_x.png';
-            $alt = $row->published ? JText::_('COM_HANDOUT_PUBLISHED') : JText::_('COM_HANDOUT_UNPUBLISH') ;
+		  <tbody>
+		  <?php
+		$k = 0;
+		for ($i = 0, $n = count($rows);$i < $n;$i++) {
+			$row = &$rows[$i];
+			$task = $row->published ? 'unpublish' : 'publish';
+			$img = $row->published ? 'publish_g.png' : 'publish_x.png';
+			$alt = $row->published ? JText::_('COM_HANDOUT_PUBLISHED') : JText::_('COM_HANDOUT_UNPUBLISH') ;
 
-            $file = new HANDOUT_File($row->docfilename, $_HANDOUT->getCfg('handoutpath'));
+			$file = new HANDOUT_File($row->docfilename, $_HANDOUT->getCfg('handoutpath'));
 
-            ?><tr class="row<?php echo $k;?>">
-                <td width="20">
+			?><tr class="row<?php echo $k;?>">
+				<td width="20">
 					<?php echo JHTML::_('grid.id',$i, $row->id, ($row->checked_out && $row->checked_out != $user->id));?>
 				</td>
 				<td width="15%">
@@ -133,11 +132,11 @@ class HTML_HandoutDocuments
 						echo "</span>";
 					}
 					?>
-            	</td>
-            	<td width="15%"><?php echo $row->treename ?></td>
-               	<td width="10%" align="center" nowrap="nowrap"><?php echo HandoutFactory::getFormatDate($row->docdate_published); ?></td>
-               	<td align="center"><?php echo HANDOUT_Utils::getUserName($row->docowner); ?></td>
-                <td width="5%" align="center">
+				</td>
+				<td width="15%"><?php echo $row->treename ?></td>
+			   	<td width="10%" align="center" nowrap="nowrap"><?php echo HandoutFactory::getFormatDate($row->docdate_published); ?></td>
+			   	<td align="center"><?php echo HANDOUT_Utils::getUserName($row->docowner); ?></td>
+				<td width="5%" align="center">
 					<a href="javascript: void(0);" onclick="return listItemTask('cb<?php echo $i;?>','<?php echo $task;?>')">
 					<img src="images/<?php echo $img;?>" border="0" alt="<?php echo $alt;?>" />
 					</a>
@@ -161,9 +160,9 @@ class HTML_HandoutDocuments
 					<?php
 				}
 
-            	?></tr><?php
-            	$k = 1 - $k;
-        	}
+				?></tr><?php
+				$k = 1 - $k;
+			}
 			?>
 			</tbody>
 		  </table>
@@ -173,125 +172,125 @@ class HTML_HandoutDocuments
 		  <input type="hidden" name="task" value="" />
 		  <input type="hidden" name="boxchecked" value="0" />
 		  <?php echo HANDOUT_token::render();?>
-      </form>
+	  </form>
 
    	  <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+	}
 
 function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpublished, $view_type = 1)
-    {
-        $database = &JFactory::getDBO();
-        $user = &JFactory::getUser();
-        $_HANDOUT = &HandoutFactory::getHandout();
+	{
+		$database = &JFactory::getDBO();
+		$user = &JFactory::getUser();
+		$_HANDOUT = &HandoutFactory::getHandout();
 
 
-        $link = 'index.php?option=com_handout&section=documents&task=element&tmpl=component&object=' . JRequest::getString('object').'&sort=';
-        ?>
+		$link = 'index.php?option=com_handout&section=documents&task=element&tmpl=component&object=' . JRequest::getString('object').'&sort=';
+		?>
 
-        <form action="index.php" method="post" name="adminForm" id="adminForm">
+		<form action="index.php" method="post" name="adminForm" id="adminForm">
 
-        <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_DOCS'), 'documents' )?>
+		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_DOCS'), 'documents' )?>
 
-        <div class="hfilter">
-            <?php echo JText::_('COM_HANDOUT_FILTER');?>
-            <input class="text_area" type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
-            <?php echo $lists['catid'];?>
-        </div>
+		<div class="hfilter">
+			<?php echo JText::_('COM_HANDOUT_FILTER');?>
+			<input class="text_area" type="text" name="search" value="<?php echo $search;?>" class="inputbox" onChange="document.adminForm.submit();" />
+			<?php echo $lists['catid'];?>
+		</div>
 
-        <table class="adminlist">
-          <thead>
-          <tr>
-            <th width="15%" align="left">
-            <a href="<?php echo $link; ?>name"><?php echo JText::_('COM_HANDOUT_NAME');?></a>
-            </th>
-            <th width="15%" align="left" >
-            <a href="<?php echo $link; ?>filename"><?php echo JText::_('COM_HANDOUT_FILE');?></a>
-            </th>
-            <th width="15%" align="left">
-            <a href="<?php echo $link; ?>catsubcat"><?php echo JText::_('COM_HANDOUT_CAT_LABEL');?></a>
-            </th>
-            <th width="5%">
-            <?php echo JText::_('COM_HANDOUT_PUBLISHED');?>
-            </th>
-          </tr>
-          </thead>
+		<table class="adminlist">
+		  <thead>
+		  <tr>
+			<th width="15%" align="left">
+			<a href="<?php echo $link; ?>name"><?php echo JText::_('COM_HANDOUT_NAME');?></a>
+			</th>
+			<th width="15%" align="left" >
+			<a href="<?php echo $link; ?>filename"><?php echo JText::_('COM_HANDOUT_FILE');?></a>
+			</th>
+			<th width="15%" align="left">
+			<a href="<?php echo $link; ?>catsubcat"><?php echo JText::_('COM_HANDOUT_CAT_LABEL');?></a>
+			</th>
+			<th width="5%">
+			<?php echo JText::_('COM_HANDOUT_PUBLISHED');?>
+			</th>
+		  </tr>
+		  </thead>
 
-          <tfoot><tr><td colspan="5"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
+		  <tfoot><tr><td colspan="5"><?php echo $pageNav->getListFooter();?></td></tr></tfoot>
 
-          <tbody>
-          <?php
-        $k = 0;
-        for ($i = 0, $n = count($rows);$i < $n;$i++) {
-            $row = &$rows[$i];
-            $task = $row->published ? 'unpublish' : 'publish';
-            $img = $row->published ? 'publish_g.png' : 'publish_x.png';
-            $alt = $row->published ? JText::_('COM_HANDOUT_PUBLISHED') : JText::_('COM_HANDOUT_UNPUBLISH') ;
+		  <tbody>
+		  <?php
+		$k = 0;
+		for ($i = 0, $n = count($rows);$i < $n;$i++) {
+			$row = &$rows[$i];
+			$task = $row->published ? 'unpublish' : 'publish';
+			$img = $row->published ? 'publish_g.png' : 'publish_x.png';
+			$alt = $row->published ? JText::_('COM_HANDOUT_PUBLISHED') : JText::_('COM_HANDOUT_UNPUBLISH') ;
 
-            $file = new HANDOUT_File($row->docfilename, $_HANDOUT->getCfg('handoutpath'));
+			$file = new HANDOUT_File($row->docfilename, $_HANDOUT->getCfg('handoutpath'));
 
-            ?><tr class="row<?php echo $k;?>">
+			?><tr class="row<?php echo $k;?>">
 				<td width="15%">
 					<a style="cursor: pointer;" href="#" onclick="window.parent.MM_selectElement('<?php echo $row->id; ?>', '<?php echo str_replace(array("'", "\""), array("\\'", ""),$row->docname); ?>', '<?php echo JRequest::getVar('object'); ?>');">
 					<?php echo $row->docname;?></a>
 				</td>
-                <td>
-                    <?php if ($file->exists()) {?>
-                        <?php echo HANDOUT_Utils::urlSnippet($row->docfilename);?>
-               	    <?php
-                    } else {
-                        echo JText::_('COM_HANDOUT_FILE_MISSING');
-                    }
-            ?>
-            	</td>
-            	<td width="15%"><?php echo $row->treename ?></td>
+				<td>
+					<?php if ($file->exists()) {?>
+						<?php echo HANDOUT_Utils::urlSnippet($row->docfilename);?>
+			   		<?php
+					} else {
+						echo JText::_('COM_HANDOUT_FILE_MISSING');
+					}
+			?>
+				</td>
+				<td width="15%"><?php echo $row->treename ?></td>
 
 
-               	<td width="5%" align="center">
-               		<img src="images/<?php echo $row->published ? 'tick' : 'publish_x'; ?>.png" border=0 alt="<?php echo $row->published ? 'unpublish' : 'publish'; ?>" />
-               	</td>
+			   	<td width="5%" align="center">
+			   		<img src="images/<?php echo $row->published ? 'tick' : 'publish_x'; ?>.png" border=0 alt="<?php echo $row->published ? 'unpublish' : 'publish'; ?>" />
+			   	</td>
 
-            </tr><?php
-            $k = 1 - $k;
-        }
-        ?>
-        </tbody>
+			</tr><?php
+			$k = 1 - $k;
+		}
+		?>
+		</tbody>
 
-      </table>
+	  </table>
 
 
-      <input type="hidden" name="option" value="com_handout" />
-      <input type="hidden" name="section" value="documents" />
-      <input type="hidden" name="task" value="element" />
-      <input type="hidden" name="tmpl" value="component" />
-      <input type="hidden" name="object" value="<?php echo JRequest::getString('object'); ?>" />
-      <input type="hidden" name="boxchecked" value="0" />
-      <?php echo HANDOUT_token::render();?>
-      </form>
+	  <input type="hidden" name="option" value="com_handout" />
+	  <input type="hidden" name="section" value="documents" />
+	  <input type="hidden" name="task" value="element" />
+	  <input type="hidden" name="tmpl" value="component" />
+	  <input type="hidden" name="object" value="<?php echo JRequest::getString('object'); ?>" />
+	  <input type="hidden" name="boxchecked" value="0" />
+	  <?php echo HANDOUT_token::render();?>
+	  </form>
 
    	  <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+	}
 
-    function editDocument(&$row, &$lists, $last, $created, &$params)
-    {
+	function editDocument(&$row, &$lists, $last, $created, &$params)
+	{
 
-        $tabs = new JPaneTabs(1);
-        JFilterOutput::objectHTMLSafe($row);
+		$tabs = new JPaneTabs(1);
+		JFilterOutput::objectHTMLSafe($row);
 
-        JHTML::_('behavior.calendar');
+		JHTML::_('behavior.calendar');
 
 
-        ?>
-    	<div id="overDiv" style="position:absolute; visibility:hidden; z-index:10000;"></div>
-    	<script language="JavaScript" src="<?php echo JURI::root();?>/includes/js/overlib_mini.js" type="text/javascript"></script>
-    	<script language="JavaScript" type="text/javascript">
-    		<!--
-    		function submitbutton(pressbutton) {
-    		  var form = document.adminForm;
-    		  if (pressbutton == 'cancel') {
-    			submitform( pressbutton );
-    			return;
-    		  }
-    		  // do field validation
+		?>
+		<div id="overDiv" style="position:absolute; visibility:hidden; z-index:10000;"></div>
+		<script language="JavaScript" src="<?php echo JURI::root();?>/includes/js/overlib_mini.js" type="text/javascript"></script>
+		<script language="JavaScript" type="text/javascript">
+			<!--
+			function submitbutton(pressbutton) {
+			  var form = document.adminForm;
+			  if (pressbutton == 'cancel') {
+				submitform( pressbutton );
+				return;
+			  }
+			  // do field validation
 			<?php HandoutHTML::docEditFieldsJS();/* Include all edits at once */?>
 			if ( $msg != "" ){
 					$msghdr = "<?php echo JText::_('COM_HANDOUT_ENTRY_ERRORS');?>";
@@ -299,26 +298,26 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 					alert( $msghdr+$msg+'\n' );
 			}else {
 			<?php
-	        	jimport( 'joomla.html.editor' );
+				jimport( 'joomla.html.editor' );
 				$editor =& JFactory::getEditor();
 				echo $editor->save( 'docdescription' );
-        	?>
+			?>
 				submitform( pressbutton );
 				}
 			}
 			//--> end submitbutton
-    	</script>
+		</script>
 
-    	<style>
+		<style>
 			select option.label { background-color: #EEE; border: 1px solid #DDD; color : #333; }
 		</style>
 
-        <?php
-        $tmp = ($row->id ? JText::_('COM_HANDOUT_EDIT') : JText::_('COM_HANDOUT_ADD')).' '.JText::_('COM_HANDOUT_DOC');
-        HandoutHTML::adminHeading( $tmp, 'documents' )
-        ?>
+		<?php
+		$tmp = ($row->id ? JText::_('COM_HANDOUT_EDIT') : JText::_('COM_HANDOUT_ADD')).' '.JText::_('COM_HANDOUT_DOC');
+		HandoutHTML::adminHeading( $tmp, 'documents' )
+		?>
 
-    	<form action="index.php" method="post" name="adminForm" class="adminform" id="handout_formedit">
+		<form action="index.php" method="post" name="adminForm" class="adminform" id="handout_formedit">
 			<table class="hadmin adminform">
 				<tr>
 					<th colspan="3"><?php echo JText::_('COM_HANDOUT_TITLE_DOCINFORMATION') ?></th>
@@ -376,53 +375,53 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 			<input type="hidden" name="doccounter" value="<?php echo $row->doccounter;?>" />
 			<input type="hidden" name="doclastupdateon" value="<?php echo date('Y-m-d H:i:s') ?>" />
 			<?php echo HANDOUT_token::render();?>
-    	</form>
-       <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+		</form>
+	   <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
+	}
 
-    function _showTabBasic(&$row, &$lists, &$last, &$created)
-    {
-        ?>
+	function _showTabBasic(&$row, &$lists, &$last, &$created)
+	{
+		?>
 
-        <tr>
-            <td width="250" align="right"><?php echo JText::_('COM_HANDOUT_DOCUMENT_NAME_LABEL');?></td>
-            <td colspan="2">
-                <input class="inputbox" type="text" name="docname" size="50" maxlength="100" value="<?php echo $row->docname ?>" />
-            </td>
-        </tr>
+		<tr>
+			<td width="250" align="right"><?php echo JText::_('COM_HANDOUT_DOCUMENT_NAME_LABEL');?></td>
+			<td colspan="2">
+				<input class="inputbox" type="text" name="docname" size="50" maxlength="100" value="<?php echo $row->docname ?>" />
+			</td>
+		</tr>
 
-        <tr>
-            <td align="right"><?php echo JText::_('COM_HANDOUT_CAT_LABEL');?></td>
-            <td><?php echo $lists['catid'];?></td>
-        </tr>
+		<tr>
+			<td align="right"><?php echo JText::_('COM_HANDOUT_CAT_LABEL');?></td>
+			<td><?php echo $lists['catid'];?></td>
+		</tr>
 
-        <tr>
-            <td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_PUBLISHED_LABEL'); ?></td>
-            <td>
-            <?php echo $lists['published'];
-            // echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_PUBLISHED'), JText::_('COM_HANDOUT_PUBLISHED'));
-            ?>
-            </td>
-        </tr>
+		<tr>
+			<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_PUBLISHED_LABEL'); ?></td>
+			<td>
+			<?php echo $lists['published'];
+			// echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_PUBLISHED'), JText::_('COM_HANDOUT_PUBLISHED'));
+			?>
+			</td>
+		</tr>
 
-        <tr>
-            <td valign="top"><?php echo JText::_('COM_HANDOUT_DESCRIPTION_LABEL');?></td>
-            <td colspan="2">
-            <?php
+		<tr>
+			<td valign="top"><?php echo JText::_('COM_HANDOUT_DESCRIPTION_LABEL');?></td>
+			<td colspan="2">
+			<?php
 			jimport( 'joomla.html.editor' );
 			$editor =& JFactory::getEditor();
 			echo $editor->display('docdescription', $row->docdescription , '500', '200', '50', '5') ;
-            ?>
-            </td>
-        </tr>
+			?>
+			</td>
+		</tr>
 
-        <?php
-    }
+		<?php
+	}
 
-    function _showTabDocument(&$row, &$lists, &$last, &$created)
-    {
-    	?>
-    	<table class="adminform">
+	function _showTabDocument(&$row, &$lists, &$last, &$created)
+	{
+		?>
+		<table class="adminform">
 			<tr>
 				<td>
 					<?php echo JText::_('COM_HANDOUT_THUMBNAIL');?>
@@ -496,82 +495,82 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 					<input class="inputbox" type="text" name="docurl" size="50" maxlength="200" value="<?php echo $row->docurl;/*htmlspecialchars($row->docurl, ENT_QUOTES);*/?>" />
 				</td>
 			</tr>
-    	</table>
-    	<?php
-    }
+		</table>
+		<?php
+	}
 
-    function _showTabPermissions(&$row, &$lists, &$last, &$created)
-    {
+	function _showTabPermissions(&$row, &$lists, &$last, &$created)
+	{
    		?>
-    	<table class="adminform">
+		<table class="adminform">
 
-    	<tr>
-    		<td width="250" align="right"><?php echo JText::_('COM_HANDOUT_OWNER_LABEL');?></td>
-    		<td>
-    		<?php
-    		echo $lists['viewer'];
-        	echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_OWNER_DESC') ,  JText::_('COM_HANDOUT_OWNER_LABEL'));
-        	?>
-        	</td>
-    	</tr>
-    	<tr>
-    		<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_MAINTAINER_LABEL');?></td>
-    		<td>
-    		<?php
-    		echo $lists['maintainer'];
-        	echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_MANT_DESC'),  JText::_('COM_HANDOUT_MAINTAINER_LABEL'));
-        	?>
-        	</td>
-    	</tr>
-    	<tr>
-    		<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_CREATED_BY_LABEL');?></td>
-    		<td><strong><?php echo $created[0]->name;?></strong> on
-    			<?php echo HandoutFactory::getFormatDate($row->docdate_published) ?>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_UPDATED_BY_LABEL');?></td>
-    		<td><strong><?php echo $last[0]->name;?></strong>
-    		<?php
-        	if ($row->doclastupdateon) {
-            	echo " on " . HandoutFactory::getFormatDate($row->doclastupdateon);
-        	}
-        	?>
+		<tr>
+			<td width="250" align="right"><?php echo JText::_('COM_HANDOUT_OWNER_LABEL');?></td>
+			<td>
+			<?php
+			echo $lists['viewer'];
+			echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_OWNER_DESC') ,  JText::_('COM_HANDOUT_OWNER_LABEL'));
+			?>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_MAINTAINER_LABEL');?></td>
+			<td>
+			<?php
+			echo $lists['maintainer'];
+			echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_MANT_DESC'),  JText::_('COM_HANDOUT_MAINTAINER_LABEL'));
+			?>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_CREATED_BY_LABEL');?></td>
+			<td><strong><?php echo $created[0]->name;?></strong> on
+				<?php echo HandoutFactory::getFormatDate($row->docdate_published) ?>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" align="right"><?php echo JText::_('COM_HANDOUT_UPDATED_BY_LABEL');?></td>
+			<td><strong><?php echo $last[0]->name;?></strong>
+			<?php
+			if ($row->doclastupdateon) {
+				echo " on " . HandoutFactory::getFormatDate($row->doclastupdateon);
+			}
+			?>
 
-    		</td>
-    	</tr>
-    	</table>
-    	<?php
-    }
+			</td>
+		</tr>
+		</table>
+		<?php
+	}
 
-    function _showTabLicense(&$row, &$lists, &$last, &$created)
-    {
+	function _showTabLicense(&$row, &$lists, &$last, &$created)
+	{
    		?>
-    	<table class="adminform">
+		<table class="adminform">
 
-    	<tr>
-    		<td width="250" ><?php echo JText::_('COM_HANDOUT_SELECT_AGREEMENT_LABEL');?></td>
-    		<td>
-    		<?php
-    		echo $lists['licenses'];
-        	echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_AGREEMENT_DESC') ,  JText::_('COM_HANDOUT_SELECT_AGREEMENT_LABEL'));
-        	?>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td><?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_LABEL');?></td>
-    		<td>
-    		<?php
-    		echo $lists['licenses_display'];
-        	echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_DESC') ,  JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_LABEL'));
-        	?>
-    		</td>
-    	</tr>
-    	</table>
-    	<?php
-    }
+		<tr>
+			<td width="250" ><?php echo JText::_('COM_HANDOUT_SELECT_AGREEMENT_LABEL');?></td>
+			<td>
+			<?php
+			echo $lists['licenses'];
+			echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_AGREEMENT_DESC') ,  JText::_('COM_HANDOUT_SELECT_AGREEMENT_LABEL'));
+			?>
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_LABEL');?></td>
+			<td>
+			<?php
+			echo $lists['licenses_display'];
+			echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_DESC') ,  JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_LABEL'));
+			?>
+			</td>
+		</tr>
+		</table>
+		<?php
+	}
 
-    function _showTabDetails(&$row, &$lists, &$last, &$created, &$params)
+	function _showTabDetails(&$row, &$lists, &$last, &$created, &$params)
 	{
 		?>
 		<table class="adminform" >
@@ -581,7 +580,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 				</td>
 			</tr>
 		</table>
-        <?php
+		<?php
 	}
 
 	  function _showTabMetadata(&$row, &$lists, &$last, &$created)
@@ -603,40 +602,40 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 					</td>
 				</tr>
 		</table>
-        <?php
+		<?php
 	}
 
 
-    function _showTabIntegration(&$row, &$lists, &$last, &$created)
-    {
+	function _showTabIntegration(&$row, &$lists, &$last, &$created)
+	{
    		?>
-    	<table class="adminform">		
-    	<tr>
-    		<td width="250" ><?php echo JText::_('COM_HANDOUT_KUNENA_DISCUSS_LABEL');?></td>
-    		<td>
+		<table class="adminform">
+		<tr>
+			<td width="250" ><?php echo JText::_('COM_HANDOUT_KUNENA_DISCUSS_LABEL');?></td>
+			<td>
 			<input class="inputbox" type="text" name="kunena_discuss_id" size="10" maxlength="10" value="<?php echo $row->kunena_discuss_id;?>" />
-    		<?php
-        	echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_KUNENA_DISCUSS_DESC') ,  JText::_('COM_HANDOUT_KUNENA_DISCUSS_LABEL'));
-        	?>
-    		</td>
-    	</tr>
-    	<tr>
-    		<td width="250" ><?php echo JText::_('COM_HANDOUT_MTREE_LABEL');?></td>
-    		<td>
+			<?php
+			echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_KUNENA_DISCUSS_DESC') ,  JText::_('COM_HANDOUT_KUNENA_DISCUSS_LABEL'));
+			?>
+			</td>
+		</tr>
+		<tr>
+			<td width="250" ><?php echo JText::_('COM_HANDOUT_MTREE_LABEL');?></td>
+			<td>
 			<input class="inputbox" type="text" name="mtree_id" size="10" maxlength="10" value="<?php echo $row->mtree_id;?>" />
-    		<?php
-        	echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_MTREE_DESC') ,  JText::_('COM_HANDOUT_MTREE_LABEL'));
-        	?>
-    		</td>
-    	</tr>
+			<?php
+			echo HANDOUT_Utils::mosToolTip(JText::_('COM_HANDOUT_MTREE_DESC') ,  JText::_('COM_HANDOUT_MTREE_LABEL'));
+			?>
+			</td>
+		</tr>
 
-    	</table>
-    	<?php
-    }
-	    function moveDocumentForm($cid, &$lists, &$items)
-    {
-        ?>
-        <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_MOVETOCAT'), 'categories' )?>
+		</table>
+		<?php
+	}
+		function moveDocumentForm($cid, &$lists, &$items)
+	{
+		?>
+		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_MOVETOCAT'), 'categories' )?>
 
 		<form action="index.php" method="post" name="adminForm" class="adminform" id="handout_moveform">
 			<table class="adminform">
@@ -668,15 +667,15 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 			<?php echo HANDOUT_token::render();?>
 		</form>
 		<?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+	}
 
-    function copyDocumentForm($cid, &$lists, &$items)
-    {
+	function copyDocumentForm($cid, &$lists, &$items)
+	{
 
-        ?>
-        <?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_COPYTOCAT'), 'categories' )?>
+		?>
+		<?php HandoutHTML::adminHeading( JText::_('COM_HANDOUT_COPYTOCAT'), 'categories' )?>
 
-        <form action="index.php" method="post" name="adminForm" class="adminform" id="handout_moveform">
+		<form action="index.php" method="post" name="adminForm" class="adminform" id="handout_moveform">
 			<table class="adminform">
 			<tr>
 				<td align="left" valign="middle" width="10%">
@@ -704,7 +703,7 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 			}
 			?>
 			<?php echo HANDOUT_token::render();?>
-        </form>
-        <?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
-    }
+		</form>
+		<?php include_once(JPATH_ADMINISTRATOR."/components/com_handout/footer.php");
+	}
 }

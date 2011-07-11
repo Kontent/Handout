@@ -1,14 +1,13 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: default_categories_list.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 defined('_JEXEC') or die;
 
@@ -34,7 +33,7 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 				foreach($this->cat_list->items as $category_item) :
 					if($this->conf->cat_empty || $item->data->files != 0) :
 						$icon_ext = strrchr($category_item->paths->icon, "/");
-        				$icon_ext = strrchr($icon_ext, "-");
+						$icon_ext = strrchr($icon_ext, "-");
 
 			?>
 						<li class="hcat-row">
@@ -59,11 +58,11 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 							<h3><a href="<?php echo $category_item->links->view;?>"><?php echo $category_item->data->title;?></a></h3>
 							<span class="hcat-files">Files: <?php echo $category_item->data->files;?></span>
 
-						    <?php
-						    if($category_item->data->description) :
-						        ?><div class="hcat-description"><?php echo $category_item->data->description;?></div><?php
-						    endif;
-						    ?>
+							<?php
+							if($category_item->data->description) :
+								?><div class="hcat-description"><?php echo $category_item->data->description;?></div><?php
+							endif;
+							?>
 						</li>
 			<?php
 					endif;

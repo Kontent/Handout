@@ -1,14 +1,13 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: default_menu.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 defined('_JEXEC') or die;
 
@@ -25,12 +24,12 @@ defined('_JEXEC') or die;
 ?>
 	<?php
 	if( !$this->conf->menu_home
-	    && !$this->conf->menu_search
-	    && !$this->conf->menu_upload
-	    && $this->perms->upload != COM_HANDOUT_AUTHORIZED) {
-	        // No buttons to show
-    }
-    else {
+		&& !$this->conf->menu_search
+		&& !$this->conf->menu_upload
+		&& $this->perms->upload != COM_HANDOUT_AUTHORIZED) {
+			// No buttons to show
+	}
+	else {
 		?>
 		<div id="htoolbar">
 			<?php if($this->conf->menu_home) :?>
@@ -70,5 +69,5 @@ defined('_JEXEC') or die;
 	</div>
 	<div class="clr"></div>
 	<?php
-    }
-    ?>
+	}
+	?>

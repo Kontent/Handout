@@ -1,20 +1,17 @@
 <?php
-
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: english.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 ARTIO s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-
+ */
 
 /**
  * Default English language file
- **/
+ */
 
 $MY_MESSAGES = array();
 $MY_MESSAGES['extmissing'] = 'Please upload a file with an extensions, e.g. "imagefile.jpg".';
@@ -55,4 +52,4 @@ $MY_MESSAGES['category'] = "Category";
 $MY_MESSAGES['inserticon'] = 'Insert filetype icon';
 $MY_MESSAGES['insertsize'] = 'Insert file size';
 $MY_MESSAGES['insertdate'] = 'Insert file modification date';
-$MY_MESSAGES['loading']    = 'Loading ...';
+$MY_MESSAGES['loading']	= 'Loading ...';

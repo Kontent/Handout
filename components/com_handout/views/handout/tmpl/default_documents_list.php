@@ -1,15 +1,14 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: default_documents_list.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
 
 /*
@@ -23,7 +22,7 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
 ?>
 
 <?php if(count($this->doc_list->items)) { ?>
-    <div id="hdoc-list">
+	<div id="hdoc-list">
 
 		<ul class="hdoc-order">
 			<li class="horder-title"><?php echo JText::_('COM_HANDOUT_ORDER_BY'); ?>:</li>
@@ -63,8 +62,8 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
 			endforeach;
 		?>
 		</ul>
-    </div>
+	</div>
 <?php } else { ?>
 	<!--  Add conditional to show/hide the below notice based on config setting  -->
-    <div id="hdoc-list"><?php echo JText::_('COM_HANDOUT_NO_DOCS'); ?></div>
+	<div id="hdoc-list"><?php echo JText::_('COM_HANDOUT_NO_DOCS'); ?></div>
 <?php } ?>

@@ -1,6 +1,5 @@
 <?php
 /**
- * @version		$Id$
  * @package		JXtended.Finder
  * @subpackage	plgFinderHANDOUT_Documents
  * @copyright	Copyright (C) 2007 - 2010 JXtended, LLC. All rights reserved.

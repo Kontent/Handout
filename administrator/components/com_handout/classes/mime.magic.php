@@ -1,15 +1,14 @@
 <?php
 /**
  * Handout - The Joomla Download Manager
- * @version 	$Id: mime.magic.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+ */
+defined('_JEXEC') or die;
 
 $mime_magic[0][30]["\145\166\141\154\40\42\145\170\145\143\40\57\165\163\162\57\154\157\143\141\154\57\142\151\156\57\160\145\162\154"] = 'application/x-perl';
 $mime_magic[0][24]["\145\166\141\154\40\42\145\170\145\143\40\57\165\163\162\57\142\151\156\57\160\145\162\154"] = 'application/x-perl';

@@ -1,14 +1,13 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: default.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 defined('_JEXEC') or die;
 
@@ -28,13 +27,13 @@ defined('_JEXEC') or die;
 JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 
 if ($this->conf->item_tooltip) :
-    JHTML::_('behavior.tooltip');
+	JHTML::_('behavior.tooltip');
 endif;
 
-$mainframe = &JFactory::getApplication();
-$pathway = & $mainframe->getPathWay();
+$app = &JFactory::getApplication();
+$pathway = & $app->getPathWay();
 $pathway->addItem($this->pagetitle[0][0]->name);
-$mainframe->setPageTitle( JText::_('COM_HANDOUT_TITLE_BROWSE') . ' | ' . $this->pagetitle[0][0]->name );
+$app->setPageTitle( JText::_('COM_HANDOUT_TITLE_BROWSE') . ' | ' . $this->pagetitle[0][0]->name );
 ?>
 
 <div id="handout">

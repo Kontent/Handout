@@ -1,13 +1,12 @@
 <?php
 /**
  * Kontent Upgrade Alert Module
- * @version 	$Id: kontentupdate.php
  * @package 	Kontent Upgrade Alert
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright   (C) 2010 iJoomla, Inc. - All rights reserved.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
-**/
+*/
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');

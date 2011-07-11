@@ -1,21 +1,20 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: upload.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @copyright 	(C) 2003-2008 The DOCman Development Team
  * @copyright 	(C) 2009 Artio s.r.o.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+defined('_JEXEC') or die;
 
 $_HANDOUT = &HandoutFactory::getHandout ();
 
-require_once ($_HANDOUT->getPath ( 'classes', 'plugins' ));
-require_once ($_HANDOUT->getPath ( 'classes', 'file' ));
+require_once $_HANDOUT->getPath ( 'classes', 'plugins' );
+require_once $_HANDOUT->getPath ( 'classes', 'file' );
 
 class UploadHelper {
 	function fetchDocumentUploadForm($uid, $step, $method, $update) {
@@ -64,7 +63,7 @@ class UploadHelper {
 		if (! file_exists ( $method_file )) {
 			HandoutHelper::_returnTo ( $task, "Protocol " . $method . " not supported", '', array ('step' => 1 ) );
 		}
-		require_once ($method_file);
+		require_once $method_file;
 
 		return HandoutUploadMethod::fetchMethodForm ( $uid, $step, $update );
 	}

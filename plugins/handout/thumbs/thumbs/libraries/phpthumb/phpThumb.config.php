@@ -246,7 +246,7 @@ $PHPTHUMB_DEFAULTS_DISABLEGETPARAMS  = false; // if true, GETstring parameters w
 ///////////////////////////////////////////////////////////////////////////////
 // Function for generating hashed calls to phpThumb if 'high_security_enabled'
 // example:
-//   require_once($_SERVER['DOCUMENT_ROOT'].'/phpThumb/phpThumb.config.php');
+//   require_once $_SERVER['DOCUMENT_ROOT'].'/phpThumb/phpThumb.config.php';
 //   echo '<img src="'.phpThumbURL('src=/images/pic.jpg&w=50').'">';
 
 function phpThumbURL($ParameterString) {

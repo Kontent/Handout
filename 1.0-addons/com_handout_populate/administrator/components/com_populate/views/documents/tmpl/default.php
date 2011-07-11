@@ -11,7 +11,7 @@ if(!count($this->files)) {
 
 $options= array();
 foreach ($this->files as $file) {
-    $options[]	=JHTML::_('select.option', htmlspecialchars($file));
+	$options[]	=JHTML::_('select.option', htmlspecialchars($file));
 }
 $fileselectlist = JHTML::_('select.genericlist',$options, 'files[]', 'size="15" class="inputbox" multiple="true"', 'value', 'text', $options );
 $catselectlist	= JHTML::_('populate.selects.tree', $this->categories, 0, array(), 'catid', 'class="inputbox" size="15"', 'value', 'text', '');
@@ -41,7 +41,7 @@ $catselectlist	= JHTML::_('populate.selects.tree', $this->categories, 0, array()
 				<label class="hasTip" title="<?php echo 'Categories::Select the category where you want to add the files.' ?>">
 					Categories
 				</label><br />
-			    <a href="index.php?option=com_handout&amp;section=categories"><small>( Edit Categories in Handout )</small></a>
+				<a href="index.php?option=com_handout&amp;section=categories"><small>( Edit Categories in Handout )</small></a>
 			</td>
 			<td valign="top">
 				<?php echo $catselectlist;?>

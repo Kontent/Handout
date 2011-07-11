@@ -1,20 +1,19 @@
 <?php
- /**
+/**
  * Handout - The Joomla Download Manager
- * @version 	$Id: view.html.php
  * @package 	Handout
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 
 
-defined ( '_JEXEC' ) or die ( 'Restricted access' );
+defined('_JEXEC') or die;
 
 jimport ( 'joomla.application.component.view' );
 
-require_once (JPATH_COMPONENT_HELPERS . DS . 'helper.php');
-require_once (JPATH_COMPONENT_HELPERS . DS . 'search.php');
+require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
+require_once JPATH_COMPONENT_HELPERS . DS . 'search.php';
 
 class HandoutViewSearch extends JView {
 	function display($tpl = null) {

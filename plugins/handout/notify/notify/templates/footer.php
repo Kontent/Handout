@@ -1,10 +1,10 @@
 <?php
-/* @version 	$Id: footer.php
+/**
  * @package 	Handout Notify
  * @copyright 	(C) 2011 Kontent Design. All rights reserved.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
- **/
+ */
 defined('_JEXEC') or die('Restricted access');
 ?>
 <br />
