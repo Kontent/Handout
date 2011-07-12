@@ -24,6 +24,9 @@ Legend:
 
 -------------
 
+7-Jul-2011 Arvind
+# Fixed bug in Download Codes frontend
+
 
 4-Jul-2011 Arvind
 ^ Renamed admin.handout.php to handout.php
