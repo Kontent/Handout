@@ -24,6 +24,9 @@ Legend:
 
 -------------
 
+11-Jul-2011 Arvind
+^ Changed url to show document and category instead of doc_details and cat_view
+
 7-Jul-2011 Arvind
 # Fixed bug in Download Codes frontend
 
