@@ -56,8 +56,8 @@ if (! isset ( $section )) {
 // add stylesheet
 
 $css = JUri::base(true) . '/components/com_handout/includes/handout.css';
-$app = JFactory::getApplication();
-$app->addCustomHeadTag ( '<link rel="stylesheet" type="text/css" media="all" href="' . $css . '" />' );
+$doc = JFactory::getDocument();
+$doc->addCustomTag('<link rel="stylesheet" type="text/css" media="all" href="' . $css . '" />');
 
 // execute task
 
