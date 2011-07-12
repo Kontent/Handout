@@ -26,6 +26,8 @@ Legend:
 
 11-Jul-2011 Arvind
 ^ Changed url to show document and category instead of doc_details and cat_view
+^ Changed reference to E_WARNTITLE constant to COM_HANDOUT_ENTRY_NAME in licenses.html.php
+^ Modified documents.html.php to get task from url rather than global variable
 
 7-Jul-2011 Arvind
 # Fixed bug in Download Codes frontend

@@ -403,7 +403,8 @@ function saveDocument()
 	HANDOUT_token::check() or die('Invalid Token');
 
 	$database = &JFactory::getDBO();
-	global $task, $_HANDOUT_USER;
+	$task = JRequest::getCmd('task');
+	global $_HANDOUT_USER;
 
 
 	//fetch current id

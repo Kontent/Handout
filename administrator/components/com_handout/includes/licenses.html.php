@@ -32,7 +32,7 @@ class HTML_HandoutAgreements {
 					return;
 				  }
 				if (form.name.value == "") {
-					alert ( "<?php echo _E_WARNTITLE;?>" );
+					alert ( "<?php echo JText::_('COM_HANDOUT_ENTRY_NAME');?>" );
 				} else {
 				  <?php
 				  	  jimport( 'joomla.html.editor' );
