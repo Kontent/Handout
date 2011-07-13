@@ -23,7 +23,7 @@ Legend:
 ! -> Note
 
 -------------
-
+ 
 13-Jul-2011 Arvind
 ^ Changed reference to E_WARNTITLE constant to COM_HANDOUT_ENTRY_NAME in licenses.html.php
 ^ Modified documents.html.php to get task from url rather than global variable
