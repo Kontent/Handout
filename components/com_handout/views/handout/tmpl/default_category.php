@@ -42,7 +42,7 @@ defined('_JEXEC') or die;
 			?><div class="hcat-description"><?php echo $this->category->data->description;?></div><?php
 		endif;
 	?>
-
+		<div class="clr"></div>
 	</div>
 	<div class="clr"></div>
 <?php endif; ?>

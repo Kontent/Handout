@@ -29,12 +29,14 @@ Legend:
 ^ Modified documents.html.php to get task from url rather than global variable
 ^ Modified Download Code frontend to show login/register link rather than the form, if required
 
+13-Jul-2011 Severdia
+# Fixed CSS for category headers
+
 11-Jul-2011 Arvind
 ^ Changed url to show document and category instead of doc_details and cat_view
 
 7-Jul-2011 Arvind
 # Fixed bug in Download Codes frontend
-
 
 4-Jul-2011 Arvind
 ^ Renamed admin.handout.php to handout.php
