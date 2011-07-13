@@ -473,26 +473,23 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 				</td>
 			</tr>
 			<tr>
-				<td valign="top"><?php echo JText::_('COM_HANDOUT_DOCURL_LABEL'); ?>
-
-				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DOCURL_LABEL');?>::<?php echo JText::_('COM_HANDOUT_DOCURL_DESC');?>">
-								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-								</td>
+				<td valign="top"><?php echo JText::_('COM_HANDOUT_DOCURL_LABEL'); ?></td>
 				<td>
 					<input class="inputbox" type="text" name="document_url" size="50" maxlength="200" value="<?php echo htmlspecialchars($lists['document_url'], ENT_QUOTES); ?>" />
+				
+					<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DOCURL_LABEL');?>::<?php echo JText::_('COM_HANDOUT_DOCURL_DESC');?>">
+					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
 				</td>
 			</tr>
 			<tr>
 				<td width="250" valign="top"><?php echo JText::_('COM_HANDOUT_INFOURL_LABEL');?>
-
-				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_INFOURL_LABEL');?>::<?php echo JText::_('COM_HANDOUT_INFOURL_DESC');?>">
-								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-
-
 					<!--<i>(<?php echo JText::_('COM_HANDOUT_MAKE_SURE');?>)</i>-->
 				</td>
 				<td>
 					<input class="inputbox" type="text" name="docurl" size="50" maxlength="200" value="<?php echo $row->docurl;/*htmlspecialchars($row->docurl, ENT_QUOTES);*/?>" />
+					<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_INFOURL_LABEL');?>::<?php echo JText::_('COM_HANDOUT_INFOURL_DESC');?>">
+								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+				
 				</td>
 			</tr>
 		</table>

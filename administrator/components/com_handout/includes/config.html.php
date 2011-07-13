@@ -101,6 +101,7 @@ class HTML_HandoutConfig
 		</tr>
 	 	 <tr>
 			<td class="col1"><?php echo JText::_('COM_HANDOUT_SECTIONOFFLINE_LABEL');?></td>
+			
 			<td class="col2"><?php echo $lists['isDown'];?></td>
 			<td><span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_SECTIONOFFLINE_LABEL');?>::<?php echo JText::_('COM_HANDOUT_SECTIONOFFLINE_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
@@ -108,22 +109,23 @@ class HTML_HandoutConfig
 		</tr>
 		<tr>
 			<td><?php echo JText::_('COM_HANDOUT_PATH_LABEL');?></td>
+			
 			<td>
 				<?php
 					$newpath = JPATH_ROOT.DS.'handouts';
 					$path = $_HANDOUT->getCfg('handoutpath') ? $_HANDOUT->getCfg('handoutpath') : $newpath;
 				?>
-				<input size="50" type="text" name="handoutpath" value="<?php echo $path?>" />
+				<input size="50" type="text" name="handoutpath" value="<?php echo $path?>" />&nbsp;&nbsp;<input type="button" value="<?php echo JText::_('COM_HANDOUT_RESETDEFAULT_LABEL');?>" name="Reset" onclick="document.adminForm.handoutpath.value='<?php echo addslashes($newpath);?>';" />
+				
 			</td>
 			<td>
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_PATH_LABEL');?>::<?php echo JText::_('COM_HANDOUT_PATH_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-
-				<input type="button" value="<?php echo JText::_('COM_HANDOUT_RESETDEFAULT_LABEL');?>" name="Reset" onclick="document.adminForm.handoutpath.value='<?php echo addslashes($newpath);?>';" />
 			</td>
 		</tr>
 		 <tr >
 			<td><?php echo JText::_('COM_HANDOUT_PROCESS_PLUGINS_LABEL');?></td>
+			
 			<td><?php echo $lists['process_bots'];?></td>
 			<td>
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_PROCESS_PLUGINS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_PROCESS_PLUGINS_DESC');?>">
@@ -132,6 +134,7 @@ class HTML_HandoutConfig
 		</tr>
 		 <tr >
 			<td><?php echo JText::_('COM_HANDOUT_ANALYTICS_LABEL');?></td>
+			
 			<td> <input size="10" type="text" name="ga_code" value="<?php echo $_HANDOUT->getCfg('ga_code') ?>"  /></td>
 			<td>
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_ANALYTICS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_ANALYTICS_DESC');?>">
@@ -781,11 +784,11 @@ class HTML_HandoutConfig
 		</tr>
 		<tr>
 			<td><?php echo JText::_('COM_HANDOUT_ALLOWEDHOSTS_LABEL');?></td>
-			<td><input type="text" name="security_allowed_hosts" value="<?php echo $_HANDOUT->getCfg('security_allowed_hosts' , $_SERVER["HTTP_HOST"])?>" /></td>
+			<td><input type="text" name="security_allowed_hosts" value="<?php echo $_HANDOUT->getCfg('security_allowed_hosts' , $_SERVER["HTTP_HOST"])?>" />&nbsp;&nbsp;<input type="button" value="<?php echo JText::_('COM_HANDOUT_RESETDEFAULT_LABEL');?>" name="Reset" onclick="document.adminForm.security_allowed_hosts.value='<?php echo $_SERVER['HTTP_HOST'];?>';" /></td>
 			<td>
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_ALLOWEDHOSTS_LABEL');?>::<?php echo JText::_('COM_HANDOUT_ALLOWEDHOSTS_DESC');?>">
 					<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
-				<input type="button" value="<?php echo JText::_('COM_HANDOUT_RESETDEFAULT_LABEL');?>" name="Reset" onclick="document.adminForm.security_allowed_hosts.value='<?php echo $_SERVER['HTTP_HOST'];?>';" />
+				
 			</td>
 		</tr>
 		<tr>

@@ -44,7 +44,7 @@ div.header {
 }
 
 .col1 {
-	width: 150px;
+	width: 160px;
 }
 
 .col2 {
@@ -147,6 +147,13 @@ p.version {
 
 select option.label { background-color: #EEE; border: 1px solid #DDD; color : #333; }
 table.adminlist { margin-bottom: 15px;}
+
+table.adminform td {
+	white-space:nowrap;
+}
+table.adminform td .hasTip{
+	margin-left: 10px;
+}
 
 /* Import Icons */
 .bgwhite {

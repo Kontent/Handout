@@ -26,6 +26,7 @@ Legend:
 
 13-Jul-2011 Severdia
 # Fixed CSS for category headers
+^ Made tooltips position consistent in backend
 
 11-Jul-2011 Arvind
 ^ Changed url to show document and category instead of doc_details and cat_view
