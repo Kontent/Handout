@@ -24,6 +24,9 @@ Legend:
 
 -------------
 
+13-Jul-2011 Severdia
+# Fixed CSS for category headers
+
 11-Jul-2011 Arvind
 ^ Changed url to show document and category instead of doc_details and cat_view
 ^ Changed reference to E_WARNTITLE constant to COM_HANDOUT_ENTRY_NAME in licenses.html.php
@@ -31,7 +34,6 @@ Legend:
 
 7-Jul-2011 Arvind
 # Fixed bug in Download Codes frontend
-
 
 4-Jul-2011 Arvind
 ^ Renamed admin.handout.php to handout.php

@@ -36,6 +36,7 @@
 #handout h2.hcat-name {
 	padding-top: 0;
 	margin-top:5px;
+	margin-bottom: 5px;
 }
 #handout .active {
 	font-weight: bold;
@@ -201,7 +202,7 @@
 
 }
 .hcat-head {
-	height: 80px;
+	/* height: 80px; */
 	margin-bottom: 20px;
 	vertical-align: top;
 	background: #dcdcdc;
@@ -384,7 +385,8 @@ select option.label {
 	text-align:center !important;
 	margin: 40px 0;
 }
-.hdoc-entercode {
+.hdoc-entercode,
+.hdoc-enteremail {
 	font-weight:bold;
 }
 .hdoc-inputcode,
@@ -396,7 +398,9 @@ select option.label {
 	clear:left;
 	margin: 15px 0;
 }
-
+.hdoc-code-form p{
+	margin: 50px 0 0 0;
+}
 
 /* Modules and Plug-ins
 ------------------------------------------------------------------------- */
