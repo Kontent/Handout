@@ -29,6 +29,15 @@ class HandoutViewCode extends JView {
 
 		$usertype = JRequest::getVar('usertype', 0);
 		$code = JRequest::getVar('code', '');
+		
+		$handoutUser = &HandoutFactory::getHandoutUser ();
+		if ($usertype==1 && $handoutUser->userid == 0) {
+			//needs to be registered or logged on 
+			$tmpl = 'restricted';				
+		}
+		else {
+			$tmpl = null;
+		}
 
 		if ($code) {
 			//process the code
@@ -40,7 +49,7 @@ class HandoutViewCode extends JView {
 			$this->assignRef('code', $code);
 			$this->assignRef('conf', $handout->getAllCfg());
 			$this->assignRef('usertype', $usertype);
-			parent::display();
+			parent::display($tmpl);
 		}
 	}
 }
