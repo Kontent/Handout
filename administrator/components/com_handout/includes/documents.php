@@ -119,7 +119,7 @@ function showDocuments($pend, $sort, $view_type)
 		$sorttemp = "a.catid,a.docname";
 	}
 
-	$query = "SELECT a.*, cc.name AS category, u.name AS editor"
+	$query = "SELECT a.*, cc.".COM_HANDOUT_FIELD_CATEGORY_NAME." AS category, u.name AS editor"
 	 . "\n FROM #__handout AS a"
 	 . "\n LEFT JOIN #__users AS u ON u.id = a.checked_out"
 	 . "\n LEFT JOIN #__categories AS cc ON cc.id = a.catid"

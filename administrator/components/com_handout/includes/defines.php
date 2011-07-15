@@ -103,3 +103,23 @@ define('COM_HANDOUT_TOOLTIP_ICON', '../../../media/com_handout/images/icon-16-to
 
 //Other
 define('COM_HANDOUT_DOC_LANGUAGE_XML', JPATH_ROOT . '/administrator/components/com_handout/handout.doc.languages.xml' );
+
+// Table names
+if (version_compare(JVERSION, '1.6', 'lt' )) {
+	// Version 1.5
+	define('J16PLUS', false);
+	define('COM_HANDOUT_TABLE_GROUPS', '#__groups');
+	define('COM_HANDOUT_FIELD_GROUP_NAME', 'name');
+	define('COM_HANDOUT_FIELD_SECTION', 'section');
+	define('COM_HANDOUT_FIELD_CATEGORY_NAME', 'name');
+	define('COM_HANDOUT_FIELD_CATEGORY_ORDERING', 'ordering');
+}
+else {
+	// Version 1.6+
+	define('J16PLUS', true);
+	define('COM_HANDOUT_TABLE_GROUPS', '#__viewlevels');
+	define('COM_HANDOUT_FIELD_GROUP_NAME', 'title');
+	define('COM_HANDOUT_FIELD_SECTION', 'extension');
+	define('COM_HANDOUT_FIELD_CATEGORY_NAME', 'title');
+	define('COM_HANDOUT_FIELD_CATEGORY_ORDERING', 'lft');
+}

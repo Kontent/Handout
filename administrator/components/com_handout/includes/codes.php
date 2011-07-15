@@ -12,17 +12,17 @@
 defined('_JEXEC') or die;
 
 include_once dirname(__FILE__) . '/codes.html.php';
-JArrayHelper::toInteger(( $cid ));
+JArrayHelper::toInteger(($cid));
 
 switch ($task) {
-	case "publish" :
+	case "publish":
 		publishCode($cid, 1);
 		break;
 	case "unpublish":
 		publishCode($cid, 0);
 		break;
 	case "edit":
-		$cid = (isset( $cid[0] )) ? $cid[0] : 0;
+		$cid = (isset($cid[0])) ? $cid[0] : 0;
 		editCode($option, $cid);
 		break;
 	case "delete":
@@ -37,7 +37,7 @@ switch ($task) {
 		cancelCode($option);
 		break;
 	case "show":
-	default :
+	default:
 		showCodes($option);
 }
 
@@ -46,31 +46,29 @@ function editCode($option, $uid)
 	$database = &JFactory::getDBO();
 
 	// disable the main menu to force user to use buttons
-	$_REQUEST['hidemainmenu']=1;
+	$_REQUEST['hidemainmenu'] = 1;
 
 	$row = new HandoutCodes($database);
 	$row->load($uid);
 
 	// build the html radio buttons for published
-	$lists['published'] = JHTML::_('select.booleanlist','published', 'class="inputbox"', $row->published);
+	$lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $row->published);
 
 	// build the html select list for downloads
-	$query = "SELECT id AS value, docname AS text"
-	 . "\n FROM #__handout"
-	 . "\n ORDER BY docname" ;
+	$query = "SELECT id AS value, docname AS text" . "\n FROM #__handout" . "\n ORDER BY docname";
 
 	$database->setQuery($query);
 
-	$doclist[]		 	= JHTML::_('select.option',  '0', JText::_( '- Select Download -' ), 'value', 'text' );
-	$doclist			= array_merge( $doclist, $database->loadObjectList() );
-	$lists['downloads'] = JHTML::_('select.genericlist', $doclist, 'docid', 'class="inputbox" size="1"','value', 'text', intval( $row->docid ) );
+	$doclist[] = JHTML::_('select.option', '0', JText::_('- Select Download -'), 'value', 'text');
+	$doclist = array_merge($doclist, $database->loadObjectList());
+	$lists['downloads'] = JHTML::_('select.genericlist', $doclist, 'docid', 'class="inputbox" size="1"', 'value', 'text', intval($row->docid));
 
 	//build the html radio buttons for usage
 	$usage = HandoutCodes::getCodesUsage();
-	$lists['usage'] = JHTML::_( 'select.radiolist', $usage, 'usage', '', 'value', 'text', $row->usage );
+	$lists['usage'] = JHTML::_('select.radiolist', $usage, 'usage', '', 'value', 'text', $row->usage);
 
 	//fetch the set of codes already selected
-	$query="SELECT name FROM #__handout_codes";
+	$query = "SELECT name FROM #__handout_codes";
 	$database->setQuery($query);
 	$lists['usedcodes'] = $database->loadResultArray();
 
@@ -102,13 +100,14 @@ function saveCode($option)
 	}
 	$row->checkin();
 
-	if( $task == 'save' ) {
+	if ($task == 'save') {
 		$url = 'index.php?option=com_handout&section=codes';
-	} else { // $task = 'apply'
-		$url = 'index.php?option=com_handout&section=codes&task=edit&cid[0]='.$row->id;
+	}
+	else { // $task = 'apply'
+		$url = 'index.php?option=com_handout&section=codes&task=edit&cid[0]=' . $row->id;
 	}
 
-	$app->redirect( $url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
+	$app->redirect($url, JText::_('COM_HANDOUT_SAVED_CHANGES'));
 }
 
 function cancelCode($option)
@@ -141,25 +140,25 @@ function showCodes($option)
 	$total = $database->loadResult();
 	echo $database->getErrorMsg();
 
-	$id = JRequest::getVar( 'id', 0);
+	$id = JRequest::getVar('id', 0);
 
-	require_once JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'html'.DS.'pagination.php';
+	require_once JPATH_ROOT . DS . 'libraries' . DS . 'joomla' . DS . 'html' . DS . 'pagination.php';
 	$pageNav = new JPagination($total, $limitstart, $limit);
 
-	$query = "SELECT c.id, c.name, c.published, c.usage, h.docname, cat.name as category"
-			."\n FROM #__handout_codes AS c"
-			."\n LEFT JOIN #__handout AS h"
-			."\n ON c.docid=h.id"
-			."\n LEFT JOIN #__categories AS cat"
-			."\n ON cat.id=h.catid"
-			.(count($where) ? "\n WHERE " . implode(' AND ', $where) : "")
-			."\n ORDER BY c.name";
-	$database->setQuery( $query, $limitstart,$limit);
+	$query = "SELECT c.id, c.name, c.published, c.usage, h.docname, cat.".COM_HANDOUT_FIELD_CATEGORY_NAME." as category"
+		. "\n FROM #__handout_codes AS c"
+		. "\n LEFT JOIN #__handout AS h"
+		. "\n ON c.docid=h.id"
+		. "\n LEFT JOIN #__categories AS cat"
+		. "\n ON cat.id=h.catid"
+		. (count($where) ? "\n WHERE " . implode(' AND ', $where) : "")
+		. "\n ORDER BY c.name";
+	$database->setQuery($query, $limitstart, $limit);
 	$rows = $database->loadObjectList();
 
 	// show the beginning of each code text
-	foreach ( $rows as $key=>$row ) {
-		$rows[$key]->code = substr( strip_tags($row->code), 0, 100 ) . ' (...)';
+	foreach ($rows as $key => $row) {
+		$rows[$key]->code = substr(strip_tags($row->code), 0, 100) . ' (...)';
 	}
 
 	if ($database->getErrorNum()) {
@@ -179,13 +178,13 @@ function removeCode($cid, $option)
 	if ($code->remove($cid)) {
 		$app = &JFactory::getApplication();
 		$app->redirect("index.php?option=com_handout&section=codes");
-	} else {
+	}
+	else {
 		echo "<script> alert('Problem removing codes'); window.history.go(-1);</script>\n";
 		exit();
 	}
 
 }
-
 
 function publishCode($cid, $publish = 1)
 {

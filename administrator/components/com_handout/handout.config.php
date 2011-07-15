@@ -1,12 +1,12 @@
 <?php
 if(defined('_HandoutConfig')) {
 return true;
-} else {
-define('_HandoutConfig',1);
+} else { 
+define('_HandoutConfig',1); 
 
 class HandoutConfig
 {
-// Last Edit: Thu, 2011-Jun-30 08:16
+// Last Edit: Fri, 2011-Jul-15 17:27
 // Edited by: admin
 var $HANDOUT_version = '1.0';
 var $allow_bulk_download = '0';
