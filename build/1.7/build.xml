@@ -16,9 +16,6 @@
 
 	<!--
 	Usage:
-	1. Build off the trunk
-	# phing -Dscmusr=username -Dscmpwd=password
-
 	3. Build and rename files with version
 	# phing -Dversion=1.0.1
 	-->
@@ -210,5 +207,4 @@
 		</if>
 		
 	</target>
-
 </project>
