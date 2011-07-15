@@ -161,7 +161,8 @@ function editCategory($section = '', $uid = 0)
 	}
 	// make order list
 	$order = array();
-	$database->setQuery("SELECT COUNT(*) FROM #__categories WHERE section='$row->section'");
+	$fName = COM_HANDOUT_FIELD_SECTION;
+	$database->setQuery("SELECT COUNT(*) FROM #__categories WHERE ".COM_HANDOUT_FIELD_SECTION."='".$row->$fName."'");
 	$max = intval($database->loadResult()) + 1;
 
 	for ($i = 1; $i < $max; $i++) {
@@ -169,7 +170,11 @@ function editCategory($section = '', $uid = 0)
 	}
 	// build the html select list for ordering
 	$query = "SELECT ordering AS value, title AS text" . "\n FROM #__categories" . "\n WHERE section = '$row->section'" . "\n ORDER BY ordering";
-	$lists['ordering'] = JHTML::_('list.specificordering', $row, $uid, $query);
+
+	if (!J16PLUS) {
+		$lists['ordering'] = JHTML::_('list.specificordering', $row, $uid, $query);
+	}
+
 	// build the select list for the image positions
 	$active = ($row->image_position ? $row->image_position : 'left');
 	$lists['image_position'] = JHTML::_('list.positions', 'image_position', $active, null, 0, 0);
@@ -207,13 +212,26 @@ function saveCategory()
 		exit();
 	}
 
+	if (J16PLUS) {
+		$row->extension = $row->section;
+
+		unset($row->image);
+		unset($row->image_position);
+		unset($row->name);
+		unset($row->ordering);
+		unset($row->section);
+	}
+
 	if (!$row->store()) {
 		echo "<script> alert('" . $row->getError() . "'); window.history.go(-1); </script>\n";
 		exit();
 	}
 
 	$row->checkin();
-	$row->reorder("section='com_handout' AND parent_id=" . (int) $row->parent_id);
+
+	if (!J16PLUS) {
+		$row->reorder("section='com_handout' AND parent_id=" . (int) $row->parent_id);
+	}
 
 	/* http://forum.joomlatools.org/viewtopic.php?f=14&t=316
 	$oldtitle =  strip_tags( JRequest::getVar( 'oldtitle', null) );

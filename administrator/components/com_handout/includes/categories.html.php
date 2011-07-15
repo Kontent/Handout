@@ -291,6 +291,7 @@ class HTML_HandoutCategories
 							<?php echo $lists['image_position'];?>
 							</td>
 						</tr>
+						<?php if (!J16PLUS) : ?>
 						<tr>
 							<td>
 							<?php echo JText::_('COM_HANDOUT_ORDERING_LABEL');?>
@@ -299,6 +300,7 @@ class HTML_HandoutCategories
 							<?php echo $lists['ordering'];?>
 							</td>
 						</tr>
+						<?php endif; ?>
 						<tr>
 							<td>
 							<?php echo JText::_('COM_HANDOUT_ACCESSLEVEL_LABEL');?>

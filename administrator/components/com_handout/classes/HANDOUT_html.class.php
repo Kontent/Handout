@@ -44,7 +44,6 @@ class HandoutHTML_Select extends HTML_Select
 	 * @return	void
 	 * @throws
 	 */
-
 	function HandoutHTML_Select($name = '', $size = 1, $attributes = null, $tabOffset = 0)
 	{
 		parent::HTML_Select($name, $size, false, $attributes, $tabOffset);
@@ -56,7 +55,6 @@ class HandoutHTML_Select extends HTML_Select
  * Utility class for drawing user select lists
  * @package HANDOUT_1.0
  */
-
 class HandoutHTML_UserSelect extends HandoutHTML_Select
 {
 	function HandoutHTML_UserSelect($name = '', $size = 1, $attributes = null, $tabOffset = 0)
@@ -190,7 +188,7 @@ class HandoutHTML extends JHTML
 					. ".options[selectedIndex].value} else {document.imagelib.src='../images/blank.png'}\"";
 		}
 		if (!$directory) {
-			$directory = '/images/stories';
+			$directory = J16PLUS ? '/images' : '/images/stories';
 		}
 
 		$imageFiles = JFolder::files($root_path . $directory);
