@@ -10,10 +10,11 @@
  */
 defined('_JEXEC') or die;
 
-if (defined ( '_HANDOUT_USER' )) {
+if (defined('_HANDOUT_USER')) {
 	return true;
-} else {
-	define ( '_HANDOUT_USER', 1 );
+}
+else {
+	define('_HANDOUT_USER', 1);
 }
 
 /**
@@ -22,7 +23,8 @@ if (defined ( '_HANDOUT_USER' )) {
  * @desc class purpose is to handle users and groups permissions and related functions
  */
 
-class HANDOUT_User {
+class HANDOUT_User
+{
 	/**
 	 * @access 	publi
 	 * @var 		int
@@ -107,68 +109,62 @@ class HANDOUT_User {
 	 * @desc 	constructor
 	 * @return 	void
 	 */
-
-	function HANDOUT_User() {
-		$user = &JFactory::getUser ();
+	function HANDOUT_User()
+	{
+		$user = &JFactory::getUser();
 
 		$this->userid = $user->id;
 		$this->username = $user->username;
-		$this->usertype = strtolower ( $user->usertype );
+		$this->usertype = strtolower($user->usertype);
 		$this->gid = $user->get('gid');
 
-		$this->setUsertype ();
-		$this->groupsIn = $this->getGroupsIn ();
+		$this->setUsertype();
+		$this->groupsIn = $this->getGroupsIn();
 
 	}
 
-	function setUsertype() {
+	function setUsertype()
+	{
 		switch ($this->usertype) {
-			case 'super administrator' :
-				{
+			case 'super administrator': {
 					$this->isAdmin = 1;
 					$this->isRegistered = 1;
 					$this->isSpecial = 1;
 				}
 				break;
-			case 'administrator' :
-				{
+			case 'administrator': {
 					$this->isAdmin = 1;
 					$this->isRegistered = 1;
 					$this->isSpecial = 1;
 				}
 				break;
-			case 'manager' :
-				{
+			case 'manager': {
 					$this->isAdmin = 1;
 					$this->isManager = 1;
 					$this->isRegistered = 1;
 					$this->isSpecial = 1;
 				}
 				break;
-			case 'editor' :
-				{
+			case 'editor': {
 					$this->isEditor = 1;
 					$this->isRegistered = 1;
 					$this->isSpecial = $this->specialcompat;
 				}
 				break;
-			case 'publisher' :
-				{
+			case 'publisher': {
 					$this->isPublisher = 1;
 					$this->isRegistered = 1;
 					$this->isSpecial = $this->specialcompat;
 				}
 				break;
-			case 'author' :
-				{
+			case 'author': {
 					$this->isAuthor = 1;
 					$this->isRegistered = 1;
 					$this->isSpecial = $this->specialcompat;
 				}
 				break;
-			case 'user' :
-			case 'registered' :
-				{
+			case 'user':
+			case 'registered': {
 					$this->isRegistered = 1;
 				}
 				break;
@@ -176,29 +172,26 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can access the component.
-
 	 * @return 	bool
-
 	 */
+	function getGroupsIn()
+	{
+		$db = &JFactory::getDBO();
 
-	function getGroupsIn() {
-		$db = &JFactory::getDBO ();
-
-		$groups_in = array ();
+		$groups_in = array();
 
 		//Add Handout groups
 
-		$db->setQuery ( "SELECT groups_id,groups_members " . "\n FROM #__handout_groups" );
-		$all_groups = $db->loadObjectList ();
+		$db->setQuery("SELECT groups_id,groups_members " . "\n FROM #__handout_groups");
+		$all_groups = $db->loadObjectList();
 
-		if (count ( $all_groups )) {
-			foreach ( $all_groups as $a_group ) {
-				$group_list = array ();
-				$group_list = explode ( ',', $a_group->groups_members );
-				if (in_array ( $this->userid, $group_list )) {
-					$groups_in [] = trim ( - 1 * ($a_group->groups_id + 10) );
+		if (count($all_groups)) {
+			foreach ($all_groups as $a_group) {
+				$group_list = array();
+				$group_list = explode(',', $a_group->groups_members);
+				if (in_array($this->userid, $group_list)) {
+					$groups_in[] = trim(-1 * ($a_group->groups_id + 10));
 				}
 			}
 		}
@@ -206,67 +199,61 @@ class HANDOUT_User {
 		//Add Joomla groups
 
 		if ($this->isAuthor) {
-			$groups_in [] = COM_HANDOUT_PERMIT_AUTHOR;
+			$groups_in[] = COM_HANDOUT_PERMIT_AUTHOR;
 		}
 		if ($this->isEditor) {
-			$groups_in [] = COM_HANDOUT_PERMIT_EDITOR;
+			$groups_in[] = COM_HANDOUT_PERMIT_EDITOR;
 		}
 		if ($this->isPublisher) {
-			$groups_in [] = COM_HANDOUT_PERMIT_PUBLISHER;
+			$groups_in[] = COM_HANDOUT_PERMIT_PUBLISHER;
 		}
 
-		if (empty ( $groups_in ))
+		if (empty($groups_in))
 			return '0,0';
 
-		return implode ( ',', $groups_in );
+		return implode(',', $groups_in);
 	}
 
 	/**
-
 	 * @desc 			Checks if the the user is a member of a group
-
 	 * @param 	int 	Group $ ID to check (must be a negative number)
-
 	 * @return 	bool
-
 	 */
-
-	function isInGroup($group_number) {
-		return preg_match ( "/(^|,)$group_number(,|$)/", $this->groupsIn );
+	function isInGroup($group_number)
+	{
+		return preg_match("/(^|,)$group_number(,|$)/", $this->groupsIn);
 	}
 
 	/**
-
 	 * @desc 	checks if the user can preform a certain task
-
 	 * @access  	public
-
 	 * @return 	string	error message
-
 	 */
-	function canPreformTask($doc = null, $task) {
+	function canPreformTask($doc = null, $task)
+	{
 		$err = '';
 
 		if ($this->userid > COM_HANDOUT_PERMIT_USER) {
 			//Make sure we have a document object
 
-			$this->isDocument ( $doc );
+			$this->isDocument($doc);
 
 			// user has no permissions to preform the operation
 
 			$func = "can" . $task;
-			if (! call_user_func ( array (&$this, "" . $func . "" ), $doc )) {
+			if (!call_user_func(array(&$this, "" . $func . ""), $doc)) {
 				$err .= JText::_('COM_HANDOUT_NOT_AUTHORIZED');
 			}
 
 			// document already checked out by other user
 
-			if (! is_null ( $doc ) && $doc->checked_out) {
+			if (!is_null($doc) && $doc->checked_out) {
 				if ($doc->checked_out != $this->userid) {
 					$err .= JText::_('COM_HANDOUT_THE_MODULE') . " $doc->docname " . JText::_('COM_HANDOUT_IS_BEING');
 				}
 			}
-		} else {
+		}
+		else {
 			$err .= JText::_('COM_HANDOUT_NOLOG');
 		}
 
@@ -274,43 +261,35 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc checks in the user can access the component.
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canAccess() {
-		$handout = &HandoutFactory::getHandout ();
+	function canAccess()
+	{
+		$handout = &HandoutFactory::getHandout();
 		// if the user is not logged in...
 
-		if (! $this->userid && $handout->getCfg ( 'registered' ) == COM_HANDOUT_GRANT_NO) {
+		if (!$this->userid && $handout->getCfg('registered') == COM_HANDOUT_GRANT_NO) {
 			return 0;
 		}
 		// check if the component is down
 
-		if (! $this->isSpecial && $handout->getCfg ( 'isDown' )) {
-			return - 1;
+		if (!$this->isSpecial && $handout->getCfg('isDown')) {
+			return -1;
 		}
 
 		return 1;
 	}
 
 	/**
-
 	 * @desc 	checks if the user can download a document
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canUpload() {
-		$handout = &HandoutFactory::getHandout ();
+	function canUpload()
+	{
+		$handout = &HandoutFactory::getHandout();
 
 		// preform checks
 
@@ -319,7 +298,7 @@ class HANDOUT_User {
 		}
 
 		if ($this->userid) {
-			$upload = $handout->getCfg ( 'user_upload' );
+			$upload = $handout->getCfg('user_upload');
 
 			if ($upload == $this->userid || $upload == COM_HANDOUT_PERMIT_REGISTERED) {
 				return true;
@@ -337,7 +316,7 @@ class HANDOUT_User {
 				return true;
 			}
 
-			if ($this->isInGroup ( $upload )) {
+			if ($this->isInGroup($upload)) {
 				return true;
 			}
 		}
@@ -346,27 +325,23 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can download a document
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-	function canDownload($doc = null) {
-		$handout = &HandoutFactory::getHandout ();
-		$db = &JFactory::getDBO ();
+	function canDownload($doc = null)
+	{
+		$handout = &HandoutFactory::getHandout();
+		$db = &JFactory::getDBO();
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
 		//check if user has access to the document's category
 
-		if (! $this->canAccessCategory ( $doc->catid )) {
+		if (!$this->canAccessCategory($doc->catid)) {
 			return false;
 		}
 
@@ -376,11 +351,11 @@ class HANDOUT_User {
 			return true;
 		}
 
-		if ($this->canEdit ( $doc, false )) {
+		if ($this->canEdit($doc, false)) {
 			return true;
 		}
 
-		if ($this->userid == 0 && $handout->getCfg ( 'registered' ) != COM_HANDOUT_GRANT_RX) {
+		if ($this->userid == 0 && $handout->getCfg('registered') != COM_HANDOUT_GRANT_RX) {
 			return false;
 		}
 
@@ -397,18 +372,19 @@ class HANDOUT_User {
 				return true;
 			}
 
-			if ($doc->docowner < COM_HANDOUT_PERMIT_GROUP && $this->isInGroup ( $doc->docowner )) {
+			if ($doc->docowner < COM_HANDOUT_PERMIT_GROUP && $this->isInGroup($doc->docowner)) {
 				return true;
 			}
 
 			if ($doc->docsubmittedby == $this->userid) {
-				if (is_a ( $doc, 'HandoutDocument' )) {
-					$authorCan = $doc->authorCan ();
-				} else { // Naughty! No object. Create a temp one
+				if (is_a($doc, 'HandoutDocument')) {
+					$authorCan = $doc->authorCan();
+				}
+				else { // Naughty! No object. Create a temp one
 
-					$tempDoc = new HandoutDocument ( $db );
+					$tempDoc = new HandoutDocument($db);
 					$tempDoc->attribs = $doc->attribs;
-					$authorCan = $tempDoc->authorCan ();
+					$authorCan = $tempDoc->authorCan();
 				}
 				if ($authorCan >= COM_HANDOUT_AUTHOR_CAN_READ) {
 					return true;
@@ -419,23 +395,18 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can edit a document entry
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canEdit($doc = null, $checkCreator = true) {
-		$db = &JFactory::getDBO ();
+	function canEdit($doc = null, $checkCreator = true)
+	{
+		$db = &JFactory::getDBO();
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
 		// preform checks
 
@@ -446,7 +417,7 @@ class HANDOUT_User {
 
 		//check if user has access to the document's category
 
-		if (! $this->canAccessCategory ( $doc->catid )) {
+		if (!$this->canAccessCategory($doc->catid)) {
 			return false;
 		}
 
@@ -461,20 +432,21 @@ class HANDOUT_User {
 			// Check Creator
 
 			if ($checkCreator && $doc->docsubmittedby == $this->userid) {
-				if (is_a ( $doc, 'HandoutDocument' )) {
-					$authorCan = $doc->authorCan ();
-				} else { // Naughty! No object. Create a temp one
+				if (is_a($doc, 'HandoutDocument')) {
+					$authorCan = $doc->authorCan();
+				}
+				else { // Naughty! No object. Create a temp one
 
-					$tempDoc = new HandoutDocument ( $db );
+					$tempDoc = new HandoutDocument($db);
 					$tempDoc->attribs = $doc->attribs;
-					$authorCan = $tempDoc->authorCan ();
+					$authorCan = $tempDoc->authorCan();
 				}
 				if ($authorCan & COM_HANDOUT_AUTHOR_CAN_EDIT) {
 					return true;
 				}
 			}
 
-			if ($this->isInGroup ( $maintainer )) {
+			if ($this->isInGroup($maintainer)) {
 				return true;
 			}
 		}
@@ -483,38 +455,32 @@ class HANDOUT_User {
 
 	}
 
-
 	/**
-
 	 * @desc 	Checks if the user can publish a document
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canPublish($doc = null) {
-		$handout = &HandoutFactory::getHandout ();
+	function canPublish($doc = null)
+	{
+		$handout = &HandoutFactory::getHandout();
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
 		if ($this->isSpecial) {
 			return true;
 		}
 
 		if ($this->userid) {
-			$publish = $handout->getCfg ( 'user_publish' );
+			$publish = $handout->getCfg('user_publish');
 
 			if ($publish == $this->userid || $publish == COM_HANDOUT_PERMIT_REGISTERED) {
 				return true;
 			}
 
-			if ($this->isInGroup ( $publish )) {
+			if ($this->isInGroup($publish)) {
 				return true;
 			}
 		}
@@ -523,36 +489,31 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can unpublish a document
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return	bool
-
 	 */
-
-	function canUnPublish($doc = null) {
-		$handout = &HandoutFactory::getHandout ();
+	function canUnPublish($doc = null)
+	{
+		$handout = &HandoutFactory::getHandout();
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
 		if ($this->isSpecial) {
 			return true;
 		}
 
 		if ($this->userid) {
-			$publish = $handout->getCfg ( 'user_publish' );
+			$publish = $handout->getCfg('user_publish');
 
 			if ($publish == $this->userid || $publish == COM_HANDOUT_PERMIT_REGISTERED) {
 				return true;
 			}
 
-			if ($this->isInGroup ( $publish )) {
+			if ($this->isInGroup($publish)) {
 				return true;
 			}
 		}
@@ -561,169 +522,135 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc 	checks if the user can checkout a document
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canCheckOut($doc = null) {
-		$handout = &HandoutFactory::getHandout ();
+	function canCheckOut($doc = null)
+	{
+		$handout = &HandoutFactory::getHandout();
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
 		if ($doc->checked_out) {
 			return false;
 		}
 
-		return $this->canEdit ( $doc );
+		return $this->canEdit($doc);
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can checkin a document
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canCheckIn($doc = null) {
+	function canCheckIn($doc = null)
+	{
 		$handout = &HandoutFactory::getHandout();
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
-		if (! $doc->checked_out) {
+		if (!$doc->checked_out) {
 			return false;
 		}
 
-		return $this->canEdit ( $doc );
+		return $this->canEdit($doc);
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can move a document
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canMove($doc = null) {
+	function canMove($doc = null)
+	{
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
-		return $this->canEdit ( $doc );
+		return $this->canEdit($doc);
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can reset a documents hit counter
-
 	 * @param 	object $ or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-	function canReset($doc = null) {
+	function canReset($doc = null)
+	{
 		global $_HANDOUT;
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
-		return $this->canEdit ( $doc );
+		return $this->canEdit($doc);
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can delete a document
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canDelete($doc = null) {
+	function canDelete($doc = null)
+	{
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
-		return $this->canEdit ( $doc );
+		return $this->canEdit($doc);
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can update a document
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canUpdate($doc = null) {
+	function canUpdate($doc = null)
+	{
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
-		return $this->canEdit ( $doc );
+		return $this->canEdit($doc);
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can assign viewers
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-
-	function canAssignViewer($doc = null) {
+	function canAssignViewer($doc = null)
+	{
 		$handout = &HandoutFactory::getHandout();
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
 		if ($this->isSpecial) {
 			return true;
 		}
 
-		if ($handout->getCfg ( 'reader_assign' ) & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
+		if ($handout->getCfg('reader_assign') & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
 			if ($this->userid == $doc->docsubmittedby) {
 				return true;
 			}
 		}
 
-		if ($handout->getCfg ( 'reader_assign' ) & COM_HANDOUT_ASSIGN_BY_EDITOR) {
-			if ($this->canEdit ( $doc, false )) {
+		if ($handout->getCfg('reader_assign') & COM_HANDOUT_ASSIGN_BY_EDITOR) {
+			if ($this->canEdit($doc, false)) {
 				return true;
 			}
 		}
@@ -733,35 +660,31 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can assign maintainer
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-	function canAssignMaintainer($doc = null) {
-		$handout = &HandoutFactory::getHandout ();
+	function canAssignMaintainer($doc = null)
+	{
+		$handout = &HandoutFactory::getHandout();
 
 		//Make sure we have a document object
 
-		$this->isDocument ( $doc );
+		$this->isDocument($doc);
 
 		if ($this->isSpecial) {
 			return true;
 		}
 
-		if ($handout->getCfg ( 'editor_assign' ) & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
+		if ($handout->getCfg('editor_assign') & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
 			if ($this->userid == $doc->docsubmittedby) {
 				return true;
 			}
 		}
 
-		if ($handout->getCfg ( 'editor_assign' ) & COM_HANDOUT_ASSIGN_BY_EDITOR) {
-			if ($this->canEdit ( $doc, false )) {
+		if ($handout->getCfg('editor_assign') & COM_HANDOUT_ASSIGN_BY_EDITOR) {
+			if ($this->canEdit($doc, false)) {
 				return true;
 			}
 		}
@@ -771,38 +694,34 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc 	Checks if the user can access a category
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	public
-
 	 * @return 	bool
-
 	 */
-	function canAccessCategory($category = null) {
+	function canAccessCategory($category = null)
+	{
 		//Make sure we have a document object
 
-		$category = $this->isCategory ( $category );
+		$category = $this->isCategory($category);
 
-		if (! $category->published and ! $this->isSpecial) {
+		if (!$category->published and !$this->isSpecial) {
 			return false;
 		}
 
 		switch ($category->access) {
-			case '0' : //public
+			case '0': //public
 
 				return true;
 				break;
-			case '1' : //registered
+			case '1': //registered
 
 				if ($this->isRegistered) {
 					return true;
 				}
 				break;
 				break;
-			case '2' : //special
+			case '2': //special
 
 				if ($this->isSpecial) {
 					return true;
@@ -814,59 +733,50 @@ class HANDOUT_User {
 	}
 
 	/**
-
 	 * @desc 	Transform the document to a object if necessary
-
 	 * @param 	mixed	object or numeric $doc
-
 	 * @access  	private
-
 	 * @return 	object 	a document object
-
 	 */
-
-	function isDocument(&$doc) {
-		$db = &JFactory::getDBO ();
+	function isDocument(&$doc)
+	{
+		$db = &JFactory::getDBO();
 
 		// check to see if we have a object
 
-		if (! is_a ( $doc, 'HandoutDocument' )) {
+		if (!is_a($doc, 'HandoutDocument')) {
 			$id = $doc;
 			// try to create a document db object
 
-			if (is_numeric ( $id )) {
-				$doc = new HandoutDocument ( $db );
-				$doc->load ( $id );
+			if (is_numeric($id)) {
+				$doc = new HandoutDocument($db);
+				$doc->load($id);
 			}
 		}
 	}
 
 	/**
-
 	 * @desc 	Transform the document to a object if necessary
-
 	 * @param 	mixed	object or numeric $category
-
 	 * @access  	private
-
 	 * @return 	object 	a document object
-
 	 */
-
-	function isCategory(&$category) {
+	function isCategory(&$category)
+	{
 
 		// check to see if we have a object
 
-		if (! is_a ( $category, 'HandoutCategory' )) {
+		if (!is_a($category, 'HandoutCategory')) {
 			// try to create a category db object
 
-			if (is_object ( $category )) {
-				$id = ( int ) @ $category->id;
-			} else {
-				$id = ( int ) $category;
+			if (is_object($category)) {
+				$id = (int) @$category->id;
+			}
+			else {
+				$id = (int) $category;
 			}
 
-			$category = & HandoutCategory::getInstance ( $id );
+			$category = &HandoutCategory::getInstance2($id);
 		}
 
 		return $category;
@@ -874,47 +784,42 @@ class HANDOUT_User {
 
 } // end class
 
-
-
-class HANDOUT_users {
+class HANDOUT_users
+{
 
 	/**
-
 	 * Provides a list of all users
-
 	 *
-
 	 * @deprecated
-
 	 */
-	function &getList() {
+	function &getList()
+	{
 		static $users;
 
-		if (! isset ( $users )) {
-			$db = &JFactory::getDBO ();
-			$db->setQuery ( "SELECT * " . "\n FROM #__users " . "\n ORDER BY name ASC" );
-			$users = $db->loadObjectList ( 'id' );
+		if (!isset($users)) {
+			$db = &JFactory::getDBO();
+			$db->setQuery("SELECT * " . "\n FROM #__users " . "\n ORDER BY name ASC");
+			$users = $db->loadObjectList('id');
 		}
 
 		return $users;
 	}
 
 	/**
-
 	 * Get a User object, caches results
-
 	 */
-	function &get($id) {
+	function &get($id)
+	{
 		static $users;
 
-		if (! isset ( $users )) {
-			$users = array ();
+		if (!isset($users)) {
+			$users = array();
 		}
 
-		if (! isset ( $users [$id] )) {
-			$users [$id] = new JUser($id);
+		if (!isset($users[$id])) {
+			$users[$id] = new JUser($id);
 		}
 
-		return $users [$id];
+		return $users[$id];
 	}
 }
