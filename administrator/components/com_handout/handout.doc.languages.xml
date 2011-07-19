@@ -33,7 +33,7 @@
 		<code>zh-TW</code>
 	</language>
 	<language>
-		<name>Croatian (Croatia)</name>
+		<name>Croatian</name>
 		<code>hr-HR</code>
 	</language>
 	<language>
@@ -81,7 +81,7 @@
 		<code>gl-ES</code>
 	</language>
 	<language>
-		<name>Georgian (Georgia)</name>
+		<name>Georgian</name>
 		<code>ka-GE</code>
 	</language>
 	<language>
@@ -145,11 +145,11 @@
 		<code>ru-RU</code>
 	</language>
 	<language>
-		<name>Serbian</name>
+		<name>Serbian (Latin)</name>
 		<code>sr-RS</code>
 	</language>
 	<language>
-		<name>Serbian</name>
+		<name>Serbian (Cyrillic)</name>
 		<code>sr-YU</code>
 	</language>
 	<language>
