@@ -9,13 +9,16 @@
  * @link 		http://www.sharehandouts.com
  */
 defined('_JEXEC') or die;
-
+/* UTF-8 Encoding */
 jimport('joomla.application.component.model');
 
 class HandoutModelHandout extends JModel
 {
-       function __construct()
+       function  __construct()
        {
+       	
+       	
+       	
            parent::__construct();
        }
       

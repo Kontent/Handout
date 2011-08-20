@@ -13,7 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.controller');
-require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
+//require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
 
 //component constants
 define('COM_HANDOUT_IMAGESPATH', JURI::root(true) . '/components/com_handout/media/images/');
