@@ -14,7 +14,8 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.controller');
 //require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
-
+ $_HANDOUT = &HandoutFactory::getHandout();
+require_once $_HANDOUT->getPath('classes', 'html');
 //component constants
 define('COM_HANDOUT_IMAGESPATH', JURI::root(true) . '/components/com_handout/media/images/');
 define('COM_HANDOUT_CSSPATH', 'components/com_handout/media/css/');
@@ -23,16 +24,21 @@ class HandoutController extends JController
 {
 	function __construct ($config = array())
 	{
+		
 		parent::__construct($config);
 		$this->registerTask('license_result', 'license_result');
+		
 	}
 
 	function display ()
 	{
-		$gid = HandoutHelper::getGid();
+		$handout_model = $this->getModel('handout');
+		$document_model = $this->getModel('document');
+		$gid=HandoutHelper::getGid();
 		switch ($this->getTask()) {
 			case 'cat_view':
 				JRequest::setVar('view', 'handout');
+							
 				break;
 			case 'doc_download':
 			case 'doc_view':
@@ -54,30 +60,30 @@ class HandoutController extends JController
 				return;
 			case 'doc_save':
 			case 'save':
-				DocumentsHelper::saveDocument($gid);
+	                   $document_model->saveDocument($gid);
 				break;
 			case 'doc_cancel':
 			case 'cancel':
-				DocumentsHelper::cancelDocument($gid);
+				$document_model->cancelDocument($gid);
 				break;
 			case 'doc_move':
 				$view = $this->getView('document', 'html');
 				$view->_displayMove();
 				return;
 			case 'doc_move_process':
-				DocumentsHelper::moveDocumentProcess($gid);
+				$document_model->moveDocumentProcess($gid);
 				break;
 			case 'doc_checkin':
-				DocumentsHelper::checkinDocument($gid);
+				$document_model->checkinDocument($gid);
 				break;
 			case 'doc_checkout':
-				DocumentsHelper::checkoutDocument($gid);
+				$document_model->checkoutDocument($gid);
 				break;
 			case 'doc_reset':
-				DocumentsHelper::resetDocument($gid);
+				$document_model->resetDocument($gid);
 				break;
 			case 'doc_delete':
-				DocumentsHelper::deleteDocument($gid);
+				$document_model->deleteDocument($gid);
 				break;
 			case 'upload':
 				$view = $this->getView('document', 'html');
@@ -88,10 +94,10 @@ class HandoutController extends JController
 				$view->_displayUpload(1);
 				return;
 			case 'doc_unpublish':
-				DocumentsHelper::publishDocument(array($gid), 0);
+				$document_model->publishDocument(array($gid), 0);
 				break;
 			case 'doc_publish':
-				DocumentsHelper::publishDocument(array($gid));
+				$document_model->publishDocument(array($gid));
 				break;
 		}
 		parent::display(true);
