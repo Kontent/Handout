@@ -24,6 +24,7 @@ defined('_JEXEC') or die;
 */
 
 JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
+
 ?>
 <?php if (count($this->cat_list->items)) { ?>
 	<div id="hcat-list">
@@ -31,9 +32,11 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 		<ul>
 			<?php
 				foreach($this->cat_list->items as $category_item) :
-					if($this->conf->cat_empty || $item->data->files != 0) :
+				
+				if($this->conf->cat_empty || $category_item->data->files != 0) :
 						$icon_ext = strrchr($category_item->paths->icon, "/");
 						$icon_ext = strrchr($icon_ext, "-");
+						
 
 			?>
 						<li class="hcat-row">
@@ -65,7 +68,7 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 							?>
 						</li>
 			<?php
-					endif;
+				endif;
 				endforeach;
 			?>
 		</ul>

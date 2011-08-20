@@ -71,7 +71,7 @@ JHTML::_('behavior.tooltip');
 						<li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
 					</ul>
 				<?php
-				echo $this->loadTemplate('edit_form');
+				echo $this->loadTemplate('edit');
 				echo editDocumentForm ( $this->edit_doc, $this->edit_lists, $this->edit_last, $this->edit_created, $this->edit_params );
 				?>
 					<ul>
