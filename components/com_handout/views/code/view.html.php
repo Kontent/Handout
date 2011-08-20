@@ -11,8 +11,8 @@ defined('_JEXEC') or die;
 
 jimport ( 'joomla.application.component.view' );
 
-require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
-require_once JPATH_COMPONENT_HELPERS . DS . 'codes.php';
+//require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
+//require_once JPATH_COMPONENT_HELPERS . DS . 'codes.php';
 
 class HandoutViewCode extends JView {
 	function display() {
@@ -37,12 +37,14 @@ class HandoutViewCode extends JView {
 			$tmpl = null;
 		}
 
+		
+		$model=$this->getModel();
 		if ($code) {
 			//process the code
-			CodesHelper::processCode($code, $usertype);
+			$model->processCode($code, $usertype);
 		}
 		else {
-			$code = CodesHelper::getCode($data->id);
+			$code = $model->getCode($data->id);
 			$this->assignRef('data', $data);
 			$this->assignRef('code', $code);
 			$this->assignRef('conf', $handout->getAllCfg());

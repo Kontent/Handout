@@ -15,15 +15,16 @@ defined('_JEXEC') or die;
 
 jimport ( 'joomla.application.component.view' );
 
-require_once JPATH_COMPONENT_HELPERS . DS . 'categories.php';
-require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
+//require_once JPATH_COMPONENT_HELPERS . DS . 'categories.php';
+//require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
 require_once JPATH_COMPONENT_HELPERS . DS . 'upload.php';
 
 class HandoutViewDocument extends JView {
 	function display() {
 		$handout = &HandoutFactory::getHandout ();
-		$gid = HandoutHelper::getGid ();
-		list($buttons, $paths, $data) = DocumentsHelper::fetchDocument ( $gid );
+				$document_model=& $this->getModel();
+		$gid =  HandoutHelper::getGid ();
+		list($buttons, $paths, $data) = $document_model->getDocument ( $gid );
 		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
 
 		//overwrite home link
@@ -40,10 +41,13 @@ class HandoutViewDocument extends JView {
 
 	function _displayEdit() {
 		$handout = &HandoutFactory::getHandout ();
-		$gid = HandoutHelper::getGid ();
-		list($buttons, $paths, $data) = DocumentsHelper::fetchDocument ( $gid );
-		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
-		list($edit_doc, $edit_lists, $edit_last, $edit_created, $edit_params) = DocumentsHelper::fetchEditDocumentForm ( $gid );
+		
+		$document_model=& $this->getModel();
+		$gid =  HandoutHelper::getGid ();
+		list($buttons, $paths, $data) = $document_model->getDocument ( $gid );
+		list($links, $perms) =  HandoutHelper::fetchMenu ( $gid );
+		
+		list($edit_doc, $edit_lists, $edit_last, $edit_created, $edit_params) = $document_model->getEditDocumentForm ( $gid );
 
 		$this->assignRef('data', $data);
 		$this->assignRef('links', $links);
@@ -62,13 +66,16 @@ class HandoutViewDocument extends JView {
 
 	function _displayMove() {
 		$handout = &HandoutFactory::getHandout ();
-		$gid = HandoutHelper::getGid ();
-		DocumentsHelper::checkMoveDocument ( $gid );
+		$document_model= & $this->getModel();
+		$gid =  HandoutHelper::getGid ();
+		
+		
+		$document_model->checkMoveDocument ( $gid );
 
-		list($buttons, $paths, $data) = DocumentsHelper::fetchDocument ( $gid );
-		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
-		$lists = DocumentsHelper::fetchMoveDocumentCategories($gid);
-		$action = HandoutHelper::_taskLink('doc_move_process', $data->id);
+		list($buttons, $paths, $data) = $document_model->getDocument ( $gid );
+		list($links, $perms) =  HandoutHelper::fetchMenu ( $gid );
+		$lists = $document_model->getMoveDocumentCategories($gid);
+		$action = $document_model->_taskLink('doc_move_process', $data->id);
 		$token = HANDOUT_token::render();
 
 		$this->assignRef('data', $data);
@@ -88,9 +95,13 @@ class HandoutViewDocument extends JView {
 		$handout = &HandoutFactory::getHandout ();
 		$step = JRequest::getInt ( 'step', 1 );
 		$method = JRequest::getVar ( 'method' );
-		$gid = HandoutHelper::getGid ();
 
-		list($links, $perms) = HandoutHelper::fetchMenu ( $gid );
+		$document_model=& $this->getModel();
+		$gid =  HandoutHelper::getGid ();
+
+		list($links, $perms) =  HandoutHelper::fetchMenu ( $gid );
+		
+
 		$lists = UploadHelper::fetchDocumentUploadForm ( $gid, $step, $method, $update );
 
 		$this->assignRef('links', $links);

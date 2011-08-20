@@ -13,8 +13,8 @@ defined('_JEXEC') or die;
 
 jimport ( 'joomla.application.component.view' );
 
-require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
-require_once JPATH_COMPONENT_HELPERS . DS . 'downloads.php';
+//require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
+//require_once JPATH_COMPONENT_HELPERS . DS . 'downloads.php';
 
 class HandoutViewDownload extends JView {
 	function display() {
@@ -41,7 +41,8 @@ class HandoutViewDownload extends JView {
 			$this->assignRef('conf', $handout->getAllCfg());
 			parent::display();
 		} else {
-			DownloadsHelper::download ( $doc, false );
+			$model= & $this->getModel();
+			$model->download ( $doc, false );
 		}
 	}
 }
