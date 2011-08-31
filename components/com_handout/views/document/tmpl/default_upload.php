@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
 *	$this->data (object) : configuration values
 *	$this->buttons (object) : permission values
 *	$this->paths (object) : configuration values
-*	$this->links (object) : path to links
+*	$this->links (object) : path to links+
 *	$this->permission (object) : permission values
 *	$this->conf (object) : configuration values
 */
@@ -34,7 +34,7 @@ JHTML::_('behavior.tooltip');
 <div id="handout" class="hupload">
 
 	<?php if($this->update) : ?>
-		<h2><?php echo JText::_('COM_HANDOUT_TITLE_UPDATE');?></h2>
+		 <h2><?php echo JText::_('COM_HANDOUT_TITLE_UPDATE');?></h2>
 	<?php else : ?>
 		<h2><?php echo JText::_('COM_HANDOUT_TITLE_UPLOAD');?></h2>
 	<?php endif; ?>
@@ -71,10 +71,10 @@ JHTML::_('behavior.tooltip');
 						<li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
 					</ul>
 				<?php
-				echo $this->loadTemplate('edit');
-				echo editDocumentForm ( $this->edit_doc, $this->edit_lists, $this->edit_last, $this->edit_created, $this->edit_params );
+				 $this->loadTemplate('update');
+			echo editDocumentForm ( $this->edit_doc, $this->edit_lists, $this->edit_last, $this->edit_created, $this->edit_params );
 				?>
-					<ul>
+			<ul>
 						<li><a title="<?php echo JText::_('COM_HANDOUT_CANCEL')?>" href="javascript:submitbutton('cancel');" ><span><span><?php echo JText::_('COM_HANDOUT_CANCEL')?></span></span></a></li>
 						<li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
 					</ul>

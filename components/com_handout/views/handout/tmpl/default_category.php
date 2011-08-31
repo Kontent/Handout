@@ -28,7 +28,7 @@ defined('_JEXEC') or die;
 	?>
 	<div class="hcat-head">
 	<?php
-		if($this->category->data->image) :
+		if($this->category->data->image):
 			?>
 			<div class="hcat-icon h<?php echo $this->category->data->image_position;?>" ><img src="<?php echo $this->category->paths->thumb; ?>" alt="<?php echo $this->category->data->title;?>" /></div><?php
 		endif;

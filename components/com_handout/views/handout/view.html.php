@@ -30,6 +30,7 @@ class HandoutViewHandout extends JView {
 		$category = new StdClass ();
 		if ($gid > 0) {
 			list($category->links, $category->paths, $category->data) = $model->getCategory ( $gid);
+			$this->assign('cat_empty',true );
 		}
 
 		$cat_list = new StdClass ();

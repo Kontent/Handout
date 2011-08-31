@@ -65,5 +65,8 @@ defined('_JEXEC') or die;
 	</div>
 <?php } else { ?>
 	<!--  Add conditional to show/hide the below notice based on config setting  -->
+	<?php if($this->cat_empty): ?>
 	<div id="hdoc-list"><?php echo JText::_('COM_HANDOUT_NO_DOCS'); ?></div>
+	<?php endif;?>
+	
 <?php } ?>

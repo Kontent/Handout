@@ -41,8 +41,9 @@ class HandoutViewDocument extends JView {
 
 	function _displayEdit() {
 		$handout = &HandoutFactory::getHandout ();
-		
-		$document_model=& $this->getModel();
+		$doc=& JFactory::getDocument();
+		$doc->addStylesheet('components/com_handout/asset/tab.css');
+		$document_model=& JModel::getInstance('Document','HandoutModel');
 		$gid =  HandoutHelper::getGid ();
 		list($buttons, $paths, $data) = $document_model->getDocument ( $gid );
 		list($links, $perms) =  HandoutHelper::fetchMenu ( $gid );
@@ -66,7 +67,7 @@ class HandoutViewDocument extends JView {
 
 	function _displayMove() {
 		$handout = &HandoutFactory::getHandout ();
-		$document_model= & $this->getModel();
+		$document_model= & $this->getModel('Document','HandoutModel');
 		$gid =  HandoutHelper::getGid ();
 		
 		
@@ -96,13 +97,18 @@ class HandoutViewDocument extends JView {
 		$step = JRequest::getInt ( 'step', 1 );
 		$method = JRequest::getVar ( 'method' );
 
-		$document_model=& $this->getModel();
 		$gid =  HandoutHelper::getGid ();
 
-		list($links, $perms) =  HandoutHelper::fetchMenu ( $gid );
+		$doc=& JFactory::getDocument();
+		$doc->addStylesheet('components/com_handout/asset/tab.css');
+		$document_model=& JModel::getInstance('Document','HandoutModel');
+		$gid =  HandoutHelper::getGid ();
+				
 		
-
-		$lists = UploadHelper::fetchDocumentUploadForm ( $gid, $step, $method, $update );
+		
+	list($links, $perms) =  HandoutHelper::fetchMenu ( $gid );
+		$upload_model=& JModel::getInstance('Upload','HandoutModel');
+		$lists = $upload_model->fetchDocumentUploadForm ( $gid, $step, $method, $update );
 
 		$this->assignRef('links', $links);
 		$this->assignRef('perms', $perms);
@@ -114,6 +120,16 @@ class HandoutViewDocument extends JView {
 		$this->assignRef ( 'lists', $lists );
 
 		if ($step == 3) {
+			
+			if($gid>0){
+			list($edit_doc, $edit_lists, $edit_last, $edit_created, $edit_params) = $document_model->getEditDocumentForm ( $gid );
+		$this->assignRef('edit_doc', $edit_doc);
+		$this->assignRef('edit_lists', $edit_lists);
+		$this->assignRef('edit_last', $edit_last);
+		$this->assignRef('edit_created', $edit_created);
+		$this->assignRef('edit_params', $edit_params);	
+		
+			}
 			HandoutViewDocument::importScript ();
 		}
 

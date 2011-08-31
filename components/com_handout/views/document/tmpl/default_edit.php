@@ -80,7 +80,7 @@ defined('_JEXEC') or die;
 		$Itemid = JRequest::getInt('Itemid');
 
 		JFilterOutput::objectHTMLSafe( $row );
-
+	
 		ob_start();
 		?>
 		<form action="index.php" method="post" name="adminForm" onsubmit="javascript:setgood();" id="hform-edit" class="hform">
@@ -121,7 +121,7 @@ defined('_JEXEC') or die;
 					echo $editor->display('docdescription', $row->docdescription , '550', '250', '50', '10') ;
 				?>
 			</p>
-
+           
 			<input type="hidden" name="goodexit" value="0" />
 			<input type="hidden" name="id" value="<?php echo $row->id;?>" />
 			<input type="hidden" name="option" value="com_handout" />
@@ -177,7 +177,7 @@ defined('_JEXEC') or die;
 								<input class="inputbox" type="text" name="document_url" size="50" maxlength="200" value="<?php echo $row->docfilename ?>" />
 
 								<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DOCURL');?>::<?php echo JText::_('COM_HANDOUT_DOCURL_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 							</p>
 						<?php
@@ -188,7 +188,7 @@ defined('_JEXEC') or die;
 							<input class="inputbox" type="text" id="hform-url" size="50" maxlength="200" value="<?php echo $row->docurl ?>" />
 
 							<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_INFOURL');?>::<?php echo JText::_('COM_HANDOUT_INFOURL_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 							<div><em>(<?php echo JText::_('COM_HANDOUT_MAKE_SURE');?>)</em></div>
 						</p>
@@ -201,6 +201,24 @@ defined('_JEXEC') or die;
 						<?php
 						endif;
 						?>
+						 <p>
+								<label for="hform-filename"><?php echo JText::_('DOWNLOAD_LIMIT');?></label><br />
+								<input class="inputbox" type="text" name="download_limit" size="15" maxlength="200" value="<?php echo $row->download_limit; ?>" />
+
+								<span class="hasTip" title="<?php echo JText::_('DOWNLOAD_LIMIT');?>::<?php echo JText::_('DOWNLOAD_LIMIT_TOOLTIP');?>">
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+
+		                </p>
+						<p>
+							<input type="checkbox" <?php if($row->allow_single_download==1)echo 'checked="checked"';?> name="allow_single_download"  value="1"/> <?php echo JText::_('ALLOW_SINGLE_DOWNLOAD');?> 
+	
+							
+							<span class="hasTip" title="<?php echo JText::_('ALLOW_SINGLE_DOWNLOAD');?>::<?php echo JText::_('ALLOW_SINGLE_DOWNLOAD_TOOLTIP');?>">
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+							
+						</p>
+						
+						
 					</td>
 				</tr>
 			</tbody>
@@ -218,14 +236,14 @@ defined('_JEXEC') or die;
 				<?php echo $lists['viewer'];?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_OWNER');?>::<?php echo JText::_('COM_HANDOUT_OWNER_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 				</p>
 			<p>
 				<label for="hform-maintainedby"><?php echo JText::_('COM_HANDOUT_MAINTAINER');?></label><br />
 				<?php echo $lists['maintainer']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MAINTAINER');?>::<?php echo JText::_('COM_HANDOUT_MANT_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 			</p>
 			<p>
@@ -266,7 +284,7 @@ defined('_JEXEC') or die;
 				<?php echo $lists['licenses']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_AGREEMENT_TYPE');?>::<?php echo JText::_('COM_HANDOUT_AGREEMENT_TOOLTIP');?>">
-						<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+						<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 			</p>
 			<p>
@@ -274,7 +292,7 @@ defined('_JEXEC') or die;
 				<?php echo $lists['licenses_display']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENT');?>::<?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 			</p>
 		</fieldset>
