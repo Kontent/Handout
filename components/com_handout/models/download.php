@@ -40,6 +40,37 @@ function __construct()
 			HandoutHelper::_returnTo ( 'view_cat', JText::_('COM_HANDOUT_YOU_MUST'), $doc->getData ( 'catid' ) );
 		}
 	}
+	
+	function isLimitExceed($doc)
+	{ $db= & JFactory::getDBO();
+	  $user=& JFactory::getUser();
+	   $data= & $doc->getDataObject();
+	   
+	   $query="select download_limit, allow_single_download from #__handout where id=".$data->id;
+	   $db->setQuery($query);
+	   $doclimits=$db->loadObject();
+	   
+	   $query="select count(log_docid) from #__handout_log where log_docid=".$data->id.' and log_user='.$user->id;
+	   $db->setQuery($query);
+	   $downloaded_number=$db->loadResult();
+	   
+	   if($doclimits->download_limit>0)
+	   {
+	      if($downloaded_number>=$doclimits->download_limit)	
+	   return true;
+	   else return false;
+	   }
+	   else if($doclimits->allow_single_download>0)
+	   {
+	   if($downloaded_number>=1)	
+	   return true;
+	   else return false;
+	   }else {
+	   return false;
+	   
+	   }
+	   
+	}
 	function download(&$doc, $inline = false) {
 		$handout = &HandoutFactory::getHandout();
 		$handoutUser = &HandoutFactory::getHandoutUser();
@@ -59,11 +90,24 @@ function __construct()
 		if (! $handoutUser->canDownload ( $doc->getDBObject () )) {
 			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOLOG_DOWNLOAD'), $data->catid );
 		}
+		
+		if($this->isLimitExceed($doc))
+		{
+		HandoutHelper::_returnTo ( 'cat_view', JText::_('Sorry, but the maximum number of downloads has been reached'), $data->catid );
+		}
+		
+		// If the document is not published, redirect
+		
+	if (! $data->published and ! $handoutUser->canPublish ()) {
+			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOPUBLISHED_DOWNLOAD'), $data->catid );
+		}
 
 		// If the document is not published, redirect
 		if (! $data->published and ! $handoutUser->canPublish ()) {
 			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOPUBLISHED_DOWNLOAD'), $data->catid );
 		}
+		//
+	
 
 		// if the document is checked out, redirect
 		if ($data->checked_out && $handoutUser->userid != $data->checked_out) {
