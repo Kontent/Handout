@@ -43,8 +43,8 @@ class HandoutUploadMethod
 
 				$catid = $update ? 0 : $uid;
 				$docid = $update ? $uid : 0;
-
-				return DocumentsHelper::fetchEditDocumentForm($docid , $file->name, $catid);
+                       $model=& JModel::getInstance('Document','HandoutModel');
+				return $model->getEditDocumentForm($docid , $file->name, $catid);
 			} break;
 
 			default: break;
