@@ -119,19 +119,23 @@
  /* Status
 ----------------------------------------------------------------------------------------------- */
 #handout .hunpublished {
-
-
-}
-
-#handout .hcheckedout img {
-	opacity:0.4;
-	filter:alpha(opacity=40)
+	background: url("../images/unpublished.png") no-repeat;
+	width: 64px;
+	height: 64px;
+	float:left;
+	z-index: 999999;
 }
 #handout .hcheckedout a {
 	background: url("../images/checked-out.png") no-repeat;
 	width: 64px;
 	height: 64px;
 	float:left;
+}
+#handout .hunpublished img,
+#handout .hcheckedout img {
+	opacity:0.4;
+	filter:alpha(opacity=40)
+	z-index: 1;
 }
 #handout .hdoc-new {
 	background: #5388B4;
@@ -156,11 +160,8 @@
 	padding: 1px 3px;
 }
 
-
-
  /* Toolbar Buttons
 ----------------------------------------------------------------------------------------------- */
-
 #htoolbar {
 	width: 100%;
 }
@@ -195,12 +196,26 @@
 	margin-top: 1px;
 }
 
+
+ /* Pagination
+----------------------------------------------------------------------------------------------- */
+#handout .hnav {
+	text-align:center;
+	font-size: 12px;
+}
+.pagination span,
+.pagination a {
+	margin: 0 3px;
+}
+#handout .hcount {
+	font-size: 11px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+
  /* Categories
 ----------------------------------------------------------------------------------------------- */
-
-.hcategory {
-
-}
 .hcat-head {
 	/* height: 80px; */
 	margin-bottom: 20px;
@@ -241,7 +256,6 @@
 
  /* Document Buttons
 ----------------------------------------------------------------------------------------------- */
-
 #handout .hdoc-taskbar li {
 	display: inline;
 	line-height: 30px;
@@ -349,7 +363,6 @@ select option.label {
 
  /* Search
 ----------------------------------------------------------------------------------------------- */
-
 #handout .hsearch fieldset {
 	border: 0 none;
 	margin: 0;
@@ -371,7 +384,6 @@ select option.label {
 #handout .hsearch-input {
 	padding-left: 40px;
 }
-
 #hsearch-results {
 	border-top: 1px solid #ccc;
 }
@@ -405,7 +417,6 @@ select option.label {
 
 /* Modules and Plug-ins
 ------------------------------------------------------------------------- */
-
 .hmodule,
 .hmodule li {
 	margin: 0;
