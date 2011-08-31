@@ -412,6 +412,8 @@ class HandoutDocument extends JTable
 	var $mtree_id = null;
 	var $access = null;
 	var $attribs = null;
+	var $download_limit=null;
+	var $allow_single_download=null;
 
 	function __construct(&$db)
 	{

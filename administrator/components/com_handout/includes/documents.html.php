@@ -492,6 +492,22 @@ function showDocumentsToSelect($rows, $lists, $search, $pageNav, $number_unpubli
 				
 				</td>
 			</tr>
+			
+			<tr>
+								<td><label for="hform-filename"><?php echo JText::_('DOWNLOAD_LIMIT');?></label><br />
+								</td><td><input class="inputbox" type="text" name="download_limit" size="15" maxlength="200" value="<?php echo $row->download_limit; ?>" />
+                                 
+								<span class="hasTip" title="<?php echo JText::_('DOWNLOAD_LIMIT');?>::<?php echo JText::_('DOWNLOAD_LIMIT_TOOLTIP');?>">
+								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+                                </td>
+		                </tr>
+						<tr>
+							<td><?php echo JText::_('ALLOW_SINGLE_DOWNLOAD');?></td><td><input type="checkbox" <?php if($row->allow_single_download==1)echo 'checked="checked"';?> name="allow_single_download"  value="1"/> 
+	
+								<span class="hasTip" title="<?php echo JText::_('ALLOW_SINGLE_DOWNLOAD');?>::<?php echo JText::_('ALLOW_SINGLE_DOWNLOAD_TOOLTIP');?>">
+								<img border="0" alt="Tooltip" src="../media/com_handout/images/icon-16-tooltip.png" /></span>
+							</td>
+						</tr>
 		</table>
 		<?php
 	}
