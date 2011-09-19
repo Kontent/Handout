@@ -42,7 +42,14 @@ class HandoutViewDownload extends JView {
 			parent::display();
 		} else {
 			$model= & $this->getModel();
-			$model->download ( $doc, false );
+			$isdownloaded=$model->download ( $doc, false );
+			
+			if($isdownloaded==true)
+			{
+				die();
+			}else {
+			HandoutHelper::_returnTo ( 'cat_view', $isdownloaded, $data->catid );
+			}
 		}
 	}
 }

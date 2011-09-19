@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 
 $_HANDOUT = &HandoutFactory::getHandout ();
 
+//echo  $_HANDOUT->getPath ( 'classes', 'plugins' ).$_HANDOUT->getPath ( 'classes', 'file' );;
 require_once $_HANDOUT->getPath ( 'classes', 'plugins' );
 require_once $_HANDOUT->getPath ( 'classes', 'file' );
 

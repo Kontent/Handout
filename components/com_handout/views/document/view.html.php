@@ -17,7 +17,7 @@ jimport ( 'joomla.application.component.view' );
 
 //require_once JPATH_COMPONENT_HELPERS . DS . 'categories.php';
 //require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
-require_once JPATH_COMPONENT_HELPERS . DS . 'upload.php';
+//require_once JPATH_COMPONENT_HELPERS . DS . 'upload.php';
 
 class HandoutViewDocument extends JView {
 	function display() {
@@ -120,16 +120,22 @@ class HandoutViewDocument extends JView {
 		$this->assignRef ( 'lists', $lists );
 
 		if ($step == 3) {
-			
-			if($gid>0){
-			list($edit_doc, $edit_lists, $edit_last, $edit_created, $edit_params) = $document_model->getEditDocumentForm ( $gid );
+			$user=& JFactory::getUser();
+			//echo $gid;
+			//exit();
+			//if($gid>0){
+			$files=JRequest::get('files');
+	//	echo var_dump($files);
+	//echo ;
+			//exit();
+			list($edit_doc, $edit_lists, $edit_last, $edit_created, $edit_params) = $document_model->getEditDocumentForm ( $gid,$files['upload']['name']);
 		$this->assignRef('edit_doc', $edit_doc);
 		$this->assignRef('edit_lists', $edit_lists);
 		$this->assignRef('edit_last', $edit_last);
 		$this->assignRef('edit_created', $edit_created);
 		$this->assignRef('edit_params', $edit_params);	
 		
-			}
+			//}
 			HandoutViewDocument::importScript ();
 		}
 

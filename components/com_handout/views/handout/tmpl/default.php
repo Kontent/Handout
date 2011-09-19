@@ -34,8 +34,6 @@ $app = &JFactory::getApplication();
 $pathway = & $app->getPathWay();
 $pathway->addItem($this->pagetitle[0][0]->name);
 $app->setPageTitle( JText::_('COM_HANDOUT_TITLE_BROWSE') . ' | ' . $this->pagetitle[0][0]->name );
-
-
 ?>
 
 <div id="handout">
@@ -53,11 +51,11 @@ $app->setPageTitle( JText::_('COM_HANDOUT_TITLE_BROWSE') . ' | ' . $this->pageti
 
 	<?php if ($this->pagenav):  ?>
 	<!-- pagination for documents  -->
-	<div id="hnav">
+	<div class="hnav">
 		<?php echo $this->pagenav->getPagesLinks();?>
-		<div>
+		<p class="hcount">
 			<?php echo $this->pagenav->getPagesCounter();?>
-		</div>
+		</p>
 	</div>
 	<?php endif; ?>
 

@@ -77,6 +77,7 @@ function __construct()
 		$db = &JFactory::getDBO();
 		$config = &JFactory::getConfig();
 		$tzoffset = $config->getValue('config.offset');
+		$err_msg="";
 
 		require_once $handout->getPath ( 'classes', 'file' );
 
@@ -88,30 +89,43 @@ function __construct()
 
 		// if the user is not authorized to download this document, redirect
 		if (! $handoutUser->canDownload ( $doc->getDBObject () )) {
-			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOLOG_DOWNLOAD'), $data->catid );
+			//HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOLOG_DOWNLOAD'), $data->catid );
+			$err_msg=JText::_('COM_HANDOUT_NOLOG_DOWNLOAD');
+			return $err_msg;
 		}
 		
 		if($this->isLimitExceed($doc))
 		{
-		HandoutHelper::_returnTo ( 'cat_view', JText::_('Sorry, but the maximum number of downloads has been reached'), $data->catid );
+		//HandoutHelper::_returnTo ( 'cat_view', JText::_('Sorry, but the maximum number of downloads has been reached'), $data->catid );
+			$err_msg=JText::_('Sorry, but the maximum number of downloads has been reached');
+			return $err_msg;
+		
 		}
 		
 		// If the document is not published, redirect
 		
 	if (! $data->published and ! $handoutUser->canPublish ()) {
-			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOPUBLISHED_DOWNLOAD'), $data->catid );
-		}
+			//HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOPUBLISHED_DOWNLOAD'), $data->catid );
+		$err_msg=JText::_('COM_HANDOUT_NOPUBLISHED_DOWNLOAD');
+		return $err_msg;
+	
+	    }
 
 		// If the document is not published, redirect
 		if (! $data->published and ! $handoutUser->canPublish ()) {
-			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOPUBLISHED_DOWNLOAD'), $data->catid );
+			//HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOPUBLISHED_DOWNLOAD'), $data->catid );
+		    $err_msg=JText::_('COM_HANDOUT_NOPUBLISHED_DOWNLOAD');
+			return $err_msg;
+		
 		}
 		//
 	
 
 		// if the document is checked out, redirect
 		if ($data->checked_out && $handoutUser->userid != $data->checked_out) {
-			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOTDOWN'), $data->catid );
+			//HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_NOTDOWN'), $data->catid );
+		    $err_msg=JText::_('COM_HANDOUT_NOTDOWN');
+			return $err_msg;
 		}
 
 		// If the remote host is not allowed, show anti-leech message and die.
@@ -119,8 +133,10 @@ function __construct()
 			$from_url = parse_url ( $_SERVER ['HTTP_REFERER'] );
 			$from_host = trim ( $from_url ['host'] );
 
-			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_ANTILEECH_ACTIVE') . " (" . $from_host . ")", $data->catid );
-			exit ();
+			//HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_ANTILEECH_ACTIVE') . " (" . $from_host . ")", $data->catid );
+			//exit ();
+			$err_msg=JText::_('COM_HANDOUT_ANTILEECH_ACTIVE') . " (" . $from_host . ")";
+				return $err_msg;
 		}
 
 		/* ------------------------------ *
@@ -131,7 +147,10 @@ function __construct()
 
 		// If the file doesn't exist, redirect
 		if (! $file->exists ()) {
-			HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_FILE_UNAVAILABLE'), $data->catid );
+			//HandoutHelper::_returnTo ( 'cat_view', JText::_('COM_HANDOUT_FILE_UNAVAILABLE'), $data->catid );
+		$err_msg=JText::_('COM_HANDOUT_FILE_UNAVAILABLE');
+		return $err_msg;
+		
 		}
 
 		/* ------------------------------ *
@@ -206,8 +225,8 @@ function __construct()
 	*		HandoutHelper::_returnTo('cat_view',$postbot->getErrorMsg() );
 	*}
 	*/
-
-		die (); // REQUIRED
+return true;
+		//die (); // REQUIRED
 	}
           
           
