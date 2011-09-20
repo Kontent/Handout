@@ -800,8 +800,10 @@ class HANDOUT_Cats
 
 		if (!isset($list)) {
 			$database = &JFactory::getDBO();
-			$database->setQuery("SELECT * FROM #__categories" . "\n WHERE ".COM_HANDOUT_FIELD_SECTION." = 'com_handout'");
+			 $query="SELECT * FROM #__categories" . "\n WHERE ".COM_HANDOUT_FIELD_SECTION." = 'com_handout' OR ".COM_HANDOUT_FIELD_SECTION." = 'mtree'";
+			 $database->setQuery($query);
 			$list = $database->loadObjectList('id');
+			
 		}
 		return $list;
 	}

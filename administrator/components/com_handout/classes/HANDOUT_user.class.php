@@ -704,14 +704,15 @@ class HANDOUT_User
 		//Make sure we have a document object
 
 		$category = $this->isCategory($category);
-
+      
 		if (!$category->published and !$this->isSpecial) {
+		
 			return false;
 		}
-
+  
 		switch ($category->access) {
 			case '0': //public
-
+                   
 				return true;
 				break;
 			case '1': //registered

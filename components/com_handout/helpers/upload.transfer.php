@@ -8,7 +8,6 @@
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @link 		http://www.sharehandouts.com
  */
-//
 defined('_JEXEC') or die;
 
 if (defined('_HANDOUT_METHOD_TRANSFER')) {

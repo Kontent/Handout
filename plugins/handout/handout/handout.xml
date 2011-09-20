@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="handout" method="upgrade">
+	<name>Handout Integration</name>
+	<author>Kontent Extensions</author>
+	<creationDate>September 2011</creationDate>
+    <copyright>(C) 2011 Kontent Design</copyright>
+	<license>GNU General Public License</license>
+	<authorEmail>support@kontentdesign.com</authorEmail>
+	<authorUrl>http://extensions.kontentdesign.com</authorUrl>
+	<version>1.0</version>
+	<description>This plug-in integrate handout with third part extensions.</description>
+	
+	<setting published="1"/>
+
+	<languages folder="language">
+      	<language tag="en-GB">en-GB/en-GB.plg_handout_handout.ini</language>
+    </languages>
+		<params>
+		<param name="inputlabel" type="text" default="0" label="File Field Label" description="File Field Label" />
+		
+	
+			</params>
+	
+	<files>
+		<filename plugin="handout">handout.php</filename>
+   </files>
+	
+</install>

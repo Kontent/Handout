@@ -1,5 +1,4 @@
-
-CREATE TABLE IF NOT EXISTS `jos_handout` (
+CREATE TABLE IF NOT EXISTS `#__handout` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `catid` int(11) NOT NULL DEFAULT '1',
   `docname` text NOT NULL,
@@ -29,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `jos_handout` (
   `attribs` text NOT NULL,
   `download_limit` int(11) NOT NULL,
   `allow_single_download` tinyint(4) NOT NULL,
+  `multi_file_no` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `pub_own_cat_name` (`published`,`docowner`,`catid`,`docname`(64)),
   KEY `pub_own_cat_date` (`published`,`docowner`,`catid`,`docdate_published`),
