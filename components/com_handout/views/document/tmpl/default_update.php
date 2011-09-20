@@ -86,11 +86,9 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 							<label for="hform-thumb"><?php echo JText::_('COM_HANDOUT_THUMBNAIL');?></label><br />
 							<?php echo $lists['docthumbnail'];?>
 							<?php $previewfull = $lists['docthumbnail_preview'] ? "images/stories/".$lists['docthumbnail_preview'] : "images/M_images/blank.png";?>
-<<<<<<< HEAD
+
 							<img src="<?php echo $previewfull ?> " id="hdoc-thumbnail-preview" alt="Preview" />
-=======
-							
->>>>>>> b9c1eb1762098a3c693e47411719f4c57266d651
+
 						</p>
 						<p>
 							<label for="hform-filename"><?php echo JText::_('COM_HANDOUT_FILE');?></label><br />
@@ -103,7 +101,10 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 							<p>
 								<label for="hform-filename"><?php echo JText::_('COM_HANDOUT_DOCURL');?></label><br />
 								<input class="inputbox" type="text" name="document_url" size="50" maxlength="200" value="<?php echo $row->docurl ?>" />
-
+								
+								<!-- The line below or the line above is correct. Need to test and remove the incorrect one. -->
+								<!--  input class="inputbox" type="text" name="document_url" size="50" maxlength="200" value="<!-- php echo $row->docfilename ?>" / -->
+								
 								<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DOCURL');?>::<?php echo JText::_('COM_HANDOUT_DOCURL_TOOLTIP');?>">
 									<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 							</p>
