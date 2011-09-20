@@ -16,7 +16,6 @@ defined('_JEXEC') or die;
 * This template is called when user views a category or document
 *
 */
-
 ?>
 	<?php
 	if ($this->conf->show_share):

@@ -188,8 +188,7 @@ $document->setMetaData('language', $this->data->doclanguage);
 	</div>
 
 	<?php
-	if ($this->data->kunena_discuss_contents)
-	{
+	if ($this->data->kunena_discuss_contents) {
 		echo $this->data->kunena_discuss_contents;
 	}
 	?>

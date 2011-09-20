@@ -86,7 +86,7 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 							<label for="hform-thumb"><?php echo JText::_('COM_HANDOUT_THUMBNAIL');?></label><br />
 							<?php echo $lists['docthumbnail'];?>
 							<?php $previewfull = $lists['docthumbnail_preview'] ? "images/stories/".$lists['docthumbnail_preview'] : "images/M_images/blank.png";?>
-							<img src="<?php echo $previewfull ?> " id="docthumbnail_preview" alt="Preview" />
+							<img src="<?php echo $previewfull ?> " id="hdoc-thumbnail-preview" alt="Preview" />
 						</p>
 						<p>
 							<label for="hform-filename"><?php echo JText::_('COM_HANDOUT_FILE');?></label><br />
@@ -101,8 +101,7 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 								<input class="inputbox" type="text" name="document_url" size="50" maxlength="200" value="<?php echo $row->docfilename ?>" />
 
 								<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DOCURL');?>::<?php echo JText::_('COM_HANDOUT_DOCURL_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
-
+									<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 							</p>
 						<?php
 						endif;
@@ -125,23 +124,17 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 						<?php
 						endif;
 						?>
-						
-						
 						<p>
-								<label for="hform-filename"><?php echo JText::_('DOWNLOAD_LIMIT');?></label><br />
-								<input class="inputbox" type="text" name="download_limit" size="15" maxlength="200" value="<?php echo $row->download_limit; ?>" />
+							<label for="hform-filename"><?php echo JText::_('DOWNLOAD_LIMIT');?></label><br />
+							<input class="inputbox" type="text" name="download_limit" size="15" maxlength="200" value="<?php echo $row->download_limit; ?>" />
 
-								<span class="hasTip" title="<?php echo JText::_('DOWNLOAD_LIMIT');?>::<?php echo JText::_('DOWNLOAD_LIMIT_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
-
+							<span class="hasTip" title="<?php echo JText::_('DOWNLOAD_LIMIT');?>::<?php echo JText::_('DOWNLOAD_LIMIT_TOOLTIP');?>">
+							<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 		                </p>
 						<p>
 							<input type="checkbox" <?php if($row->allow_single_download==1)echo 'checked="checked"';?> name="allow_single_download"  value="1"/> <?php echo JText::_('ALLOW_SINGLE_DOWNLOAD');?> 
-	
-							
 							<span class="hasTip" title="<?php echo JText::_('ALLOW_SINGLE_DOWNLOAD');?>::<?php echo JText::_('ALLOW_SINGLE_DOWNLOAD_TOOLTIP');?>">
 								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
-							
 						</p>
 					</td>
 				</tr>
@@ -160,15 +153,14 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 				<?php echo $lists['viewer'];?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_OWNER');?>::<?php echo JText::_('COM_HANDOUT_OWNER_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+					<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 				</p>
 			<p>
 				<label for="hform-maintainedby"><?php echo JText::_('COM_HANDOUT_MAINTAINER');?></label><br />
 				<?php echo $lists['maintainer']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MAINTAINER');?>::<?php echo JText::_('COM_HANDOUT_MANT_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
-
+					<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 			</p>
 			<p>
 				<label for="hform-createdby"> <?php echo JText::_('COM_HANDOUT_CREATED_BY_LABEL');?></label><br />
@@ -208,7 +200,7 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 				<?php echo $lists['licenses']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_AGREEMENT_TYPE');?>::<?php echo JText::_('COM_HANDOUT_AGREEMENT_TOOLTIP');?>">
-						<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+					<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 			</p>
 			<p>
@@ -216,7 +208,7 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 				<?php echo $lists['licenses_display']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENT');?>::<?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_TOOLTIP');?>">
-								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+					<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 			</p>
 		</fieldset>
