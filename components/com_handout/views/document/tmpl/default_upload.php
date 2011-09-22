@@ -92,15 +92,15 @@ JHTML::_('behavior.tooltip');
 		?>
 		<form action="<?php echo $lists['action'] ; ?>" method="post" id="hupload-form" class="hform">
 			<fieldset class="input">
-				<p><label for="url"><?php echo JText::_('COM_HANDOUT_REMOTEURL') ?></label><br />
-				<input name="url" type="text" id="url" value="<?php echo $lists['url'];?>" />
-
+				<p>
+					<label for="url"><?php echo JText::_('COM_HANDOUT_REMOTEURL') ?></label><br />
+					<input name="url" type="text" id="url" value="<?php echo $lists['url'];?>" />
+	
 					<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_REMOTEURL');?>::<?php echo JText::_('COM_HANDOUT_REMOTEURL_DESC');?>">
 						<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
-						</p>
+				</p>
 				<p><label for="localfile"><?php echo JText::_('COM_HANDOUT_LOCALNAME') ;?></label><br />
 				<input name="localfile" type="text" id="url" value="<?php echo $lists['localfile'];?>">
-
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_LOCALNAME');?>::<?php echo JText::_('COM_HANDOUT_LOCALNAME_DESC');?>">
 						<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>

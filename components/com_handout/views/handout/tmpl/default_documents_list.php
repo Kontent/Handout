@@ -23,7 +23,6 @@ defined('_JEXEC') or die;
 
 <?php if(count($this->doc_list->items)) { ?>
 	<div id="hdoc-list">
-
 		<ul class="hdoc-order">
 			<li class="horder-title"><?php echo JText::_('COM_HANDOUT_ORDER_BY'); ?>:</li>
 			<?php
@@ -53,7 +52,6 @@ defined('_JEXEC') or die;
 			?>
 		</ul>
 		<h3><?php echo JText::_('COM_HANDOUT_DOCS'); ?></h3>
-
 		<ul>
 		<?php
 			foreach($this->doc_list->items as $item) :

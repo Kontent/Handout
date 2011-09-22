@@ -26,7 +26,7 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 				<p class="hdoc-enteremail"><?php echo JText::_('COM_HANDOUT_ENTER_EMAIL');?>:</p>
 			 	<input type="text" name="email" maxlength="100" class="hdoc-inputemail" />
 			<?php endif; ?>
-			<span><input name="submit" value="<?php echo JText::_('COM_HANDOUT_BUTTON_DOWNLOAD_FILE');?>" type="submit" class="hdoc-btn"/></span>
+			<span><input name="submit" value="<?php echo JText::_('COM_HANDOUT_BUTTON_DOWNLOAD_FILE');?>" type="submit" class="hdoc-btn button"/></span>
 		</form>
 	</div>
 	<div class="clr"></div>
