@@ -89,7 +89,7 @@ if( $this->mtconf['use_map'] == 1 )
 
 <center>
 <form action="<?php echo JRoute::_("index.php") ?>" method="post" enctype="multipart/form-data" name="adminForm" id="adminForm">
-<table width="100%" cellpadding="0" cellspacing="4" border="0" align="center">
+<table width="100%" cellpadding="0" cellspacing="4" border="0" align="center" id="mtreetbl">
 	
 	<?php echo ( (isset($this->warn_duplicate) && $this->warn_duplicate == 1) ? '<tr><td colspan="2">' . JText::_( 'There is already a pending approval for modification' ) . '</td></tr>' : '' )?>
 	
@@ -166,6 +166,7 @@ if( $this->mtconf['use_map'] == 1 )
 	$args[]='';
 	$args[]='';
 	$args[]=true;
+	$args[]=$this->link->link_id;
 	
 			 $results = $dispatcher->trigger('getUploadForm',$args);
 	          echo $results[0];
@@ -182,30 +183,33 @@ if( $this->mtconf['use_map'] == 1 )
 	
 <script language="javascript">
 
-var count=0;
- function addField()
- {
-        count++;
-		 document.getElementById('handout_files').innerHTML+='<br><input type="file" name="handout_file_'+count+'" >';
-	 
-     
-  }
 
+
+
+ function addRow(count)
+ { count ++;
+   var tbl = document.getElementById('mtreetbl');
+   var lastRow = tbl.rows.length-1;
+   
+   var iteration = lastRow;
+   var row = tbl.insertRow(lastRow);
+ 
+   var cellLeft = row.insertCell(0);
+   var textNode = document.createTextNode('');
+   cellLeft.appendChild(textNode);
+   
+   
+   var cellRight = row.insertCell(1);
+   var el = document.createElement('input');
+   el.type = 'file';
+   el.name = 'handout_file_' + count;
+   cellRight.appendChild(el);
+   return count;
+ }
 
 
 </script>
-<script language="javascript">
-/*fields = 0;
-function addInput() {
-if (fields != 10) {
-document.getElementById('text').innerHTML += "<input type='file' value='' name='field[]' /><br />";
-fields += 1;
-} else {
-document.getElementById('text').innerHTML += "<br />Only 10 upload fields allowed.";
-document.form.add.disabled=true;
-}
-}*/
-</script>
+
 <table width="100%" cellpadding="0" cellspacing="0">
 <?php if( $this->mtconf['use_map'] == 1 ) { ?>
 <tr><td>
