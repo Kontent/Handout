@@ -657,9 +657,9 @@ class HANDOUT_Cats
 		else {
 			$user = &$userID;
 		}
-
-		$query = "SELECT * FROM #__categories " . "\n WHERE section = 'com_handout'" . "\n   AND published = 1 " . "\n   AND parent_id=" . (int) $parent_id
+$query = "SELECT * FROM #__categories " . "\n WHERE (section = 'com_handout' or section='mtree') " . "\n   AND published = 1 " . "\n   AND parent_id=" . (int) $parent_id
 				. " AND ";
+		
 
 		if ($user->userid) {
 			if ($user->isSpecial) {
