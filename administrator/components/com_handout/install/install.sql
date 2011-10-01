@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS `#__handout` (
   `download_limit` int(11) NOT NULL,
   `allow_single_download` tinyint(4) NOT NULL,
   `multi_file_no` int(11) NOT NULL DEFAULT '0',
+   `js_group_id` int(11) NOT NULL,
+  `cattype` varchar(50) NOT NULL default 'handout',
   PRIMARY KEY (`id`),
   KEY `pub_own_cat_name` (`published`,`docowner`,`catid`,`docname`(64)),
   KEY `pub_own_cat_date` (`published`,`docowner`,`catid`,`docdate_published`),
