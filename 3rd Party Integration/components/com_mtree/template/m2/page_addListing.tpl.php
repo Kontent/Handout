@@ -78,6 +78,7 @@ if( $this->mtconf['use_map'] == 1 )
 				alert('<?php echo addslashes(JText::_( 'Please select a jpg png or gif file for the images' )) ?>');
 				return;
 			} else {
+				document.getElementById('progress').style.display = 'block';
 				form.submit();
 			}
 		}
@@ -183,14 +184,18 @@ if( $this->mtconf['use_map'] == 1 )
 	
 <script language="javascript">
 
+var count=0
+function setCount(cont)
+{ if(count==0)
+count=cont;
+	}
 
 
-
- function addRow(count)
- { count ++;
+ function addRow()
+ { count++;
    var tbl = document.getElementById('mtreetbl');
    var lastRow = tbl.rows.length-1;
-   
+ 
    var iteration = lastRow;
    var row = tbl.insertRow(lastRow);
  
@@ -198,15 +203,17 @@ if( $this->mtconf['use_map'] == 1 )
    var textNode = document.createTextNode('');
    cellLeft.appendChild(textNode);
    
-   
+  
    var cellRight = row.insertCell(1);
    var el = document.createElement('input');
    el.type = 'file';
    el.name = 'handout_file_' + count;
    cellRight.appendChild(el);
-   return count;
+  
+   return true;
  }
-
+ 
+ 
 
 </script>
 

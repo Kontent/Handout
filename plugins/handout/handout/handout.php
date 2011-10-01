@@ -19,7 +19,7 @@ class plgHandoutHandout extends JPlugin
 	
 	function getUploadForm($class="handoutfile",$id="handoutfile",$istable,$listingid)
 	{
-
+           $progressImg = JURI::root().'/administrator/components/com_handout/images/uploader.gif';
 		
 		
 		if($listingid>0){
@@ -38,7 +38,7 @@ class plgHandoutHandout extends JPlugin
 				if($doc->multi_file_no==0)
 				$handhtml='<a href="index.php?option=com_handout&task=doc_download&gid='.$doc->id.'">'.$filename.'</a><br/><input type="file" name="handout_file">';
 				else 
-				$linkhtml=$linkhtml.'<br/><a href="index.php?option=com_handout&task=doc_download&gid='.$doc->id.'">'.$filename.'</a><br/><input type="file" name="handout_file_'.$doc->multi_file_no.'">';
+				$linkhtml=$linkhtml.'<a href="index.php?option=com_handout&task=doc_download&gid='.$doc->id.'">'.$filename.'</a><br/><input type="file" name="handout_file_'.$doc->multi_file_no.'"><br/>';
 			    $count++;
 			}
 			if($count>0)
@@ -47,11 +47,17 @@ class plgHandoutHandout extends JPlugin
 				$count=$count-1;
 			}
 			
+		}else 
+		{
+				$handhtml='<input type="file" name="handout_file" class="'.$class.'"   id="'.$id.'">';
+       
+	
+			
 		}
 		
-		$html = '<tr><td>'.$this->params->get('inputlabel','Handout File').'</td><td>'.$handhtml.'</td></tr>';
+		$html = '<tr><td>'.$this->params->get('inputlabel','Handout File').'</td><td>'.$handhtml.'</td><td><div id="progress" style="display:none;"><img src="'.$progressImg.'" alt="Upload Progress" />&nbsp;'.JText::_('File Uploading ...').'</div></td></tr>';
 		$html.='<tr><td></td><td>'.$linkhtml.'</td></tr>';
-		$html.='<tr><td></td><td><input type="button" onclick="count='.$count.';count=addRow(count);" value=" + New"></td></tr>';
+		$html.='<tr><td></td><td><input type="button" onclick="setCount(\''.$count.'\');addRow();" value=" + New"></td></tr>';
          
     	
 			
@@ -67,7 +73,7 @@ class plgHandoutHandout extends JPlugin
 	
 			if($istable){
 		$label='<tr><td>'.$label.'</td>';
-		$input='<td>'.$input.'</td></tr><tr><td></td><td><input type="button" onclick="count=0;count=addRow(count);" value=" + New"></td></tr>';
+		$input='<td>'.$input.'</td><td><div id="progress" style="display:none;"><img src="'.$progressImg.'" alt="Upload Progress" />&nbsp;'.JText::_('File Uploading ...').'</div></td></tr><tr><td></td><td><input type="button" onclick="addRow();" value=" + New"></td></tr>';
 			}
 	
 	   $html=$label.$input;
@@ -79,37 +85,43 @@ class plgHandoutHandout extends JPlugin
 		   return $html;
 	}
 	
-	function onUpload($files,$name,$row)
+	function onUpload($files,$row)
 	{
-			define('INTEGRATE_SITE',JPATH_ROOT.DS.'components'.DS.'com_handout');
-		define('INTEGRATE_ADMINISTRATOR',JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_handout');
-		
-		define ( 'JPATH_COMPONENT_HELPERS', INTEGRATE_SITE . DS . 'helpers' );
-define ( 'JPATH_COMPONENT_AHELPERS', INTEGRATE_ADMINISTRATOR . DS . 'helpers' );
-
-require_once INTEGRATE_ADMINISTRATOR . DS . 'handout.class.php';
-require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
-require_once JPATH_COMPONENT_AHELPERS . DS . 'factory.php';
-//echo INTEGRATE_SITE . DS . 'controller.php';
-
-
-$handout = &HandoutFactory::getHandout ();
-
-
-define ( 'C_HANDOUT_FILE', $handout->getPath ( 'classes', 'file' ) );
-
-
-require_once C_HANDOUT_FILE;
-
-
-$_HANDOUT_USER = &HandoutFactory::getHandoutUser();
-  		$_HANDOUT = &HandoutFactory::getHandout();
-//echo var_dump($handout);
-	$path = $_HANDOUT->getCfg('handoutpath');
 	
-//echo "<br/>".$path;
-//echo COM_HANDOUT_VALIDATE_USER;
-	//get file validation settings
+		/* Including Handout libraries to upload file through Plugin */
+	   define('INTEGRATE_SITE',JPATH_ROOT.DS.'components'.DS.'com_handout');
+	   define('INTEGRATE_ADMINISTRATOR',JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_handout');
+	   define ( 'JPATH_COMPONENT_HELPERS', INTEGRATE_SITE . DS . 'helpers' );
+       define ( 'JPATH_COMPONENT_AHELPERS', INTEGRATE_ADMINISTRATOR . DS . 'helpers' );
+       require_once INTEGRATE_ADMINISTRATOR . DS . 'handout.class.php';
+       require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
+       require_once JPATH_COMPONENT_AHELPERS . DS . 'factory.php';
+      
+
+		/* Handout Object */
+       $handout = &HandoutFactory::getHandout ();
+       
+	
+       
+       
+       
+		/* Including Handout File librarry to upload file through Plugin */
+       define ( 'C_HANDOUT_FILE', $handout->getPath ( 'classes', 'file' ) );
+       require_once C_HANDOUT_FILE;
+       
+	 
+       
+		/* Handout User Object */
+       $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
+       
+		/* Including Handout libraries to upload file through Plugin */
+  	   $_HANDOUT = &HandoutFactory::getHandout();
+  	   
+		/* Handout Upload Path */
+	    $path = $_HANDOUT->getCfg('handoutpath');
+	
+
+		/* Validate Handout User */
    	if ($_HANDOUT_USER->isSpecial) {
 	  		$validate = COM_HANDOUT_VALIDATE_ADMIN;
    		} else {
@@ -119,86 +131,135 @@ $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
 		   		$validate = COM_HANDOUT_VALIDATE_USER;
 	   		}
   		}
-	$db= & JFactory::getDBO();
-	$upload_ext='';
+  		       	
+	$ext='';
 	$count=0;
-	$query='select id from #__categories where name='.$db->Quote($name).' and section='.$db->Quote('mtree');
-	$db->setQuery($query);
-	$category=$db->loadResult();
-	if(!$category)
-	{
-		$query='insert into #__categories set title='.$db->Quote($name).', name='.$db->Quote($name).', section='.$db->Quote('mtree').', image_position='.$db->Quote('left').', description='.$db->Quote($name.' Integration').', published='.$db->Quote('1');
-		$db->setQuery($query);
-		$db->query();
-		$query="select id from #__categories order by id DESC limit 1";
-		$db->setQuery($query);
-		$category=$db->loadResult();
-	}
-	//echo $row->link_id;
-	//echo var_dump($files);
-    //exit();
+	$err=array();
+		/* Document Table Object */
+    $db= & JFactory::getDBO();
+  
+   	
+   	//File Object to upload File
+    $upload = new HANDOUT_FileUpload();
+
+	
+   	 	
+   	 	/* if mtree link editing */
+   	 	
 	if($row->link_id>0)
 	{
-		
+		/* retrive all docs by mtree link id */
 	$query="select * from #__handout  where mtree_id=".$row->link_id;
   	$db->setQuery($query);
   	$handoutdocs=$db->loadObjectList();
-  	
-  	foreach($handoutdocs as $doc)
-  	{
-  		$count++;
-  		if($doc->multi_file_no>0){
-  		$ext='handout_file_'.$doc->multi_file_no;
-  		}else { $ext='handout_file';}
-  		//echo $
-  		
-  		if($files[$ext]['name'])
-  		
-  		{//echo var_dump($files[$ext]['name']);
-  		//exit();
-  			$upload = new HANDOUT_FileUpload();
-  		$file = $upload->uploadHTTP($files[$ext], $path, $validate);
-  					
-  			echo $query="update #__handout set docname=".$db->Quote($row->link_name).", docdescription=".$db->Quote($row->link_desc).", doclastupdateon=".$db->Quote($row->link_modified).", docfilename=".$db->Quote($files[$ext]['name']).", published=".$db->Quote('1')." where mtree_id=".$row->link_id.' and multi_file_no='.$doc->multi_file_no;
-  		  	$db->setQuery($query);
-  	        $db->query();
-  		
-  		}
+  	$count=count($handoutdocs);
+  	 foreach($handoutdocs as $doc)
+  	{     //if first file have no extended number to add new file field
+		if($doc->multi_file_no>0)
+			$ext='handout_file_'.$doc->multi_file_no;
+			else 
+			$ext='handout_file';
+			
+			$filename="";
+			$filename=$files[$ext]['name'];
+			if($filename)
+			{
+				$error=null;
+				$upload->_clearError();
+				$upload->uploadHTTP($files[$ext], $path, $validate);
+			 	$error=$upload->_getError();
+				
+				if(!$error)
+				{  // updating handout  document
+			    	$document = new HandoutDocument ( $db );
+					$document->load($doc->id);
+					$docname="";
+					$docname=explode('.', $filename);
+					$document->docname=$docname[0];
+					$document->docfilename=$filename;
+					$document->doclastupdateby=$row->user_id;
+					$document->doclastupdateon=$row->link_modified;
+					$document->store();
+					
+					
+				}else{
+					$err[]=$error;
+					
+				}
+				
+			}
+			
+		
+		
   		
   	}
-
-  	if($count>0)
-  	$upload_ext='_'.$count;
-
-  	
-  	
-	}
-    echo $files['handout_file'.$upload_ext]['name'];
-    echo $upload_ext;
-    //exit();
-	while($files['handout_file'.$upload_ext]['name']){
-	
-  		//upload the file
-  		$upload = new HANDOUT_FileUpload();
-  		$file = $upload->uploadHTTP($files['handout_file'.$upload_ext], $path, $validate);
-  		
-  
-  
-  	
-  		$query="insert into #__handout set docname=".$db->Quote($row->link_name)." , docdescription=".$db->Quote($row->link_desc).", docdate_published=".$db->Quote($row->link_created).", docfilename=".$db->Quote($files['handout_file'.$upload_ext]['name']).", published=".$db->Quote('1').", docsubmittedby=".$db->Quote($row->user_id).", mtree_id=".$db->Quote($row->link_id).", docowner=".$db->Quote($row->user_id).", docmaintainedby=".$db->Quote($row->user_id).", multi_file_no=".$db->Quote($count).", catid=".$db->Quote($category);
-  		
-  	
-  	
-  	$db->setQuery($query);
-  	$db->query();
-  	
-  	$count++;
-  	$upload_ext='_'.$count;
 		
 	}
-		return true;
-	}
 	
+	
+	
+	if($count>0)
+	  $ext='handout_file_'.$count;
+		else 
+	  $ext='handout_file';
+
+		// adding new file with mtree link
+	while(($filename=$files[$ext]['name'])){
+		
+			$error=null;
+			$upload->_clearError();
+			$upload->uploadHTTP($files[$ext], $path, $validate);
+			$error=$upload->_getError();
+			if(!$error)
+			{
+				
+			
+  		     	$document = new HandoutDocument ( $db );
+  	            $mdoc=new stdClass();
+				$docname=explode('.', $filename);
+				$mdoc->docname=$docname[0];
+				$mdoc->docdate_published=$row->link_created;
+				$mdoc->docfilename=$filename;
+				$mdoc->published=1;
+				$mdoc->docsubmittedby=$row->user_id;
+				$mdoc->mtree_id=$row->link_id;
+				$mdoc->docowner=-1;
+				$mdoc->docmaintainedby=$row->user_id;
+				$mdoc->multi_file_no=$count;
+				$mdoc->cattype='mtree';
+				$document->bind($mdoc);
+				$document->store();
+				
+				
+				
+				
+				
+			
+				
+			}else{
+				
+				$err[]=$error;
+			}
+		
+		
+		
+		$filename="";
+		$count++;
+		
+	$ext='handout_file_'.$count;
+	
+		
+	}
+		
+		
+	
+  		
+
+  
+	
+		return $err;
+	}
+	//display Handout File List in Mtree Link Details
 	function onDisplayMtreeListing($listingid)
 	{
 		
@@ -221,45 +282,8 @@ $_HANDOUT_USER = &HandoutFactory::getHandoutUser();
          return $html;     
     }
     
-    function onDisplayMtreeEditListing($listingid)
-    {
-    	
-    	 $db=& JFactory::getDBO();
-         $query="select * from #__handout where mtree_id=".$listingid;
-         $db->setQuery($query);
-         $docs=$db->loadObjectList();
-		$linkhtml="";
-		if($docs)
-		{
-			foreach ($docs as $doc)
-			{
-				$filename=$doc->docfilename;
-				if($doc->multi_file_no==0)
-				$handhtml='<a href="index.php?option=com_handout&task=doc_download&gid='.$doc->id.'">'.$filename.'</a><br/><input type="file" name="handout_file">';
-				else 
-				$linkhtml=$linkhtml.'<br/><a href="index.php?option=com_handout&task=doc_download&gid='.$doc->id.'">'.$filename.'</a><br/><input type="file" name="handout_file_'.$doc->multi_file_no.'">';
-			
-			}
-			
-		}
-		
-		$html = '<tr><td>'.$this->params->get('inputlabel','Handout File').'</td><td>'.$handhtml.'</td></tr>';
-		$html='<tr><td></td><td>'.$linkhtml.'</td>';
-         return $html;     
-    	
-    }
-    
-    function onViewDiscussion()
-    {
-    	
-    	
-    }
-    
-    function onViewKunenaDiscussion()
-    {
-    	
-    	
-    }
+   
+   
 
 
 

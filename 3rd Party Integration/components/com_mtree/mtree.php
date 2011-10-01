@@ -3990,22 +3990,34 @@ function savelisting( $option ) {
 		$file_values = array();
 
 		$files = JRequest::get( 'files' );
-		/*  Plugin Start*/
+		/* Handout Plugin Triggering Start*/
 		
 		
 			$dispatcher	=& JDispatcher::getInstance();
 		JPluginHelper::importPlugin('handout','handout');
 		$args=array();
 		$args[]=$files;
-		$args[]='Mosets Tree';
 		$args[]=$row;
 			 $results = $dispatcher->trigger('onUpload',$args);
-	          //echo $results[0];
+	          $handouterrors=$results[0];
+	          $terr=count($handouterrors);
+	          $handmsg="";
+	          if($terr>0)
+	          { 
+	          	foreach ($handouterrors as $handerr)
+	          {
+	          	$handmsg=$handerr.'\n';
+	          	
+	          }
+	          	
+	          	echo "<script> alert('".$handmsg."'); window.location='index.php?option=com_mtree&task=editlisting&link_id=".$row->link_id."';</script>\n";
+			exit();
+	          }
+	          
   	
-//echo $file;
-	      //$redirectMsg=$redirectMsg.$files['handout_file']['name'];
 
-	 /* Plugin End */
+
+	 /* Handout Plugin Triggering End */
 	 
 	 
 	 
