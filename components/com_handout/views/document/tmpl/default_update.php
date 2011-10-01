@@ -2,13 +2,19 @@
 function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 	{
 		$Itemid = JRequest::getInt('Itemid');
-
+         $groupid=JRequest::getVar('groupid');
+         
 		JFilterOutput::objectHTMLSafe( $row );
 	
 		ob_start();
 		?>
 		<form action="index.php" method="post" name="adminForm" onsubmit="javascript:setgood();" id="hform-edit" class="hform">
-			<?php
+			
+			 <ul>
+						<li><input type="button" name="cancel" onclick="submitbutton('cancel');" value="<?php echo JText::_('COM_HANDOUT_CANCEL');?>"></li>
+						<li><input type="submit" name="sub" value="<?php echo JText::_('COM_HANDOUT_SAVE');?>"></li>
+					</ul>
+		<?php
 
 			$tabs = new HandoutTabs(0);
 			echo $tabs->startPane("content-pane");
@@ -48,12 +54,18 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 
 			<input type="hidden" name="goodexit" value="0" />
 			<input type="hidden" name="id" value="<?php echo $row->id;?>" />
+			<input type="hidden" name="js_group_id" value="<?php if($groupid)echo $groupid ; else echo $row->js_group_id;?>" />
 			<input type="hidden" name="option" value="com_handout" />
 			<input type="hidden" name="task" value="doc_save" />
 			<input type="hidden" name="Itemid" value="<?php echo $Itemid;?>" />
 			<input type="hidden" name="doccounter" value="<?php echo $row->doccounter;?>" />
 			<input type="hidden" name="doclastupdateon" value="<?php echo date('Y-m-d H:i:s') ?>" />
 			<?php echo HANDOUT_token::render();?>
+			
+			<ul>
+						<li><input type="button" name="cancel" onclick="submitbutton('cancel');" value="<?php echo JText::_('COM_HANDOUT_CANCEL');?>"></li>
+						<li><input type="submit" name="sub" value="<?php echo JText::_('COM_HANDOUT_SAVE');?>"></li>
+					</ul>
 		</form>
 		<?php
 		$html = ob_get_contents();
@@ -86,9 +98,7 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 							<label for="hform-thumb"><?php echo JText::_('COM_HANDOUT_THUMBNAIL');?></label><br />
 							<?php echo $lists['docthumbnail'];?>
 							<?php $previewfull = $lists['docthumbnail_preview'] ? "images/stories/".$lists['docthumbnail_preview'] : "images/M_images/blank.png";?>
-
-							<img src="<?php echo $previewfull ?> " id="hdoc-thumbnail-preview" alt="Preview" />
-
+							
 						</p>
 						<p>
 							<label for="hform-filename"><?php echo JText::_('COM_HANDOUT_FILE');?></label><br />
@@ -101,12 +111,10 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 							<p>
 								<label for="hform-filename"><?php echo JText::_('COM_HANDOUT_DOCURL');?></label><br />
 								<input class="inputbox" type="text" name="document_url" size="50" maxlength="200" value="<?php echo $row->docurl ?>" />
-								
-								<!-- The line below or the line above is correct. Need to test and remove the incorrect one. -->
-								<!--  input class="inputbox" type="text" name="document_url" size="50" maxlength="200" value="<!-- php echo $row->docfilename ?>" / -->
-								
+
 								<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DOCURL');?>::<?php echo JText::_('COM_HANDOUT_DOCURL_TOOLTIP');?>">
-									<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+
 							</p>
 						<?php
 						endif;
@@ -129,17 +137,23 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 						<?php
 						endif;
 						?>
+						
+						
 						<p>
-							<label for="hform-filename"><?php echo JText::_('DOWNLOAD_LIMIT');?></label><br />
-							<input class="inputbox" type="text" name="download_limit" size="15" maxlength="200" value="<?php echo $row->download_limit; ?>" />
+								<label for="hform-filename"><?php echo JText::_('DOWNLOAD_LIMIT');?></label><br />
+								<input class="inputbox" type="text" name="download_limit" size="15" maxlength="200" value="<?php echo $row->download_limit; ?>" />
 
-							<span class="hasTip" title="<?php echo JText::_('DOWNLOAD_LIMIT');?>::<?php echo JText::_('DOWNLOAD_LIMIT_TOOLTIP');?>">
-							<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+								<span class="hasTip" title="<?php echo JText::_('DOWNLOAD_LIMIT');?>::<?php echo JText::_('DOWNLOAD_LIMIT_TOOLTIP');?>">
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+
 		                </p>
 						<p>
 							<input type="checkbox" <?php if($row->allow_single_download==1)echo 'checked="checked"';?> name="allow_single_download"  value="1"/> <?php echo JText::_('ALLOW_SINGLE_DOWNLOAD');?> 
+	
+							
 							<span class="hasTip" title="<?php echo JText::_('ALLOW_SINGLE_DOWNLOAD');?>::<?php echo JText::_('ALLOW_SINGLE_DOWNLOAD_TOOLTIP');?>">
 								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+							
 						</p>
 					</td>
 				</tr>
@@ -158,14 +172,15 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 				<?php echo $lists['viewer'];?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_OWNER');?>::<?php echo JText::_('COM_HANDOUT_OWNER_TOOLTIP');?>">
-					<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 				</p>
 			<p>
 				<label for="hform-maintainedby"><?php echo JText::_('COM_HANDOUT_MAINTAINER');?></label><br />
 				<?php echo $lists['maintainer']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_MAINTAINER');?>::<?php echo JText::_('COM_HANDOUT_MANT_TOOLTIP');?>">
-					<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+
 			</p>
 			<p>
 				<label for="hform-createdby"> <?php echo JText::_('COM_HANDOUT_CREATED_BY_LABEL');?></label><br />
@@ -205,7 +220,7 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 				<?php echo $lists['licenses']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_AGREEMENT_TYPE');?>::<?php echo JText::_('COM_HANDOUT_AGREEMENT_TOOLTIP');?>">
-					<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+						<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 			</p>
 			<p>
@@ -213,7 +228,7 @@ function editDocumentForm(&$row, &$lists, $last, $created, &$params)
 				<?php echo $lists['licenses_display']; ?>
 
 				<span class="hasTip" title="<?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENT');?>::<?php echo JText::_('COM_HANDOUT_DISPLAY_AGREEMENT_TOOLTIP');?>">
-					<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
+								<img border="0" alt="Tooltip" src="media/com_handout/images/icon-16-tooltip.png" /></span>
 
 			</p>
 		</fieldset>

@@ -420,7 +420,16 @@ class HandoutModelDocument extends JModel
 		 * $this->_returnTo('cat_view', JText::_('COM_HANDOUT_THANKSHANDOUT') . $message ? "<br />" . $message : '', $doc->catid);
 
 		 */
+			
+			$mainframe=& JFactory::getApplication();
+			  if($doc->js_group_id>0)
+			  { $mainframe->redirect('index.php?option=com_community&view=groups&task=viewgroup&groupid='.$doc->js_group_id,'Document Submitted Successfully');
+			  
+			  
+			  }else{
+     
 			$this->_returnTo ( 'cat_view', JText::_('COM_HANDOUT_THANKS_FOR_SUBMISSION'), $doc->catid );
+			  }
 		}
 		// doc->save failed. Log error
 

@@ -42,17 +42,17 @@ defined('_JEXEC') or die;
 
 	<h2><?php echo JText::_('COM_HANDOUT_TITLE_EDIT');?></h2>
 
-	<ul>
+	<!-- <ul>
 		<li><a title="<?php echo JText::_('COM_HANDOUT_CANCEL')?>" href="javascript:submitbutton('cancel');" ><span><span><?php echo JText::_('COM_HANDOUT_CANCEL')?></span></span></a></li>
 		<li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
-	</ul>
+	</ul>-->
 
 	<?php echo editDocumentForm ( $this->edit_doc, $this->edit_lists, $this->edit_last, $this->edit_created, $this->edit_params ); ?>
 
-	<ul>
+	<!-- <ul>
 		<li><a title="<?php echo JText::_('COM_HANDOUT_CANCEL')?>" href="javascript:submitbutton('cancel');" ><span><span><?php echo JText::_('COM_HANDOUT_CANCEL')?></span></span></a></li>
 		<li><a title="<?php echo JText::_('COM_HANDOUT_SAVE')?>" href="javascript:submitbutton('save');"><span><span><?php echo JText::_('COM_HANDOUT_SAVE')?></span></span></a></li>
-	</ul>
+	</ul>-->
 
 	<div class="clr"></div>
 
@@ -84,7 +84,14 @@ defined('_JEXEC') or die;
 		ob_start();
 		?>
 		<form action="index.php" method="post" name="adminForm" onsubmit="javascript:setgood();" id="hform-edit" class="hform">
-			<?php
+			
+		
+		
+			<ul>
+						<li><input type="button" name="cancel" onclick="submitbutton('cancel');" value="<?php echo JText::_('COM_HANDOUT_CANCEL');?>"></li>
+						<li><input type="submit" name="sub" value="<?php echo JText::_('COM_HANDOUT_SAVE');?>"></li>
+					</ul>
+		<?php
 
 			$tabs = new HandoutTabs(0);
 			echo $tabs->startPane("content-pane");
@@ -130,6 +137,12 @@ defined('_JEXEC') or die;
 			<input type="hidden" name="doccounter" value="<?php echo $row->doccounter;?>" />
 			<input type="hidden" name="doclastupdateon" value="<?php echo date('Y-m-d H:i:s') ?>" />
 			<?php echo HANDOUT_token::render();?>
+			
+			
+			<ul>
+						<li><input type="button" name="cancel" onclick="submitbutton('cancel');" value="<?php echo JText::_('COM_HANDOUT_CANCEL');?>"></li>
+						<li><input type="submit" name="sub"   value="<?php echo JText::_('COM_HANDOUT_SAVE');?>"></li>
+					</ul>
 		</form>
 		<?php
 		$html = ob_get_contents();

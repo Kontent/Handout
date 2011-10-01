@@ -14,12 +14,13 @@ defined('_JEXEC') or die;
 
 jimport ( 'joomla.application.component.view' );
 
-//require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
-//require_once JPATH_COMPONENT_HELPERS . DS . 'categories.php';
-//require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
+
 
 class HandoutViewHandout extends JView {
 	function display() {
+		  $type= JRequest::getVar('type','');
+		  if($type!='mtree')
+		  {
 		  
 		$model=$this->getModel();
 		$handout = &HandoutFactory::getHandout();
@@ -55,6 +56,15 @@ class HandoutViewHandout extends JView {
 		$this->assignRef('perms', $perms);
 		$this->assignRef('conf', $handout->getAllCfg());
 		parent::display();
+		  }else 
+		  
+		  {
+		  	$model=$this->getModel();
+		  	
+		  	
+		  	
+		  	
+		  }
 	}
 }
 ?>

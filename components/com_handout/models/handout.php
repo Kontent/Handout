@@ -45,7 +45,7 @@ function getCategory($id) {
 		$items = array ();
 		foreach ( $children as $child ) {
 			$cat = new HANDOUT_Category ( $child->id );
-
+ //echo $child->id;
 			// process content plugins
 
 			HANDOUT_Utils::processContentPlugins ( $cat );
@@ -54,6 +54,8 @@ function getCategory($id) {
 			$item->links = &$cat->getLinkObject ();
 			$item->paths = &$cat->getPathObject ();
 			$item->data = &$cat->getDataObject ();
+			//  echo var_dump($item->links);
+  // exit();
 			$items [] = $item;
 		}
 
@@ -170,6 +172,20 @@ function getMenuParams() {
 		return HANDOUT_Utils::returnTo ( $task, $msg, $gid, $params );
 	}
 	
+	
+	
+	function getMtreeCategoryList($parentid=0)
+	{
+	
+	$db=& JFactory::getDBO();
+	$query="select * from #__mt_cats where cat_parent=".$parentid." and cat_published=1";
+    $db->setQuery($query);
+    $list=$db->loadObjectList();
+    return $list;
+    
+	
+	
+	}
 	
 }
 
