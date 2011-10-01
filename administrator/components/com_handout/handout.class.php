@@ -414,6 +414,10 @@ class HandoutDocument extends JTable
 	var $attribs = null;
 	var $download_limit=null;
 	var $allow_single_download=null;
+	var $js_group_id=null;
+	var $multi_file_no=null;
+	var $cattype=null;
+	
 
 	function __construct(&$db)
 	{

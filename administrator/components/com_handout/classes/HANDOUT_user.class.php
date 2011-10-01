@@ -340,7 +340,7 @@ class HANDOUT_User
 		$this->isDocument($doc);
 
 		//check if user has access to the document's category
-
+        if($doc->cattype!='mtree')
 		if (!$this->canAccessCategory($doc->catid)) {
 			return false;
 		}

@@ -226,6 +226,9 @@ class HANDOUT_Utils
 		$limit = JRequest::getInt('limit');
 		$order = JRequest::getVar('order');
 		$dir = JRequest::getVar('dir');
+		/* Jomsocial Groupid */
+		$groupid=JRequest::getVar('groupid');
+		/* Jomsocial Groupid */
 		$Itemid = JRequest::getInt('Itemid');
 		$indexfile = 'index.php';
 
@@ -246,6 +249,10 @@ class HANDOUT_Utils
 			$link .= "&order=$order";
 		if (!empty($dir))
 			$link .= "&dir=$dir";
+			/* if jomsocial groupid not empty then groupid will added with url */
+			if(!empty($groupid))
+			$link .= "&groupid=$groupid";
+			
 		if (is_array($params))
 			$link .= "&" . HANDOUT_Utils::implode_assoc('=', '&', $params);
 
@@ -657,9 +664,9 @@ class HANDOUT_Cats
 		else {
 			$user = &$userID;
 		}
-$query = "SELECT * FROM #__categories " . "\n WHERE (section = 'com_handout' or section='mtree') " . "\n   AND published = 1 " . "\n   AND parent_id=" . (int) $parent_id
+
+		$query = "SELECT * FROM #__categories " . "\n WHERE (section = 'com_handout' or section='mtree') " . "\n   AND published = 1 " . "\n   AND parent_id=" . (int) $parent_id
 				. " AND ";
-		
 
 		if ($user->userid) {
 			if ($user->isSpecial) {

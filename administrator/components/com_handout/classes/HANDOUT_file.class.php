@@ -350,6 +350,17 @@ class HANDOUT_FileUpload
 		$this->proto_reject = array('file', 'php', 'zlib', 'asp', 'pl', 'compress.zlib', 'compress.bzip2', 'ogg');
 		$this->proto_accept = array('http', 'https', 'ftp');
 	}
+	
+	
+	
+	function _getError()
+	{
+	return $this->_err;
+	}
+function _clearError()
+	{
+	return $this->_err=null;
+	}
 
 	/**
 	 *	Uploads a file using the HTTP protocol
