@@ -13,6 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.controller');
+jimport('joomla.environment.browser');
 //require_once JPATH_COMPONENT_HELPERS . DS . 'documents.php';
  $_HANDOUT = &HandoutFactory::getHandout();
 require_once $_HANDOUT->getPath('classes', 'html');
@@ -22,8 +23,24 @@ define('COM_HANDOUT_CSSPATH', 'components/com_handout/media/css/');
 
 class HandoutController extends JController
 {
+
+	
+	public $_tmpl;
+	public $_format;
 	function __construct ($config = array())
 	{
+			
+	$browser = & JBrowser::getInstance ( $_SERVER ['HTTP_USER_AGENT'] );
+		
+		
+		$this->_tmpl=JRequest::getVar('tmpl','');
+	if($this->_tmpl=='' && $browser->_mobile==true)
+		{
+			JRequest::setVar('tmpl','component');
+			$this->_tmpl='component';
+			
+		}
+		$this->_format=JRequest::getVar('format','');
 		
 		parent::__construct($config);
 		$this->registerTask('license_result', 'license_result');
@@ -37,22 +54,73 @@ class HandoutController extends JController
 		$gid=HandoutHelper::getGid();
 		switch ($this->getTask()) {
 			case 'cat_view':
-				JRequest::setVar('view', 'handout');
+				
+			
+		if($this->_tmpl=='component' && $this->_format=='' )
+				{
+					
+					$view = $this->getView('handout', 'mobile');
+					$view->display();
+					
+				}else 
+				{
+					
+					JRequest::setVar('view', 'handout');
+				
+				}
 							
 				break;
 			case 'doc_download':
 			case 'doc_view':
-				JRequest::setVar('view', 'download');
+				
+				
+		if($this->_tmpl=='component' && $this->_format=='' )
+				{
+					
+					$view = $this->getView('download', 'mobile');
+					$view->display();
+					
+				}else 
+				{
+					
+					JRequest::setVar('view', 'download');
+				
+				}
+				
+				
+				
 				break;
 			case 'doc_code':
-				JRequest::setVar('view', 'code');
+				
+		 if($this->_tmpl=='component' && $this->_format=='')
+				{
+					
+					$view = $this->getView('code', 'mobile');
+					$view->display();
+					
+				}else 
+				{
+					JRequest::setVar('view', 'code');
+				
+				}
+				
 				break;
 			case 'search_form':
 			case 'search_result':
 				JRequest::setVar('view', 'search');
 				break;
 			case 'doc_details':
-				JRequest::setVar('view', 'document');
+		        if($this->_tmpl=='component' && $this->_format=='')
+				{
+					
+					$view = $this->getView('document', 'mobile');
+					$view->display();
+					
+				}else 
+				{
+					JRequest::setVar('view', 'document');
+				
+				}
 				break;
 			case 'doc_edit':
 				$view = $this->getView('document', 'html');
@@ -100,13 +168,20 @@ class HandoutController extends JController
 				$document_model->publishDocument(array($gid));
 				break;
 		}
+		if($this->_tmpl!='component' || $this->_format!='' ){
 		parent::display(true);
+	}else if(!$this->getTask() ){
+		
+					$view = $this->getView('handout', 'mobile');
+					$view->display();
+	}
+		
 	}
 
 	function license_result ()
-	{
-		require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'downloads.php';
-		DownloadsHelper::licenseDocumentProcess(HandoutHelper::getGid());
+	{   $download = $this->getModel('download');
+		//require_once JPATH_COMPONENT . DS . 'helpers' . DS . 'downloads.php';
+		$download->licenseDocumentProcess(HandoutHelper::getGid());
 	}
 }
 ?>

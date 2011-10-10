@@ -18,14 +18,15 @@ jimport ( 'joomla.application.component.view' );
 
 class HandoutViewHandout extends JView {
 	function display() {
-		  $type= JRequest::getVar('type','');
+		 /* $type= JRequest::getVar('type','');
 		  if($type!='mtree')
 		  {
-		  
+		  */
 		$model=$this->getModel();
 		$handout = &HandoutFactory::getHandout();
 		$gid = HandoutHelper::getGid ();
-
+       // echo $gid;
+      //  exit();
 		list($links, $perms) =HandoutHelper::fetchMenu ( $gid);
 
 		$category = new StdClass ();
@@ -39,14 +40,18 @@ class HandoutViewHandout extends JView {
 	
 		//echo var_dump($cat_list->items );
 
+		
+			$docmodel= & JModel::getInstance('Document','HandoutModel');
+		$doc_list = new StdClass ();
+		list($doc_list->order, $doc_list->items) = $docmodel->getDocumentList ( $gid);
+		
+		
 		list($pagenav) =$model->getPageNav ( $gid );
 		$pagetitle = $model->getPageTitle ( $gid);
 	
-		$model= & JModel::getInstance('Document','HandoutModel');
-		$doc_list = new StdClass ();
-		list($doc_list->order, $doc_list->items) = $model->getDocumentList ( $gid);
-		//echo var_dump(list($doc_list->order, $doc_list->items) = $model->getDocumentList ( $gid));
-                        
+	
+		//echo var_dump($doc_list);
+             //   exit();        
 		$this->assignRef('category', $category);
 		$this->assignRef('cat_list', $cat_list);
 		$this->assignRef('doc_list', $doc_list);
@@ -56,7 +61,7 @@ class HandoutViewHandout extends JView {
 		$this->assignRef('perms', $perms);
 		$this->assignRef('conf', $handout->getAllCfg());
 		parent::display();
-		  }else 
+		  /*}else 
 		  
 		  {
 		  	$model=$this->getModel();
@@ -64,7 +69,7 @@ class HandoutViewHandout extends JView {
 		  	
 		  	
 		  	
-		  }
+		  }*/
 	}
 }
 ?>

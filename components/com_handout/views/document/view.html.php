@@ -67,7 +67,7 @@ class HandoutViewDocument extends JView {
 
 	function _displayMove() {
 		$handout = &HandoutFactory::getHandout ();
-		$document_model= & $this->getModel('Document','HandoutModel');
+		$document_model= JModel::getInstance('Document','HandoutModel');
 		$gid =  HandoutHelper::getGid ();
 		
 		
@@ -128,7 +128,7 @@ class HandoutViewDocument extends JView {
 	//	echo var_dump($files);
 	//echo ;
 			//exit();
-			list($edit_doc, $edit_lists, $edit_last, $edit_created, $edit_params) = $document_model->getEditDocumentForm ( $gid,$files['upload']['name']);
+		list($edit_doc, $edit_lists, $edit_last, $edit_created, $edit_params) = $document_model->getEditDocumentForm ( 0 , $files['upload']['name'] , $gid);
 		$this->assignRef('edit_doc', $edit_doc);
 		$this->assignRef('edit_lists', $edit_lists);
 		$this->assignRef('edit_last', $edit_last);

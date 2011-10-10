@@ -54,7 +54,7 @@ function getCategory($id) {
 			$item->links = &$cat->getLinkObject ();
 			$item->paths = &$cat->getPathObject ();
 			$item->data = &$cat->getDataObject ();
-			//  echo var_dump($item->links);
+		 //echo var_dump($item->data);
   // exit();
 			$items [] = $item;
 		}

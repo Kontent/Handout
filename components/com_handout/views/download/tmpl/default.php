@@ -48,6 +48,7 @@ JHTML::stylesheet('handout.css', COM_HANDOUT_CSSPATH);
 			<input type="radio" name="agree" value="1" /><?php echo JText::_('COM_HANDOUT_AGREE');?>
 			<input name="submit" value="<?php echo JText::_('COM_HANDOUT_PROCEED');?>" type="submit" />
 		</form>
+
 	</div>
 
 	<div class="hdoc-taskbar">

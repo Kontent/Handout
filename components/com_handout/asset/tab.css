@@ -1,14 +1,3 @@
-
-/**
- * Handout - The Joomla Download Manager
- * @package 	Handout
- * @copyright 	(C) 2011 Kontent Design. All rights reserved.
- * @copyright 	(C) 2003-2008 The DOCman Development Team
- * @copyright 	(C) 2009 Artio s.r.o.
- * @license 	http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @link 		http://www.sharehandouts.com
- */
-
 @CHARSET "ISO-8859-1";
 dl.tabs {
 	clear:both;
@@ -63,6 +52,3 @@ display:block;
 }
 
 .hupload ul li { float:right; width:100px ; background:transparent];   padding:10px 10px 10px 10px;}
-
-
-

@@ -234,6 +234,15 @@ class HandoutHTML extends JHTML
 		$handoutUser = &HandoutFactory::getHandoutUser();
 
 		$html = '';
+		$selectValue=0;
+		if($doc->docsubmittedby==$doc->docmaintainedby)
+		{
+			
+			$selectValue=-2;
+		}else {
+			
+			$selectValue=$doc->docmaintainedby;
+		}
 
 		if ($handoutUser->canAssignMaintainer($doc)) {
 			//create select list
@@ -243,7 +252,7 @@ class HandoutHTML extends JHTML
 			$select->addJoomlaGroups();
 			$select->addHandoutGroups();
 			$select->addUsers();
-			$select->setSelectedValues(array($doc->docmaintainedby));
+			$select->setSelectedValues(array($selectValue));
 			$html = $select->toHtml();
 		}
 		else {

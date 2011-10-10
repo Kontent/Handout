@@ -13,8 +13,7 @@ defined('_JEXEC') or die;
 
 jimport ( 'joomla.application.component.view' );
 
-//require_once JPATH_COMPONENT_HELPERS . DS . 'helper.php';
-//require_once JPATH_COMPONENT_HELPERS . DS . 'downloads.php';
+
 
 class HandoutViewDownload extends JView {
 	function display() {

@@ -642,12 +642,19 @@ class HANDOUT_User
 		if ($this->isSpecial) {
 			return true;
 		}
+		
+	if ($this->userid == $doc->docsubmittedby) {
+				return true;
+			}else if(!$doc->docsubmittedby)
+			{
+			return true;
+			}
 
-		if ($handout->getCfg('reader_assign') & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
+	/*	if ($handout->getCfg('reader_assign') & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
 			if ($this->userid == $doc->docsubmittedby) {
 				return true;
 			}
-		}
+		}*/
 
 		if ($handout->getCfg('reader_assign') & COM_HANDOUT_ASSIGN_BY_EDITOR) {
 			if ($this->canEdit($doc, false)) {
@@ -670,18 +677,27 @@ class HANDOUT_User
 		$handout = &HandoutFactory::getHandout();
 
 		//Make sure we have a document object
-
+       /* if(!$doc)
+        {
+        return true;
+        }*/
 		$this->isDocument($doc);
 
 		if ($this->isSpecial) {
 			return true;
 		}
 
-		if ($handout->getCfg('editor_assign') & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
+				if ($this->userid == $doc->docsubmittedby) {
+				return true;
+				}else if(!$doc->docsubmittedby)
+				{
+				return true;
+				}
+		/*if ($handout->getCfg('editor_assign') & COM_HANDOUT_ASSIGN_BY_AUTHOR) {
 			if ($this->userid == $doc->docsubmittedby) {
 				return true;
 			}
-		}
+		}*/
 
 		if ($handout->getCfg('editor_assign') & COM_HANDOUT_ASSIGN_BY_EDITOR) {
 			if ($this->canEdit($doc, false)) {

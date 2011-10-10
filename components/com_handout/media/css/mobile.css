@@ -1,0 +1,36 @@
+BODY {text-align: center;}
+A IMG {border: none;}
+LABEL {cursor: pointer;}
+H1, H2, H3, H4, H5, H6, FORM {padding: 0; margin: 0;}
+.relax {clear: both; height: 0; line-height: 0px; font-size: 1px;}
+A.likelogo{ margin:auto; margin-top:35px; width:153px; height:127px; display:block;}
+UL.loadform{list-style:none; padding:0px; margin:0px;}
+UL.loadform LI{margin-top:40px;}
+UL.loadform LI LABEL{font-size:21px; font-weight:bold; color:#000;}
+UL.loadform LI label.ui-input-text{width:auto!important;}
+UL.bottom{list-style:none; padding:0px; margin:200px 0 30px 0;}
+UL.bottom.clear{margin-top:45px;}
+UL.bottom LI{display:inline; font-size:12px;}
+UL.bottom LI A{font-size:12px; text-decoration:underline;}
+UL.bottom LI A:hover{text-decoration:none;}
+H1.title{font-size:20px; margin:0 5px; text-align:left; color:#000;}
+P{font-size:14px; margin:10px 5px; text-align:left; color:#000;}
+UL.loadlist{padding:0px; margin:0px; list-style:none;}
+UL.loadlist LI IMG.icon{width:58px; height:64px; float:left;}
+UL.loadlist LI .info{margin-left:70px;}
+UL.loadlist LI .info DL{padding:0px; margin:0px; font-size:13px; text-align:left; color:#000;}
+UL.loadlist LI .info DL DD{margin:0px;}
+UL.loadlist LI .info DL DT{float:left; margin:0 5px; font-weight:bold;}
+UL.loadlist LI .info DL DD A{text-decoration:underline; color:#154A74; font-weight:normal;}
+UL.loadlist LI .info DL DD A:hover{text-decoration:none;}
+.info .addthis_toolbox{margin:15px 0 0 5px;}
+.addthis_toolbox.mainpage{float:right; margin:0 -20px 0 0;}
+.info A.loadbtn{float:left; margin:15px 0 0 0; font-size:13px;}
+.main{width:89%; margin:auto;}
+.sample .ui-li-thumb{margin: 18px 0 0 10px;}
+.main H3.title{font-size:16px; color:#000; text-align:left; margin:0 0 0 -15px;}
+.main H3.title.topped{margin-top:45px;}
+.main P.title{font-size:13px; color:#000; text-align:left; margin:0 0 25px -15px;}
+.docs .ui-li-icon{top:0px!important; left:0px!important; margin:8px 0 0 8px;}
+UL.docs LI:first-child{border-radius: 1em 1em 0em 0em;}
+UL.docs LI:last-child{border-radius: 0em 0em 1em 1em;}

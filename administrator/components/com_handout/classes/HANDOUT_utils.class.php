@@ -807,7 +807,7 @@ class HANDOUT_Cats
 
 		if (!isset($list)) {
 			$database = &JFactory::getDBO();
-			 $query="SELECT * FROM #__categories" . "\n WHERE ".COM_HANDOUT_FIELD_SECTION." = 'com_handout' OR ".COM_HANDOUT_FIELD_SECTION." = 'mtree'";
+			 $query="SELECT * FROM #__categories" . "\n WHERE ".COM_HANDOUT_FIELD_SECTION." = 'com_handout'";
 			 $database->setQuery($query);
 			$list = $database->loadObjectList('id');
 			
@@ -880,7 +880,7 @@ class HANDOUT_Docs
 				$query .= $catid ? "\n WHERE d.catid=$catid " : "";
 			}
 			elseif ($user->canPublish()) {
-				$query .= $catid ? "\n AND d.catid=$catid " : "";
+				$query .= $catid ? "\n WHERE d.catid=$catid " : "";
 			}
 			elseif ($user->userid) {
 				$query .= "WHERE d.published=1" . "\n AND (d.docowner=" . $user->userid . "\n OR d.docmaintainedby=" . $user->userid . "\n OR d.docowner="
