@@ -27,15 +27,18 @@ class HandoutController extends JController
 	
 	public $_tmpl;
 	public $_format;
+	public $_dv;
 	function __construct ($config = array())
 	{
 			
-	$browser = & JBrowser::getInstance ( $_SERVER ['HTTP_USER_AGENT'] );
+	
 		
 		
 		$this->_tmpl=JRequest::getVar('tmpl','');
-	if($this->_tmpl=='' && $browser->_mobile==true)
-		{
+		$this->_dv=JRequest::getVar('dv',0);
+		if($this->_tmpl=='')
+	if(strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strpos($_SERVER['HTTP_USER_AGENT'], 'iPod')) {
+			
 			JRequest::setVar('tmpl','component');
 			$this->_tmpl='component';
 			
@@ -56,7 +59,7 @@ class HandoutController extends JController
 			case 'cat_view':
 				
 			
-		if($this->_tmpl=='component' && $this->_format=='' )
+		if($this->_tmpl=='component' && $this->_format=='' && $this->_dv!=1)
 				{
 					
 					$view = $this->getView('handout', 'mobile');
@@ -74,7 +77,7 @@ class HandoutController extends JController
 			case 'doc_view':
 				
 				
-		if($this->_tmpl=='component' && $this->_format=='' )
+		if($this->_tmpl=='component' && $this->_format=='' && $this->_dv!=1 )
 				{
 					
 					$view = $this->getView('download', 'mobile');
@@ -92,7 +95,7 @@ class HandoutController extends JController
 				break;
 			case 'doc_code':
 				
-		 if($this->_tmpl=='component' && $this->_format=='')
+		 if($this->_tmpl=='component' && $this->_format=='' && $this->_dv!=1)
 				{
 					
 					$view = $this->getView('code', 'mobile');
@@ -110,7 +113,7 @@ class HandoutController extends JController
 				JRequest::setVar('view', 'search');
 				break;
 			case 'doc_details':
-		        if($this->_tmpl=='component' && $this->_format=='')
+		        if($this->_tmpl=='component' && $this->_format=='' && $this->_dv!=1)
 				{
 					
 					$view = $this->getView('document', 'mobile');
@@ -168,7 +171,7 @@ class HandoutController extends JController
 				$document_model->publishDocument(array($gid));
 				break;
 		}
-		if($this->_tmpl!='component' || $this->_format!='' ){
+		if($this->_tmpl!='component' || $this->_format!='' || $this->_dv==1 ){
 		parent::display(true);
 	}else if(!$this->getTask() ){
 		

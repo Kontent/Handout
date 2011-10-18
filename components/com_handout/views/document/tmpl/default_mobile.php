@@ -316,9 +316,9 @@ $document->setMetaData('language', $this->data->doclanguage);
 				</li>
 			</ul>
 			<ul class="bottom">
-				<li><a href="#" rel="external">Handout for Joomla</a></li>
+				<li><a href="extensions.kontentdesign.com" rel="external">Handout for Joomla</a></li>
 				<li>|</li>
-				<li><a href="#" rel="external">Switch to Desctop</a></li>
+				<li><a href="<?php echo JURI::root().'?option='.JRequest::getVar('option').'&task='.JRequest::getVar('task').'&gid='.JRequest::getVar('gid').'&dv=1'?>" rel="external">Switch to Desctop</a></li>
 			</ul>
 		</div><!-- /content -->
 	</div><!-- /page -->
